@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XMLRootMenu>
+	<!-- DON'T CHANGE THE ID FOR the Dashboard menu entry -->
+	<!-- it's used in the HomeVM.java  -->
+	<menuItem id="menu_Item_Home" zulNavigation="/WEB-INF/pages/dashboard.zul" iconName="/images/icons/menu_dashboard.gif" />
+
+	<menu id="menu_Category_Administration" rightName="menuCat_Administration">
+		<menuItem id="menu_Item_Users" iconName="/images/icons/menu_user_group.png" zulNavigation="/WEB-INF/pages/sec_user/secUserList.zul" rightName="menuItem_Administration_Users" />
+		<menu id="menu_Category_UserRights" rightName="menuCat_UserRights">
+			<menuItem id="menu_Item_UserRoles" zulNavigation="/WEB-INF/pages/sec_user_role/secUserRoleList.zul" iconName="/images/icons/menu_user.gif" rightName="menuItem_Administration_UserRoles" />
+			<menuItem id="menu_Item_Roles" zulNavigation="/WEB-INF/pages/sec_role/secRoleList.zul" iconName="/images/icons/menu_user.gif" rightName="menuItem_Administration_Roles" />
+			<menuItem id="menu_Item_RoleGroups" zulNavigation="/WEB-INF/pages/sec_role_group/secRoleGroupList.zul" iconName="/images/icons/menu_user.gif" rightName="menuItem_Administration_RoleGroups" />
+			<menuItem id="menu_Item_Groups" zulNavigation="/WEB-INF/pages/sec_group/secGroupList.zul" iconName="/images/icons/menu_user.gif" rightName="menuItem_Administration_Groups" />
+			<menuItem id="menu_Item_GroupRights" zulNavigation="/WEB-INF/pages/sec_group_right/secGroupRightList.zul" iconName="/images/icons/menu_user.gif" rightName="menuItem_Administration_GroupRights" />
+			<menuItem id="menu_Item_Rights" zulNavigation="/WEB-INF/pages/sec_right/secRight.zul" iconName="/images/icons/menu_user.gif" rightName="menuItem_Administration_Rights" />
+		</menu>
+	</menu>
+	
+	<!-- Menu HR -->
+	<menu id="menu_Pim" rightName="menu_Pim">
+		<menuItem id="menu_Item_Employee" iconName="/images/icons/menu_user_group.png" zulNavigation="/WEB-INF/pages/module_hr/employeeList.zul" rightName="menuItem_Employee" />
+	</menu>
+</XMLRootMenu>

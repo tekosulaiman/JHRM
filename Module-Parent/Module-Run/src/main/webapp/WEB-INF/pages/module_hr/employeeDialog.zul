@@ -1,0 +1,56 @@
+<zk>
+	<window id="windowEmployeeDialog" title="Form Employee" border="normal" width="550px" position="center,center" closable="true" action="show: slideDown; hide: slideUp" mode="modal" 
+		apply="org.zkoss.bind.BindComposer" >
+		<borderlayout height="500px">
+			<!-- Function CRUD -->
+			<north>
+			<toolbar>
+				<button image="/images/icons/btn_save.gif" label="Save" onClick="@command('doSave')"/> 
+			</toolbar>
+			</north>	
+			<center>
+				<groupbox mold="3d">
+					<caption label="Employee Information"/>
+					<grid>
+						<columns>
+							<column label=""/>
+							<column label=""/>
+							<column label=""/>
+							<column label=""/>
+						</columns>
+						<rows>
+							<row>	
+								<label value="Full Name" />
+								<textbox />
+								
+								<label value="Employee Id" />
+								<textbox />
+								
+								<label value="Photograph" />
+								<textbox />
+								
+								<label value="Include" />
+								<textbox />
+							</row>
+							
+							<row>	
+								<label value="Supervisor Name" />
+								<textbox />
+								
+								<label value="Job Title" />
+								<textbox />
+								
+								<label value="Sub Unit" />
+								<textbox />
+								
+								<space/>
+								<space/>
+							</row>
+						</rows>
+					</grid>
+				</groupbox>
+			</center>
+			<south/>
+		</borderlayout>
+	</window>
+</zk>

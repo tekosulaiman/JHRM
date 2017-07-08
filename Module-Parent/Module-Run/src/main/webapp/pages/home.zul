@@ -1,0 +1,44 @@
+<?page title="Menu"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<zk>
+	<window id="mainMenuWindow" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.HomeVM')">
+		<borderlayout id="borderlayoutMain" height="600px">
+			<north border="none">
+				<borderlayout height="50px">
+					<north>
+						<hbox>
+							<label value="User Login :"/>
+							<label id="labelUserName"/>
+							<a onClick="@command('doLogout')">Logout</a>
+						</hbox>
+					</north>
+					<south>
+						<menubar id="menubarMenu"/>
+					</south>
+				</borderlayout>
+			</north>
+	   
+	        <west title="Tree Menu"  width="20%" border="normal" splittable="true" collapsible="true" open="false">
+	        	<panel width="100%" border="none">
+	                <panelchildren>
+	                	<tree id="treeMenu"/>
+	                </panelchildren>
+	             </panel>   
+			</west>
+			
+			<center id="center">
+				<tabbox id="tabbox" height="100%">
+					<tabs id="tabs"/>
+					<tabpanels id="tabpanels"/>
+				</tabbox>
+			</center>
+			
+			<south>
+				<hbox pack="center" width="100%">
+					<label id="labelZkVersion"/>
+					<label id="userName"/>
+				</hbox>
+			</south>
+		</borderlayout>
+	</window>
+</zk>

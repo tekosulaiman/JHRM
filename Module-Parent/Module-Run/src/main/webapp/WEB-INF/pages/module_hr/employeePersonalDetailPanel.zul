@@ -1,0 +1,67 @@
+<zk>
+	<!-- <panel framable="true" width="500px">
+		<panelchildren> -->
+		<window border="none" width="500px">
+			<borderlayout height="500px">
+				<!-- Function CRUD -->
+				<north/>
+				<!-- Table Database -->
+				<center>
+					<vbox> 
+						<groupbox mold="3d">
+							<caption label="Employee Information"/>
+							<grid>
+								<columns>
+									<column label=""/>
+									<column label=""/>
+									<column label=""/>
+									<column label=""/>
+									<column label=""/>
+									<column label=""/>
+								</columns>
+								<rows>
+									<row>	
+										<label value="Employee Name" />
+										<textbox />
+										
+										<label value="Id" />
+										<textbox />
+										
+										<label value="Employee Status" />
+										<textbox />
+										
+										<label value="Include" />
+										<textbox />
+									</row>
+									
+									<row>	
+										<label value="Supervisor Name" />
+										<textbox />
+										
+										<label value="Job Title" />
+										<textbox />
+										
+										<label value="Sub Unit" />
+										<textbox />
+										
+										<space/>
+										<space/>
+									</row>
+									
+									<row>	
+										<hbox>
+											<button label="Search"/>
+											<button label="Reset"/>
+										</hbox>	
+									</row>
+									
+								</rows>
+							</grid>
+						</groupbox>
+					</vbox>
+				</center>
+				<south/>
+			</borderlayout>
+		<!-- </panelchildren> -->	
+	</window>
+</zk>

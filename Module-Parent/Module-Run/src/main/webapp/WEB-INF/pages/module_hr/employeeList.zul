@@ -1,0 +1,93 @@
+<zk>
+	<window id="windowUserList" border="none" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.EmployeeListVM')">
+		<borderlayout height="500px">
+			<!-- Function CRUD -->
+			<north/>
+			<!-- Table Database -->
+			<center>
+				<vbox> 
+					<groupbox mold="3d">
+						<caption label="Employee Information"/>
+						<grid>
+							<columns>
+								<column label=""/>
+								<column label=""/>
+								<column label=""/>
+								<column label=""/>
+								<column label=""/>
+								<column label=""/>
+							</columns>
+							<rows>
+								<row>	
+									<label value="Employee Name" />
+									<textbox />
+									
+									<label value="Id" />
+									<textbox />
+									
+									<label value="Employee Status" />
+									<textbox />
+									
+									<label value="Include" />
+									<textbox />
+								</row>
+								
+								<row>	
+									<label value="Supervisor Name" />
+									<textbox />
+									
+									<label value="Job Title" />
+									<textbox />
+									
+									<label value="Sub Unit" />
+									<textbox />
+									
+									<space/>
+									<space/>
+								</row>
+								
+								<row>	
+									<hbox>
+										<button label="Search"/>
+										<button label="Reset"/>
+									</hbox>	
+								</row>
+								
+							</rows>
+						</grid>
+					</groupbox>
+					<groupbox mold="3d">
+						<caption/>
+						<hbox>
+							<button label="Add" onClick="@command('doNew')"/>
+							<button label="Delete"/>
+						</hbox>	
+						<space/>
+						<listbox >
+							<listhead>
+								<listheader width="5%" align="center"/>
+								<listheader label="Id" sort="auto" /> 	
+								<listheader label="First Middle Name" sort="auto" /> 	
+								<listheader label="Last Name" sort="auto" /> 	
+								<listheader label="Job Title" sort="auto" /> 	
+								<listheader label="Employment Status" sort="auto" /> 	
+								<listheader label="Sub Unit" sort="auto" /> 	
+								<listheader label="Supervisor" sort="auto" />
+							</listhead>
+							<listitem>
+								<listcell image="/images/icons/btn_edit.gif" tooltiptext="Click For Edit" onClick="@command('doDetail')"/>
+								<listcell label="0001" />
+								<listcell label="Moh Yudhi" />
+								<listcell label="Saputra" />
+								<listcell label="Outsource Kontrak" />
+								<listcell label="" />
+								<listcell label="" />
+							</listitem>
+						</listbox>
+					</groupbox>
+				</vbox>
+			</center>
+			<south/>
+		</borderlayout>
+	</window>
+</zk>
