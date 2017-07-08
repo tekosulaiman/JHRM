@@ -33,7 +33,7 @@ public class UserWorkspace implements Serializable, DisposableBean{
 	private String userLanguage;
 	private String browserType;
 	private boolean treeMenu = true;
-	private final int menuOffset = 32;
+	private final int menuOffset = 102;
 
 	private Set<String> grantedAuthoritySet = null;
 
