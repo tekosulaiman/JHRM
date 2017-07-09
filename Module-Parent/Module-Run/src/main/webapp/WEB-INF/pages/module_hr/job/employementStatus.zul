@@ -1,0 +1,24 @@
+<?page title="Employement Status" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="Employement Status" border="normal" width="100%" >
+<borderlayout height="500px">
+<north>
+<toolbar>
+				<button  label="Add"/> 
+				<button  label="Delete"/>
+</toolbar>
+</north>
+<center>
+<listbox width="100%" checkmark="true" multiple="true" emptyMessage="No Data Found">
+<listhead >
+	<listheader label="Employement Status"/>	
+</listhead>
+<listitem>
+	<listcell />
+	<listcell />
+</listitem>
+</listbox>
+</center>
+</borderlayout>
+</window>
+</zk>

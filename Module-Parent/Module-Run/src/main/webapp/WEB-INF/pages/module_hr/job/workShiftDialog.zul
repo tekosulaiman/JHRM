@@ -1,0 +1,59 @@
+<?page title="Add Job Title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="Pay Grades" border="normal">
+<borderlayout height="400px">
+			<north>
+			<toolbar>
+				<button image="/images/icons/btn_save.gif" label="Save" /> 
+				<button image="/images/icons/btn_cancel.gif" label="Cancel" /> 
+			</toolbar>
+			</north>	
+			<center >
+					<grid >
+						<columns>
+							<column label="" width="20%"/>
+							<column label=""/>
+						</columns>
+						<rows>
+								<row>	
+								<label value="Shift Name" />
+								<textbox width="300px" />
+								</row>
+								<row>
+								<label value="Work Hour" />
+								<hbox>
+								<label value="From" />
+								<combobox />
+								<label value="To" />
+								<combobox/>
+								<label value="Duration"/>
+								</hbox>
+								</row>
+								<row>
+								<label/>
+								<hbox> 
+								<vbox>
+								<label value="Available Employe" ></label>
+								<textbox rows="10"></textbox>
+								</vbox>
+								<vlayout>
+								<space></space>
+								<label value="Add "> </label>
+								
+								<label value="Remove "> </label>
+								
+								</vlayout>								
+								<vbox>
+								<label value="Assigned Employe" ></label>
+								<textbox rows="10"></textbox>
+								</vbox>
+								</hbox>	
+								</row>																	
+						</rows>
+					</grid>
+					
+			</center>
+			<south/>
+		</borderlayout>
+</window>
+</zk>
