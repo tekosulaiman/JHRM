@@ -1,4 +1,4 @@
-package org.app.portofolio.webui.hr.master.skills;
+package org.app.portofolio.webui.hr.master.qualification.skills;
 
 import org.app.portofolio.common.menu.util.JHRMAdditionalZulPath;
 import org.zkoss.bind.annotation.AfterCompose;
@@ -27,7 +27,7 @@ public class MasterQualificationSkills {
 	 */
 	@Command
 	public void doNew(){
-		Executions.createComponents(JHRMAdditionalZulPath.MasterData.Skills.ADD_FORM, null, null);
+		Executions.createComponents(JHRMAdditionalZulPath.MasterData.Qualifications.Skills.ADD_FORM, null, null);
 	}
 	
 	/**
@@ -35,6 +35,6 @@ public class MasterQualificationSkills {
 	 */
 	@Command
 	public void doDetail(){
-		Executions.createComponents(JHRMAdditionalZulPath.MasterData.Skills.DETAIL_FORM, null, null);
+		Executions.createComponents(JHRMAdditionalZulPath.MasterData.Qualifications.Skills.DETAIL_FORM, null, null);
 	}
 }

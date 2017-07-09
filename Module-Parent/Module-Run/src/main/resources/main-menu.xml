@@ -17,7 +17,7 @@
 		<menu id="menu_Master_Data">
 			<menu id="menu_Master_Qualifications" >
 				<menuItem id="menu_Item_Master_Qualifications_Skills" zulNavigation="/WEB-INF/pages/module_hr/master/qualifications/skills/skillList.zul"></menuItem>
-				<menuItem id="menu_Item_Master_Qualifications_Education" zulNavigation="/"></menuItem>
+				<menuItem id="menu_Item_Master_Qualifications_Education" zulNavigation="/WEB-INF/pages/module_hr/master/qualifications/educations/educationList.zul"></menuItem>
 				<menuItem id="menu_Item_Master_Qualifications_Licenses" zulNavigation="/"></menuItem>
 				<menuItem id="menu_Item_Master_Qualifications_Languages" zulNavigation="/"></menuItem>
 				<menuItem id="menu_Item_Master_Qualifications_Memberships" zulNavigation="/"></menuItem>

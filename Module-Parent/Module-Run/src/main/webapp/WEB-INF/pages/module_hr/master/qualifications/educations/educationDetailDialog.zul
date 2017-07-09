@@ -10,7 +10,7 @@
 			</north>	
 			<center>
 				<groupbox>
-					<caption label="Add Skill"/>
+					<caption label="Detail Education"/>
 					<grid>
 						<columns>
 							<column label=""/>
@@ -18,12 +18,8 @@
 						</columns>
 						<rows>
 							<row>	
-								<label value="Name" />
-								<textbox />
-							</row>
-							<row>
-								<label value="Description" />
-								<h:textarea/>
+								<label value="Level" />
+								<textbox value="Sarjana JAVA"/>
 							</row>
 						</rows>
 					</grid>
