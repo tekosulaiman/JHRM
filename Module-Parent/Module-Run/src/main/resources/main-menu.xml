@@ -14,6 +14,16 @@
 			<menuItem id="menu_Item_GroupRights" zulNavigation="/WEB-INF/pages/sec_group_right/secGroupRightList.zul" iconName="/images/icons/menu_user.gif" rightName="menuItem_Administration_GroupRights" />
 			<menuItem id="menu_Item_Rights" zulNavigation="/WEB-INF/pages/sec_right/secRight.zul" iconName="/images/icons/menu_user.gif" rightName="menuItem_Administration_Rights" />
 		</menu>
+		<menu id="menu_Master_Data">
+			<menu id="menu_Master_Qualifications" >
+				<menuItem id="menu_Item_Master_Qualifications_Skills" zulNavigation="/WEB-INF/pages/module_hr/master/qualifications/skills/skillList.zul"></menuItem>
+				<menuItem id="menu_Item_Master_Qualifications_Education" zulNavigation="/"></menuItem>
+				<menuItem id="menu_Item_Master_Qualifications_Licenses" zulNavigation="/"></menuItem>
+				<menuItem id="menu_Item_Master_Qualifications_Languages" zulNavigation="/"></menuItem>
+				<menuItem id="menu_Item_Master_Qualifications_Memberships" zulNavigation="/"></menuItem>
+			</menu>	
+		</menu>
+		
 	</menu>
 	
 	<!-- Menu HR -->

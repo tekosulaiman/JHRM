@@ -1,0 +1,35 @@
+<zk>
+	<window id="windowUserList" border="none" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.master.skills.MasterQualificationSkills')">
+		<borderlayout height="500px">
+			<!-- Function CRUD -->
+			<north/>
+			<!-- Table Database -->
+			<center>
+				<vbox> 
+					
+					<groupbox mold="3d">
+						<caption label="Skills"></caption>
+						<hbox>
+							<button label="Add" onClick="@command('doNew')"/>
+							<button label="Delete"/>
+						</hbox>	
+						<space/>
+						<listbox >
+							<listhead>
+								<listheader width="5%" align="center"/>
+								<listheader label="Name" sort="auto" /> 	
+								<listheader label="Description" sort="auto" /> 	
+							</listhead>
+							<listitem>
+								<listcell image="/images/icons/btn_edit.gif" tooltiptext="Click For Edit" onClick="@command('doDetail')"/>
+								<listcell label="Java" />
+								<listcell label="Pemrograman Java" />
+							</listitem>
+						</listbox>
+					</groupbox>
+				</vbox>
+			</center>
+			<south/>
+		</borderlayout>
+	</window>
+</zk>

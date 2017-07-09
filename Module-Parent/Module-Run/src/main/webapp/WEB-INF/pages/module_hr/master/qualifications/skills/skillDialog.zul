@@ -1,0 +1,35 @@
+<zk xmlns:h="native">
+	<window id="windowEmployeeDialog" title="Form Employee" border="normal" width="550px" height="250px" position="center,center" closable="true" action="show: slideDown; hide: slideUp" mode="modal" 
+		apply="org.zkoss.bind.BindComposer" >
+		<borderlayout height="500px">
+			<!-- Function CRUD -->
+			<north>
+			<toolbar>
+				<button image="/images/icons/btn_save.gif" label="Save" onClick="@command('doSave')"/> 
+			</toolbar>
+			</north>	
+			<center>
+				<groupbox>
+					<caption label="Add Skill"/>
+					<grid>
+						<columns>
+							<column label=""/>
+							<column label=""/>
+						</columns>
+						<rows>
+							<row>	
+								<label value="Name" />
+								<textbox />
+							</row>
+							<row>
+								<label value="Description" />
+								<h:textarea/>
+							</row>
+						</rows>
+					</grid>
+				</groupbox>
+			</center>
+			<south/>
+		</borderlayout>
+	</window>
+</zk>
