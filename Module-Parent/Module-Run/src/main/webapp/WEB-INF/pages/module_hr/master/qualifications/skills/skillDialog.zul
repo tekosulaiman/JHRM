@@ -1,5 +1,5 @@
 <zk xmlns:h="native">
-	<window id="windowEmployeeDialog" title="Form Master Data" border="normal" width="550px" height="250px" position="center,center" closable="true" action="show: slideDown; hide: slideUp" mode="modal" 
+	<window id="windowSkillDialog" title="Form Master Data" border="normal" width="550px" height="250px" position="center,center" closable="true" action="show: slideDown; hide: slideUp" mode="modal" 
 		apply="org.zkoss.bind.BindComposer" >
 		<borderlayout height="500px">
 			<!-- Function CRUD -->
