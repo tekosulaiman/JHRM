@@ -38,6 +38,15 @@ public interface JHRMAdditionalZulPath {
 				public static final String ADD_FORM = "/WEB-INF/pages/module_hr/master/qualifications/educations/educationDialog.zul";
 				public static final String DETAIL_FORM = "/WEB-INF/pages/module_hr/master/qualifications/educations/educationDetailDialog.zul";
 			}
+			
+			/**
+			 * 
+			 *
+			 */
+			public interface Licenses {
+				public static final String MAIN_FORM = "/WEB-INF/pages/module_hr/master/qualifications/licenses/licenseList.zul";
+				public static final String ADD_FORM = "/WEB-INF/pages/module_hr/master/qualifications/licenses/licenseDialog.zul";
+			}
 		}
 	}
 }

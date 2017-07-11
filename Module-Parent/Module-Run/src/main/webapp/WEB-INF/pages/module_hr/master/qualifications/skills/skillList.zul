@@ -20,7 +20,7 @@
 								<listheader label="${labels.master.qualifications.skill.listheader.description}" sort="auto" /> 	
 							</listhead>
 							<listitem>
-								<listcell image="/images/icons/btn_edit.gif" tooltiptext="Click For Edit" onClick="@command('doDetail')"/>
+								<listcell image="/images/icons/btn_edit.gif" tooltiptext="${labels.button.edit}" onClick="@command('doDetail')"/>
 								<listcell label="Java" />
 								<listcell label="Pemrograman Java" />
 							</listitem>

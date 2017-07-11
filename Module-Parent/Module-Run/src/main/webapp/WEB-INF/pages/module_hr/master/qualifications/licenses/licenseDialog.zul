@@ -1,5 +1,5 @@
 <zk xmlns:h="native">
-	<window id="windowSkillDialog" title="Form Master Data" border="normal" width="550px" height="250px" position="center,center" closable="true" action="show: slideDown; hide: slideUp" mode="modal" 
+	<window id="windowLicensesDialog" title="Form Master Data" border="normal" width="550px" height="200px" position="center,center" closable="true" action="show: slideDown; hide: slideUp" mode="modal" 
 		apply="org.zkoss.bind.BindComposer" >
 		<borderlayout height="500px">
 			<!-- Function CRUD -->
@@ -10,7 +10,7 @@
 			</north>	
 			<center>
 				<groupbox>
-					<caption label="${master.qualifications.skill.dialog.title}"/>
+					<caption label="${labels.master.qualifications.licenses.dialog.title}"/>
 					<grid>
 						<columns>
 							<column label=""/>
@@ -18,12 +18,8 @@
 						</columns>
 						<rows>
 							<row>	
-								<label value="${labels.master.qualifications.skill.form.name}" />
+								<label value="${labels.master.qualifications.licenses.form.name}" />
 								<textbox />
-							</row>
-							<row>
-								<label value="${labels.master.qualifications.skill.form.description}" />
-								<h:textarea/>
 							</row>
 						</rows>
 					</grid>

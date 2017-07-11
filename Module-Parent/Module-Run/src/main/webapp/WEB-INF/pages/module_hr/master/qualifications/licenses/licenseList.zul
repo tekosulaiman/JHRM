@@ -1,5 +1,5 @@
 <zk>
-	<window id="windowEducationList" border="none" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.master.qualification.education.MasterQualificationEducation')">
+	<window id="windowLicensesList" border="none" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.master.qualification.licenses.MasterQualificationLicenses')">
 		<borderlayout height="500px">
 			<!-- Function CRUD -->
 			<north/>
@@ -7,7 +7,7 @@
 			<center>
 				<vbox> 
 					<groupbox mold="3d">
-						<caption label="${labels.master.qualifications.educations.title}"></caption>
+						<caption label="${labels.master.qualifications.licenses.title}"></caption>
 						<hbox>
 							<button label="${labels.button.add}" onClick="@command('doNew')"/>
 							<button label="${labels.button.delete}"/>
@@ -16,10 +16,10 @@
 						<listbox >
 							<listhead>
 								<listheader width="5%" align="center"/>
-								<listheader label="${labels.master.qualifications.educations.listheader.level}" sort="auto" /> 	
+								<listheader label="${labels.master.qualifications.licenses.listheader.name}" sort="auto" /> 	
 							</listhead>
 							<listitem>
-								<listcell image="/images/icons/btn_edit.gif" tooltiptext="${labels.button.edit}" onClick="@command('doDetail')"/>
+								<listcell image="/images/icons/btn_edit.gif" tooltiptext="Click For Edit" onClick="@command('doDetail')"/>
 								<listcell label="Sarjana JAVA" />
 							</listitem>
 						</listbox>

@@ -10,7 +10,7 @@
 			</north>	
 			<center>
 				<groupbox>
-					<caption label="Add Education"/>
+					<caption label="${labels.master.qualifications.educations.dialog.title}"/>
 					<grid>
 						<columns>
 							<column label=""/>
@@ -18,7 +18,7 @@
 						</columns>
 						<rows>
 							<row>	
-								<label value="Level" />
+								<label value="${labels.master.qualifications.educations.form.level}" />
 								<textbox />
 							</row>
 						</rows>
