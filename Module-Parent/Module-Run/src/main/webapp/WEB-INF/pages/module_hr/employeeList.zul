@@ -7,7 +7,7 @@
 			<center>
 				<vbox> 
 					<groupbox mold="3d">
-						<caption label="Employee Information"/>
+						<caption label="${labels.menu.employee.title}"/>
 						<grid>
 							<columns>
 								<column label=""/>
@@ -19,27 +19,27 @@
 							</columns>
 							<rows>
 								<row>	
-									<label value="Employee Name" />
+									<label value="${labels.menu.employee.form.employee.name}" />
 									<textbox />
 									
-									<label value="Id" />
+									<label value="${labels.menu.employee.form.id}" />
 									<textbox />
 									
-									<label value="Employee Status" />
+									<label value="${labels.menu.employee.form.employee.status}" />
 									<textbox />
 									
-									<label value="Include" />
+									<label value="${labels.menu.employee.form.include}" />
 									<textbox />
 								</row>
 								
 								<row>	
-									<label value="Supervisor Name" />
+									<label value="${labels.menu.employee.form.supervisor.name}" />
 									<textbox />
 									
-									<label value="Job Title" />
+									<label value="${labels.menu.employee.form.job.title}" />
 									<textbox />
 									
-									<label value="Sub Unit" />
+									<label value="${labels.menu.employee.form.sub.unit}" />
 									<textbox />
 									
 									<space/>
@@ -48,8 +48,8 @@
 								
 								<row>	
 									<hbox>
-										<button label="Search"/>
-										<button label="Reset"/>
+										<button label="${labels.button.search}"/>
+										<button label="${labels.button.reset}"/>
 									</hbox>	
 								</row>
 								
@@ -59,20 +59,20 @@
 					<groupbox mold="3d">
 						<caption/>
 						<hbox>
-							<button label="Add" onClick="@command('doNew')"/>
-							<button label="Delete"/>
+							<button label="${labels.button.add}" onClick="@command('doNew')"/>
+							<button label="${labels.button.delete}"/>
 						</hbox>	
 						<space/>
 						<listbox >
 							<listhead>
 								<listheader width="5%" align="center"/>
-								<listheader label="Id" sort="auto" /> 	
-								<listheader label="First Middle Name" sort="auto" /> 	
-								<listheader label="Last Name" sort="auto" /> 	
-								<listheader label="Job Title" sort="auto" /> 	
-								<listheader label="Employment Status" sort="auto" /> 	
-								<listheader label="Sub Unit" sort="auto" /> 	
-								<listheader label="Supervisor" sort="auto" />
+								<listheader label="${labels.menu.employee.listheader.id}" sort="auto" /> 	
+								<listheader label="${labels.menu.emoloyee.listheader.first.middle.name}" sort="auto" /> 	
+								<listheader label="${labels.menu.emoloyee.listheader.last.name}" sort="auto" /> 	
+								<listheader label="${labels.menu.employee.listheader.job.title}" sort="auto" /> 	
+								<listheader label="${labels.menu.employee.listheader.employee.status}" sort="auto" /> 	
+								<listheader label="${labels.menu.employee.listheader.sub.unit}" sort="auto" /> 	
+								<listheader label="${labels.menu.employee.listheader.supervisor}" sort="auto" />
 							</listhead>
 							<listitem>
 								<listcell image="/images/icons/btn_edit.gif" tooltiptext="Click For Edit" onClick="@command('doDetail')"/>
