@@ -6,6 +6,7 @@
 				<vbox>
 					<groupbox mold="3d">
 						<caption label="Job" />
+						<grid>
 						<rows>
 							<row>
 								<label value="Job Title" />
@@ -74,6 +75,7 @@
 								<button label="Terminate Employment" />
 							</row>
 						</rows>
+						</grid>
 					</groupbox>
 				</vbox>
 			</north>
