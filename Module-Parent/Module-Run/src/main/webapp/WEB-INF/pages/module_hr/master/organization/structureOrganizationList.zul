@@ -1,10 +1,10 @@
 <?page title="Organization Structure" contentType="text/html;charset=UTF-8" prefix="c" ?>
 <?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c" ?>
 <zk> 
-	<window title="Organization Structure" border="normal">
-	<tree model="${c:new('org.app.portofolio.common.menu.tree.TreeModelStructure')}">
+	<window title="Organization Structure" border="normal" width="100%">
+	<tree model="${c:new('org.app.portofolio.common.menu.tree.TreeModelStructure')}"  >
     <treecols>
-        <treecol label="Names"/>
+        <treecol label="Names"  />
     </treecols>
 </tree>
 <separator></separator>

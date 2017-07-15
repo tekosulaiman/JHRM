@@ -16,19 +16,19 @@
 		</menu>
 	</menu>
 	
-	<menu id="" rightName="menu_Master_Data">
-		<menu id="" rightName="menu_Master_Job">
-			<menuItem id="" iconName="" zulNavigation="" rightName="menu_Item_Job_Titles" />
-			<menuItem id="" iconName="" zulNavigation="" rightName="menu_Item_Pay_Grades" />
-			<menuItem id="" iconName="" zulNavigation="" rightName="menu_Item_Employment_Status" />
-			<menuItem id="" iconName="" zulNavigation="" rightName="menu_Item_Job_Categories" />
-			<menuItem id="" iconName="" zulNavigation="" rightName="menu_Item_Work_Shifts" />
+	<menu id="menu.master" rightName="menu_Master_Data">
+		<menu id="menu.master.job" rightName="menu_Master_Job">
+			<menuItem id="menu.master.job.jobTitles" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/job/jobTitleList.zul" rightName="menu_Item_Job_Titles" />
+			<menuItem id="menu.master.job.payGrades" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/job/payGradesList.zul" rightName="menu_Item_Pay_Grades" />
+			<menuItem id="menu.master.job.employementStatus" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/job/employementStatusList.zul" rightName="menu_Item_Employment_Status" />
+			<menuItem id="menu.master.job.jobCategories" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/job/jobCategories.zul" rightName="menu_Item_Job_Categories" />
+			<menuItem id="menu.master.job.workShift" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/job/workShiftList.zul" rightName="menu_Item_Work_Shifts" />
 		</menu>
 		
-		<menu id="" rightName="menu_Master_Organization">
-			<menuItem id="" iconName="" zulNavigation="" rightName="menu_Item_General_Information" />
-			<menuItem id="" iconName="" zulNavigation="" rightName="menu_Item_Locations" />
-			<menuItem id="" iconName="" zulNavigation="" rightName="menu_Item_Organization_Structure" />
+		<menu id="menu.master.organization" rightName="menu_Master_Organization">
+			<menuItem id="menu.master.organizaton.generalInformation" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/organization/generalInformationList.zul" rightName="menu_Item_General_Information" />
+			<menuItem id="menu.master.organizaton.location" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/organization/locationsList.zul" rightName="menu_Item_Locations" />
+			<menuItem id="menu.master.organizaton.structureOrganization" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/organization/structureOrganizationList.zul" rightName="menu_Item_Organization_Structure" />
 		</menu>
 		
 		<menu id="" rightName="menu_Master_Qualifications">

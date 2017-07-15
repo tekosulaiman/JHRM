@@ -38,10 +38,8 @@
 								</vbox>
 								<vlayout>
 								<space></space>
-								<label value="Add "> </label>
-								
+								<label value="Add "> </label>								
 								<label value="Remove "> </label>
-								
 								</vlayout>								
 								<vbox>
 								<label value="Assigned Employe" ></label>

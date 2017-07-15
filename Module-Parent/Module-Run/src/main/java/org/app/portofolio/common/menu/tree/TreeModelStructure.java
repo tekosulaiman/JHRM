@@ -1,12 +1,14 @@
 package org.app.portofolio.common.menu.tree;
 
 import org.zkoss.zul.AbstractTreeModel;
+import org.zkoss.zul.Button;
 
 public class TreeModelStructure extends AbstractTreeModel<Object> {
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private Button add;
 	public TreeModelStructure() {
         super("Unit");
     }
@@ -14,6 +16,8 @@ public class TreeModelStructure extends AbstractTreeModel<Object> {
         return getLevel((String)node) >= 2; //at most 4 levels
     }
     public Object getChild(Object parent, int index) {
+    	
+    	
         return parent + "." + index;
     }
     public int getChildCount(Object parent) {
