@@ -51,14 +51,14 @@ public class OhrmEmpTermination implements Serializable {
     private Date terminationDate;
     @Column(name = "note")
     private String note;
+    @OneToMany(mappedBy = "terminationId")
+    private List<HsHrEmployee> hsHrEmployeeList;
     @JoinColumn(name = "reason_id", referencedColumnName = "id")
     @ManyToOne
     private OhrmEmpTerminationReason reasonId;
     @JoinColumn(name = "emp_number", referencedColumnName = "emp_number")
     @ManyToOne
     private HsHrEmployee empNumber;
-    @OneToMany(mappedBy = "terminationId")
-    private List<HsHrEmployee> hsHrEmployeeList;
 
     public OhrmEmpTermination() {
     }
@@ -96,6 +96,15 @@ public class OhrmEmpTermination implements Serializable {
         this.note = note;
     }
 
+    @XmlTransient
+    public List<HsHrEmployee> getHsHrEmployeeList() {
+        return hsHrEmployeeList;
+    }
+
+    public void setHsHrEmployeeList(List<HsHrEmployee> hsHrEmployeeList) {
+        this.hsHrEmployeeList = hsHrEmployeeList;
+    }
+
     public OhrmEmpTerminationReason getReasonId() {
         return reasonId;
     }
@@ -110,15 +119,6 @@ public class OhrmEmpTermination implements Serializable {
 
     public void setEmpNumber(HsHrEmployee empNumber) {
         this.empNumber = empNumber;
-    }
-
-    @XmlTransient
-    public List<HsHrEmployee> getHsHrEmployeeList() {
-        return hsHrEmployeeList;
-    }
-
-    public void setHsHrEmployeeList(List<HsHrEmployee> hsHrEmployeeList) {
-        this.hsHrEmployeeList = hsHrEmployeeList;
     }
 
     @Override

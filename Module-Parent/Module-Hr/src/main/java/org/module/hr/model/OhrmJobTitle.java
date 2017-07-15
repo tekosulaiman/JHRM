@@ -9,6 +9,7 @@ package org.module.hr.model;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -61,6 +62,10 @@ public class OhrmJobTitle implements Serializable {
     private List<OhrmEmploymentStatus> ohrmEmploymentStatusList;
     @OneToMany(mappedBy = "jobTitleCode")
     private List<HsHrEmployee> hsHrEmployeeList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "jobTitleId")
+    private List<OhrmJobSpecificationAttachment> ohrmJobSpecificationAttachmentList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "jobTitleCode")
+    private List<OhrmJobVacancy> ohrmJobVacancyList;
 
     public OhrmJobTitle() {
     }
@@ -130,6 +135,24 @@ public class OhrmJobTitle implements Serializable {
 
     public void setHsHrEmployeeList(List<HsHrEmployee> hsHrEmployeeList) {
         this.hsHrEmployeeList = hsHrEmployeeList;
+    }
+
+    @XmlTransient
+    public List<OhrmJobSpecificationAttachment> getOhrmJobSpecificationAttachmentList() {
+        return ohrmJobSpecificationAttachmentList;
+    }
+
+    public void setOhrmJobSpecificationAttachmentList(List<OhrmJobSpecificationAttachment> ohrmJobSpecificationAttachmentList) {
+        this.ohrmJobSpecificationAttachmentList = ohrmJobSpecificationAttachmentList;
+    }
+
+    @XmlTransient
+    public List<OhrmJobVacancy> getOhrmJobVacancyList() {
+        return ohrmJobVacancyList;
+    }
+
+    public void setOhrmJobVacancyList(List<OhrmJobVacancy> ohrmJobVacancyList) {
+        this.ohrmJobVacancyList = ohrmJobVacancyList;
     }
 
     @Override

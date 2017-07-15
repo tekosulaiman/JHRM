@@ -1,25 +1,38 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package org.module.hr.model;
 
 import java.io.Serializable;
 import java.util.Date;
-
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Tom
  */
 @Entity
-@Table(name = "hs_hr_employee")
+@Table(name = "hs_hr_employee", schema = "schema_hr")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "HsHrEmployee.findAll", query = "SELECT h FROM HsHrEmployee h"),
@@ -65,161 +78,184 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "HsHrEmployee.findByCustom10", query = "SELECT h FROM HsHrEmployee h WHERE h.custom10 = :custom10")})
 public class HsHrEmployee implements Serializable {
     private static final long serialVersionUID = 1L;
-    
     @Id
     @Basic(optional = false)
     @Column(name = "emp_number")
     private Integer empNumber;
-    
     @Column(name = "employee_id")
     private String employeeId;
-    
     @Basic(optional = false)
     @Column(name = "emp_lastname")
     private String empLastname;
-    
     @Basic(optional = false)
     @Column(name = "emp_firstname")
     private String empFirstname;
-    
     @Basic(optional = false)
     @Column(name = "emp_middle_name")
     private String empMiddleName;
-    
     @Column(name = "emp_nick_name")
     private String empNickName;
-    
     @Column(name = "emp_smoker")
     private Short empSmoker;
-    
     @Column(name = "ethnic_race_code")
     private String ethnicRaceCode;
-    
     @Column(name = "emp_birthday")
     @Temporal(TemporalType.DATE)
     private Date empBirthday;
-    
     @Column(name = "emp_gender")
     private Short empGender;
-    
     @Column(name = "emp_marital_status")
     private String empMaritalStatus;
-    
     @Column(name = "emp_ssn_num")
     private String empSsnNum;
-    
     @Column(name = "emp_sin_num")
     private String empSinNum;
-    
     @Column(name = "emp_other_id")
     private String empOtherId;
-    
     @Column(name = "emp_dri_lice_num")
     private String empDriLiceNum;
-    
     @Column(name = "emp_dri_lice_exp_date")
     @Temporal(TemporalType.DATE)
     private Date empDriLiceExpDate;
-    
     @Column(name = "emp_military_service")
     private String empMilitaryService;
-    
     @Column(name = "emp_street1")
     private String empStreet1;
-    
     @Column(name = "emp_street2")
     private String empStreet2;
-    
     @Column(name = "city_code")
     private String cityCode;
-    
     @Column(name = "coun_code")
     private String counCode;
-    
     @Column(name = "provin_code")
     private String provinCode;
-    
     @Column(name = "emp_zipcode")
     private String empZipcode;
-    
     @Column(name = "emp_hm_telephone")
     private String empHmTelephone;
-    
     @Column(name = "emp_mobile")
     private String empMobile;
-    
     @Column(name = "emp_work_telephone")
     private String empWorkTelephone;
-    
     @Column(name = "emp_work_email")
     private String empWorkEmail;
-    
     @Column(name = "sal_grd_code")
     private String salGrdCode;
-    
     @Column(name = "joined_date")
     @Temporal(TemporalType.DATE)
     private Date joinedDate;
-    
     @Column(name = "emp_oth_email")
     private String empOthEmail;
-    
     @Column(name = "custom1")
     private String custom1;
-    
     @Column(name = "custom2")
     private String custom2;
-    
     @Column(name = "custom3")
     private String custom3;
-    
     @Column(name = "custom4")
     private String custom4;
-    
     @Column(name = "custom5")
     private String custom5;
-    
     @Column(name = "custom6")
     private String custom6;
-    
     @Column(name = "custom7")
     private String custom7;
-    
     @Column(name = "custom8")
     private String custom8;
-    
     @Column(name = "custom9")
     private String custom9;
-    
     @Column(name = "custom10")
     private String custom10;
-    
-    /*@OneToMany(mappedBy = "empNumber")
-    private List<OhrmEmpTermination> ohrmEmpTerminationList;
-    
+    @ManyToMany(mappedBy = "hsHrEmployeeList")
+    private List<OhrmWorkShift> ohrmWorkShiftList;
+//    @ManyToMany(mappedBy = "hsHrEmployeeList")
+//    private List<OhrmProject> ohrmProjectList;
+    @ManyToMany(mappedBy = "hsHrEmployeeList")
+    private List<OhrmJobInterview> ohrmJobInterviewList;
+    @ManyToMany(mappedBy = "hsHrEmployeeList")
+    private List<OhrmLocation> ohrmLocationList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hsHrEmployee")
+    private List<HsHrEmpEmergencyContacts> hsHrEmpEmergencyContactsList;
     @JoinColumn(name = "work_station", referencedColumnName = "id")
     @ManyToOne
     private OhrmSubunit workStation;
-    
     @JoinColumn(name = "nation_code", referencedColumnName = "id")
     @ManyToOne
     private OhrmNationality nationCode;
-    
     @JoinColumn(name = "job_title_code", referencedColumnName = "id")
     @ManyToOne
     private OhrmJobTitle jobTitleCode;
-    
     @JoinColumn(name = "emp_status", referencedColumnName = "id")
     @ManyToOne
     private OhrmEmploymentStatus empStatus;
-    
     @JoinColumn(name = "eeo_cat_code", referencedColumnName = "id")
     @ManyToOne
     private OhrmJobCategory eeoCatCode;
-    
     @JoinColumn(name = "termination_id", referencedColumnName = "id")
     @ManyToOne
-    private OhrmEmpTermination terminationId;*/
+    private OhrmEmpTermination terminationId;
+    @OneToMany(mappedBy = "addedPerson")
+    private List<OhrmJobCandidate> ohrmJobCandidateList;
+    @OneToMany(mappedBy = "empNumber")
+    private List<OhrmEmpTermination> ohrmEmpTerminationList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hsHrEmployee")
+    private List<OhrmEmpLicense> ohrmEmpLicenseList;
+    @OneToMany(mappedBy = "employeeNumber")
+    private List<OhrmPerformanceReview> ohrmPerformanceReviewList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "empNumber")
+    private List<OhrmPerformanceTrack> ohrmPerformanceTrackList;
+    @OneToMany(mappedBy = "addedBy")
+    private List<OhrmPerformanceTrack> ohrmPerformanceTrackList1;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hsHrEmployee")
+    private List<HsHrEmpPassport> hsHrEmpPassportList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hsHrEmployee")
+    private List<HsHrEmpAttachment> hsHrEmpAttachmentList;
+    @OneToMany(mappedBy = "performedBy")
+    private List<OhrmJobCandidateHistory> ohrmJobCandidateHistoryList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "reviewerId")
+    private List<OhrmPerformanceTrackerReviewer> ohrmPerformanceTrackerReviewerList;
+    @OneToMany(mappedBy = "empNumber")
+    private List<OhrmUser> ohrmUserList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hsHrEmployee")
+    private List<HsHrEmpChildren> hsHrEmpChildrenList;
+    @OneToMany(mappedBy = "hiringManagerId")
+    private List<OhrmJobVacancy> ohrmJobVacancyList;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "hsHrEmployee")
+    private HsHrEmpPicture hsHrEmpPicture;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "empNumber")
+    private List<OhrmLeaveEntitlement> ohrmLeaveEntitlementList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hsHrEmployee")
+    private List<HsHrEmpWorkExperience> hsHrEmpWorkExperienceList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "empNumber")
+    private List<OhrmLeaveAdjustment> ohrmLeaveAdjustmentList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "empNumber")
+    private List<OhrmLeaveRequest> ohrmLeaveRequestList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hsHrEmployee")
+    private List<HsHrEmpHistoryOfEalierPos> hsHrEmpHistoryOfEalierPosList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "empNumber")
+    private List<OhrmEmpEducation> ohrmEmpEducationList;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "hsHrEmployee")
+    private HsHrEmpUsTax hsHrEmpUsTax;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "empNumber")
+    private List<HsHrEmpBasicsalary> hsHrEmpBasicsalaryList;
+    @OneToMany(mappedBy = "createdByEmpNumber")
+    private List<OhrmLeaveComment> ohrmLeaveCommentList;
+    @OneToMany(mappedBy = "createdByEmpNumber")
+    private List<OhrmLeaveRequestComment> ohrmLeaveRequestCommentList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hsHrEmployee")
+    private List<HsHrEmpMemberDetail> hsHrEmpMemberDetailList;
+    @OneToMany(mappedBy = "reviewerId")
+    private List<OhrmPerformanceTrackerLog> ohrmPerformanceTrackerLogList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hsHrEmployee")
+    private List<HsHrEmpDependents> hsHrEmpDependentsList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hsHrEmployee")
+    private List<HsHrEmpLanguage> hsHrEmpLanguageList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hsHrEmployee")
+    private List<HsHrEmpReportto> hsHrEmpReporttoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hsHrEmployee1")
+    private List<HsHrEmpReportto> hsHrEmpReporttoList1;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hsHrEmployee")
+    private List<HsHrEmpContractExtend> hsHrEmpContractExtendList;
 
     public HsHrEmployee() {
     }
@@ -555,13 +591,49 @@ public class HsHrEmployee implements Serializable {
         this.custom10 = custom10;
     }
 
-    /*@XmlTransient
-    public List<OhrmEmpTermination> getOhrmEmpTerminationList() {
-        return ohrmEmpTerminationList;
+    @XmlTransient
+    public List<OhrmWorkShift> getOhrmWorkShiftList() {
+        return ohrmWorkShiftList;
     }
 
-    public void setOhrmEmpTerminationList(List<OhrmEmpTermination> ohrmEmpTerminationList) {
-        this.ohrmEmpTerminationList = ohrmEmpTerminationList;
+    public void setOhrmWorkShiftList(List<OhrmWorkShift> ohrmWorkShiftList) {
+        this.ohrmWorkShiftList = ohrmWorkShiftList;
+    }
+
+//    @XmlTransient
+//    public List<OhrmProject> getOhrmProjectList() {
+//        return ohrmProjectList;
+//    }
+//
+//    public void setOhrmProjectList(List<OhrmProject> ohrmProjectList) {
+//        this.ohrmProjectList = ohrmProjectList;
+//    }
+
+    @XmlTransient
+    public List<OhrmJobInterview> getOhrmJobInterviewList() {
+        return ohrmJobInterviewList;
+    }
+
+    public void setOhrmJobInterviewList(List<OhrmJobInterview> ohrmJobInterviewList) {
+        this.ohrmJobInterviewList = ohrmJobInterviewList;
+    }
+
+    @XmlTransient
+    public List<OhrmLocation> getOhrmLocationList() {
+        return ohrmLocationList;
+    }
+
+    public void setOhrmLocationList(List<OhrmLocation> ohrmLocationList) {
+        this.ohrmLocationList = ohrmLocationList;
+    }
+
+    @XmlTransient
+    public List<HsHrEmpEmergencyContacts> getHsHrEmpEmergencyContactsList() {
+        return hsHrEmpEmergencyContactsList;
+    }
+
+    public void setHsHrEmpEmergencyContactsList(List<HsHrEmpEmergencyContacts> hsHrEmpEmergencyContactsList) {
+        this.hsHrEmpEmergencyContactsList = hsHrEmpEmergencyContactsList;
     }
 
     public OhrmSubunit getWorkStation() {
@@ -610,7 +682,284 @@ public class HsHrEmployee implements Serializable {
 
     public void setTerminationId(OhrmEmpTermination terminationId) {
         this.terminationId = terminationId;
-    }*/
+    }
+
+    @XmlTransient
+    public List<OhrmJobCandidate> getOhrmJobCandidateList() {
+        return ohrmJobCandidateList;
+    }
+
+    public void setOhrmJobCandidateList(List<OhrmJobCandidate> ohrmJobCandidateList) {
+        this.ohrmJobCandidateList = ohrmJobCandidateList;
+    }
+
+    @XmlTransient
+    public List<OhrmEmpTermination> getOhrmEmpTerminationList() {
+        return ohrmEmpTerminationList;
+    }
+
+    public void setOhrmEmpTerminationList(List<OhrmEmpTermination> ohrmEmpTerminationList) {
+        this.ohrmEmpTerminationList = ohrmEmpTerminationList;
+    }
+
+    @XmlTransient
+    public List<OhrmEmpLicense> getOhrmEmpLicenseList() {
+        return ohrmEmpLicenseList;
+    }
+
+    public void setOhrmEmpLicenseList(List<OhrmEmpLicense> ohrmEmpLicenseList) {
+        this.ohrmEmpLicenseList = ohrmEmpLicenseList;
+    }
+
+    @XmlTransient
+    public List<OhrmPerformanceReview> getOhrmPerformanceReviewList() {
+        return ohrmPerformanceReviewList;
+    }
+
+    public void setOhrmPerformanceReviewList(List<OhrmPerformanceReview> ohrmPerformanceReviewList) {
+        this.ohrmPerformanceReviewList = ohrmPerformanceReviewList;
+    }
+
+    @XmlTransient
+    public List<OhrmPerformanceTrack> getOhrmPerformanceTrackList() {
+        return ohrmPerformanceTrackList;
+    }
+
+    public void setOhrmPerformanceTrackList(List<OhrmPerformanceTrack> ohrmPerformanceTrackList) {
+        this.ohrmPerformanceTrackList = ohrmPerformanceTrackList;
+    }
+
+    @XmlTransient
+    public List<OhrmPerformanceTrack> getOhrmPerformanceTrackList1() {
+        return ohrmPerformanceTrackList1;
+    }
+
+    public void setOhrmPerformanceTrackList1(List<OhrmPerformanceTrack> ohrmPerformanceTrackList1) {
+        this.ohrmPerformanceTrackList1 = ohrmPerformanceTrackList1;
+    }
+
+    @XmlTransient
+    public List<HsHrEmpPassport> getHsHrEmpPassportList() {
+        return hsHrEmpPassportList;
+    }
+
+    public void setHsHrEmpPassportList(List<HsHrEmpPassport> hsHrEmpPassportList) {
+        this.hsHrEmpPassportList = hsHrEmpPassportList;
+    }
+
+    @XmlTransient
+    public List<HsHrEmpAttachment> getHsHrEmpAttachmentList() {
+        return hsHrEmpAttachmentList;
+    }
+
+    public void setHsHrEmpAttachmentList(List<HsHrEmpAttachment> hsHrEmpAttachmentList) {
+        this.hsHrEmpAttachmentList = hsHrEmpAttachmentList;
+    }
+
+    @XmlTransient
+    public List<OhrmJobCandidateHistory> getOhrmJobCandidateHistoryList() {
+        return ohrmJobCandidateHistoryList;
+    }
+
+    public void setOhrmJobCandidateHistoryList(List<OhrmJobCandidateHistory> ohrmJobCandidateHistoryList) {
+        this.ohrmJobCandidateHistoryList = ohrmJobCandidateHistoryList;
+    }
+
+    @XmlTransient
+    public List<OhrmPerformanceTrackerReviewer> getOhrmPerformanceTrackerReviewerList() {
+        return ohrmPerformanceTrackerReviewerList;
+    }
+
+    public void setOhrmPerformanceTrackerReviewerList(List<OhrmPerformanceTrackerReviewer> ohrmPerformanceTrackerReviewerList) {
+        this.ohrmPerformanceTrackerReviewerList = ohrmPerformanceTrackerReviewerList;
+    }
+
+    @XmlTransient
+    public List<OhrmUser> getOhrmUserList() {
+        return ohrmUserList;
+    }
+
+    public void setOhrmUserList(List<OhrmUser> ohrmUserList) {
+        this.ohrmUserList = ohrmUserList;
+    }
+
+    @XmlTransient
+    public List<HsHrEmpChildren> getHsHrEmpChildrenList() {
+        return hsHrEmpChildrenList;
+    }
+
+    public void setHsHrEmpChildrenList(List<HsHrEmpChildren> hsHrEmpChildrenList) {
+        this.hsHrEmpChildrenList = hsHrEmpChildrenList;
+    }
+
+    @XmlTransient
+    public List<OhrmJobVacancy> getOhrmJobVacancyList() {
+        return ohrmJobVacancyList;
+    }
+
+    public void setOhrmJobVacancyList(List<OhrmJobVacancy> ohrmJobVacancyList) {
+        this.ohrmJobVacancyList = ohrmJobVacancyList;
+    }
+
+    public HsHrEmpPicture getHsHrEmpPicture() {
+        return hsHrEmpPicture;
+    }
+
+    public void setHsHrEmpPicture(HsHrEmpPicture hsHrEmpPicture) {
+        this.hsHrEmpPicture = hsHrEmpPicture;
+    }
+
+    @XmlTransient
+    public List<OhrmLeaveEntitlement> getOhrmLeaveEntitlementList() {
+        return ohrmLeaveEntitlementList;
+    }
+
+    public void setOhrmLeaveEntitlementList(List<OhrmLeaveEntitlement> ohrmLeaveEntitlementList) {
+        this.ohrmLeaveEntitlementList = ohrmLeaveEntitlementList;
+    }
+
+    @XmlTransient
+    public List<HsHrEmpWorkExperience> getHsHrEmpWorkExperienceList() {
+        return hsHrEmpWorkExperienceList;
+    }
+
+    public void setHsHrEmpWorkExperienceList(List<HsHrEmpWorkExperience> hsHrEmpWorkExperienceList) {
+        this.hsHrEmpWorkExperienceList = hsHrEmpWorkExperienceList;
+    }
+
+    @XmlTransient
+    public List<OhrmLeaveAdjustment> getOhrmLeaveAdjustmentList() {
+        return ohrmLeaveAdjustmentList;
+    }
+
+    public void setOhrmLeaveAdjustmentList(List<OhrmLeaveAdjustment> ohrmLeaveAdjustmentList) {
+        this.ohrmLeaveAdjustmentList = ohrmLeaveAdjustmentList;
+    }
+
+    @XmlTransient
+    public List<OhrmLeaveRequest> getOhrmLeaveRequestList() {
+        return ohrmLeaveRequestList;
+    }
+
+    public void setOhrmLeaveRequestList(List<OhrmLeaveRequest> ohrmLeaveRequestList) {
+        this.ohrmLeaveRequestList = ohrmLeaveRequestList;
+    }
+
+    @XmlTransient
+    public List<HsHrEmpHistoryOfEalierPos> getHsHrEmpHistoryOfEalierPosList() {
+        return hsHrEmpHistoryOfEalierPosList;
+    }
+
+    public void setHsHrEmpHistoryOfEalierPosList(List<HsHrEmpHistoryOfEalierPos> hsHrEmpHistoryOfEalierPosList) {
+        this.hsHrEmpHistoryOfEalierPosList = hsHrEmpHistoryOfEalierPosList;
+    }
+
+    @XmlTransient
+    public List<OhrmEmpEducation> getOhrmEmpEducationList() {
+        return ohrmEmpEducationList;
+    }
+
+    public void setOhrmEmpEducationList(List<OhrmEmpEducation> ohrmEmpEducationList) {
+        this.ohrmEmpEducationList = ohrmEmpEducationList;
+    }
+
+    public HsHrEmpUsTax getHsHrEmpUsTax() {
+        return hsHrEmpUsTax;
+    }
+
+    public void setHsHrEmpUsTax(HsHrEmpUsTax hsHrEmpUsTax) {
+        this.hsHrEmpUsTax = hsHrEmpUsTax;
+    }
+
+    @XmlTransient
+    public List<HsHrEmpBasicsalary> getHsHrEmpBasicsalaryList() {
+        return hsHrEmpBasicsalaryList;
+    }
+
+    public void setHsHrEmpBasicsalaryList(List<HsHrEmpBasicsalary> hsHrEmpBasicsalaryList) {
+        this.hsHrEmpBasicsalaryList = hsHrEmpBasicsalaryList;
+    }
+
+    @XmlTransient
+    public List<OhrmLeaveComment> getOhrmLeaveCommentList() {
+        return ohrmLeaveCommentList;
+    }
+
+    public void setOhrmLeaveCommentList(List<OhrmLeaveComment> ohrmLeaveCommentList) {
+        this.ohrmLeaveCommentList = ohrmLeaveCommentList;
+    }
+
+    @XmlTransient
+    public List<OhrmLeaveRequestComment> getOhrmLeaveRequestCommentList() {
+        return ohrmLeaveRequestCommentList;
+    }
+
+    public void setOhrmLeaveRequestCommentList(List<OhrmLeaveRequestComment> ohrmLeaveRequestCommentList) {
+        this.ohrmLeaveRequestCommentList = ohrmLeaveRequestCommentList;
+    }
+
+    @XmlTransient
+    public List<HsHrEmpMemberDetail> getHsHrEmpMemberDetailList() {
+        return hsHrEmpMemberDetailList;
+    }
+
+    public void setHsHrEmpMemberDetailList(List<HsHrEmpMemberDetail> hsHrEmpMemberDetailList) {
+        this.hsHrEmpMemberDetailList = hsHrEmpMemberDetailList;
+    }
+
+    @XmlTransient
+    public List<OhrmPerformanceTrackerLog> getOhrmPerformanceTrackerLogList() {
+        return ohrmPerformanceTrackerLogList;
+    }
+
+    public void setOhrmPerformanceTrackerLogList(List<OhrmPerformanceTrackerLog> ohrmPerformanceTrackerLogList) {
+        this.ohrmPerformanceTrackerLogList = ohrmPerformanceTrackerLogList;
+    }
+
+    @XmlTransient
+    public List<HsHrEmpDependents> getHsHrEmpDependentsList() {
+        return hsHrEmpDependentsList;
+    }
+
+    public void setHsHrEmpDependentsList(List<HsHrEmpDependents> hsHrEmpDependentsList) {
+        this.hsHrEmpDependentsList = hsHrEmpDependentsList;
+    }
+
+    @XmlTransient
+    public List<HsHrEmpLanguage> getHsHrEmpLanguageList() {
+        return hsHrEmpLanguageList;
+    }
+
+    public void setHsHrEmpLanguageList(List<HsHrEmpLanguage> hsHrEmpLanguageList) {
+        this.hsHrEmpLanguageList = hsHrEmpLanguageList;
+    }
+
+    @XmlTransient
+    public List<HsHrEmpReportto> getHsHrEmpReporttoList() {
+        return hsHrEmpReporttoList;
+    }
+
+    public void setHsHrEmpReporttoList(List<HsHrEmpReportto> hsHrEmpReporttoList) {
+        this.hsHrEmpReporttoList = hsHrEmpReporttoList;
+    }
+
+    @XmlTransient
+    public List<HsHrEmpReportto> getHsHrEmpReporttoList1() {
+        return hsHrEmpReporttoList1;
+    }
+
+    public void setHsHrEmpReporttoList1(List<HsHrEmpReportto> hsHrEmpReporttoList1) {
+        this.hsHrEmpReporttoList1 = hsHrEmpReporttoList1;
+    }
+
+    @XmlTransient
+    public List<HsHrEmpContractExtend> getHsHrEmpContractExtendList() {
+        return hsHrEmpContractExtendList;
+    }
+
+    public void setHsHrEmpContractExtendList(List<HsHrEmpContractExtend> hsHrEmpContractExtendList) {
+        this.hsHrEmpContractExtendList = hsHrEmpContractExtendList;
+    }
 
     @Override
     public int hashCode() {
@@ -625,9 +974,7 @@ public class HsHrEmployee implements Serializable {
         if (!(object instanceof HsHrEmployee)) {
             return false;
         }
-        
         HsHrEmployee other = (HsHrEmployee) object;
-       
         if ((this.empNumber == null && other.empNumber != null) || (this.empNumber != null && !this.empNumber.equals(other.empNumber))) {
             return false;
         }
@@ -636,6 +983,7 @@ public class HsHrEmployee implements Serializable {
 
     @Override
     public String toString() {
-        return "co.id.hr.HsHrEmployee[ empNumber=" + empNumber + " ]";
+        return "org.module.hr.model.HsHrEmployee[ empNumber=" + empNumber + " ]";
     }
+    
 }
