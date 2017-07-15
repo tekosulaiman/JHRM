@@ -7,7 +7,7 @@
 			<north>
 				<vbox>
 					<groupbox mold="3d">
-						<caption label="Assigned Memberships"></caption>
+						<caption label="${labels.menu.employee.membership.title}"></caption>
 						<hbox>
 							<button label="${labels.button.add}" />
 						</hbox>
@@ -15,16 +15,16 @@
 						<listbox>
 							<listhead>
 								<listheader width="5%" align="center" />
-								<listheader label="Membership"
+								<listheader label="${labels.menu.employee.membership.listheader.membership}"
 									sort="auto" />
-								<listheader label="Subcription Pain By"
+								<listheader label="${labels.menu.employee.membership.listheader.subcription.paid.by}"
 									sort="auto" />
-								<listheader label="Subcription Paid By"
+								<listheader label="${labels.menu.employee.membership.listheader.subcription.amount}"
 									sort="auto" />
-								<listheader label="Currency" sort="auto" />
-								<listheader label="Subscription Commence Date"
+								<listheader label="${labels.menu.employee.membership.listheader.currency}" sort="auto" />
+								<listheader label="${labels.menu.employee.membership.listheader.subscription.commence.date}"
 									sort="auto" />
-								<listheader label="Subscription Renewal Date"
+								<listheader label="${labels.menu.employee.membership.listheader.subscription.renewal.date}"
 									sort="auto" />
 							</listhead>
 							<listitem>
@@ -45,14 +45,14 @@
 			<center>
 				<vbox>
 					<groupbox mold="3d">
-						<caption label="Attachments" />
+						<caption label="${labels.title.attachments}" />
 						<grid>
 							<columns>
 								<column label="" />
 							</columns>
 							<rows>
 								<row>
-									<button label="Add" />
+									<button label="${labels.button.add}" />
 								</row>
 							</rows>
 						</grid>

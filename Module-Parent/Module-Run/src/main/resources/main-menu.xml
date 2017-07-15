@@ -44,8 +44,8 @@
 		</menu>
 	</menu>
 	
-	<menu id="" rightName="menu_Pim" >
-		<menuItem id="" iconName="" zulNavigation="" rightName="menu_Item_Employee" />
+	<menu id="menu.pim" rightName="menu_Pim" >
+		<menuItem id="menu.pim.employee" iconName="" zulNavigation="/WEB-INF/pages/module_hr/employee/employeeList.zul" rightName="menu_Item_Employee" />
 	</menu>
 	
 	<menu id="" rightName="menu_Leave" >

@@ -7,7 +7,7 @@
 			<north>
 				<vbox>
 					<groupbox mold="3d">
-						<caption label="Assigned Supervisors"></caption>
+						<caption label="${labels.menu.employee.report.title.assigned.supervisor}"></caption>
 						<hbox>
 							<button label="${labels.button.add}" />
 							<button label="${labels.button.delete}" />
@@ -16,8 +16,8 @@
 						<listbox>
 							<listhead>
 								<listheader width="5%" align="center" />
-								<listheader label="Name" sort="auto" />
-								<listheader label="Reporting Method"
+								<listheader label="${labels.menu.employee.report.listheader.name}" sort="auto" />
+								<listheader label="${labels.menu.employee.report.listheader.reporting.method}"
 									sort="auto" />
 							</listhead>
 							<listitem>
@@ -34,7 +34,7 @@
 			<center>
 				<vbox>
 					<groupbox mold="3d">
-						<caption label="Assigned Subordinates"></caption>
+						<caption label="${labels.menu.employee.report.title.assigned.subordinates}"></caption>
 						<hbox>
 							<button label="${labels.button.add}" />
 							<button label="${labels.button.delete}" />
@@ -43,8 +43,8 @@
 						<listbox>
 							<listhead>
 								<listheader width="5%" align="center" />
-								<listheader label="Name" sort="auto" />
-								<listheader label="Reporting Method"
+								<listheader label="${labels.menu.employee.report.listheader.name}" sort="auto" />
+								<listheader label="${labels.menu.employee.report.listheader.reporting.method}"
 									sort="auto" />
 							</listhead>
 							<listitem>
@@ -61,14 +61,14 @@
 			<south>
 				<vbox>
 					<groupbox mold="3d">
-						<caption label="Attachments" />
+						<caption label="${labels.title.attachments}" />
 						<grid>
 							<columns>
 								<column label="" />
 							</columns>
 							<rows>
 								<row>
-									<button label="Add" />
+									<button label="${labels.button.add}" />
 								</row>
 							</rows>
 						</grid>

@@ -7,7 +7,7 @@
 			<north>
 				<vbox>
 					<groupbox mold="3d">
-						<caption label="Assigned Salary Components"></caption>
+						<caption label="${labels.menu.employee.salary.title}"></caption>
 						<hbox>
 							<button label="${labels.button.add}" />
 						</hbox>
@@ -15,16 +15,16 @@
 						<listbox>
 							<listhead>
 								<listheader width="5%" align="center" />
-								<listheader label="Salary Component"
+								<listheader label="${labels.menu.employee.salary.listheader.salary.component}"
 									sort="auto" />
-								<listheader label="Pay Frequency"
+								<listheader label="${labels.menu.employee.salary.listheader.pay.frequency}"
 									sort="auto" />
-								<listheader label="Currency"
+								<listheader label="${labels.menu.employee.salary.listheader.currency}"
 									sort="auto" />
-								<listheader label="Amount" sort="auto" />
+								<listheader label="${labels.menu.employee.salary.listheader.amount}" sort="auto" />
 								<listheader label="Comments"
 									sort="auto" />
-								<listheader label="Show Direct Deposit Details"
+								<listheader label="${labels.menu.employee.salary.show.direct.deposit.details}"
 									sort="auto" />
 							</listhead>
 							<listitem>
@@ -45,14 +45,14 @@
 			<center>
 				<vbox>
 					<groupbox mold="3d">
-						<caption label="Attachments" />
+						<caption label="${labels.title.attachments}" />
 						<grid>
 							<columns>
 								<column label="" />
 							</columns>
 							<rows>
 								<row>
-									<button label="Add" />
+									<button label="${labels.button.add}" />
 								</row>
 							</rows>
 						</grid>

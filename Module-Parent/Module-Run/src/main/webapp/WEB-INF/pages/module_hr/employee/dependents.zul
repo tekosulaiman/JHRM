@@ -7,7 +7,7 @@
 			<north>
 				<vbox>
 					<groupbox mold="3d">
-						<caption label="Assigned Dependents"></caption>
+						<caption label="${labels.menu.employee.dependent.title}"></caption>
 						<hbox>
 							<button label="${labels.button.add}"/>
 							<button label="${labels.button.delete}" />
@@ -16,10 +16,10 @@
 						<listbox>
 							<listhead>
 								<listheader width="5%" align="center" />
-								<listheader label="Name" sort="auto" />
-								<listheader label="Relationship"
+								<listheader label="${labels.menu.employee.dependent.name}" sort="auto" />
+								<listheader label="${labels.menu.employee.dependent.relationship}"
 									sort="auto" />
-								<listheader label="Date of Birth"
+								<listheader label="${labels.menu.employee.dependent.date.of.birth}"
 									sort="auto" />
 							</listhead>
 							<listitem>
@@ -36,14 +36,14 @@
 			<center>
 				<vbox>
 					<groupbox mold="3d">
-						<caption label="Attachments" />
+						<caption label="${labels.title.attachments}" />
 						<grid>
 							<columns>
 								<column label="" />
 							</columns>
 							<rows>
 								<row>
-									<button label="Add" />
+									<button label="${labels.button.add}" />
 								</row>
 							</rows>
 						</grid>

@@ -7,7 +7,7 @@
 			<north>
 				<vbox>
 					<groupbox mold="3d">
-						<caption label="Assigned Emergency Contacts"></caption>
+						<caption label="${labels.menu.employee.immigration.title}"></caption>
 						<hbox>
 							<button label="${labels.button.add}"/>
 							<button label="${labels.button.delete}" />
@@ -16,14 +16,14 @@
 						<listbox>
 							<listhead>
 								<listheader width="5%" align="center" />
-								<listheader label="Document" sort="auto" />
-								<listheader label="Number"
+								<listheader label="${labels.menu.employee.immigration.listheader.document}" sort="auto" />
+								<listheader label="${labels.menu.employee.immigration.listheader.number}"
 									sort="auto" />
-								<listheader label="Issued By"
+								<listheader label="${labels.menu.employee.immigration.listheader.issued.by}"
 									sort="auto" />									
-								<listheader label="Issued Date"
+								<listheader label="${labels.menu.employee.immigration.listheader.issued.date}"
 									sort="auto" />								
-								<listheader label="Expiry Date"
+								<listheader label="${labels.menu.employee.immigration.listheader.expiry.date}"
 									sort="auto" />
 							</listhead>
 							<listitem>
@@ -42,14 +42,14 @@
 			<center>
 				<vbox>
 					<groupbox mold="3d">
-						<caption label="Attachments" />
+						<caption label="${labels.title.attachments}" />
 						<grid>
 							<columns>
 								<column label="" />
 							</columns>
 							<rows>
 								<row>
-									<button label="Add" />
+									<button label="${labels.button.add}" />
 								</row>
 							</rows>
 						</grid>

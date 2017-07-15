@@ -5,7 +5,7 @@
 			<north>
 				<vbox>
 					<groupbox mold="3d">
-						<caption label="Personal Details" />
+						<caption label="${labels.menu.employee.details.title}" />
 						<grid>
 							<columns>
 								<column label="" />
@@ -15,17 +15,17 @@
 							</columns>
 							<rows>
 								<row>
-									<label value="Full Name" />
+									<label value="${labels.menu.employee.personal.details.form.full.name}" />
 									<div>
-										<label value="First Name" />
+										<label value="${labels.menu.employee.personal.details.form.first.name}" />
 										<textbox />
 									</div>
 									<div>
-										<label value="Middle Name" />
+										<label value="${labels.menu.employee.personal.details.form.middle.name}" />
 										<textbox />
 									</div>
 									<div>
-										<label value="Last Name" />
+										<label value="${labels.menu.employee.personal.details.form.last.name}" />
 										<textbox />
 									</div>
 								</row>
@@ -40,16 +40,16 @@
 							</columns>
 							<rows>
 								<row>
-									<label value="Employee Id" />
+									<label value="${labels.menu.employee.personal.details.form.employee.id}" />
 									<textbox />
-									<label value="Other	Id" />
+									<label value="${labels.menu.employee.personal.details.form.other.id}" />
 									<textbox />
 								</row>
 								<row>
 									<label
-										value="Driver's License Number" />
+										value="${labels.menu.employee.personal.details.form.drivers.license.number}" />
 									<textbox />
-									<label value="License Expiry Date" />
+									<label value="${labels.menu.employee.personal.details.form.license.expiry.date}" />
 									<datebox />
 								</row>
 							</rows>
@@ -63,22 +63,22 @@
 							</columns>
 							<rows>
 								<row>
-									<label value="Gender" />
+									<label value="${labels.menu.employee.personal.details.form.gender}" />
 									<textbox />
-									<label value="Marital Status" />
+									<label value="${labels.menu.employee.personal.details.form.marital.status}" />
 									<listbox rows="1" mold="select">
 										<listitem selected="true"
 											label=" " />
 									</listbox>
 								</row>
 								<row>
-									<label value="Nationality" />
+									<label value="${labels.menu.employee.personal.details.form.nationality}" />
 									<textbox />
-									<label value="Date of Birth" />
+									<label value="${labels.menu.employee.personal.details.form.date.of.birth}" />
 									<datebox />
 								</row>
 								<row>
-									<label value="Required field" />
+									<label value="${labels.menu.employee.personal.details.form.required.field}" />
 								</row>
 							</rows>
 						</grid>
@@ -101,14 +101,14 @@
 			<center>
 				<vbox>
 					<groupbox mold="3d">
-						<caption label="Attachments" />
+						<caption label="${labels.title.attachments}" />
 						<grid>
 							<columns>
 								<column label="" />
 							</columns>
 							<rows>
 								<row>
-									<button label="Add" />
+									<button label="${labels.button.add}" />
 								</row>
 							</rows>
 						</grid>

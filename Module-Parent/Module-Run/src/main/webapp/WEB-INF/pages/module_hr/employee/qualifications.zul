@@ -6,7 +6,7 @@
 				<vbox>
 					<div>
 						<groupbox mold="3d">
-							<caption label="Work Experience" />
+							<caption label="${labels.menu.employee.qualification.title.work.experience}" />
 							<hbox>
 								<button label="${labels.button.add}" />
 							</hbox>
@@ -14,13 +14,13 @@
 								<listhead>
 									<listheader width="5%"
 										align="center" />
-									<listheader label="Company"
+									<listheader label="${labels.menu.employee.qualification.listheader.company}"
 										sort="auto" />
-									<listheader label="Job Title"
+									<listheader label="${labels.menu.employee.qualification.listheader.job.title}"
 										sort="auto" />
-									<listheader label="From"
+									<listheader label="${labels.menu.employee.qualification.listheader.from}"
 										sort="auto" />
-									<listheader label="To" sort="auto" />
+									<listheader label="${labels.menu.employee.qualification.listheader.to}" sort="auto" />
 									<listheader label="Comment"
 										sort="auto" />
 								</listhead>
@@ -37,7 +37,7 @@
 							</listbox>
 						</groupbox>
 						<groupbox mold="3d">
-							<caption label="Education" />
+							<caption label="${labels.menu.employee.qualification.title.education}" />
 							<hbox>
 								<button label="${labels.button.add}" />
 							</hbox>
@@ -45,11 +45,11 @@
 								<listhead>
 									<listheader width="5%"
 										align="center" />
-									<listheader label="Level"
+									<listheader label="${labels.menu.employee.qualification.listheader.level}"
 										sort="auto" />
-									<listheader label="Year"
+									<listheader label="${labels.menu.employee.qualification.listheader.year}"
 										sort="auto" />
-									<listheader label="GPA/Score"
+									<listheader label="${labels.menu.employee.qualification.listheader.gpa.score}"
 										sort="auto" />
 								</listhead>
 								<listitem>
@@ -63,7 +63,7 @@
 							</listbox>
 						</groupbox>
 						<groupbox mold="3d">
-							<caption label="Skills" />
+							<caption label="${labels.menu.employee.qualification.title.skills}" />
 							<hbox>
 								<button label="${labels.button.add}" />
 							</hbox>
@@ -71,10 +71,10 @@
 								<listhead>
 									<listheader width="5%"
 										align="center" />
-									<listheader label="Skill"
+									<listheader label="${labels.menu.employee.qualification.listheader.skill}"
 										sort="auto" />
 									<listheader
-										label="Years Of Experience" sort="auto" />
+										label="${labels.menu.employee.qualification.listheader.years.of.experience}" sort="auto" />
 								</listhead>
 								<listitem>
 									<listcell
@@ -86,7 +86,7 @@
 							</listbox>
 						</groupbox>
 						<groupbox mold="3d">
-							<caption label="Languages" />
+							<caption label="${labels.menu.employee.qualification.title.languages}" />
 							<hbox>
 								<button label="${labels.button.add}" />
 							</hbox>
@@ -94,13 +94,13 @@
 								<listhead>
 									<listheader width="5%"
 										align="center" />
-									<listheader label="Language"
+									<listheader label="${labels.menu.employee.qualification.listheader.language}"
 										sort="auto" />
-									<listheader label="Fluency"
+									<listheader label="${labels.menu.employee.qualification.listheader.fluency}"
 										sort="auto" />
-									<listheader label="Competency"
+									<listheader label="${labels.menu.employee.qualification.listheader.competency}"
 										sort="auto" />
-									<listheader label="Comments"
+									<listheader label="${labels.menu.employee.qualification.listheader.comments}"
 										sort="auto" />
 								</listhead>
 								<listitem>
@@ -115,7 +115,7 @@
 							</listbox>
 						</groupbox>
 						<groupbox mold="3d">
-							<caption label="License" />
+							<caption label="${labels.menu.employee.qualification.title.license}" />
 							<hbox>
 								<button label="${labels.button.add}" />
 							</hbox>
@@ -123,11 +123,11 @@
 								<listhead>
 									<listheader width="5%"
 										align="center" />
-									<listheader label="License Type"
+									<listheader label="${labels.menu.employee.qualification.listheader.license.type}"
 										sort="auto" />
-									<listheader label="Issued Date"
+									<listheader label="${labels.menu.employee.qualification.listheader.issued.date}"
 										sort="auto" />
-									<listheader label="Expiry Date"
+									<listheader label="${labels.menu.employee.qualification.listheader.expiry.date}"
 										sort="auto" />
 								</listhead>
 								<listitem>
@@ -141,7 +141,7 @@
 							</listbox>
 						</groupbox>
 						<groupbox mold="3d">
-							<caption label="Attachments" />
+							<caption label="${labels.title.attachments}" />
 							<hbox>
 								<button label="${labels.button.add}" />
 							</hbox>
