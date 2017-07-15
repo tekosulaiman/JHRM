@@ -15,17 +15,53 @@
 			<menuItem id="menu_Item_Rights" zulNavigation="/WEB-INF/pages/sec_right/secRight.zul" iconName="/images/icons/menu_user.gif" rightName="menuItem_Administration_Rights" />
 		</menu>
 	</menu>
-	<menu id="menu_Master_Data">
-		<menu id="menu_Master_Qualifications" >
-			<menuItem id="menu_Item_Master_Qualifications_Skills" zulNavigation="/WEB-INF/pages/module_hr/master/qualifications/skills/skillList.zul"></menuItem>
-			<menuItem id="menu_Item_Master_Qualifications_Education" zulNavigation="/WEB-INF/pages/module_hr/master/qualifications/educations/educationList.zul"></menuItem>
-			<menuItem id="menu_Item_Master_Qualifications_Licenses" zulNavigation="/WEB-INF/pages/module_hr/master/qualifications/licenses/licenseList.zul"></menuItem>
-			<menuItem id="menu_Item_Master_Qualifications_Languages" zulNavigation="/"></menuItem>
-			<menuItem id="menu_Item_Master_Qualifications_Memberships" zulNavigation="/"></menuItem>
+	
+	<menu id="" rightName="menu_Master_Data">
+		<menu id="" rightName="menu_Master_Job">
+			<menuItem id="" iconName="" zulNavigation="" rightName="menu_Item_Job_Titles" />
+			<menuItem id="" iconName="" zulNavigation="" rightName="menu_Item_Pay_Grades" />
+			<menuItem id="" iconName="" zulNavigation="" rightName="menu_Item_Employment_Status" />
+			<menuItem id="" iconName="" zulNavigation="" rightName="menu_Item_Job_Categories" />
+			<menuItem id="" iconName="" zulNavigation="" rightName="menu_Item_Work_Shifts" />
+		</menu>
+		
+		<menu id="" rightName="menu_Master_Organization">
+			<menuItem id="" iconName="" zulNavigation="" rightName="menu_Item_General_Information" />
+			<menuItem id="" iconName="" zulNavigation="" rightName="menu_Item_Locations" />
+			<menuItem id="" iconName="" zulNavigation="" rightName="menu_Item_Organization_Structure" />
+		</menu>
+		
+		<menu id="" rightName="menu_Master_Qualifications">
+			<menuItem id="" iconName="" zulNavigation="" rightName="menu_Item_Skills" />
+			<menuItem id="" iconName="" zulNavigation="" rightName="menu_Item_Education" />
+			<menuItem id="" iconName="" zulNavigation="" rightName="menu_Item_Licenses" />
+			<menuItem id="" iconName="" zulNavigation="" rightName="menu_Item_Languages" />
+			<menuItem id="" iconName="" zulNavigation="" rightName="menu_Item_Memberships" />
 		</menu>	
+		
+		<menu id="" rightName="menu_Master_Nationalities">
+			<menuItem id="" zulNavigation="" rightName="menu_Item_Nationalities" />
+		</menu>
 	</menu>
-	<!-- Menu HR -->
-	<menu id="menu_Pim" rightName="menu_Pim">
-		<menuItem id="menu_Item_Employee" iconName="/images/icons/menu_user_group.png" zulNavigation="/WEB-INF/pages/module_hr/employeeList.zul" rightName="menuItem_Employee" />
+	
+	<menu id="" rightName="menu_Pim" >
+		<menuItem id="" iconName="" zulNavigation="" rightName="menu_Item_Employee" />
 	</menu>
+	
+	<menu id="" rightName="menu_Leave" >
+		<menuItem id="" iconName="" zulNavigation="" rightName="menu_Item_Leave_Period" />
+	</menu>
+	
+	<menu id="" rightName="menu_Time">
+		<menuItem id="" iconName="" zulNavigation="" rightName="menu_Item_Define_Timesheet_Period" />
+	</menu>
+	
+	<menu id="" rightName="menu_Recruitment">
+		<menuItem id="" iconName="" zulNavigation="" rightName="menu_Item_Candidates" />
+		<menuItem id="" iconName="" zulNavigation="" rightName="menu_Item_Vacancies" />
+	</menu>
+	
+	<menu id="" rightName="menu_Performance">
+		<menuItem id="" iconName="" zulNavigation="" rightName="" />
+	</menu>	
 </XMLRootMenu>
