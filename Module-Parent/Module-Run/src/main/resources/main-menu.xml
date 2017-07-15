@@ -14,18 +14,16 @@
 			<menuItem id="menu_Item_GroupRights" zulNavigation="/WEB-INF/pages/sec_group_right/secGroupRightList.zul" iconName="/images/icons/menu_user.gif" rightName="menuItem_Administration_GroupRights" />
 			<menuItem id="menu_Item_Rights" zulNavigation="/WEB-INF/pages/sec_right/secRight.zul" iconName="/images/icons/menu_user.gif" rightName="menuItem_Administration_Rights" />
 		</menu>
-		<menu id="menu_Master_Data">
-			<menu id="menu_Master_Qualifications" >
-				<menuItem id="menu_Item_Master_Qualifications_Skills" zulNavigation="/WEB-INF/pages/module_hr/master/qualifications/skills/skillList.zul"></menuItem>
-				<menuItem id="menu_Item_Master_Qualifications_Education" zulNavigation="/WEB-INF/pages/module_hr/master/qualifications/educations/educationList.zul"></menuItem>
-				<menuItem id="menu_Item_Master_Qualifications_Licenses" zulNavigation="/WEB-INF/pages/module_hr/master/qualifications/licenses/licenseList.zul"></menuItem>
-				<menuItem id="menu_Item_Master_Qualifications_Languages" zulNavigation="/"></menuItem>
-				<menuItem id="menu_Item_Master_Qualifications_Memberships" zulNavigation="/"></menuItem>
-			</menu>	
-		</menu>
-		
 	</menu>
-	
+	<menu id="menu_Master_Data">
+		<menu id="menu_Master_Qualifications" >
+			<menuItem id="menu_Item_Master_Qualifications_Skills" zulNavigation="/WEB-INF/pages/module_hr/master/qualifications/skills/skillList.zul"></menuItem>
+			<menuItem id="menu_Item_Master_Qualifications_Education" zulNavigation="/WEB-INF/pages/module_hr/master/qualifications/educations/educationList.zul"></menuItem>
+			<menuItem id="menu_Item_Master_Qualifications_Licenses" zulNavigation="/WEB-INF/pages/module_hr/master/qualifications/licenses/licenseList.zul"></menuItem>
+			<menuItem id="menu_Item_Master_Qualifications_Languages" zulNavigation="/"></menuItem>
+			<menuItem id="menu_Item_Master_Qualifications_Memberships" zulNavigation="/"></menuItem>
+		</menu>	
+	</menu>
 	<!-- Menu HR -->
 	<menu id="menu_Pim" rightName="menu_Pim">
 		<menuItem id="menu_Item_Employee" iconName="/images/icons/menu_user_group.png" zulNavigation="/WEB-INF/pages/module_hr/employeeList.zul" rightName="menuItem_Employee" />
