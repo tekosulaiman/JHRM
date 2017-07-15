@@ -1,0 +1,54 @@
+<?page title="Locations" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window title="Locations" height="500px" border="normal">
+		<borderlayout>
+			<north>
+				<groupbox mold="3d">
+					<hlayout>
+						<vbox>
+							<label value="Locaction Name" />
+							<textbox width="200px"></textbox>
+						</vbox>
+						<vbox>
+							<label value="City" />
+							<textbox width="200px"></textbox>
+						</vbox>
+						<vbox>
+							<label value="Country" />
+							<combobox width="200px" />
+						</vbox>
+					</hlayout>
+					<separator></separator>
+					<hbox>
+						<button label="Search" />
+						<button label="Reset" />
+					</hbox>
+				</groupbox>
+			</north>
+			<center>
+				<div>
+					<toolbar>
+						<button label="Add" />
+						<button label="Delete" />
+					</toolbar>
+					<listbox multiple="true" checkmark="true">
+						<listhead>
+							<listheader label="Name" />
+							<listheader label="Name" />
+							<listheader label="City" />
+							<listheader label="Country" />
+							<listheader label="Phone" />
+							<listheader label="Number of Employee" />
+						</listhead>
+						<template name="model" var="secRight">
+							<listitem>
+								<listcell></listcell>
+							</listitem>
+						</template>
+
+					</listbox>
+				</div>
+			</center>
+		</borderlayout>
+	</window>
+</zk>
