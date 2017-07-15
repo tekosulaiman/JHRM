@@ -91,104 +91,53 @@
 					</tree>
 				</vbox>
 			</west>
-			<center>
+			<center autoscroll="true">
 				<grid>
 					<columns>
 						<column />
 					</columns>
 					<rows>
-						<row>
-							<include
-								visible="@load(vm.isVisiblesFormPerssonalDetails)"
+						<row visible="@load(vm.isVisiblesFormPerssonalDetails)">
+							<include								
 								src="/WEB-INF/pages/module_hr/employee/personalDetails.zul" />
 						</row>
-						<row>
+						<row visible="@load(vm.isVisibleFormContactDetails)">
 							<include
-								visible="@load(vm.isVisibleFormContactDetails)"
 								src="/WEB-INF/pages/module_hr/employee/contactDetails.zul" />
 						</row>
-						<row>
+						<row visible="@load(vm.isVisibleFormEmergencyContacts)">
 							<include
-								visible="@load(vm.isVisibleFormEmergencyContacts)"
 								src="/WEB-INF/pages/module_hr/employee/emergencyContacts.zul" />
 						</row>
-						<row>
+						<row visible="@load(vm.isVisibleFormDependents)">
 							<include
-								visible="@load(vm.isVisibleFormDependents)"
 								src="/WEB-INF/pages/module_hr/employee/dependents.zul" />
 						</row>
-						<row>
+						<row visible="@load(vm.isVisibleFormImmigration)">
 							<include
-								visible="@load(vm.isVisibleFormImmigration)"
 								src="/WEB-INF/pages/module_hr/employee/immigration.zul" />
 						</row>
-						<row>
+						<row visible="@load(vm.isVisibleFormJob)">
 							<include
-								visible="@load(vm.isVisibleFormJob)"
 								src="/WEB-INF/pages/module_hr/employee/job.zul" />
 						</row>
-						<row>
+						<row visible="@load(vm.isVisibleFormSalary)">
 							<include
-								visible="@load(vm.isVisibleFormSalary)"
 								src="/WEB-INF/pages/module_hr/employee/salary.zul" />
 						</row>
-						<row>
+						<row visible="@load(vm.isVisibleFormReportTo)">
 							<include
-								visible="@load(vm.isVisibleFormReportTo)"
 								src="/WEB-INF/pages/module_hr/employee/reportTo.zul" />
 						</row>
-						<row>
+						<row visible="@load(vm.isVisibleFormQualification)">
 							<include
-								visible="@load(vm.isVisibleFormQualification)"
-								src="/WEB-INF/pages/module_hr/employee/personalDetails.zul" />
+								src="/WEB-INF/pages/module_hr/employee/qualifications.zul" />
 						</row>
-						<row>
+						<row visible="@load(vm.isVisibleFormMemberships)">
 							<include
-								visible="@load(vm.isVisibleFormMemberships)"
 								src="/WEB-INF/pages/module_hr/employee/memberships.zul" />
 						</row>
 					</rows>
-					<!-- <row>
-						<include visible="@load(vm.isVisiblesFormPerssonalDetails)"
-						src="/WEB-INF/pages/module_hr/employee/personalDetails.zul" />
-						</row>
-						<row>
-						<include visible="@load(vm.isVisibleFormContactDetails)"
-						src="/WEB-INF/pages/module_hr/employee/contactDetails.zul" />
-						</row>
-						<row>
-						<include visible="@load(vm.isVisibleFormEmergencyContacts)"
-						src="/WEB-INF/pages/module_hr/employee/emergencyContacts.zul" />
-						</row>
-						<row>
-						<include visible="@load(vm.isVisibleFormDependents)"
-						src="/WEB-INF/pages/module_hr/employee/dependents.zul" />
-						</row>
-						<row>
-						<include visible="@load(vm.isVisibleFormImmigration)"
-						src="/WEB-INF/pages/module_hr/employee/immigration.zul" />
-						</row>
-						<row>
-						<include visible="@load(vm.isVisibleFormJob)"
-						src="/WEB-INF/pages/module_hr/employee/job.zul" />
-						</row>
-						<row>
-						<include visible="@load(vm.isVisibleFormSalary)"
-						src="/WEB-INF/pages/module_hr/employee/salary.zul" />
-						</row>
-						<row>
-						<include visible="@load(vm.isVisibleFormReportTo)"
-						src="/WEB-INF/pages/module_hr/employee/reportTo.zul" />
-						</row>
-						<row>
-						<include visible="@load(vm.isVisibleFormQualification)"
-						src="/WEB-INF/pages/module_hr/employee/personalDetails.zul" />
-						</row>
-						<row>
-						<include visible="@load(vm.isVisibleFormMemberships)"
-						src="/WEB-INF/pages/module_hr/employee/memberships.zul" />
-						</row>
-						</rows> -->
 				</grid>
 			</center>
 			<south />

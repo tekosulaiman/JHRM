@@ -1,0 +1,154 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window border="none" width="100%">
+		<borderlayout height="500px">
+			<north>
+				<vbox>
+					<div>
+						<groupbox mold="3d">
+							<caption label="Work Experience" />
+							<hbox>
+								<button label="${labels.button.add}" />
+							</hbox>
+							<listbox>
+								<listhead>
+									<listheader width="5%"
+										align="center" />
+									<listheader label="Company"
+										sort="auto" />
+									<listheader label="Job Title"
+										sort="auto" />
+									<listheader label="From"
+										sort="auto" />
+									<listheader label="To" sort="auto" />
+									<listheader label="Comment"
+										sort="auto" />
+								</listhead>
+								<listitem>
+									<listcell
+										image="/images/icons/btn_edit.gif"
+										tooltiptext="Click For Edit" />
+									<listcell label="toke" />
+									<listcell label="anak" />
+									<listcell label="1-1-2000" />
+									<listcell label="1-1-2001" />
+									<listcell label="asdasdasd" />
+								</listitem>
+							</listbox>
+						</groupbox>
+						<groupbox mold="3d">
+							<caption label="Education" />
+							<hbox>
+								<button label="${labels.button.add}" />
+							</hbox>
+							<listbox>
+								<listhead>
+									<listheader width="5%"
+										align="center" />
+									<listheader label="Level"
+										sort="auto" />
+									<listheader label="Year"
+										sort="auto" />
+									<listheader label="GPA/Score"
+										sort="auto" />
+								</listhead>
+								<listitem>
+									<listcell
+										image="/images/icons/btn_edit.gif"
+										tooltiptext="Click For Edit" />
+									<listcell label="toke" />
+									<listcell label="anak" />
+									<listcell label="anak" />
+								</listitem>
+							</listbox>
+						</groupbox>
+						<groupbox mold="3d">
+							<caption label="Skills" />
+							<hbox>
+								<button label="${labels.button.add}" />
+							</hbox>
+							<listbox>
+								<listhead>
+									<listheader width="5%"
+										align="center" />
+									<listheader label="Skill"
+										sort="auto" />
+									<listheader
+										label="Years Of Experience" sort="auto" />
+								</listhead>
+								<listitem>
+									<listcell
+										image="/images/icons/btn_edit.gif"
+										tooltiptext="Click For Edit" />
+									<listcell label="toke" />
+									<listcell label="anak" />
+								</listitem>
+							</listbox>
+						</groupbox>
+						<groupbox mold="3d">
+							<caption label="Languages" />
+							<hbox>
+								<button label="${labels.button.add}" />
+							</hbox>
+							<listbox>
+								<listhead>
+									<listheader width="5%"
+										align="center" />
+									<listheader label="Language"
+										sort="auto" />
+									<listheader label="Fluency"
+										sort="auto" />
+									<listheader label="Competency"
+										sort="auto" />
+									<listheader label="Comments"
+										sort="auto" />
+								</listhead>
+								<listitem>
+									<listcell
+										image="/images/icons/btn_edit.gif"
+										tooltiptext="Click For Edit" />
+									<listcell label="toke" />
+									<listcell label="anak" />
+									<listcell label="anak" />
+									<listcell label="anak" />
+								</listitem>
+							</listbox>
+						</groupbox>
+						<groupbox mold="3d">
+							<caption label="License" />
+							<hbox>
+								<button label="${labels.button.add}" />
+							</hbox>
+							<listbox>
+								<listhead>
+									<listheader width="5%"
+										align="center" />
+									<listheader label="License Type"
+										sort="auto" />
+									<listheader label="Issued Date"
+										sort="auto" />
+									<listheader label="Expiry Date"
+										sort="auto" />
+								</listhead>
+								<listitem>
+									<listcell
+										image="/images/icons/btn_edit.gif"
+										tooltiptext="Click For Edit" />
+									<listcell label="toke" />
+									<listcell label="anak" />
+									<listcell label="anak" />
+								</listitem>
+							</listbox>
+						</groupbox>
+						<groupbox mold="3d">
+							<caption label="Attachments" />
+							<hbox>
+								<button label="${labels.button.add}" />
+							</hbox>
+						</groupbox>
+					</div>
+				</vbox>
+			</north>
+		</borderlayout>
+	</window>
+</zk>
