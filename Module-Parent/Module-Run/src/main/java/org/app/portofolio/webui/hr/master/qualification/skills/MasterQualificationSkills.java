@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.app.portofolio.common.menu.util.JHRMAdditionalZulPath;
 import org.app.portofolio.webui.hr.master.qualification.skills.model.SkillsListItemRenderer;
+import org.module.hr.model.MstSkill;
 import org.module.hr.model.OhrmSkill;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.Command;
@@ -24,8 +25,8 @@ public class MasterQualificationSkills {
 	private Listbox listBoxSkills;
 
 	private SkillsListItemRenderer skillItemRenderer;
-	private List<OhrmSkill> skills;
-	private OhrmSkill selectedSkills;
+	private List<MstSkill> skills;
+	private MstSkill selectedSkills;
 
 	/*
 	 * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -40,12 +41,12 @@ public class MasterQualificationSkills {
 		Selectors.wireComponents(component, this, false);
 
 		// dummy
-		skills = new ArrayList<OhrmSkill>();
+		skills = new ArrayList<MstSkill>();
 		for(int i = 1; i < 5; i++) {
-			OhrmSkill ohrmSkill = new OhrmSkill();
-			ohrmSkill.setId(i);
-			ohrmSkill.setName("Skill " + i);
-			ohrmSkill.setDescription("Deskripsi untuk Skill " + i);
+			MstSkill ohrmSkill = new MstSkill();
+			ohrmSkill.setIdSkill(i);
+			ohrmSkill.setNameSkill("Skill " + i);
+			ohrmSkill.setDescpriptionSkill("Deskripsi untuk Skill " + i);
 			skills.add(ohrmSkill);
 		}
 		
@@ -64,7 +65,7 @@ public class MasterQualificationSkills {
 	@Command
 	public void doNew() {
 		ListModelList listModelList = (ListModelList) listBoxSkills.getModel();
-		listModelList.add(0, new OhrmSkill());
+		listModelList.add(0, new MstSkill());
 	}
 
 	/**
@@ -83,19 +84,19 @@ public class MasterQualificationSkills {
 		this.skillItemRenderer = skillItemRenderer;
 	}
 
-	public List<OhrmSkill> getSkills() {
+	public List<MstSkill> getSkills() {
 		return skills;
 	}
 
-	public void setSkills(List<OhrmSkill> skills) {
+	public void setSkills(List<MstSkill> skills) {
 		this.skills = skills;
 	}
 
-	public OhrmSkill getSelectedSkills() {
+	public MstSkill getSelectedSkills() {
 		return selectedSkills;
 	}
 
-	public void setSelectedSkills(OhrmSkill selectedSkills) {
+	public void setSelectedSkills(MstSkill selectedSkills) {
 		this.selectedSkills = selectedSkills;
 	}
 
