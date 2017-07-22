@@ -56,25 +56,6 @@
 									<textbox />
 								</div>
 							</row>
-							<!-- </row>
-
-
-
-							</row>
-
-							<row>
-								<label value="Supervisor Name" />
-								<textbox />
-
-								<label value="Job Title" />
-								<textbox />
-
-								<label value="Sub Unit" />
-								<textbox />
-
-								<space />
-								<space />
-							</row> -->
 						</rows>
 					</grid>
 				</groupbox>

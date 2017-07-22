@@ -1,80 +1,95 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
 	<window border="none" width="100%">
-		<borderlayout height="500px">
-			<north>
-				<vbox>
+		<borderlayout height="450px">
+			<north size="100%" collapsible="true" autoscroll="true">
+				<div>
 					<groupbox mold="3d">
-						<caption label="${labels.menu.employee.job.title}" />
+						<caption
+							label="${labels.menu.employee.job.title}" />
 						<grid>
-						<rows>
-							<row>
-								<label value="${labels.menu.employee.job.form.job.title}" />
-								<textbox />
-							</row>
-							<row>
-								<label value="${labels.menu.employee.job.form.job.spesification}" />
-								<label value="Not Defined" />
-							</row>
-							<row>
-								<label value="${labels.menu.employee.job.form.employment.status}" />
-								<listbox rows="1" mold="select">
-									<listitem selected="true" label=" " />
-								</listbox>
-							</row>
-							<row>
-								<label value="${labels.menu.employee.job.form.job.category}" />
-								<listbox rows="1" mold="select">
-									<listitem selected="true" label=" " />
-								</listbox>
-							</row>
-							<row>
-								<label value="${labels.menu.employee.job.form.joined.date}" />
-								<datebox />
-							</row>
-							<row>
-								<label value="${labels.menu.employee.job.form.sub.unit}" />
-								<listbox rows="1" mold="select">
-									<listitem selected="true" label=" " />
-								</listbox>
-							</row>
-							<row>
-								<label value="${labels.menu.employee.job.form.location}" />
-								<listbox rows="1" mold="select">
-									<listitem selected="true" label=" " />
-								</listbox>
-							</row>
-							<row>
-								<label value="${labels.menu.employee.job.form.employment.contract}"
-									style="font-weight:bold;" />
-							</row>
-							<row>
-								<label value="${labels.menu.employee.job.form.start.date}" />
-								<listbox rows="1" mold="select">
-									<listitem selected="true" label=" " />
-								</listbox>
-							</row>
-							<row>
-								<label value="${labels.menu.employee.job.form.end.date}" />
-								<listbox rows="1" mold="select">
-									<listitem selected="true" label=" " />
-								</listbox>
-							</row>
-							<row>
-								<label value="${labels.menu.employee.job.form.contract.details}" />
-								<label value="Not Defined" />
-							</row>
-							<row>
-								<button label="Edit" />
-								<button label="Terminate Employment" />
-							</row>
-						</rows>
+							<rows>
+								<row>
+									<label
+										value="${labels.menu.employee.job.form.job.title}" />
+									<textbox />
+								</row>
+								<row>
+									<label
+										value="${labels.menu.employee.job.form.job.spesification}" />
+									<label value="Not Defined" />
+								</row>
+								<row>
+									<label
+										value="${labels.menu.employee.job.form.employment.status}" />
+									<listbox rows="1" mold="select">
+										<listitem selected="true"
+											label=" " />
+									</listbox>
+								</row>
+								<row>
+									<label
+										value="${labels.menu.employee.job.form.job.category}" />
+									<listbox rows="1" mold="select">
+										<listitem selected="true"
+											label=" " />
+									</listbox>
+								</row>
+								<row>
+									<label
+										value="${labels.menu.employee.job.form.joined.date}" />
+									<datebox />
+								</row>
+								<row>
+									<label
+										value="${labels.menu.employee.job.form.sub.unit}" />
+									<listbox rows="1" mold="select">
+										<listitem selected="true"
+											label=" " />
+									</listbox>
+								</row>
+								<row>
+									<label
+										value="${labels.menu.employee.job.form.location}" />
+									<listbox rows="1" mold="select">
+										<listitem selected="true"
+											label=" " />
+									</listbox>
+								</row>
+								<row>
+									<label
+										value="${labels.menu.employee.job.form.employment.contract}"
+										style="font-weight:bold;" />
+								</row>
+								<row>
+									<label
+										value="${labels.menu.employee.job.form.start.date}" />
+									<listbox rows="1" mold="select">
+										<listitem selected="true"
+											label=" " />
+									</listbox>
+								</row>
+								<row>
+									<label
+										value="${labels.menu.employee.job.form.end.date}" />
+									<listbox rows="1" mold="select">
+										<listitem selected="true"
+											label=" " />
+									</listbox>
+								</row>
+								<row>
+									<label
+										value="${labels.menu.employee.job.form.contract.details}" />
+									<label value="Not Defined" />
+								</row>
+								<row>
+									<button label="Edit" />
+									<button
+										label="Terminate Employment" />
+								</row>
+							</rows>
 						</grid>
 					</groupbox>
-				</vbox>
-			</north>
-			<center>
-				<vbox>
 					<groupbox mold="3d">
 						<caption label="${labels.title.attachments}" />
 						<grid>
@@ -83,13 +98,14 @@
 							</columns>
 							<rows>
 								<row>
-									<button label="A${labels.button.add}" />
+									<button
+										label="${labels.button.add}" />
 								</row>
 							</rows>
 						</grid>
 					</groupbox>
-				</vbox>
-			</center>
+				</div>
+			</north>
 		</borderlayout>
 	</window>
 </zk>

@@ -1,13 +1,15 @@
 <zk>
 	<window id="windowSalary" border="none">
-		<borderlayout height="500px">
+		<borderlayout height="450px">
 			<!-- Function CRUD -->
 			<!-- <north/> -->
 			<!-- Table Database -->
-			<north>
-				<vbox>
+			<north size="100%" collapsible="true" autoscroll="true">
+				<div>
 					<groupbox mold="3d">
-						<caption label="${labels.menu.employee.salary.title}"></caption>
+						<caption
+							label="${labels.menu.employee.salary.title}">
+						</caption>
 						<hbox>
 							<button label="${labels.button.add}" />
 						</hbox>
@@ -15,16 +17,22 @@
 						<listbox>
 							<listhead>
 								<listheader width="5%" align="center" />
-								<listheader label="${labels.menu.employee.salary.listheader.salary.component}"
+								<listheader
+									label="${labels.menu.employee.salary.listheader.salary.component}"
 									sort="auto" />
-								<listheader label="${labels.menu.employee.salary.listheader.pay.frequency}"
+								<listheader
+									label="${labels.menu.employee.salary.listheader.pay.frequency}"
 									sort="auto" />
-								<listheader label="${labels.menu.employee.salary.listheader.currency}"
+								<listheader
+									label="${labels.menu.employee.salary.listheader.currency}"
 									sort="auto" />
-								<listheader label="${labels.menu.employee.salary.listheader.amount}" sort="auto" />
+								<listheader
+									label="${labels.menu.employee.salary.listheader.amount}"
+									sort="auto" />
 								<listheader label="Comments"
 									sort="auto" />
-								<listheader label="${labels.menu.employee.salary.show.direct.deposit.details}"
+								<listheader
+									label="${labels.menu.employee.salary.listheader.show.direct.deposit.details}"
 									sort="auto" />
 							</listhead>
 							<listitem>
@@ -40,10 +48,6 @@
 							</listitem>
 						</listbox>
 					</groupbox>
-				</vbox>
-			</north>
-			<center>
-				<vbox>
 					<groupbox mold="3d">
 						<caption label="${labels.title.attachments}" />
 						<grid>
@@ -52,14 +56,14 @@
 							</columns>
 							<rows>
 								<row>
-									<button label="${labels.button.add}" />
+									<button
+										label="${labels.button.add}" />
 								</row>
 							</rows>
 						</grid>
 					</groupbox>
-				</vbox>
-			</center>
-			<south />
+				</div>
+			</north>
 		</borderlayout>
 	</window>
 </zk>

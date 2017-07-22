@@ -1,14 +1,14 @@
 <zk>
 	<window id="windowEmployeeDetailDialog" title="Form Employee"
-		border="normal" width="550px" position="center,center" closable="true"
-		action="show: slideDown; hide: slideUp" mode="modal"
-		apply="org.zkoss.bind.BindComposer"
+		border="normal" width="60%" position="center,center" closable="true"
+		maximizable="true" action="show: slideDown; hide: slideUp"
+		mode="modal" apply="org.zkoss.bind.BindComposer"
 		viewModel="@id('vm') @init('org.app.portofolio.webui.hr.EmployeeDetailDialogVM')">
 		<borderlayout height="500px">
 			<!-- Function CRUD -->
 			<north />
-			<west width="75px">
-				<vbox>
+			<west splittable="true" border="none" size="30%" collapsible="true">
+				<div>
 					<groupbox mold="3d">
 						<caption label="Employee Information" />
 						<grid>
@@ -22,6 +22,7 @@
 							</rows>
 						</grid>
 					</groupbox>
+			  
 					<tree>
 						<treecols>
 							<treecol />
@@ -89,31 +90,36 @@
 							</treeitem>
 						</treechildren>
 					</tree>
-				</vbox>
+					</div>
 			</west>
-			<center autoscroll="true">
+			<center border="none">
 				<grid>
 					<columns>
 						<column />
 					</columns>
 					<rows>
-						<row visible="@load(vm.isVisiblesFormPerssonalDetails)">
-							<include								
+						<row
+							visible="@load(vm.isVisiblesFormPerssonalDetails)">
+							<include
 								src="/WEB-INF/pages/module_hr/employee/personalDetails.zul" />
 						</row>
-						<row visible="@load(vm.isVisibleFormContactDetails)">
+						<row
+							visible="@load(vm.isVisibleFormContactDetails)">
 							<include
 								src="/WEB-INF/pages/module_hr/employee/contactDetails.zul" />
 						</row>
-						<row visible="@load(vm.isVisibleFormEmergencyContacts)">
+						<row
+							visible="@load(vm.isVisibleFormEmergencyContacts)">
 							<include
 								src="/WEB-INF/pages/module_hr/employee/emergencyContacts.zul" />
 						</row>
-						<row visible="@load(vm.isVisibleFormDependents)">
+						<row
+							visible="@load(vm.isVisibleFormDependents)">
 							<include
 								src="/WEB-INF/pages/module_hr/employee/dependents.zul" />
 						</row>
-						<row visible="@load(vm.isVisibleFormImmigration)">
+						<row
+							visible="@load(vm.isVisibleFormImmigration)">
 							<include
 								src="/WEB-INF/pages/module_hr/employee/immigration.zul" />
 						</row>
@@ -125,15 +131,20 @@
 							<include
 								src="/WEB-INF/pages/module_hr/employee/salary.zul" />
 						</row>
-						<row visible="@load(vm.isVisibleFormReportTo)">
+						<row
+							visible="@load(vm.isVisibleFormReportTo)">
 							<include
 								src="/WEB-INF/pages/module_hr/employee/reportTo.zul" />
 						</row>
-						<row visible="@load(vm.isVisibleFormQualification)">
-							<include
-								src="/WEB-INF/pages/module_hr/employee/qualifications.zul" />
+						<row
+							visible="@load(vm.isVisibleFormQualification)">
+							<div>
+								<include
+									src="/WEB-INF/pages/module_hr/employee/qualifications.zul" />
+							</div>
 						</row>
-						<row visible="@load(vm.isVisibleFormMemberships)">
+						<row
+							visible="@load(vm.isVisibleFormMemberships)">
 							<include
 								src="/WEB-INF/pages/module_hr/employee/memberships.zul" />
 						</row>

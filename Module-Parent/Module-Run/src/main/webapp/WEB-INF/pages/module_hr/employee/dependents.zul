@@ -1,40 +1,43 @@
 <zk>
 	<window id="windowEmergencyContact" border="none">
-		<borderlayout height="500px">
+		<borderlayout height="450px">
 			<!-- Function CRUD -->
 			<!-- <north/> -->
 			<!-- Table Database -->
-			<north>
-				<vbox>
+			<north size="100%" collapsible="true" autoscroll="true">
+				<div>
 					<groupbox mold="3d">
-						<caption label="${labels.menu.employee.dependent.title}"></caption>
+						<caption
+							label="${labels.menu.employee.dependent.title}">
+						</caption>
 						<hbox>
-							<button label="${labels.button.add}"/>
+							<button label="${labels.button.add}" />
 							<button label="${labels.button.delete}" />
 						</hbox>
 						<space />
 						<listbox>
 							<listhead>
 								<listheader width="5%" align="center" />
-								<listheader label="${labels.menu.employee.dependent.name}" sort="auto" />
-								<listheader label="${labels.menu.employee.dependent.relationship}"
+								<listheader
+									label="${labels.menu.employee.dependent.listheader.name}"
 									sort="auto" />
-								<listheader label="${labels.menu.employee.dependent.date.of.birth}"
+								<listheader
+									label="${labels.menu.employee.dependent.listheader.relationship}"
+									sort="auto" />
+								<listheader
+									label="${labels.menu.employee.dependent.listheader.date.of.birth}"
 									sort="auto" />
 							</listhead>
 							<listitem>
 								<listcell
-									image="/images/icons/btn_edit.gif" tooltiptext="Click For Edit"/>
+									image="/images/icons/btn_edit.gif"
+									tooltiptext="Click For Edit" />
 								<listcell label="toke" />
 								<listcell label="anak" />
 								<listcell label="1-1-2000" />
 							</listitem>
 						</listbox>
 					</groupbox>
-				</vbox>
-			</north>
-			<center>
-				<vbox>
 					<groupbox mold="3d">
 						<caption label="${labels.title.attachments}" />
 						<grid>
@@ -43,14 +46,14 @@
 							</columns>
 							<rows>
 								<row>
-									<button label="${labels.button.add}" />
+									<button
+										label="${labels.button.add}" />
 								</row>
 							</rows>
 						</grid>
 					</groupbox>
-				</vbox>
-			</center>
-			<south />
+				</div>
+			</north>
 		</borderlayout>
 	</window>
 </zk>

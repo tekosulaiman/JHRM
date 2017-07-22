@@ -4,10 +4,12 @@
 			<!-- Function CRUD -->
 			<!-- <north/> -->
 			<!-- Table Database -->
-			<north>
-				<vbox>
+			<north size="100%" collapsible="true" autoscroll="true">
+				<div>
 					<groupbox mold="3d">
-						<caption label="${labels.menu.employee.membership.title}"></caption>
+						<caption
+							label="${labels.menu.employee.membership.title}">
+						</caption>
 						<hbox>
 							<button label="${labels.button.add}" />
 						</hbox>
@@ -15,16 +17,23 @@
 						<listbox>
 							<listhead>
 								<listheader width="5%" align="center" />
-								<listheader label="${labels.menu.employee.membership.listheader.membership}"
+								<listheader
+									label="${labels.menu.employee.membership.listheader.membership}"
 									sort="auto" />
-								<listheader label="${labels.menu.employee.membership.listheader.subcription.paid.by}"
+								<listheader
+									label="${labels.menu.employee.membership.listheader.subcription.paid.by}"
 									sort="auto" />
-								<listheader label="${labels.menu.employee.membership.listheader.subcription.amount}"
+								<listheader
+									label="${labels.menu.employee.membership.listheader.subcription.amount}"
 									sort="auto" />
-								<listheader label="${labels.menu.employee.membership.listheader.currency}" sort="auto" />
-								<listheader label="${labels.menu.employee.membership.listheader.subscription.commence.date}"
+								<listheader
+									label="${labels.menu.employee.membership.listheader.currency}"
 									sort="auto" />
-								<listheader label="${labels.menu.employee.membership.listheader.subscription.renewal.date}"
+								<listheader
+									label="${labels.menu.employee.membership.listheader.subcription.commence.date}"
+									sort="auto" />
+								<listheader
+									label="${labels.menu.employee.membership.listheader.subcription.renewal.date}"
 									sort="auto" />
 							</listhead>
 							<listitem>
@@ -40,10 +49,6 @@
 							</listitem>
 						</listbox>
 					</groupbox>
-				</vbox>
-			</north>
-			<center>
-				<vbox>
 					<groupbox mold="3d">
 						<caption label="${labels.title.attachments}" />
 						<grid>
@@ -52,14 +57,14 @@
 							</columns>
 							<rows>
 								<row>
-									<button label="${labels.button.add}" />
+									<button
+										label="${labels.button.add}" />
 								</row>
 							</rows>
 						</grid>
 					</groupbox>
-				</vbox>
-			</center>
-			<south />
+				</div>
+			</north>
 		</borderlayout>
 	</window>
 </zk>

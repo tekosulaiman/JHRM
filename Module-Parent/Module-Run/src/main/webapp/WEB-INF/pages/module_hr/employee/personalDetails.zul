@@ -1,105 +1,115 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
-	<window border="none" width="500px">
+	<window border="none" width="100%">
 		<borderlayout height="500px">
-			<north>
-				<vbox>
-					<groupbox mold="3d">
-						<caption label="${labels.menu.employee.details.title}" />
-						<grid>
-							<columns>
-								<column label="" />
-								<column label="" />
-								<column label="" />
-								<column label="" />
-							</columns>
-							<rows>
-								<row>
-									<label value="${labels.menu.employee.personal.details.form.full.name}" />
-									<div>
-										<label value="${labels.menu.employee.personal.details.form.first.name}" />
+			<north size="100%" collapsible="true" autoscroll="true">
+				<div>
+						<groupbox mold="3d">
+							<caption
+								label="${labels.menu.employee.personal.details.title}" />
+							<grid>
+								<columns>
+									<column label="" />
+									<column label="" />
+									<column label="" />
+									<column label="" />
+								</columns>
+								<rows>
+									<row>
+										<label
+											value="${labels.menu.employee.personal.details.form.full.name}" />
+										<div>
+											<label
+												value="${labels.menu.employee.personal.details.form.first.name}" style="text-align: justify; display: block;"/>
+											<textbox />
+										</div>
+										<div>
+											<label
+												value="${labels.menu.employee.personal.details.form.middle.name}" style="text-align: justify; display: block;"/>
+											<textbox />
+										</div>
+										<div>
+											<label
+												value="${labels.menu.employee.personal.details.form.last.name}" style="text-align: justify; display: block;"/>
+											<textbox />
+										</div>
+									</row>
+								</rows>
+							</grid>
+							<grid>
+								<columns>
+									<column label="" />
+									<column label="" />
+									<column label="" />
+									<column label="" />
+								</columns>
+								<rows>
+									<row>
+										<label
+											value="${labels.menu.employee.personal.details.form.employee.id}" />
 										<textbox />
-									</div>
-									<div>
-										<label value="${labels.menu.employee.personal.details.form.middle.name}" />
+										<label
+											value="${labels.menu.employee.personal.details.form.other.id}" />
 										<textbox />
-									</div>
-									<div>
-										<label value="${labels.menu.employee.personal.details.form.last.name}" />
+									</row>
+									<row>
+										<label
+											value="${labels.menu.employee.personal.details.form.drivers.license.number}" />
 										<textbox />
-									</div>
-								</row>
-							</rows>
-						</grid>
-						<grid>
-							<columns>
-								<column label="" />
-								<column label="" />
-								<column label="" />
-								<column label="" />
-							</columns>
-							<rows>
-								<row>
-									<label value="${labels.menu.employee.personal.details.form.employee.id}" />
-									<textbox />
-									<label value="${labels.menu.employee.personal.details.form.other.id}" />
-									<textbox />
-								</row>
-								<row>
-									<label
-										value="${labels.menu.employee.personal.details.form.drivers.license.number}" />
-									<textbox />
-									<label value="${labels.menu.employee.personal.details.form.license.expiry.date}" />
-									<datebox />
-								</row>
-							</rows>
-						</grid>
-						<grid>
-							<columns>
-								<column label="" />
-								<column label="" />
-								<column label="" />
-								<column label="" />
-							</columns>
-							<rows>
-								<row>
-									<label value="${labels.menu.employee.personal.details.form.gender}" />
-									<textbox />
-									<label value="${labels.menu.employee.personal.details.form.marital.status}" />
-									<listbox rows="1" mold="select">
-										<listitem selected="true"
-											label=" " />
-									</listbox>
-								</row>
-								<row>
-									<label value="${labels.menu.employee.personal.details.form.nationality}" />
-									<textbox />
-									<label value="${labels.menu.employee.personal.details.form.date.of.birth}" />
-									<datebox />
-								</row>
-								<row>
-									<label value="${labels.menu.employee.personal.details.form.required.field}" />
-								</row>
-							</rows>
-						</grid>
-						<grid>
-							<columns>
-								<column label="" />
-								<column label="" />
-								<column label="" />
-								<column label="" />
-							</columns>
-							<rows>
-								<row>
-									<button label="Edit" />
-								</row>
-							</rows>
-						</grid>
-					</groupbox>
-				</vbox>
-			</north>
-			<center>
-				<vbox>
+										<label
+											value="${labels.menu.employee.personal.details.form.license.expiry.date}" />
+										<datebox />
+									</row>
+								</rows>
+							</grid>
+							<grid>
+								<columns>
+									<column label="" />
+									<column label="" />
+									<column label="" />
+									<column label="" />
+								</columns>
+								<rows>
+									<row>
+										<label
+											value="${labels.menu.employee.personal.details.form.gender}" />
+										<textbox />
+										<label
+											value="${labels.menu.employee.personal.details.form.marital.status}" />
+										<listbox rows="1"
+											mold="select">
+											<listitem selected="true"
+												label=" " />
+										</listbox>
+									</row>
+									<row>
+										<label
+											value="${labels.menu.employee.personal.details.form.nationality}" />
+										<textbox />
+										<label
+											value="${labels.menu.employee.personal.details.form.date.of.birth}" />
+										<datebox />
+									</row>
+									<row>
+										<label
+											value="${labels.menu.employee.personal.details.form.required.field}" />
+									</row>
+								</rows>
+							</grid>
+							<grid>
+								<columns>
+									<column label="" />
+									<column label="" />
+									<column label="" />
+									<column label="" />
+								</columns>
+								<rows>
+									<row>
+										<button label="Edit" />
+									</row>
+								</rows>
+							</grid>
+						</groupbox>
 					<groupbox mold="3d">
 						<caption label="${labels.title.attachments}" />
 						<grid>
@@ -108,13 +118,14 @@
 							</columns>
 							<rows>
 								<row>
-									<button label="${labels.button.add}" />
+									<button
+										label="${labels.button.add}" />
 								</row>
 							</rows>
 						</grid>
 					</groupbox>
-				</vbox>
-			</center>
+				</div>
+			</north>
 		</borderlayout>
 	</window>
 </zk>

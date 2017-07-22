@@ -1,97 +1,104 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
 	<window border="none" width="100%">
-		<borderlayout height="500px">
-			<north>
-				<vbox>
-					<groupbox mold="3d">
-						<caption label="${labels.menu.employee.contact.title.contact.details}" />
-						<grid>
-							<rows>
-								<row>
-									<label value="${labels.menu.employee.contact.form.address.street.one}" />
-									<textbox />
-								</row>
-								<row>
-									<label value="${labels.menu.employee.contact.form.address.street.two}" />
-									<textbox />
-								</row>
-								<row>
-									<label value="${labels.menu.employee.contact.form.City}" />
-									<textbox />
-								</row>
-								<row>
-									<label value="${labels.menu.employee.contact.form.state.provice}" />
-									<textbox />
-								</row>
-								<row>
-									<label value="${labels.menu.employee.contact.form.zip.postal.code}" />
-									<textbox />
-								</row>
-								<row>
-									<label value="${labels.menu.employee.contact.form.Country}" />
-									<listbox rows="1" mold="select">
-										<listitem selected="true"
-											label=" " />
-									</listbox>
-								</row>
-							</rows>
-						</grid>
-						<grid>
-							<rows>
-								<row>
-									<label value="${labels.menu.employee.contact.form.home.telephone}" />
-									<textbox />
-								</row>
-								<row>
-									<label value="${labels.menu.employee.contact.form.mobile.telephone}" />
-									<textbox />
-								</row>
-								<row>
-									<label value="${labels.menu.employee.contact.form.Cwork.telephone}" />
-									<textbox />
-								</row>
-							</rows>
-						</grid>
-						<grid>
-							<rows>
-								<row>
-									<label value="${labels.menu.employee.contact.form.work.email}" />
-									<textbox />
-								</row>
-								<row>
-									<label value="${labels.menu.employee.contact.form.other.email}" />
-									<textbox />
-								</row>
-							</rows>
-						</grid>
-						<grid>
-							<rows>
-								<row>
-									<button label="Edit" />
-								</row>
-							</rows>
-						</grid>
-					</groupbox>
-				</vbox>
+		<borderlayout height="450px">
+			<north size="100%" collapsible="true" autoscroll="true">
+			<div>
+				<groupbox mold="3d">
+					<caption
+						label="${labels.menu.employee.contact.title.contact.details}" />
+					<grid>
+						<rows>
+							<row>
+								<label
+									value="${labels.menu.employee.contact.form.address.street.one}" />
+								<textbox />
+							</row>
+							<row>
+								<label
+									value="${labels.menu.employee.contact.form.address.street.two}" />
+								<textbox />
+							</row>
+							<row>
+								<label
+									value="${labels.menu.employee.contact.form.city}" />
+								<textbox />
+							</row>
+							<row>
+								<label
+									value="${labels.menu.employee.contact.form.state.province}" />
+								<textbox />
+							</row>
+							<row>
+								<label
+									value="${labels.menu.employee.contact.form.zip.postal.code}" />
+								<textbox />
+							</row>
+							<row>
+								<label
+									value="${labels.menu.employee.contact.form.country}" />
+								<listbox rows="1" mold="select">
+									<listitem selected="true" label=" " />
+								</listbox>
+							</row>
+						</rows>
+					</grid>
+					<grid>
+						<rows>
+							<row>
+								<label
+									value="${labels.menu.employee.contact.form.home.telephone}" />
+								<textbox />
+							</row>
+							<row>
+								<label
+									value="${labels.menu.employee.contact.form.mobile.telephone}" />
+								<textbox />
+							</row>
+							<row>
+								<label
+									value="${labels.menu.employee.contact.form.work.telephone}" />
+								<textbox />
+							</row>
+						</rows>
+					</grid>
+					<grid>
+						<rows>
+							<row>
+								<label
+									value="${labels.menu.employee.contact.form.work.email}" />
+								<textbox />
+							</row>
+							<row>
+								<label
+									value="${labels.menu.employee.contact.form.other.email}" />
+								<textbox />
+							</row>
+						</rows>
+					</grid>
+					<grid>
+						<rows>
+							<row>
+								<button label="Edit" />
+							</row>
+						</rows>
+					</grid>
+				</groupbox>
+				<groupbox mold="3d">
+					<caption label="${labels.title.attachments}" />
+					<grid>
+						<columns>
+							<column label="" />
+						</columns>
+						<rows>
+							<row>
+								<button label="${labels.button.add}" />
+							</row>
+						</rows>
+					</grid>
+				</groupbox>
+				</div>
 			</north>
-			<center>
-				<vbox>
-					<groupbox mold="3d">
-						<caption label="${labels.title.attachments}" />
-						<grid>
-							<columns>
-								<column label="" />
-							</columns>
-							<rows>
-								<row>
-									<button label="${labels.button.add}" />
-								</row>
-							</rows>
-						</grid>
-					</groupbox>
-				</vbox>
-			</center>
 		</borderlayout>
 	</window>
 </zk>

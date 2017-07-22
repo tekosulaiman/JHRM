@@ -1,13 +1,15 @@
 <zk>
 	<window id="windowReportTo" border="none">
-		<borderlayout height="500px">
+		<borderlayout height="450px">
 			<!-- Function CRUD -->
 			<!-- <north/> -->
 			<!-- Table Database -->
-			<north>
-				<vbox>
+			<north size="100%" collapsible="true" autoscroll="true">
+				<div>
 					<groupbox mold="3d">
-						<caption label="${labels.menu.employee.report.title.assigned.supervisor}"></caption>
+						<caption
+							label="${labels.menu.employee.report.title.assigned.supervisor}">
+						</caption>
 						<hbox>
 							<button label="${labels.button.add}" />
 							<button label="${labels.button.delete}" />
@@ -16,8 +18,11 @@
 						<listbox>
 							<listhead>
 								<listheader width="5%" align="center" />
-								<listheader label="${labels.menu.employee.report.listheader.name}" sort="auto" />
-								<listheader label="${labels.menu.employee.report.listheader.reporting.method}"
+								<listheader
+									label="${labels.menu.employee.report.listheader.name}"
+									sort="auto" />
+								<listheader
+									label="${labels.menu.employee.report.listheader.reporting.method}"
 									sort="auto" />
 							</listhead>
 							<listitem>
@@ -29,12 +34,10 @@
 							</listitem>
 						</listbox>
 					</groupbox>
-				</vbox>
-			</north>
-			<center>
-				<vbox>
 					<groupbox mold="3d">
-						<caption label="${labels.menu.employee.report.title.assigned.subordinates}"></caption>
+						<caption
+							label="${labels.menu.employee.report.title.assigned.subordinates}">
+						</caption>
 						<hbox>
 							<button label="${labels.button.add}" />
 							<button label="${labels.button.delete}" />
@@ -43,8 +46,11 @@
 						<listbox>
 							<listhead>
 								<listheader width="5%" align="center" />
-								<listheader label="${labels.menu.employee.report.listheader.name}" sort="auto" />
-								<listheader label="${labels.menu.employee.report.listheader.reporting.method}"
+								<listheader
+									label="${labels.menu.employee.report.listheader.name}"
+									sort="auto" />
+								<listheader
+									label="${labels.menu.employee.report.listheader.reporting.method}"
 									sort="auto" />
 							</listhead>
 							<listitem>
@@ -56,10 +62,6 @@
 							</listitem>
 						</listbox>
 					</groupbox>
-				</vbox>
-			</center>
-			<south>
-				<vbox>
 					<groupbox mold="3d">
 						<caption label="${labels.title.attachments}" />
 						<grid>
@@ -68,13 +70,14 @@
 							</columns>
 							<rows>
 								<row>
-									<button label="${labels.button.add}" />
+									<button
+										label="${labels.button.add}" />
 								</row>
 							</rows>
 						</grid>
 					</groupbox>
-				</vbox>
-			</south>
+				</div>
+			</north>
 		</borderlayout>
 	</window>
 </zk>
