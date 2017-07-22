@@ -17,14 +17,14 @@ public class SkillsListItemRenderer extends InlineListItemRenderer<MstSkill>{
 		textboxName.setVisible(false);
 		
 		Textbox textboxDescription = new Textbox();
-		textboxDescription.setValue(value.getDescpriptionSkill());
+		textboxDescription.setValue(value.getDescriptionSkill());
 		textboxDescription.setVisible(false);
 		
 		Label labelName = new Label();
 		labelName.setValue(value.getNameSkill());
 		
 		Label labelDescription = new Label();
-		labelDescription.setValue(value.getDescpriptionSkill());
+		labelDescription.setValue(value.getDescriptionSkill());
 		
 		setEditingComponents(textboxName, textboxDescription);
 		setLabelingComponents(labelName, labelDescription);

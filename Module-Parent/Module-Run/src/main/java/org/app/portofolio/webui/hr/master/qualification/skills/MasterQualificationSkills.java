@@ -45,7 +45,7 @@ public class MasterQualificationSkills {
 			MstSkill ohrmSkill = new MstSkill();
 			ohrmSkill.setIdSkill(i);
 			ohrmSkill.setNameSkill("Skill " + i);
-			ohrmSkill.setDescpriptionSkill("Deskripsi untuk Skill " + i);
+			ohrmSkill.setDescriptionSkill("Deskripsi untuk Skill " + i);
 			skills.add(ohrmSkill);
 		}
 		
