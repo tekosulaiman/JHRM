@@ -2,6 +2,13 @@
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
 	<session-factory>
+		<mapping class="org.module.sysadmin.model.SecGroup"/>
+    	<mapping class="org.module.sysadmin.model.SecGroupright"/>
+		<mapping class="org.module.sysadmin.model.SecRight"/>
+    	<mapping class="org.module.sysadmin.model.SecRole"/>
+    	<mapping class="org.module.sysadmin.model.SecRolegroup"/>
+    	<mapping class="org.module.sysadmin.model.SecUser"/>
+    	<mapping class="org.module.sysadmin.model.SecUserrole"/>
 	    <mapping class="org.module.hr.model.MstCurrency"/>
 		<mapping class="org.module.hr.model.MstEducation"/>
 		<mapping class="org.module.hr.model.MstEmployementStatus"/>
