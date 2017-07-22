@@ -6,7 +6,6 @@ import java.util.List;
 import org.app.portofolio.common.menu.util.JHRMAdditionalZulPath;
 import org.app.portofolio.webui.hr.master.qualification.skills.model.SkillsListItemRenderer;
 import org.module.hr.model.MstSkill;
-import org.module.hr.model.OhrmSkill;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
