@@ -13,9 +13,9 @@
 							<button label="${labels.button.delete}"/>
 						</hbox>	
 						<space/>
-						<listbox >
+						<listbox id="listBoxSkills" model="@bind(vm.skills)" selectedItem="@bind(vm.selectedSkills)" itemRenderer="@bind(vm.skillItemRenderer.renderer)">
 							<listhead>
-								<listheader width="5%" align="center"/>
+								<listheader width="5%" align="center" />
 								<listheader label="${labels.master.qualifications.skill.listheader.name}" sort="auto" /> 	
 								<listheader label="${labels.master.qualifications.skill.listheader.description}" sort="auto" /> 	
 							</listhead>
