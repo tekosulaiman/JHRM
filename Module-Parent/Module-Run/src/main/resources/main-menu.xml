@@ -33,7 +33,7 @@
 		
 		<menu id="menu.parent.qualification" rightName="menu_Master_Qualifications">
 			<menuItem id="menu.item.qualification.skill" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/qualifications/skills/skillList.zul" rightName="menu_Item_Skills" />
-			<menuItem id="menu.item.qualification.education" iconName="" zulNavigation="" rightName="menu_Item_Education" />
+			<menuItem id="menu.item.qualification.education" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/qualifications/educations/educationList.zul" rightName="menu_Item_Education" />
 			<menuItem id="menu.item.qualification.license" iconName="" zulNavigation="" rightName="menu_Item_Licenses" />
 			<menuItem id="menu.item.qualification.language" iconName="" zulNavigation="" rightName="menu_Item_Languages" />
 			<menuItem id="menu.item.qualification.membership" iconName="" zulNavigation="" rightName="menu_Item_Memberships" />

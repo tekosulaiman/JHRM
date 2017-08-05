@@ -13,7 +13,7 @@
 							<button label="${labels.button.delete}"/>
 						</hbox>	
 						<space/>
-						<listbox >
+						<listbox id="listBoxEducation" model="@bind(vm.educations)" selectedItem="@bind(vm.selectedEducation)" itemRenderer="@bind(vm.educationListItemRenderer.renderer)">
 							<listhead>
 								<listheader width="5%" align="center"/>
 								<listheader label="${labels.master.qualifications.educations.listheader.level}" sort="auto" /> 	
