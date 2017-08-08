@@ -27,14 +27,7 @@ public class MasterQualificationSkills {
 	private List<MstSkill> skills;
 	private MstSkill selectedSkills;
 
-	/*
-	 * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	 * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	 * ++++++ Inisialize Methode MVVM yang pertama kali dijalankan
-	 * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	 * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	 * ++++++
-	 */
+	
 	@AfterCompose
 	public void setupComponents(@ContextParam(ContextType.VIEW) Component component, @ExecutionArgParam("object") Object object) {
 		Selectors.wireComponents(component, this, false);

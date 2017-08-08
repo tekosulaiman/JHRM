@@ -13,15 +13,11 @@
 							<button label="${labels.button.delete}"/>
 						</hbox>	
 						<space/>
-						<listbox >
+						<listbox id="listBoxLicenses" model="@bind(vm.licenses)" selectedItem="@bind(vm.selectedLicenses)" itemRenderer="@bind(vm.licenseItemRenderer.renderer)">
 							<listhead>
-								<listheader width="5%" align="center"/>
+								<listheader width="10%" align="center"/>
 								<listheader label="${labels.master.qualifications.licenses.listheader.name}" sort="auto" /> 	
 							</listhead>
-							<listitem>
-								<listcell image="/images/icons/btn_edit.gif" tooltiptext="Click For Edit" onClick="@command('doDetail')"/>
-								<listcell label="Sarjana JAVA" />
-							</listitem>
 						</listbox>
 					</groupbox>
 				</vbox>
