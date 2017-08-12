@@ -19,12 +19,11 @@
 	<menu id="menu.parent.master.hr" rightName="menu_Master_Data">
 		<menu id="menu.parent.master.job" rightName="menu_Master_Job">
 			<menuItem id="menu.item.job.jobtitle" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/job/jobTitleList.zul" rightName="menu_Item_Job_Titles" />
-			<menuItem id="menu.item.job.paygrade" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/job/payGradesList.zul" rightName="menu_Item_Pay_Grades" />
+			<menuItem id="menu.item.job.paygrade" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/job/payGradeList.zul" rightName="menu_Item_Pay_Grades" />
 			<menuItem id="menu.item.job.employementstatus" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/job/employementStatusList.zul" rightName="menu_Item_Employment_Status" />
-			<menuItem id="menu.item.job.jobcategory" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/job/jobCategories.zul" rightName="menu_Item_Job_Categories" />
+			<menuItem id="menu.item.job.jobcategory" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/job/jobCategoryList.zul" rightName="menu_Item_Job_Categories" />
 			<menuItem id="menu.item.job.workshift" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/job/workShiftList.zul" rightName="menu_Item_Work_Shifts" />
-		</menu>
-		
+		</menu>		
 		<menu id="menu.parent.organization" rightName="menu_Master_Organization">
 			<menuItem id="menu.item.organization.generalinformation" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/organization/generalInformationList.zul" rightName="menu_Item_General_Information" />
 			<menuItem id="menu.item.organization.location" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/organization/locationsList.zul" rightName="menu_Item_Locations" />
