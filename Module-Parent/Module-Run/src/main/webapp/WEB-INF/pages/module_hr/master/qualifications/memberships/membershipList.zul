@@ -1,0 +1,28 @@
+<zk>
+	<window id="windowEducationList" border="none" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.master.qualification.memberships.MasterQualificationMemberships')">
+		<borderlayout height="500px">
+			<!-- Function CRUD -->
+			<north/>
+			<!-- Table Database -->
+			<center>
+				<vbox> 
+					<groupbox mold="3d">
+						<caption label="${labels.master.qualifications.memberships.title}"></caption>
+						<hbox>
+							<button label="${labels.button.add}" onClick="@command('doNew')"/>
+							<button label="${labels.button.delete}"/>
+						</hbox>	
+						<space/>
+						<listbox id="listBoxMembership" model="@bind(vm.memberships)" selectedItem="@bind(vm.selectedmembership)" itemRenderer="@bind(vm.membershipItemRenderer.renderer)">
+							<listhead>
+								<listheader width="10%" align="center"/>
+								<listheader label="${labels.master.qualifications.memberships.listheader.memberships}" sort="auto" /> 	
+							</listhead>
+						</listbox>
+					</groupbox>
+				</vbox>
+			</center>
+			<south/>
+		</borderlayout>
+	</window>
+</zk>
