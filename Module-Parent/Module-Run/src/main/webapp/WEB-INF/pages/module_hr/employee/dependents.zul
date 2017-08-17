@@ -1,5 +1,5 @@
 <zk>
-	<window id="windowEmergencyContact" border="none">
+	<window id="windowDependent" border="none" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.employee.Dependent')">
 		<borderlayout height="450px">
 			<!-- Function CRUD -->
 			<!-- <north/> -->
@@ -15,7 +15,7 @@
 							<button label="${labels.button.delete}" />
 						</hbox>
 						<space />
-						<listbox>
+						<listbox id="ListBoxDependent" model="@bind(vm.employeeDependents)" selectedItem="@bind(vm.selectedEmployeDependent)" itemRenderer="@bind(vm.dependentListItemRenderer.renderer)">
 							<listhead>
 								<listheader width="5%" align="center" />
 								<listheader
@@ -28,14 +28,14 @@
 									label="${labels.menu.employee.dependent.listheader.date.of.birth}"
 									sort="auto" />
 							</listhead>
-							<listitem>
+							<!-- <listitem>
 								<listcell
 									image="/images/icons/btn_edit.gif"
 									tooltiptext="Click For Edit" />
 								<listcell label="toke" />
 								<listcell label="anak" />
 								<listcell label="1-1-2000" />
-							</listitem>
+							</listitem> -->
 						</listbox>
 					</groupbox>
 					<groupbox mold="3d">

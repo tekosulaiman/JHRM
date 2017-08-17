@@ -1,5 +1,5 @@
 <zk>
-	<window id="windowImmigration" border="none">
+	<window id="windowImmigration" border="none" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.employee.Immigration')">
 		<borderlayout height="500px">
 			<!-- Function CRUD -->
 			<!-- <north/> -->
@@ -15,7 +15,7 @@
 							<button label="${labels.button.delete}" />
 						</hbox>
 						<space />
-						<listbox>
+						<listbox id="listBoxImmigration" model="@bind(vm.employeeImmigrations)" selectedItem="@bind(vm.selectedEmployeeImmigration)" itemRenderer="@bind(vm.immigrationListItemRenderer.renderer)">
 							<listhead>
 								<listheader width="5%" align="center" />
 								<listheader
@@ -34,7 +34,7 @@
 									label="${labels.menu.employee.immigration.listheader.expiry.date}"
 									sort="auto" />
 							</listhead>
-							<listitem>
+							<!-- <listitem>
 								<listcell
 									image="/images/icons/btn_edit.gif"
 									tooltiptext="Click For Edit" />
@@ -43,7 +43,7 @@
 								<listcell label="amy" />
 								<listcell label="1-1-2000" />
 								<listcell label="1-1-2019" />
-							</listitem>
+							</listitem> -->
 						</listbox>
 					</groupbox>
 					<groupbox mold="3d">

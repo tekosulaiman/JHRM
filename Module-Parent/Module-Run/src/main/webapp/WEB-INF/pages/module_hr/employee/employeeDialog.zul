@@ -2,7 +2,7 @@
 	<window id="windowEmployeeDialog" title="Form Employee"
 		border="normal" width="550px" position="center,center" closable="true"
 		action="show: slideDown; hide: slideUp" mode="modal"
-		apply="org.zkoss.bind.BindComposer">
+		apply="org.zkoss.bind.BindComposer" maximizable="true">
 		<borderlayout height="500px">
 			<!-- Function CRUD -->
 			<north>
@@ -13,54 +13,73 @@
 			</north>
 			<center>
 				<groupbox mold="3d">
-					<caption label="${labels.menu.title.add.employee}" />
+					<caption label="Add Employee" />
 					<grid>
-						<columns>
+						<!-- <columns>
 							<column label="" />
 							<column label="" />
 							<column label="" />
 							<column label="" />
-						</columns>
+						</columns> -->
 						<rows>
 							<row>
 								<label
-									value="${labels.menu.employee.form.full.name}" />
+									value="${labels.menu.employee.personal.details.form.full.name}" />
+								<div>
+									<label
+										value="${labels.menu.employee.personal.details.form.first.name}"
+										style="text-align: justify; display: block;" />
+									<textbox />
+								</div>
+								<div>
+									<label
+										value="${labels.menu.employee.personal.details.form.middle.name}"
+										style="text-align: justify; display: block;" />
+									<textbox />
+								</div>
+								<div>
+									<label
+										value="${labels.menu.employee.personal.details.form.last.name}"
+										style="text-align: justify; display: block;" />
+									<textbox />
+								</div>
+							</row>
+					<!-- 	</rows>
+					</grid>
+					<grid>
+						<rows> -->
+							<row>
 								<label
 									value="${labels.menu.employee.form.employee.id}" />
 								<textbox />
-
-								<label value="${labels.menu.employee.form.photograph}" />
+						    </row>
+						    <row>
+								<label
+									value="${labels.menu.employee.form.photograph}" />
 								<textbox />
-
-								<label value="${labels.menu.employee.form.include}" />
+							</row>
+							<row>
+								<label
+									value=" Create Login Details" />
+								<checkbox/>
+							</row>
+							<row>
+								<label value="User Name" />
 								<textbox />
 							</row>
 							<row>
-								<div>
-									<label
-										value="${labels.menu.employee.form.first.name}" />
-									<textbox />
-								</div>
+								<label value="Password" />
+								<textbox />
 							</row>
 							<row>
-								<div>
-									<label
-										value="${labels.menu.employee.form.middle.name}" />
-									<textbox />
-								</div>
-							</row>
-							<row>
-								<div>
-									<label
-										value="${labels.menu.employee.form.last.name}" />
-									<textbox />
-								</div>
+								<label value="Confirm Password" />
+								<textbox />
 							</row>
 						</rows>
 					</grid>
 				</groupbox>
 			</center>
 			<south />
-		</borderlayout>
+			</borderlayout>
 	</window>
 </zk>
