@@ -30,6 +30,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "TrsEmployee.findAll", query = "SELECT t FROM TrsEmployee t"),
     @NamedQuery(name = "TrsEmployee.findByIdEmployee", query = "SELECT t FROM TrsEmployee t WHERE t.idEmployee = :idEmployee")})
 public class TrsEmployee implements Serializable {
+    @OneToMany(mappedBy = "idEmployee")
+    private List<TrsJobVacancy> trsJobVacancyList;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -184,6 +186,15 @@ public class TrsEmployee implements Serializable {
     @Override
     public String toString() {
         return "org.module.hr.model.TrsEmployee[ idEmployee=" + idEmployee + " ]";
+    }
+
+    @XmlTransient
+    public List<TrsJobVacancy> getTrsJobVacancyList() {
+        return trsJobVacancyList;
+    }
+
+    public void setTrsJobVacancyList(List<TrsJobVacancy> trsJobVacancyList) {
+        this.trsJobVacancyList = trsJobVacancyList;
     }
     
 }

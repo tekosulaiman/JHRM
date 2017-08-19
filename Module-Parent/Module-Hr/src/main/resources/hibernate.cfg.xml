@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+	    <mapping class="org.module.hr.model.MstCurrency"/>
+		<mapping class="org.module.hr.model.MstEducation"/>
+		<mapping class="org.module.hr.model.MstEmployementStatus"/>
+		<mapping class="org.module.hr.model.MstGeneralInformation"/>
+		<mapping class="org.module.hr.model.MstJobCategory"/>
+		<mapping class="org.module.hr.model.MstJobtitle"/>
+		<mapping class="org.module.hr.model.MstLanguage"/>
+		<mapping class="org.module.hr.model.MstLicense"/>
+		<mapping class="org.module.hr.model.MstLocation"/>
+		<mapping class="org.module.hr.model.MstMembership"/>
+		<mapping class="org.module.hr.model.MstNationality"/>
+		<mapping class="org.module.hr.model.MstPaygrade"/>
+		<mapping class="org.module.hr.model.MstPaygradeCurrency"/>
+		<mapping class="org.module.hr.model.MstSkill"/>
+		<mapping class="org.module.hr.model.MstTest"/>
+		<mapping class="org.module.hr.model.TrsEmployee"/>
+		<mapping class="org.module.hr.model.TrsEmployeeDependent"/>
+		<mapping class="org.module.hr.model.TrsEmployeeEducation"/>
+		<mapping class="org.module.hr.model.TrsEmployeeEmergencyContact"/>
+		<mapping class="org.module.hr.model.TrsEmployeeExprience"/>
+		<mapping class="org.module.hr.model.TrsEmployeeImmigration"/>
+		<mapping class="org.module.hr.model.TrsEmployeeLanguage"/>
+		<mapping class="org.module.hr.model.TrsEmployeeLicense"/>
+		<mapping class="org.module.hr.model.TrsEmployeeMembership"/>
+		<mapping class="org.module.hr.model.TrsEmployeeSalary"/>
+		<mapping class="org.module.hr.model.TrsEmployeeSkill"/>
+		<mapping class="org.module.hr.model.TrsJobCandidate"/>
+		<mapping class="org.module.hr.model.TrsJobCandidateVacancy"/>
+		<mapping class="org.module.hr.model.TrsJobVacancy"/>
+  	</session-factory>
+</hibernate-configuration>

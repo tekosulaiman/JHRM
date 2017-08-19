@@ -8,7 +8,9 @@ package org.module.hr.model;
 
 import java.io.Serializable;
 import java.util.List;
+
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -41,7 +43,7 @@ public class MstSkill implements Serializable {
     private String nameSkill;
     @Column(name = "description_skill")
     private String descriptionSkill;
-    @OneToMany(mappedBy = "idSkill")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSkill")
     private List<TrsEmployeeSkill> trsEmployeeSkillList;
 
     public MstSkill() {
