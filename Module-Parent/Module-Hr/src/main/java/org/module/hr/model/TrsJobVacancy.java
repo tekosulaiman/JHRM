@@ -7,6 +7,7 @@
 package org.module.hr.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -18,6 +19,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -32,6 +35,20 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "TrsJobVacancy.findAll", query = "SELECT t FROM TrsJobVacancy t"),
     @NamedQuery(name = "TrsJobVacancy.findByIdTrsJobVacancy", query = "SELECT t FROM TrsJobVacancy t WHERE t.idTrsJobVacancy = :idTrsJobVacancy")})
 public class TrsJobVacancy implements Serializable {
+    @Column(name = "name")
+    private String name;
+    @Column(name = "description")
+    private String description;
+    @Column(name = "no_of_positions")
+    private Integer noOfPositions;
+    @Column(name = "published_in_feed")
+    private Boolean publishedInFeed;
+    @Column(name = "defined_time")
+    @Temporal(TemporalType.DATE)
+    private Date definedTime;
+    @Column(name = "updated_time")
+    @Temporal(TemporalType.DATE)
+    private Date updatedTime;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -109,6 +126,54 @@ public class TrsJobVacancy implements Serializable {
     @Override
     public String toString() {
         return "org.module.hr.model.TrsJobVacancy[ idTrsJobVacancy=" + idTrsJobVacancy + " ]";
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Integer getNoOfPositions() {
+        return noOfPositions;
+    }
+
+    public void setNoOfPositions(Integer noOfPositions) {
+        this.noOfPositions = noOfPositions;
+    }
+
+    public Boolean getPublishedInFeed() {
+        return publishedInFeed;
+    }
+
+    public void setPublishedInFeed(Boolean publishedInFeed) {
+        this.publishedInFeed = publishedInFeed;
+    }
+
+    public Date getDefinedTime() {
+        return definedTime;
+    }
+
+    public void setDefinedTime(Date definedTime) {
+        this.definedTime = definedTime;
+    }
+
+    public Date getUpdatedTime() {
+        return updatedTime;
+    }
+
+    public void setUpdatedTime(Date updatedTime) {
+        this.updatedTime = updatedTime;
     }
     
 }
