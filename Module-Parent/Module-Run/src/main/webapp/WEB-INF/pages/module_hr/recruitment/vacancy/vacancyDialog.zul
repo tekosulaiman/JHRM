@@ -1,0 +1,48 @@
+<?page title="Add Unit" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window title="${labels.menu.recruitment.vacancy.form.title}" border="normal" height="350px" width="40%" mode="modal" closable="true" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.recruitment.vacancy.RecruitmentVacancyDialogVM')">
+		<borderlayout >
+			<north>
+				<toolbar>
+					<button id="buttonSaveVacancy" label="${labels.button.dialog.save}" onClick="@command('doSave')"></button>
+					<button id="buttonSaveAndNewVacancy" label="${labels.button.dialog.save-and-new}" onClick="@command('doSaveAndNew')"></button>
+					<button id="buttonEditVacancy" label="${labels.button.dialog.edit}" onClick="@command('doEdit')"></button>
+				</toolbar>
+			</north>
+			<center>
+				<grid>
+					<columns>
+						<column width="25%" />
+						<column />
+					</columns>
+					<rows>
+						<row>
+							<label value="${labels.menu.recruitment.vacancy.form.job-title}" />
+							<combobox id="comboboxJobTitle" width="200px"></combobox>
+						</row>
+						<row>
+							<label value="${labels.menu.recruitment.vacancy.form.vacancy-name}" />
+							<textbox id="textboxVacancyName" width="200px" />
+						</row>
+						<row>
+							<label value="${labels.menu.recruitment.vacancy.form.hiring-manager}" />
+							<textbox id="textboxHiringManager" width="200px" />
+						</row>
+						<row>
+							<label value="${labels.menu.recruitment.vacancy.form.number-of-positions}" />
+							<textbox id="textboxNumberOfPositions" width="200px" />
+						</row>
+						<row>
+							<label value="${labels.menu.recruitment.vacancy.form.description}" />
+							<textbox id="textboxDescription" width="200px" rows="5" />
+						</row>
+						<row>
+							<label value="${menu.recruitment.vacancy.form.active}" />
+							<checkbox id="checkboxActive" width="100px"></checkbox>
+						</row>
+					</rows>
+				</grid>
+			</center>
+		</borderlayout>		
+	</window>
+</zk>

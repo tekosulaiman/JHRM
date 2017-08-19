@@ -56,8 +56,8 @@
 	</menu>
 	
 	<menu id="menu.parent.recruitment" rightName="menu_Recruitment">
-		<menuItem id="menu.item.recruitment.candidate" iconName="" zulNavigation="" rightName="menu_Item_Candidates" />
-		<menuItem id="menu.item.recruitment.vacancy" iconName="" zulNavigation="" rightName="menu_Item_Vacancies" />
+		<menuItem id="menu.item.recruitment.candidate" iconName="" zulNavigation="/WEB-INF/pages/module_hr/recruitment/candidate/candidateList.zul" rightName="menu_Item_Candidates" />
+		<menuItem id="menu.item.recruitment.vacancy" iconName="" zulNavigation="/WEB-INF/pages/module_hr/recruitment/vacancy/vacancyList.zul" rightName="menu_Item_Vacancies" />
 	</menu>
 	
 	<menu id="menu.parent.performance" rightName="">

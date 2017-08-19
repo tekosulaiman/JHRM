@@ -48,5 +48,19 @@ public interface JHRMAdditionalZulPath {
 				public static final String ADD_FORM = "/WEB-INF/pages/module_hr/master/qualifications/licenses/licenseDialog.zul";
 			}
 		}
+		
+	}
+	
+	/**
+	 * 
+	 * @author Sugar Pramana
+	 *
+	 */
+	public interface Recruitment {
+		
+		public interface Vacancy {
+			
+			public static final String DIALOG_FORM = "/WEB-INF/pages/module_hr/recruitment/vacancy/vacancyDialog.zul";
+		}
 	}
 }

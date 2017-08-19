@@ -1,0 +1,71 @@
+<zk>
+	<window id="windowVacancyList" border="none" >
+		<borderlayout height="500px">
+			<!-- Function CRUD -->
+			<north/>
+			<!-- Table Database -->
+			<center>
+				<vbox> 
+					<groupbox mold="3d">
+						<caption label="Vacancies"/>
+						<grid>
+							<columns>
+								<column label=""/>
+								<column label=""/>
+								<column label=""/>
+								<column label=""/>
+							</columns>
+							<rows>
+								<row>	
+									<label value="Job Title" />
+									<textbox />
+									
+									<label value="Vacancy" />
+									<textbox />
+									
+									<label value="Hiring Manager" />
+									<textbox />
+									
+									<label value="Status" />
+									<textbox />
+								</row>
+								<row>	
+									<hbox>
+										<button label="${labels.button.search}"/>
+										<button label="${labels.button.reset}"/>
+									</hbox>	
+								</row>
+								
+							</rows>
+						</grid>
+					</groupbox>
+					<groupbox mold="3d">
+						<caption/>
+						<hbox>
+							<button label="${labels.button.add}" onClick=""/>
+							<button label="${labels.button.delete}"/>
+						</hbox>	
+						<space/>
+						<listbox >
+							<listhead>
+								<listheader width="5%" align="center"/>
+								<listheader label="Vacancy" sort="auto" /> 	
+								<listheader label="Job Title" sort="auto" /> 	
+								<listheader label="Hiring Manager" sort="auto" /> 	
+								<listheader label="Status" sort="auto" />
+							</listhead>
+							<listitem>
+								<listcell image="/images/icons/btn_edit.gif" tooltiptext="Click For Edit" onClick=""/>
+								<listcell label="Lowongan Java Programmer" />
+								<listcell label="Programmer" />
+								<listcell label="Sugar Pramana" />
+								<listcell label="Active" />
+							</listitem>
+						</listbox>
+					</groupbox>
+				</vbox>
+			</center>
+			<south/>
+		</borderlayout>
+	</window>
+</zk>

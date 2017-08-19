@@ -1,0 +1,71 @@
+<zk>
+	<window id="windowVacancyList" border="none" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.recruitment.vacancy.RecruitmentVacancyListVM')">
+		<borderlayout height="500px">
+			<!-- Function CRUD -->
+			<north/>
+			<!-- Table Database -->
+			<center>
+				<vbox> 
+					<groupbox mold="3d">
+						<caption label="${labels.menu.recruitment.vacancy.title}"/>
+						<grid>
+							<columns>
+								<column label=""/>
+								<column label=""/>
+								<column label=""/>
+								<column label=""/>
+							</columns>
+							<rows>
+								<row>	
+									<label value="Job Title" />
+									<textbox />
+									
+									<label value="Vacancy" />
+									<textbox />
+									
+									<label value="Hiring Manager" />
+									<textbox />
+									
+									<label value="Status" />
+									<textbox />
+								</row>
+								<row>	
+									<hbox>
+										<button label="${labels.button.search}"/>
+										<button label="${labels.button.reset}"/>
+									</hbox>	
+								</row>
+								
+							</rows>
+						</grid>
+					</groupbox>
+					<groupbox mold="3d">
+						<caption/>
+						<hbox>
+							<button label="${labels.button.add}" onClick="@command('doNew')"/>
+							<button label="${labels.button.delete}"/>
+						</hbox>	
+						<space/>
+						<listbox >
+							<listhead>
+								<listheader width="5%" align="center"/>
+								<listheader label="${labels.menu.recruitment.vacancy.listheader.vacancy}" sort="auto" /> 	
+								<listheader label="${labels.menu.recruitment.vacancy.listheader.job-title}" sort="auto" /> 	
+								<listheader label="${labels.menu.recruitment.vacancy.listheader.hiring-manager}" sort="auto" /> 	
+								<listheader label="${labels.menu.recruitment.vacancy.listheader.status}" sort="auto" />
+							</listhead>
+							<listitem>
+								<listcell image="/images/icons/btn_edit.gif" tooltiptext="Click For Edit" onClick="@command('doDetail')"/>
+								<listcell label="Lowongan Java Programmer" />
+								<listcell label="Programmer" />
+								<listcell label="Sugar Pramana" />
+								<listcell label="Active" />
+							</listitem>
+						</listbox>
+					</groupbox>
+				</vbox>
+			</center>
+			<south/>
+		</borderlayout>
+	</window>
+</zk>
