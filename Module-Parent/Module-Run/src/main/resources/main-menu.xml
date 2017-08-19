@@ -74,4 +74,9 @@
 			<menuItem id="menu.item.employee.tracker" iconName="" zulNavigation="" rightName="" />
 		</menu>	
 	</menu>	
+	
+	<menu id="menu.parent.test" rightName="menu_Test">
+		<menuItem id="menu.item.test.inline" iconName="" zulNavigation="/WEB-INF/pages/module_hr/test/testInline.zul" rightName="menu_Item_Inline" />
+		<menuItem id="menu.item.test.dialog" iconName="" zulNavigation="/WEB-INF/pages/module_hr/test/testDialog.zul" rightName="menu_Item_Dialog" />
+	</menu>
 </XMLRootMenu>

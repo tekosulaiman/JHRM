@@ -1,0 +1,35 @@
+<zk> 
+	<window id="windowInline" title="Form Inline" border="normal" width="750px" position="center,center" closable="true" action="show: slideDown; hide: slideUp" mode="modal" 
+		apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.test.TestInlineVM')" onClose="@command('doClose')" sizable="true">
+		<borderlayout height="425px">
+			<north>
+				<toolbar>
+					<button image="/images/icons/btn_save.gif" label="Save" onClick="@command('doSave')"/> 
+				</toolbar>
+			</north>
+			<center>
+				<vbox>
+					<groupbox mold="3d">
+						<caption label="Test Inline" />
+	                	<hbox  >
+							<button  label="Add"/> 
+							<button  label="Delete"/>
+						</hbox>
+						<separator />
+						<listbox id="listBoxTest" width="100%" checkmark="true" multiple="true" emptyMessage="No Data Found" model="@bind(vm.mstTests)" itemRenderer="@bind(vm.testListItemRenderer.renderer)">
+							<listhead >
+								<listheader width="150px" align="center"/>
+								<listheader label="ID"/>
+								<listheader label="Name"/>
+								<listheader label="D.O.B"/>	
+								<listheader label="Sex"/>	
+								<listheader label="Address"/>		
+							</listhead>
+						</listbox>
+						<paging />
+					</groupbox>					
+				</vbox>
+			</center>
+		</borderlayout>
+	</window>
+</zk>

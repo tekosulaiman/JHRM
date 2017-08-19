@@ -1,0 +1,14 @@
+<zk>
+	<window id="windowTest" border="none" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.test.TestVM')">
+		<borderlayout>
+			<north/>
+			<center>
+				<hbox>
+					<button label="Sample Inline" onClick="@command('doInline')"/>
+					<button label="Sample Row" onClick="@command('doDialog')"/>
+				</hbox>
+			</center>
+			<south/>
+		</borderlayout>
+	</window>
+</zk>
