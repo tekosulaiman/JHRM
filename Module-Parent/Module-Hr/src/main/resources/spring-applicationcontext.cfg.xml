@@ -66,8 +66,32 @@
     	<property name="sessionFactory" ref="sessionFactory" />
     </bean>
   	
+  	<!-- Inject DAO -->
+  	<!-- Job -->
+  	<bean id="mstJobtitleDAO" class="org.module.hr.dao.impl.MstJobtitleDAOImpl" parent="baseDao"/>
+  	<bean id="mstPaygradeDAO" class="org.module.hr.dao.impl.MstPaygradeDAOImpl" parent="baseDao"/>
+  	<bean id="mstEmployementStatusDAO" class="org.module.hr.dao.impl.MstEmployementStatusDAOImpl" parent="baseDao"/>
+  	<bean id="mstJobCategoryDAO" class="org.module.hr.dao.impl.MstJobCategoryDAOImpl" parent="baseDao"/>
+  	
+  	<!-- Test -->
     <bean id="mstTestDAO" class="org.module.hr.dao.impl.MstTestDAOImpl" parent="baseDao"/>
 	
+	<!-- Inject Service -->
+	<!-- Job -->
+	<bean id="mstJobtitleService" class="org.module.hr.service.impl.MstJobtitleServiceImpl">
+        <property name="mstJobtitleDAO" ref="mstJobtitleDAO" />
+    </bean>
+    <bean id="mstPaygradeService" class="org.module.hr.service.impl.MstPaygradeServiceImpl">
+        <property name="mstPaygradeDAO" ref="mstPaygradeDAO" />
+    </bean>
+    <bean id="mstEmployementStatusService" class="org.module.hr.service.impl.MstEmployementStatusServiceImpl">
+        <property name="mstEmployementStatusDAO" ref="mstEmployementStatusDAO" />
+    </bean>
+    <bean id="mstJobCategoryService" class="org.module.hr.service.impl.MstJobCategoryServiceImpl">
+        <property name="mstJobCategoryDAO" ref="mstJobCategoryDAO" />
+    </bean>
+	
+	<!-- Test -->
     <bean id="mstTestService" class="org.module.hr.service.impl.MstTestServiceImpl">
         <property name="mstTestDAO" ref="mstTestDAO" />
     </bean>

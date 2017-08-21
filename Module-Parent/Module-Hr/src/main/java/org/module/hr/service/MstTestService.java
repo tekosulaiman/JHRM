@@ -11,5 +11,4 @@ public interface MstTestService {
     public void saveOrUpdate(MstTest mstTest);
     public void delete(MstTest mstTest);
     public List<MstTest> getAllMstTests();
-    public List<MstTest> getByMstTestRequestMap(Map<String, Object> requestMap);
 }

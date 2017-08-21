@@ -1,32 +1,27 @@
-<?page title="Pay Grades" contentType="text/html;charset=UTF-8"?>
 <zk>
-	<window  border="none" width="100%" >
+	<window apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.master.job.paygrade.PayGradeVM')" border="none" width="100%" >
 		<borderlayout height="500px">
-		<north/>
-		<center>
+			<north/>
+			<center>
 			<vbox>
 				<groupbox mold="3d">
 					<caption label="Pay Grade" />
-                	<hbox  >
+	               	<hbox>
 						<button  label="Add"/> 
 						<button  label="Delete"/>
 					</hbox>
 					<separator />
-						<listbox width="100%" checkmark="true" multiple="true" emptyMessage="No Data Found">
+						<listbox id="listBoxPayGrade" model="@bind(vm.mstPaygrades)" itemRenderer="@bind(vm.mstPaygradeListItemRenderer.renderer)">
 							<listhead >
 								<listheader width="50px" align="center"/>
 								<listheader label="Pay Grade"/>
 								<listheader label="Curency"/>	
 							</listhead>
-							<listitem>
-								<listcell />
-								<listcell />
-							</listitem>
 						</listbox>
 					<paging/>
 				</groupbox>
 			</vbox>
-		</center>
+			</center>
 		</borderlayout>
 	</window>
 </zk>

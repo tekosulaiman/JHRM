@@ -1,27 +1,22 @@
-<?page title="Job Title" contentType="text/html;charset=UTF-8"?>
 <zk>
-	<window border="none" width="100%" >
+	<window apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.master.job.jobtitle.JobTitleVM')" border="none" width="100%" >
 		<borderlayout height="500px">
 			<north />
-				<center>
+			<center>
 				<vbox>
 					<groupbox mold="3d">
 						<caption label="Job Titles" />
-	                	<hbox  >
+	                	<hbox>
 							<button  label="Add"/> 
 							<button  label="Delete"/>
 						</hbox>
 						<separator />
-						<listbox width="100%" checkmark="true" multiple="true" emptyMessage="No Data Found">
+						<listbox id="listBoxJobTitle" model="@bind(vm.mstJobtitles)" itemRenderer="@bind(vm.mstJobtitleListItemRenderer.renderer)">
 							<listhead >
 								<listheader width="50px" align="center"/>
 								<listheader label="Job Title"/>
 								<listheader label="Job Description"/>	
 							</listhead>
-							<listitem>
-								<listcell/>
-								<listcell/>
-							</listitem>
 						</listbox>
 						<paging />
 					</groupbox>					
