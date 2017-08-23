@@ -1,63 +1,68 @@
-<?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
-<window title="General Information" border="normal">
-<grid>
-	<columns>
-		<column width="15%"/>
-		<column/>
-		<column width="15%"/>
-		<column/>
-	</columns>
-	<rows>
-		<row>
-		<label value="Organization Name" />
-		<textbox width="200px" />
-		<label value="Tax Id" />
-		<textbox width="200px"/>
-		</row>
-		<row>
-		<label value="Number of Employees"/>
-		<label value="0" />
-		<label value="Registration Number" />
-		<textbox width="200px"/>
-		
-		</row>
-		<row>
-		<label value="Phone" />
-		<textbox width="200px" />
-		<label value="Fax" />
-		<textbox width="200px"/>
-		</row>
-		<row>
-		<label value="Email" />
-		<textbox width="200px" />
-		
-		</row>
-		<row>
-		<label value="Address Street 1" />
-		<textbox width="200px" />
-		<label value="Address Street 2" />
-		<textbox width="200px"/>
-		</row>
-		<row>
-		<label value="City" />
-		<textbox width="200px" />
-		<label value="State/Province" />
-		<textbox width="200px"/>
-		</row>
-		<row>
-		<label value="Zip/Postal Code" />
-		<textbox width="200px" />
-		<label value="Country" />
-		<combobox width="200px"/>
-		</row>	
-		<row>
-		<label value="Note" />
-		<textbox width="200px" rows="5"/>
-		</row>	
-	</rows>
-</grid>
-<separator width="90%"></separator>
-<button label="Edit" />
-</window>
+	<window>
+		<borderlayout height="500px">
+			<north>
+				<toolbar>
+					<button image="/images/icons/btn_edit.gif" label="Edit" onClick="@command('doSave')"/> 
+				</toolbar>
+			</north>
+			<center>
+				<grid>
+					<columns>
+						<column width="15%"/>
+						<column/>
+						<column width="15%"/>
+						<column/>
+					</columns>
+					<rows>
+						<row>
+							<label value="Organization Name" />
+							<textbox width="200px" />
+							<label value="Tax Id" />
+							<textbox width="200px"/>
+						</row>
+						<row>
+							<label value="Number of Employees"/>
+							<label value="0" />
+							<label value="Registration Number" />
+							<textbox width="200px"/>
+						</row>
+						<row>
+							<label value="Phone" />
+							<textbox width="200px" />
+							<label value="Fax" />
+							<textbox width="200px"/>
+						</row>
+						<row>
+							<label value="Email" />
+							<textbox width="200px" />							
+						</row>
+						<row>
+							<label value="Address Street 1" />
+							<textbox width="200px" />
+							<label value="Address Street 2" />
+							<textbox width="200px"/>
+						</row>
+						<row>
+							<label value="City" />
+							<textbox width="200px" />
+							<label value="State/Province" />
+							<textbox width="200px"/>
+						</row>
+						<row>
+							<label value="Zip/Postal Code" />
+							<textbox width="200px" />
+							<label value="Country" />
+							<combobox width="200px"/>
+						</row>	
+						<row>
+							<label value="Note" />
+							<textbox width="200px" rows="5"/>
+						</row>	
+					</rows>
+				</grid>
+			</center>
+			<south/>
+		</borderlayout>
+	</window>
 </zk>

@@ -1,15 +1,26 @@
-<?page title="Organization Structure" contentType="text/html;charset=UTF-8" prefix="c" ?>
-<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c" ?>
-<zk> 
-	<window title="Organization Structure" border="normal" width="100%">
-	<tree model="${c:new('org.app.portofolio.common.menu.tree.TreeModelStructure')}"  >
-    <treecols>
-        <treecol label="Names"  />
-    </treecols>
-</tree>
-<separator></separator>
-<hbox>
-	<button label="Add" />
-</hbox>
-</window>
+<zk>
+	<window>
+		<borderlayout height="500px">
+			<north>
+				<toolbar>
+					<button image="/images/icons/btn_new.gif" label="Add" onClick="@command('doSave')"/> 
+				</toolbar>
+			</north>
+			<center>
+				<tree>
+					<treecols>
+						<treecol label="" />
+					</treecols>
+					<treechildren>
+						<treeitem>
+							<treerow>
+								<treecell label="" />
+							</treerow>
+						</treeitem>
+					</treechildren>
+				</tree>
+			</center>
+			<south/>
+		</borderlayout>
+	</window>
 </zk>
