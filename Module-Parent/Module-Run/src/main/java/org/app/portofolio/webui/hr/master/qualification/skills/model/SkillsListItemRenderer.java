@@ -8,10 +8,12 @@ import org.zkoss.zul.Listitem;
 import org.zkoss.zul.Textbox;
 
 public class SkillsListItemRenderer extends InlineListItemRenderer<MstSkill>{
-	
+
+	private MstSkill value;
 	
 	@Override
 	public void renderListItem(Listitem item, MstSkill value, int index) throws Exception {
+		this.value = value;
 		Textbox textboxName = new Textbox();
 		textboxName.setValue(value.getNameSkill());
 		textboxName.setVisible(false);
@@ -50,5 +52,17 @@ public class SkillsListItemRenderer extends InlineListItemRenderer<MstSkill>{
 		listcell.setParent(item);
 		
 		item.setValue(value);
+		
+		this.value.setNameSkill(textboxName.getValue());
+		this.value.setDescriptionSkill(textboxDescription.getValue());
+		this.setValue(value);
+	}
+	
+	public MstSkill getValue() {
+		return value;
+	}
+	
+	public void setValue(MstSkill value) {
+		this.value = value;
 	}
 }

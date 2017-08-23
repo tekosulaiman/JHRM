@@ -55,7 +55,7 @@
 
     <!-- ensure that the above transactional advice runs for any execution of an operation defined by the FooService interface -->
     <aop:config>
-        <aop:pointcut id="fooServiceOperation" expression="execution(* org.module.sysadmin.service.*.*(..))"/>
+        <aop:pointcut id="fooServiceOperation" expression="execution(* org.module.*.*.*.*(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="fooServiceOperation"/>
     </aop:config>
     
@@ -114,6 +114,8 @@
   	<bean id="mstPaygradeDAO" class="org.module.hr.dao.impl.MstPaygradeDAOImpl" parent="baseDao"/>
   	<bean id="mstEmployementStatusDAO" class="org.module.hr.dao.impl.MstEmployementStatusDAOImpl" parent="baseDao"/>
   	<bean id="mstJobCategoryDAO" class="org.module.hr.dao.impl.MstJobCategoryDAOImpl" parent="baseDao"/>
+  	<!-- Qualification Skill -->
+  	<bean id="mstSkillDAO" class="org.module.hr.dao.impl.MstSkillDAOImpl" parent="baseDao"/>
   	
   	<!-- Test -->
     <bean id="mstTestDAO" class="org.module.hr.dao.impl.MstTestDAOImpl" parent="baseDao"/>
@@ -132,7 +134,11 @@
     <bean id="mstJobCategoryService" class="org.module.hr.service.impl.MstJobCategoryServiceImpl">
         <property name="mstJobCategoryDAO" ref="mstJobCategoryDAO" />
     </bean>
-	
+	<!-- Qualification Service -->
+	<bean id="masterQualificationService" class="org.module.hr.service.impl.MasterQualificationServiceImpl">
+        <property name="mstSkillDAO" ref="mstSkillDAO" />
+    </bean>
+    
 	<!-- Test -->
     <bean id="mstTestService" class="org.module.hr.service.impl.MstTestServiceImpl">
         <property name="mstTestDAO" ref="mstTestDAO" />
