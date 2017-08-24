@@ -1,5 +1,5 @@
 <zk>
-	<window id="windowImmigration" border="none" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.employee.Immigration')">
+	<window id="windowImmigration" border="none" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.employee.Immigration')">
 		<borderlayout height="500px">
 			<!-- Function CRUD -->
 			<!-- <north/> -->

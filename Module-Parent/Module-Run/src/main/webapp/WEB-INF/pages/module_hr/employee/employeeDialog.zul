@@ -2,7 +2,7 @@
 	<window id="windowEmployeeDialog" title="Form Employee"
 		border="normal" width="550px" position="center,center" closable="true"
 		action="show: slideDown; hide: slideUp" mode="modal"
-		apply="org.zkoss.bind.BindComposer" maximizable="true">
+		apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.employee.EmployeeDialog')" maximizable="true">
 		<borderlayout height="500px">
 			<!-- Function CRUD -->
 			<north>
@@ -29,7 +29,7 @@
 									<label
 										value="${labels.menu.employee.personal.details.form.first.name}"
 										style="text-align: justify; display: block;" />
-									<textbox />
+									<textbox value="@bind(vm.trsEmployee.idEmployee)"/>
 								</div>
 								<div>
 									<label
@@ -58,7 +58,7 @@
 									value="${labels.menu.employee.form.photograph}" />
 								<textbox />
 							</row>
-							<row>
+							<!-- <row>
 								<label
 									value=" Create Login Details" />
 								<checkbox/>
@@ -74,7 +74,7 @@
 							<row>
 								<label value="Confirm Password" />
 								<textbox />
-							</row>
+							</row> -->
 						</rows>
 					</grid>
 				</groupbox>

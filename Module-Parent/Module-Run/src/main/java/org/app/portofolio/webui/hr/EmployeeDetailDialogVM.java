@@ -23,6 +23,9 @@ public class EmployeeDetailDialogVM {
 	private Boolean isVisibleFormReportTo;
 	private Boolean isVisibleFormQualification;
 	private Boolean isVisibleFormMemberships;
+	
+	//temp for test
+	private Boolean test;
 
 	/*
 	 * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -51,6 +54,7 @@ public class EmployeeDetailDialogVM {
 		isVisibleFormReportTo = Boolean.FALSE;
 		isVisibleFormQualification = Boolean.FALSE;
 		isVisibleFormMemberships = Boolean.FALSE;
+		test = Boolean.FALSE;
 	}
 
 	@NotifyChange({"*"})
@@ -121,6 +125,14 @@ public class EmployeeDetailDialogVM {
 	public void selectFormMembership() {
 		setVisibleFalseForAll();
 		isVisibleFormMemberships = Boolean.TRUE;
+	}
+	
+	// temp for test
+	@NotifyChange({"*"})
+	@Command
+	public void test() {
+		setVisibleFalseForAll();
+		test = Boolean.TRUE;
 	}
 
 	/**
@@ -219,4 +231,13 @@ public class EmployeeDetailDialogVM {
 		this.isVisibleFormMemberships = isVisibleFormMemberships;
 	}
 
+	// temp for test
+	public Boolean getTest() {
+		return test;
+	}
+
+	public void setTest(Boolean test) {
+		this.test = test;
+	}
+	
 }

@@ -88,6 +88,12 @@
 										onClick="@command('selectFormMembership')" />
 								</treerow>
 							</treeitem>
+							<treeitem>
+								<treerow>
+									<treecell label="Test"
+										onClick="@command('test')" />
+								</treerow>
+							</treeitem>
 						</treechildren>
 					</tree>
 					</div>
@@ -147,6 +153,11 @@
 							visible="@load(vm.isVisibleFormMemberships)">
 							<include
 								src="/WEB-INF/pages/module_hr/employee/memberships.zul" />
+						</row>
+						<row
+							visible="@load(vm.test)">
+							<include
+								src="/WEB-INF/pages/module_hr/test/test.zul" />
 						</row>
 					</rows>
 				</grid>

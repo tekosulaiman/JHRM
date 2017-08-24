@@ -1,4 +1,4 @@
-package org.app.portofolio.webui.employee.model;
+package org.app.portofolio.webui.hr.employee.model;
 
 import org.app.portofolio.webui.hr.common.components.InlineListItemRenderer;
 import org.module.hr.model.TrsEmployeeDependent;

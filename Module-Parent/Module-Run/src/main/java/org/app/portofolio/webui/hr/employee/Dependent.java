@@ -1,10 +1,10 @@
-package org.app.portofolio.webui.employee;
+package org.app.portofolio.webui.hr.employee;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.app.portofolio.webui.employee.model.DependentListItemRenderer;
+import org.app.portofolio.webui.hr.employee.model.DependentListItemRenderer;
 import org.module.hr.model.TrsEmployee;
 import org.module.hr.model.TrsEmployeeDependent;
 import org.zkoss.bind.annotation.AfterCompose;

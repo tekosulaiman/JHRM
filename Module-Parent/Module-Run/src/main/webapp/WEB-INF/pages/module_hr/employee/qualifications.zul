@@ -1,6 +1,6 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
-	<window border="none" width="100%">
+	<window border="none" width="100%" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.employee.Qualifications')">
 		<borderlayout height="450px">
 			<north size="100%" collapsible="true" autoscroll="true">
 				<div>
@@ -11,7 +11,7 @@
 							<button label="${labels.button.add}" />
 						</hbox>
 						<space/>
-						<listbox>
+						<listbox id="ListBoxEmployeeExperience" model="@bind(vm.employeeExpriences)" selectedItem="@bind(vm.selectedEmployeeExprience)" itemRenderer="@bind(vm.employeeExperienceListItemRenderer.renderer)">
 							<listhead>
 								<listheader width="5%" align="center" />
 								<listheader
@@ -28,7 +28,7 @@
 									sort="auto" />
 								<listheader label="Comment" sort="auto" />
 							</listhead>
-							<listitem>
+							<!-- <listitem>
 								<listcell
 									image="/images/icons/btn_edit.gif"
 									tooltiptext="Click For Edit" />
@@ -37,7 +37,7 @@
 								<listcell label="1-1-2000" />
 								<listcell label="1-1-2001" />
 								<listcell label="asdasdasd" />
-							</listitem>
+							</listitem> -->
 						</listbox>
 					</groupbox>
 					<groupbox mold="3d">

@@ -117,6 +117,9 @@
   	<!-- Qualification Skill -->
   	<bean id="mstSkillDAO" class="org.module.hr.dao.impl.MstSkillDAOImpl" parent="baseDao"/>
   	
+  	<!-- Employee -->
+  	<bean id="trsEmployeeEmergencyContactDAO" class="org.module.hr.dao.impl.TrsEmployeeEmergencyContactDAOImpl" parent="baseDao"/>
+  	
   	<!-- Test -->
     <bean id="mstTestDAO" class="org.module.hr.dao.impl.MstTestDAOImpl" parent="baseDao"/>
 	
@@ -134,10 +137,19 @@
     <bean id="mstJobCategoryService" class="org.module.hr.service.impl.MstJobCategoryServiceImpl">
         <property name="mstJobCategoryDAO" ref="mstJobCategoryDAO" />
     </bean>
+	
 	<!-- Qualification Service -->
 	<bean id="masterQualificationService" class="org.module.hr.service.impl.MasterQualificationServiceImpl">
         <property name="mstSkillDAO" ref="mstSkillDAO" />
     </bean>
+    
+    <!-- Employee -->
+	<bean id="trsEmployeeEmergencyContactService" class="org.module.hr.service.impl.TrsEmployeeEmergencyContactServiceImpl">
+		<property name="trsEmployeeEmergencyContactDAO" ref="trsEmployeeEmergencyContactDAO"/>
+	</bean>
+    
+    
+    
     
 	<!-- Test -->
     <bean id="mstTestService" class="org.module.hr.service.impl.MstTestServiceImpl">
