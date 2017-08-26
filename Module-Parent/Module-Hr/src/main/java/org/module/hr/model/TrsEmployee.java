@@ -30,6 +30,12 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "TrsEmployee.findAll", query = "SELECT t FROM TrsEmployee t"),
     @NamedQuery(name = "TrsEmployee.findByIdEmployee", query = "SELECT t FROM TrsEmployee t WHERE t.idEmployee = :idEmployee")})
 public class TrsEmployee implements Serializable {
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "middle_name")
+    private String middleName;
+    @Column(name = "last_name")
+    private String lastName;
     @OneToMany(mappedBy = "idEmployee")
     private List<TrsJobVacancy> trsJobVacancyList;
     private static final long serialVersionUID = 1L;
@@ -195,6 +201,30 @@ public class TrsEmployee implements Serializable {
 
     public void setTrsJobVacancyList(List<TrsJobVacancy> trsJobVacancyList) {
         this.trsJobVacancyList = trsJobVacancyList;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
     
 }
