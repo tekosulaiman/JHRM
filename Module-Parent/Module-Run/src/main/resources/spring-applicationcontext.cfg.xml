@@ -116,6 +116,10 @@
   	<bean id="mstJobCategoryDAO" class="org.module.hr.dao.impl.MstJobCategoryDAOImpl" parent="baseDao"/>
   	<!-- Qualification Skill -->
   	<bean id="mstSkillDAO" class="org.module.hr.dao.impl.MstSkillDAOImpl" parent="baseDao"/>
+  	<bean id="mstLicenseDAO" class="org.module.hr.dao.impl.MstLicenseDAOImpl" parent="baseDao"/>
+  	<bean id="mstLanguageDAO" class="org.module.hr.dao.impl.MstLanguageDAOImpl" parent="baseDao"/>
+  	<bean id="mstEducationDAO" class="org.module.hr.dao.impl.MstEducationDAOImpl" parent="baseDao"/>
+  	<bean id="mstMembershipDAO" class="org.module.hr.dao.impl.MstMembershipDAOImpl" parent="baseDao"/>
   	
   	<!-- Employee -->
   	<bean id="trsEmployeeEmergencyContactDAO" class="org.module.hr.dao.impl.TrsEmployeeEmergencyContactDAOImpl" parent="baseDao"/>
@@ -141,6 +145,10 @@
 	<!-- Qualification Service -->
 	<bean id="masterQualificationService" class="org.module.hr.service.impl.MasterQualificationServiceImpl">
         <property name="mstSkillDAO" ref="mstSkillDAO" />
+        <property name="mstLicenseDAO" ref="mstLicenseDAO" />
+        <property name="mstEducationDAO" ref="mstEducationDAO" />
+        <property name="mstLanguageDAO" ref="mstLanguageDAO" />
+        <property name="mstMembershipDAO" ref="mstMembershipDAO" />
     </bean>
     
     <!-- Employee -->
