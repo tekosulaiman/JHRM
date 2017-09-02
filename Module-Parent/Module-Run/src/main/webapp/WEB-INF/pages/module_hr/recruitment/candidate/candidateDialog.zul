@@ -1,0 +1,45 @@
+<?page title="Add Unit" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window title="${labels.menu.recruitment.candidate.form.title}" border="normal" height="350px" width="40%" mode="modal" closable="true" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.recruitment.candidate.RecruitmentCandidateDialogVM')">
+		<borderlayout >
+			<north>
+				<toolbar>
+					<button id="buttonSaveCandidate" label="${labels.button.dialog.save}" onClick="@command('doSave')"></button>
+					<button id="buttonSaveAndNewCandidate" label="New" onClick="@command('doSaveAndNew')"></button>
+					<button id="buttonEditCandidate" label="${labels.button.dialog.edit}" onClick="@command('doEdit')"></button>
+				</toolbar>
+			</north>
+			<center>
+				<grid>
+					<columns>
+						<column width="25%" />
+						<column />
+					</columns>
+					<rows>
+						<row>
+							<label value="${labels.menu.recruitment.candidate.form.name}" />
+							<textbox id="textboxfullName" width="200px"></textbox>
+						</row>
+						<row>
+							<label value="${labels.menu.recruitment.candidate.form.email}" />
+							<textbox id="textboxEmail" width="200px" />
+						</row>
+						<row>
+							<label value="${labels.menu.recruitment.candidate.form.contact_no}" />
+							<textbox id="textboxContactNo" width="200px" />
+							<separator/>
+						</row>
+						<row>
+							<label value="${labels.menu.recruitment.candidate.form.vacancy}" />
+							<textbox id="textboxVacancy" width="200px" />
+						</row>
+						<row>
+							<label value="${labels.menu.recruitment.candidate.form.resume}" />
+							<button id="buttonResume" label="${labels.button.dialog.browse}" upload="true"></button>
+						</row>
+					</rows>
+				</grid>
+			</center>
+		</borderlayout>		
+	</window>
+</zk>

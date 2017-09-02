@@ -6,7 +6,7 @@ import org.module.api.common.dao.base.BasisDAO;
 import org.module.hr.dao.MstSkillDAO;
 import org.module.hr.model.MstSkill;
 
-@SuppressWarnings("unchecked")
+
 public class MstSkillDAOImpl extends BasisDAO<MstSkill> implements MstSkillDAO{
 
 	@Override

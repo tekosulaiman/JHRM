@@ -9,16 +9,18 @@ import org.zkoss.zul.Textbox;
 
 public class SkillsListItemRenderer extends InlineListItemRenderer<MstSkill>{
 
-	private MstSkill value;
+	private MstSkill value = new MstSkill();
+	private Textbox textboxName;
+	private Textbox textboxDescription;
 	
 	@Override
 	public void renderListItem(Listitem item, MstSkill value, int index) throws Exception {
 		this.value = value;
-		Textbox textboxName = new Textbox();
+		textboxName = new Textbox();
 		textboxName.setValue(value.getNameSkill());
 		textboxName.setVisible(false);
 		
-		Textbox textboxDescription = new Textbox();
+		textboxDescription = new Textbox();
 		textboxDescription.setValue(value.getDescriptionSkill());
 		textboxDescription.setVisible(false);
 		
@@ -51,18 +53,31 @@ public class SkillsListItemRenderer extends InlineListItemRenderer<MstSkill>{
 		labelDescription.setParent(listcell);
 		listcell.setParent(item);
 		
-		item.setValue(value);
+		item.setValue(this.value);
 		
-		this.value.setNameSkill(textboxName.getValue());
-		this.value.setDescriptionSkill(textboxDescription.getValue());
-		this.setValue(value);
 	}
 	
-	public MstSkill getValue() {
+	/**
+	 * 
+	 * @return
+	 */
+	public MstSkill getTransactionValue() {
+		System.out.println(textboxName.getValue());
+		value.setNameSkill(textboxName.getValue());
+		value.setDescriptionSkill(textboxDescription.getValue());
 		return value;
 	}
 	
-	public void setValue(MstSkill value) {
-		this.value = value;
+	/**
+	 * 
+	 * @param mstSkill
+	 */
+	public void setTransactionValue(MstSkill mstSkill) {
+		this.value = mstSkill;
+		textboxName = new Textbox();
+		textboxDescription = new Textbox();
+		
+		textboxName.setValue(value.getNameSkill());
+		textboxDescription.setValue(value.getDescriptionSkill());
 	}
 }

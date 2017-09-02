@@ -1,6 +1,5 @@
 package org.app.portofolio.webui.hr.master.qualification.skills;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.app.portofolio.common.menu.util.JHRMAdditionalZulPath;
@@ -8,10 +7,12 @@ import org.app.portofolio.webui.hr.master.qualification.skills.model.SkillsListI
 import org.module.hr.model.MstSkill;
 import org.module.hr.service.MasterQualificationService;
 import org.zkoss.bind.annotation.AfterCompose;
+import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
 import org.zkoss.bind.annotation.ContextType;
 import org.zkoss.bind.annotation.ExecutionArgParam;
+import org.zkoss.bind.annotation.GlobalCommand;
 import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
@@ -36,19 +37,32 @@ public class MasterQualificationSkills {
 	private SkillsListItemRenderer skillItemRenderer;
 	private List<MstSkill> skills;
 	private MstSkill selectedSkills;
-
+	private ListModelList<MstSkill> listModelList;
+	
 	
 	@AfterCompose
 	public void setupComponents(@ContextParam(ContextType.VIEW) Component component, @ExecutionArgParam("object") Object object) {
 		Selectors.wireComponents(component, this, false);
  
-		skills = masterQualificationService.getAllMstSkill(); 
+		constructItemRenderer();
 		
+		skills = masterQualificationService.getAllMstSkill(); 
+		listModelList = new ListModelList<MstSkill>(skills);
+		constructListbox();
+	}
+
+	private void constructItemRenderer() {
 		this.skillItemRenderer = new SkillsListItemRenderer() {
 			@Override
 			protected void buttonSaveActionListener() {
 				super.buttonSaveActionListener();
 				save();
+			}
+			
+			@Override
+			protected void buttonDeleteActionListener() {
+				super.buttonDeleteActionListener();
+				delete();
 			}
 		};
 	}
@@ -56,9 +70,16 @@ public class MasterQualificationSkills {
 	/**
 	 * 
 	 */
+	private void constructListbox() {
+		listBoxSkills.setModel(listModelList);
+		listBoxSkills.setItemRenderer(skillItemRenderer.renderer);
+	}
+
+	/**
+	 * 
+	 */
 	@Command
 	public void doNew() {
-		ListModelList listModelList = (ListModelList) listBoxSkills.getModel();
 		listModelList.add(0, new MstSkill());
 	}
 
@@ -70,15 +91,37 @@ public class MasterQualificationSkills {
 		Executions.createComponents(JHRMAdditionalZulPath.MasterData.Qualifications.Skills.DETAIL_FORM, null, null);
 	}
 	
-	@NotifyChange({"skills"})
+	/**
+	 * 
+	 */
 	public void save(){
-		MstSkill value = skillItemRenderer.getValue();
-		if (value.getIdSkill() == null) {
-			masterQualificationService.save(value);
-		} else {
-			masterQualificationService.update(value);
-		}
+		masterQualificationService.saveOrUpdate(skillItemRenderer.getTransactionValue());
+	}
+	
+	/**
+	 * 
+	 */
+	public void delete() {
+		masterQualificationService.delete(skillItemRenderer.getTransactionValue());
+	}
+
+	/**
+	 * 
+	 */
+	@GlobalCommand("refreshAfterSaveOrUpdate")
+	@NotifyChange("skills")
+	public void refreshAfterSaveOrUpdate() {
+		constructItemRenderer();
+		
 		skills = masterQualificationService.getAllMstSkill();
+		listModelList = new ListModelList<MstSkill>(skills);
+		listBoxSkills.setModel(listModelList);
+		listBoxSkills.setItemRenderer(skillItemRenderer.renderer);
+	}
+	
+	@GlobalCommand("setTransactionValue")
+	public void setTransactionValue(@BindingParam(SkillsListItemRenderer.SELECTED_TRANSACTION_VALUE) MstSkill selectedTransactionValue) {
+		skillItemRenderer.setTransactionValue(selectedTransactionValue);
 	}
 
 	public SkillsListItemRenderer getSkillItemRenderer() {

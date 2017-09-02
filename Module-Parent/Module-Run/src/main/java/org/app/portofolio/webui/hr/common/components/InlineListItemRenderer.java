@@ -1,8 +1,10 @@
 package org.app.portofolio.webui.hr.common.components;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.zkoss.bind.BindUtils;
 import org.zkoss.zk.ui.Component;
-import org.zkoss.zk.ui.Components;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
@@ -20,6 +22,8 @@ public abstract class InlineListItemRenderer<E> {
 	public Renderer renderer;
 	private Component[] editingComponents;
 	private Component[] labelingComponents;
+	
+	public static final String SELECTED_TRANSACTION_VALUE = "selectedTransactionValue"; 
 	
 	/**
 	 * 
@@ -116,7 +120,7 @@ public abstract class InlineListItemRenderer<E> {
 	 * @param arg2
 	 * @throws Exception
 	 */
-	public void renderListItem(Listitem item, E e, int index) throws Exception{
+	public void renderListItem(Listitem item, final E e, int index) throws Exception{
 		Listcell listcell = new Listcell();
 		
 		final Component[] editingComponents = getEditingComponents();
@@ -157,7 +161,9 @@ public abstract class InlineListItemRenderer<E> {
 				for(Component component : labelingComponents) {
 					component.setVisible(false);
 				}
-				BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
+				Map<String, Object> args = new HashMap<>();
+				args.put(SELECTED_TRANSACTION_VALUE, e);
+				BindUtils.postGlobalCommand(null, null, "setTransactionValue", args);
 				editingButtonCondition(buttonEdit, buttonSave, buttonCancel, buttonDelete);
 			}
 		});

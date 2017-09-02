@@ -1,5 +1,5 @@
 <zk>
-	<window id="windowVacancyList" border="none" >
+	<window id="windowCandidateList" border="none" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.recruitment.candidate.RecruitmentCandidateListVM')">
 		<borderlayout height="500px">
 			<!-- Function CRUD -->
 			<north/>
@@ -7,7 +7,7 @@
 			<center>
 				<vbox> 
 					<groupbox mold="3d">
-						<caption label="Vacancies"/>
+						<caption label="${labels.menu.recruitment.candidate.title}"/>
 						<grid>
 							<columns>
 								<column label=""/>
@@ -30,6 +30,24 @@
 									<textbox />
 								</row>
 								<row>	
+									<label value="Candidate Name" />
+									<textbox />
+									
+									<label value="Keywords" />
+									<textbox />
+									
+									<label value="Date Of Application" />
+									<hbox>
+										<label value="From"/>
+										<datebox></datebox>
+									</hbox>
+									<label value=""/>
+									<hbox>
+										<label value="To"/>
+										<datebox></datebox>
+									</hbox>
+								</row>
+								<row>	
 									<hbox>
 										<button label="${labels.button.search}"/>
 										<button label="${labels.button.reset}"/>
@@ -42,24 +60,30 @@
 					<groupbox mold="3d">
 						<caption/>
 						<hbox>
-							<button label="${labels.button.add}" onClick=""/>
+							<button label="${labels.button.add}" onClick="@command('doNew')"/>
 							<button label="${labels.button.delete}"/>
 						</hbox>	
 						<space/>
 						<listbox >
 							<listhead>
 								<listheader width="5%" align="center"/>
-								<listheader label="Vacancy" sort="auto" /> 	
-								<listheader label="Job Title" sort="auto" /> 	
-								<listheader label="Hiring Manager" sort="auto" /> 	
-								<listheader label="Status" sort="auto" />
+								<listheader label="${labels.menu.recruitment.candidate.listheader.vacancy}" sort="auto" /> 	
+								<listheader label="${labels.menu.recruitment.candidate.listheader.candidate}" sort="auto" /> 	
+								<listheader label="${labels.menu.recruitment.candidate.listheader.hiring-manager}" sort="auto" /> 	
+								<listheader label="${labels.menu.recruitment.candidate.listheader.date-of-application}" sort="auto" />
+								<listheader label="${labels.menu.recruitment.candidate.listheader.status}" sort="auto" />
+								<listheader label="${labels.menu.recruitment.candidate.listheader.resume}" sort="auto" />
 							</listhead>
 							<listitem>
-								<listcell image="/images/icons/btn_edit.gif" tooltiptext="Click For Edit" onClick=""/>
+								<listcell image="/images/icons/btn_edit.gif" tooltiptext="Click For Edit" onClick="@command('doDetail')"/>
 								<listcell label="Lowongan Java Programmer" />
-								<listcell label="Programmer" />
 								<listcell label="Sugar Pramana" />
-								<listcell label="Active" />
+								<listcell label="Muksin Al Amin" />
+								<listcell label="2017-08-09" />
+								<listcell label="Hired" />
+								<listcell label="Resume">
+									<button label="Download"></button>
+								</listcell>
 							</listitem>
 						</listbox>
 					</groupbox>
