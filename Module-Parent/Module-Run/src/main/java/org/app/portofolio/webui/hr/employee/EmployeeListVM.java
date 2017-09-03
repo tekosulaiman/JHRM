@@ -23,11 +23,11 @@ public class EmployeeListVM {
 	
 	@Command
 	public void doNew(){
-		Executions.createComponents("/WEB-INF/pages/module_hr/employeeDialog.zul", null, null);
+		Executions.createComponents("/WEB-INF/pages/module_hr/employee/employeeDialog.zul", null, null);
 	}
 	
 	@Command
 	public void doDetail(){
-		Executions.createComponents("/WEB-INF/pages/module_hr/employeeDetailDialog.zul", null, null);
+		Executions.createComponents("/WEB-INF/pages/module_hr/employee/employeeDetailDialog.zul", null, null);
 	}
 }

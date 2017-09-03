@@ -1,8 +1,8 @@
 <zk>
 	<window id="windowEmployeeDialog" title="Form Employee"
 		border="normal" width="550px" position="center,center" closable="true"
-		action="show: slideDown; hide: slideUp" mode="modal"
-		apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.employee.EmployeeDialog')" maximizable="true">
+		action="show: slideDown; hide: slideUp" mode="modal" apply="org.zkoss.bind.BindComposer" 
+		viewModel="@id('vm') @init('org.app.portofolio.webui.hr.employee.EmployeeDialog')" maximizable="true">
 		<borderlayout height="500px">
 			<!-- Function CRUD -->
 			<north>
@@ -15,12 +15,6 @@
 				<groupbox mold="3d">
 					<caption label="Add Employee" />
 					<grid>
-						<!-- <columns>
-							<column label="" />
-							<column label="" />
-							<column label="" />
-							<column label="" />
-						</columns> -->
 						<rows>
 							<row>
 								<label
@@ -29,52 +23,35 @@
 									<label
 										value="${labels.menu.employee.personal.details.form.first.name}"
 										style="text-align: justify; display: block;" />
-									<textbox value="@bind(vm.trsEmployee.idEmployee)"/>
+									<textbox value="@bind(vm.trsEmployee.firstName)"/>
 								</div>
 								<div>
 									<label
 										value="${labels.menu.employee.personal.details.form.middle.name}"
 										style="text-align: justify; display: block;" />
-									<textbox />
+									<textbox value="@bind(vm.trsEmployee.middleName)"/>
 								</div>
 								<div>
 									<label
 										value="${labels.menu.employee.personal.details.form.last.name}"
 										style="text-align: justify; display: block;" />
-									<textbox />
+									<textbox value="@bind(vm.trsEmployee.lastName)"/>
 								</div>
 							</row>
-					<!-- 	</rows>
-					</grid>
-					<grid>
-						<rows> -->
 							<row>
 								<label
 									value="${labels.menu.employee.form.employee.id}" />
-								<textbox />
+								<textbox value="@bind(vm.trsEmployee.idEmployee)"/>
 						    </row>
 						    <row>
 								<label
 									value="${labels.menu.employee.form.photograph}" />
-								<textbox />
-							</row>
-							<!-- <row>
-								<label
-									value=" Create Login Details" />
-								<checkbox/>
-							</row>
-							<row>
-								<label value="User Name" />
-								<textbox />
-							</row>
-							<row>
-								<label value="Password" />
-								<textbox />
-							</row>
-							<row>
-								<label value="Confirm Password" />
-								<textbox />
-							</row> -->
+									<label
+										value="@load(vm.labelUploadFoto)" />
+									<button id="btnUpload" mold="trendy"
+										upload="true" label="upload"
+										onUpload="@command('upload')" />
+						    </row>
 						</rows>
 					</grid>
 				</groupbox>

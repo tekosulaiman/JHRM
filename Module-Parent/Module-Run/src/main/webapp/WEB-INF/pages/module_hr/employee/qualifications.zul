@@ -28,16 +28,6 @@
 									sort="auto" />
 								<listheader label="Comment" sort="auto" />
 							</listhead>
-							<!-- <listitem>
-								<listcell
-									image="/images/icons/btn_edit.gif"
-									tooltiptext="Click For Edit" />
-								<listcell label="toke" />
-								<listcell label="anak" />
-								<listcell label="1-1-2000" />
-								<listcell label="1-1-2001" />
-								<listcell label="asdasdasd" />
-							</listitem> -->
 						</listbox>
 					</groupbox>
 					<groupbox mold="3d">
@@ -47,27 +37,19 @@
 							<button label="${labels.button.add}" />
 						</hbox>
 						<space/>
-						<listbox>
+						<listbox id="ListBoxEmployeeEducation" model="@bind(vm.employeeEducations)" selectedItem="@bind(vm.selectedEmployeeEducation)" itemRenderer="@bind(vm.employeeEducationListItemRenderer.renderer)">
 							<listhead>
 								<listheader width="5%" align="center" />
 								<listheader
 									label="${labels.menu.employee.qualification.listheader.level}"
 									sort="auto" />
 								<listheader
-									label="${labels.menu.employee.qualification.listheader.year}"
+									label="year"
 									sort="auto" />
 								<listheader
 									label="${labels.menu.employee.qualification.listheader.gpa.score}"
 									sort="auto" />
 							</listhead>
-							<listitem>
-								<listcell
-									image="/images/icons/btn_edit.gif"
-									tooltiptext="Click For Edit" />
-								<listcell label="toke" />
-								<listcell label="anak" />
-								<listcell label="anak" />
-							</listitem>
 						</listbox>
 					</groupbox>
 					<groupbox mold="3d">
@@ -77,7 +59,7 @@
 							<button label="${labels.button.add}" />
 						</hbox>
 						<space/>
-						<listbox>
+						<listbox id="ListBoxEmployeeSkill" model="@bind(vm.employeeSkills)" selectedItem="@bind(vm.selectedEmployeeSkill)" itemRenderer="@bind(vm.employeeSkillListItemRenderer.renderer)">
 							<listhead>
 								<listheader width="5%" align="center" />
 								<listheader
@@ -87,13 +69,6 @@
 									label="${labels.menu.employee.qualification.listheader.years.of.experience}"
 									sort="auto" />
 							</listhead>
-							<listitem>
-								<listcell
-									image="/images/icons/btn_edit.gif"
-									tooltiptext="Click For Edit" />
-								<listcell label="toke" />
-								<listcell label="anak" />
-							</listitem>
 						</listbox>
 					</groupbox>
 					<groupbox mold="3d">
@@ -103,7 +78,7 @@
 							<button label="${labels.button.add}" />
 						</hbox>
 						<space/>
-						<listbox>
+						<listbox id="ListBoxEmployeeLanguage" model="@bind(vm.employeeLanguages)" selectedItem="@bind(vm.selectedEmployeeLanguage)" itemRenderer="@bind(vm.employeeLanguageListItemRenderer.renderer)">
 							<listhead>
 								<listheader width="5%" align="center" />
 								<listheader
@@ -119,15 +94,6 @@
 									label="${labels.menu.employee.qualification.listheader.comments}"
 									sort="auto" />
 							</listhead>
-							<listitem>
-								<listcell
-									image="/images/icons/btn_edit.gif"
-									tooltiptext="Click For Edit" />
-								<listcell label="toke" />
-								<listcell label="anak" />
-								<listcell label="anak" />
-								<listcell label="anak" />
-							</listitem>
 						</listbox>
 					</groupbox>
 					<groupbox mold="3d">
@@ -137,7 +103,7 @@
 							<button label="${labels.button.add}" />
 						</hbox>
 						<space/>
-						<listbox>
+						<listbox id="ListBoxEmployeeLicense" model="@bind(vm.employeeLicenses)" selectedItem="@bind(vm.selectedEmployeeLicense)" itemRenderer="@bind(vm.employeeLicenseListItemRenderer.renderer)">
 							<listhead>
 								<listheader width="5%" align="center" />
 								<listheader
@@ -150,14 +116,6 @@
 									label="${labels.menu.employee.qualification.listheader.expiry.date}"
 									sort="auto" />
 							</listhead>
-							<listitem>
-								<listcell
-									image="/images/icons/btn_edit.gif"
-									tooltiptext="Click For Edit" />
-								<listcell label="toke" />
-								<listcell label="anak" />
-								<listcell label="anak" />
-							</listitem>
 						</listbox>
 					</groupbox>
 					<groupbox mold="3d">
