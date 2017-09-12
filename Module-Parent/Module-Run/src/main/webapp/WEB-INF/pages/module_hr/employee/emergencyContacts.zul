@@ -11,11 +11,11 @@
 							label="${labels.menu.employee.emergency.contact.title}">
 						</caption>
 						<hbox>
-							<button label="${labels.button.add}" />
+							<button label="${labels.button.add}" onClick="@command('doNew')" />
 							<button label="${labels.button.delete}" />
 						</hbox>
 						<space />
-						<listbox id="listBoxEmergencyContact" model="@bind(vm.employeeEmergencyContacts)" selectedItem="@bind(vm.selectedEmployeeEmergencyContact)" itemRenderer="@bind(vm.emergencyContactListItemRenderer.renderer)">
+						<listbox id="listBoxEmergencyContact" selectedItem="@bind(vm.selectedEmployeeEmergencyContact)">
 							<listhead>
 								<listheader width="5%" align="center" />
 								<listheader
@@ -34,16 +34,6 @@
 									label="${labels.menu.employee.emergency.contact.listheader.work.telephone}"
 									sort="auto" />
 							</listhead>
-							<!-- <listitem>
-								<listcell
-									image="/images/icons/btn_edit.gif"
-									tooltiptext="Click For Edit" />
-								<listcell label="toke" />
-								<listcell label="anak" />
-								<listcell label="123" />
-								<listcell label="123" />
-								<listcell label="123" />
-							</listitem> -->
 						</listbox>
 					</groupbox>
 					<groupbox mold="3d">

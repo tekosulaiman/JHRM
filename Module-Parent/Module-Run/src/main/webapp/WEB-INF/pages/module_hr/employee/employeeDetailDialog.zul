@@ -3,7 +3,7 @@
 		border="normal" width="60%" position="center,center" closable="true"
 		maximizable="true" action="show: slideDown; hide: slideUp"
 		mode="modal" apply="org.zkoss.bind.BindComposer"
-		viewModel="@id('vm') @init('org.app.portofolio.webui.hr.EmployeeDetailDialogVM')">
+		viewModel="@id('employee') @init('org.app.portofolio.webui.hr.employee.EmployeeDetailDialogVM')">
 		<borderlayout height="500px">
 			<!-- Function CRUD -->
 			<north />
@@ -88,12 +88,6 @@
 										onClick="@command('selectFormMembership')" />
 								</treerow>
 							</treeitem>
-							<treeitem>
-								<treerow>
-									<treecell label="Test"
-										onClick="@command('test')" />
-								</treerow>
-							</treeitem>
 						</treechildren>
 					</tree>
 					</div>
@@ -105,60 +99,56 @@
 					</columns>
 					<rows>
 						<row
-							visible="@load(vm.isVisiblesFormPerssonalDetails)">
+							visible="@load(employee.isVisiblesFormPerssonalDetails)">
 							<include
 								src="/WEB-INF/pages/module_hr/employee/personalDetails.zul" />
 						</row>
 						<row
-							visible="@load(vm.isVisibleFormContactDetails)">
+							visible="@load(employee.isVisibleFormContactDetails)">
 							<include
-								src="/WEB-INF/pages/module_hr/employee/contactDetails.zul" />
+								src="/WEB-INF/pages/module_hr/employee/contactDetails.zul"/>
 						</row>
 						<row
-							visible="@load(vm.isVisibleFormEmergencyContacts)">
+							visible="@load(employee.isVisibleFormEmergencyContacts)">
 							<include
-								src="/WEB-INF/pages/module_hr/employee/emergencyContacts.zul" />
+								src="@load('/WEB-INF/pages/module_hr/employee/emergencyContacts.zul')" params="@load(employee.trsEmployee)"/>
 						</row>
 						<row
-							visible="@load(vm.isVisibleFormDependents)">
+							visible="@load(employee.isVisibleFormDependents)">
 							<include
 								src="/WEB-INF/pages/module_hr/employee/dependents.zul" />
 						</row>
 						<row
-							visible="@load(vm.isVisibleFormImmigration)">
+							visible="@load(employee.isVisibleFormImmigration)">
 							<include
 								src="/WEB-INF/pages/module_hr/employee/immigration.zul" />
 						</row>
-						<row visible="@load(vm.isVisibleFormJob)">
+						<row visible="@load(employee.isVisibleFormJob)">
 							<include
 								src="/WEB-INF/pages/module_hr/employee/job.zul" />
 						</row>
-						<row visible="@load(vm.isVisibleFormSalary)">
+						<row visible="@load(employee.isVisibleFormSalary)">
 							<include
 								src="/WEB-INF/pages/module_hr/employee/salary.zul" />
 						</row>
 						<row
-							visible="@load(vm.isVisibleFormReportTo)">
+							visible="@load(employee.isVisibleFormReportTo)">
 							<include
 								src="/WEB-INF/pages/module_hr/employee/reportTo.zul" />
 						</row>
 						<row
-							visible="@load(vm.isVisibleFormQualification)">
+							visible="@load(employee.isVisibleFormQualification)">
 							<div>
 								<include
 									src="/WEB-INF/pages/module_hr/employee/qualifications.zul" />
 							</div>
 						</row>
 						<row
-							visible="@load(vm.isVisibleFormMemberships)">
+							visible="@load(employee.isVisibleFormMemberships)">
 							<include
 								src="/WEB-INF/pages/module_hr/employee/memberships.zul" />
 						</row>
-						<row
-							visible="@load(vm.test)">
-							<include
-								src="/WEB-INF/pages/module_hr/test/test.zul" />
-						</row>
+						
 					</rows>
 				</grid>
 			</center>

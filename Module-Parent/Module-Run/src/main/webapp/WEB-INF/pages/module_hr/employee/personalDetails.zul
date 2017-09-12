@@ -1,6 +1,6 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
-	<window border="none" width="100%">
+	<window border="none" width="100%" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.employee.PersonalDetail')">
 		<borderlayout height="500px">
 			<north size="100%" collapsible="true" autoscroll="true">
 				<div>

@@ -8,26 +8,34 @@ import org.zkoss.zul.Listitem;
 import org.zkoss.zul.Textbox;
 
 public class EmergencyContactListItemRenderer extends InlineListItemRenderer<TrsEmployeeEmergencyContact>{
+	
+	private TrsEmployeeEmergencyContact value = new TrsEmployeeEmergencyContact();
+	private Textbox textboxName;
+	private Textbox textboxRelationship;
+	private Textbox textboxHomeTelephone;
+	private Textbox textboxWorkTelephone;
+	private Textbox textboxMobile;
 
 	@Override
 	public void renderListItem(Listitem item, TrsEmployeeEmergencyContact value, int index) throws Exception{
-		Textbox textboxName = new Textbox();
+		this.value = value;
+		textboxName = new Textbox();
 		textboxName.setValue(value.getName());
 		textboxName.setVisible(false);
 		
-		Textbox textboxRelationship = new Textbox();
+		textboxRelationship = new Textbox();
 		textboxRelationship.setValue(value.getRelationship());
 		textboxRelationship.setVisible(false);
 		
-		Textbox textboxHomeTelephone = new Textbox();
+		textboxHomeTelephone = new Textbox();
 		textboxHomeTelephone.setValue(value.getHomeTelephone());
 		textboxHomeTelephone.setVisible(false);
 		
-		Textbox textboxWorkTelephone = new Textbox();
+		textboxWorkTelephone = new Textbox();
 		textboxWorkTelephone.setValue(value.getWorkTelephone());
 		textboxWorkTelephone.setVisible(false);
 		
-		Textbox textboxMobile = new Textbox();
+		textboxMobile = new Textbox();
 		textboxMobile.setValue(value.getMobile());
 		textboxMobile.setVisible(false);
 		
@@ -88,5 +96,38 @@ public class EmergencyContactListItemRenderer extends InlineListItemRenderer<Trs
 		
 		item.setValue(value);
 		
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public TrsEmployeeEmergencyContact getTransactionValue() {
+		System.out.println(textboxName.getValue());
+		value.setName(textboxName.getValue());
+		value.setRelationship(textboxRelationship.getValue());
+		value.setHomeTelephone(textboxHomeTelephone.getValue());
+		value.setMobile(textboxMobile.getValue());
+		value.setWorkTelephone(textboxWorkTelephone.getValue());
+		return value;
+	}
+	
+	/**
+	 * 
+	 * @param mstSkill
+	 */
+	public void setTransactionValue(TrsEmployeeEmergencyContact trsEmployeeEmergencyContact) {
+		this.value = trsEmployeeEmergencyContact;
+		textboxName = new Textbox();
+		textboxHomeTelephone= new Textbox();
+		textboxMobile = new Textbox();
+		textboxRelationship = new Textbox();
+		textboxWorkTelephone = new Textbox();
+		
+		textboxName.setValue(value.getName());
+		textboxHomeTelephone.setValue(value.getHomeTelephone());
+		textboxMobile.setValue(value.getMobile());
+		textboxRelationship.setValue(value.getRelationship());
+		textboxWorkTelephone.setValue(value.getWorkTelephone());
 	}
 }

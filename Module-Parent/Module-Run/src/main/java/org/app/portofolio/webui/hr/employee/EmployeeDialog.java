@@ -7,9 +7,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.HashMap;
 
+import org.app.portofolio.webui.hr.common.collections.ArgKey;
+import org.app.portofolio.webui.hr.common.collections.ModalAction;
 import org.module.hr.model.TrsEmployee;
-import org.module.hr.service.TrsEmployeeService;
+import org.module.hr.service.TransactionEmployeeService;
 import org.zkoss.bind.BindContext;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.Command;
@@ -31,7 +34,7 @@ public class EmployeeDialog {
 	private TrsEmployee trsEmployee;
 
 	@WireVariable
-	private TrsEmployeeService trsEmployeeService;
+	private TransactionEmployeeService transactionEmployeeService;
 
 	private Media media;
 
@@ -81,15 +84,15 @@ public class EmployeeDialog {
 
 	@Command
 	public void doSave() {
-		if (this.media == null) {
-			Messagebox.show("Fotonya mana coy");
-		} else {
-			String type = this.media.getContentType().split("/")[0];
-			if (type.equals("image")) {
-				saveFile(this.media);
-			}
-		}
-		trsEmployeeService.save(this.trsEmployee);
+		/*
+		 * if (this.media == null) { Messagebox.show("Fotonya mana coy"); } else
+		 * { String type = this.media.getContentType().split("/")[0]; if
+		 * (type.equals("image")) { saveFile(this.media); } }
+		 */
+		transactionEmployeeService.save(this.trsEmployee);
+		HashMap<String, Object> arg = new HashMap<>();
+		arg.put("trsEmployee", trsEmployee);
+		Executions.createComponents("/WEB-INF/pages/module_hr/employee/employeeDetailDialog.zul", null, arg);
 	}
 
 	private void saveFile(Media media) {
@@ -137,12 +140,12 @@ public class EmployeeDialog {
 		this.trsEmployee = trsEmployee;
 	}
 
-	public TrsEmployeeService getTrsEmployeeService() {
-		return trsEmployeeService;
+	public TransactionEmployeeService getTransactionEmployeeService() {
+		return transactionEmployeeService;
 	}
 
-	public void setTrsEmployeeService(TrsEmployeeService trsEmployeeService) {
-		this.trsEmployeeService = trsEmployeeService;
+	public void setTransactionEmployeeService(TransactionEmployeeService transactionEmployeeService) {
+		this.transactionEmployeeService = transactionEmployeeService;
 	}
 
 	public Media getMedia() {
