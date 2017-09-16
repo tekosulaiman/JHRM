@@ -7,11 +7,11 @@
 					<groupbox mold="3d">
 						<caption label="Job Category" />
 	                	<hbox>
-							<button  label="Add"/> 
-							<button  label="Delete"/>
+							<button label="${labels.button.add}" onClick="@command('doNew')"/>
+							<button label="${labels.button.delete}" onClick="@command('doDelete')"/>
 						</hbox>
 						<separator />
-						<listbox id="listBoxJobCategory" model="@bind(vm.mstJobCategories)" itemRenderer="@bind(vm.mstJobCategoryListItemRenderer.renderer)">
+						<listbox id="listBoxJobCategory" model="@bind(vm.mstJobCategories)" itemRenderer="@bind(vm.mstJobCategoryListItemRenderer)" selectedItem="@bind(vm.mstJobCategory)">
 							<listhead >
 								<listheader width="50px" align="center"/>
 								<listheader label="Job Categories"/>	

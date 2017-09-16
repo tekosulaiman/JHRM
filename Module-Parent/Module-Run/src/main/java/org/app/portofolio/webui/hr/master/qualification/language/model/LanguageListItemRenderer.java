@@ -1,40 +1,126 @@
 package org.app.portofolio.webui.hr.master.qualification.language.model;
 
-import org.app.portofolio.webui.hr.common.components.InlineListItemRenderer;
 import org.module.hr.model.MstLanguage;
+import org.module.hr.service.MasterQualificationService;
+import org.zkoss.bind.BindUtils;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.EventListener;
+import org.zkoss.zk.ui.event.Events;
+import org.zkoss.zkplus.spring.SpringUtil;
+import org.zkoss.zul.Button;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listitem;
+import org.zkoss.zul.ListitemRenderer;
+import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 
-public class LanguageListItemRenderer extends InlineListItemRenderer<MstLanguage>{
+public class LanguageListItemRenderer implements ListitemRenderer<MstLanguage>{
 	
+	private MasterQualificationService masterQualificationService = (MasterQualificationService) SpringUtil.getBean("masterQualificationService");		
 	
 	@Override
-	public void renderListItem(Listitem item, MstLanguage value, int index) throws Exception {
-		Textbox textboxName = new Textbox();
-		textboxName.setValue(value.getNameLanguage());
-		textboxName.setVisible(false);
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public void render(Listitem item, final MstLanguage mstLanguage, int index) throws Exception {
+		Listcell listcell;
 		
-		Label labelName = new Label();
-		labelName.setValue(value.getNameLanguage());
+		final Button buttonSave = new Button();
+    		buttonSave.setImage("/images/icons/btn_save.gif");
 		
-		setEditingComponents(textboxName, textboxName);
-		setLabelingComponents(labelName, labelName);
-		
-		if (value.getIdLanguage() == null) {
-			textboxName.setVisible(true);
-			onAdding(true);
+		final Button buttonEdit = new Button();
+			buttonEdit.setImage("/images/icons/btn_edit.gif");
+			
+		final Button buttonDelete = new Button();
+        	buttonDelete.setImage("/images/icons/btn_delete.gif");
+        
+        final Button buttonCancel = new Button();
+        	buttonCancel.setImage("/images/icons/btn_cancel.gif");
+        	
+        final Label labelName = new Label();			        
+        
+        final Textbox textboxName = new Textbox();
+        	
+        listcell = new Listcell();
+        	buttonEdit.setParent(listcell); 
+        	buttonSave.setParent(listcell); 
+        	buttonCancel.setParent(listcell); 
+        	buttonDelete.setParent(listcell); 
+		listcell.setParent(item);
+        
+		listcell = new Listcell();
+			textboxName.setParent(listcell); 
+			labelName.setParent(listcell); 
+		listcell.setParent(item);
+
+		if(mstLanguage.getIdLanguage() == null){
+			buttonEdit.setVisible(false);
+			buttonDelete.setVisible(false);
+		} else {
+        	buttonSave.setVisible(false);
+        	buttonCancel.setVisible(false);
+        	buttonDelete.setVisible(false);
+        	
+        	labelName.setValue(mstLanguage.getNameLanguage());
+        	
+        	textboxName.setVisible(false);
 		}
 		
-		super.renderListItem(item, value, index);
+		buttonSave.addEventListener(Events.ON_CLICK, new EventListener() {
+			@Override
+			public void onEvent(Event event) throws Exception {
+				if(mstLanguage.getIdLanguage() == null){
+					mstLanguage.setNameLanguage(textboxName.getValue());
+
+					masterQualificationService.save(mstLanguage);
+					
+					BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
+				}else{
+					mstLanguage.setNameLanguage(textboxName.getValue());
+
+					masterQualificationService.update(mstLanguage);
+					
+					BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
+				}
+			}
+		});
 		
-		Listcell listcell = new Listcell();
+		buttonEdit.addEventListener(Events.ON_CLICK, new EventListener() {
+			public void onEvent(Event event) throws Exception {		
+				buttonEdit.setVisible(false);
+				buttonSave.setVisible(true);
+				buttonDelete.setVisible(true);
+				
+				textboxName.setVisible(true);
+				
+				labelName.setVisible(false);
+				
+				textboxName.setValue(mstLanguage.getNameLanguage());
+			}					
+		});
 		
-		textboxName.setParent(listcell);
-		labelName.setParent(listcell);
-		listcell.setParent(item);
+		buttonDelete.addEventListener(Events.ON_CLICK, new EventListener() {
+			@Override
+			public void onEvent(Event event) throws Exception {
+				Messagebox.show("Do you really want to remove item?", "Confirm", Messagebox.OK | Messagebox.CANCEL, Messagebox.EXCLAMATION, new EventListener() {
+				    public void onEvent(Event event) throws Exception {    	
+				 		if (((Integer) event.getData()).intValue() == Messagebox.OK) {
+
+				 			masterQualificationService.delete(mstLanguage);
+				 			
+				 			BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
+				 		}else{
+				 			return;
+				 		}
+				 	}
+				});
+			}
+		});
 		
-		item.setValue(value);
+		buttonCancel.addEventListener(Events.ON_CLICK, new EventListener() {
+			@Override
+			public void onEvent(Event event) throws Exception {
+				BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
+			}
+		});
 	}
 }

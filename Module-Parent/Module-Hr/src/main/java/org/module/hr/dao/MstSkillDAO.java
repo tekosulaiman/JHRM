@@ -10,4 +10,5 @@ public interface MstSkillDAO {
     public void saveOrUpdate(MstSkill mstSkill);
     public void delete(MstSkill mstSkill);
     public List<MstSkill> getAllMstSkill();
+    public MstSkill getMstSkillById(Integer id);
 }

@@ -10,10 +10,10 @@
 						<caption label="${labels.master.qualifications.licenses.title}"></caption>
 						<hbox>
 							<button label="${labels.button.add}" onClick="@command('doNew')"/>
-							<button label="${labels.button.delete}"/>
+							<button label="${labels.button.delete}" onClick="@command('doDelete')"/>
 						</hbox>	
 						<space/>
-						<listbox id="listBoxLicenses" model="@bind(vm.licenses)" selectedItem="@bind(vm.selectedLicenses)" itemRenderer="@bind(vm.licenseItemRenderer.renderer)">
+						<listbox id="listBoxLicenses" model="@bind(vm.licenses)" selectedItem="@bind(vm.selectedLicenses)" itemRenderer="@bind(vm.licenseItemRenderer)">
 							<listhead>
 								<listheader width="10%" align="center"/>
 								<listheader label="${labels.master.qualifications.licenses.listheader.name}" sort="auto" /> 	

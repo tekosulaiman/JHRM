@@ -7,13 +7,13 @@
 					<groupbox mold="3d">
 						<caption label="Employement Status" />
 	                	<hbox >
-							<button  label="Add"/> 
-							<button  label="Delete"/>
+							<button label="${labels.button.add}" onClick="@command('doNew')"/>
+							<button label="${labels.button.delete}" onClick="@command('doDelete')"/>
 						</hbox>
 						<separator />
-						<listbox id="listBoxEmployementStatus" model="@bind(vm.employementStatus)" itemRenderer="@bind(vm.mstEmployementStatusListItemRenderer.renderer)">
+						<listbox id="listBoxEmployementStatus" model="@bind(vm.mstEmployementStatusList)" itemRenderer="@bind(vm.mstEmployementStatusListItemRenderer)" selectedItem="@bind(vm.mstEmployementStatus)">
 							<listhead >
-								<listheader width="50px" align="center"/>
+								<listheader width="10%" align="center"/>
 								<listheader label="Employement Status"/>	
 							</listhead>
 						</listbox>

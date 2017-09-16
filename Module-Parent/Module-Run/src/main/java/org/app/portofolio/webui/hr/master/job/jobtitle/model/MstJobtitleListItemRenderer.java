@@ -1,51 +1,140 @@
 package org.app.portofolio.webui.hr.master.job.jobtitle.model;
 
-import org.app.portofolio.webui.hr.common.components.InlineListItemRenderer;
 import org.module.hr.model.MstJobtitle;
+import org.module.hr.service.MasterJobService;
+import org.zkoss.bind.BindUtils;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.EventListener;
+import org.zkoss.zk.ui.event.Events;
+import org.zkoss.zkplus.spring.SpringUtil;
+import org.zkoss.zul.Button;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listitem;
+import org.zkoss.zul.ListitemRenderer;
+import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 
-public class MstJobtitleListItemRenderer extends InlineListItemRenderer<MstJobtitle>{
+public class MstJobtitleListItemRenderer implements ListitemRenderer<MstJobtitle>{
+	
+	private MasterJobService masterJobService = (org.module.hr.service.MasterJobService) SpringUtil.getBean("masterJobService");		
 	
 	@Override
-	public void renderListItem(Listitem item, MstJobtitle value, int index) throws Exception {	
-		Textbox textboxJobTitle = new Textbox();
-		textboxJobTitle.setValue(value.getJobName());
-		textboxJobTitle.setVisible(false);
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public void render(Listitem item, final MstJobtitle mstJobtitle, int index) throws Exception {
+		Listcell listcell;
 		
-		Textbox textboxJobDescription = new Textbox();
-		textboxJobDescription.setValue(value.getJobDescription());
-		textboxJobDescription.setVisible(false);
+		final Button buttonSave = new Button();
+    		buttonSave.setImage("/images/icons/btn_save.gif");
 		
-		Label labelJobTitle = new Label();
-		labelJobTitle.setValue(value.getJobName());
-		
-		Label labelJobDescription = new Label();
-		labelJobDescription.setValue(value.getJobDescription());
-		
-		setEditingComponents(textboxJobTitle, textboxJobDescription);
-		setLabelingComponents(labelJobTitle, labelJobDescription);
-		
-		if (value.getIdJobTitle() == null) {
-			textboxJobTitle.setVisible(true);
-			textboxJobDescription.setVisible(true);
-			onAdding(true);
+		final Button buttonEdit = new Button();
+			buttonEdit.setImage("/images/icons/btn_edit.gif");
+			
+		final Button buttonDelete = new Button();
+        	buttonDelete.setImage("/images/icons/btn_delete.gif");
+        
+        final Button buttonCancel = new Button();
+        	buttonCancel.setImage("/images/icons/btn_cancel.gif");
+        	
+        final Label labelName = new Label();			        
+        final Label labelDescription = new Label();
+        
+        final Textbox textboxName = new Textbox();
+        final Textbox textboxDescription = new Textbox();
+        	
+        listcell = new Listcell();
+        	buttonEdit.setParent(listcell); 
+        	buttonSave.setParent(listcell); 
+        	buttonCancel.setParent(listcell); 
+        	buttonDelete.setParent(listcell); 
+		listcell.setParent(item);
+        
+		listcell = new Listcell();
+			textboxName.setParent(listcell); 
+			labelName.setParent(listcell); 
+		listcell.setParent(item);
+
+		listcell = new Listcell();
+		textboxDescription.setParent(listcell); 
+			labelDescription.setParent(listcell);
+		listcell.setParent(item);
+
+		if(mstJobtitle.getIdJobTitle() == null){
+			buttonEdit.setVisible(false);
+			buttonDelete.setVisible(false);
+		}else{
+        	buttonSave.setVisible(false);
+        	buttonCancel.setVisible(false);
+        	buttonDelete.setVisible(false);
+        	
+        	labelName.setValue(mstJobtitle.getJobName());
+        	labelDescription.setValue(mstJobtitle.getJobDescription());
+        	
+        	textboxName.setVisible(false);
+        	textboxDescription.setVisible(false);
 		}
 		
-		super.renderListItem(item, value, index);
+		buttonSave.addEventListener(Events.ON_CLICK, new EventListener() {
+			@Override
+			public void onEvent(Event event) throws Exception {
+				if(mstJobtitle.getIdJobTitle() == null){
+					mstJobtitle.setJobName(textboxName.getValue());
+					mstJobtitle.setJobDescription(textboxDescription.getValue());
+
+					masterJobService.save(mstJobtitle);
+					
+					BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
+				}else{
+					mstJobtitle.setJobName(textboxName.getValue());
+					mstJobtitle.setJobDescription(textboxDescription.getValue());
+
+					masterJobService.update(mstJobtitle);
+					
+					BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
+				}
+			}
+		});
 		
-		Listcell listcell = new Listcell();
-			textboxJobTitle.setParent(listcell);
-			labelJobTitle.setParent(listcell);
-		listcell.setParent(item);
+		buttonEdit.addEventListener(Events.ON_CLICK, new EventListener() {
+			public void onEvent(Event event) throws Exception {		
+				buttonEdit.setVisible(false);
+				buttonSave.setVisible(true);
+				buttonDelete.setVisible(true);
+				
+				textboxName.setVisible(true);
+				textboxDescription.setVisible(true);
+				
+				labelName.setVisible(false);
+				labelDescription.setVisible(false);
+				
+				textboxName.setValue(mstJobtitle.getJobName());
+				textboxDescription.setValue(mstJobtitle.getJobDescription());
+			}					
+		});
 		
-		listcell = new Listcell();
-			textboxJobDescription.setParent(listcell);	
-			labelJobDescription.setParent(listcell);
-		listcell.setParent(item);
+		buttonDelete.addEventListener(Events.ON_CLICK, new EventListener() {
+			@Override
+			public void onEvent(Event event) throws Exception {
+				Messagebox.show("Do you really want to remove item?", "Confirm", Messagebox.OK | Messagebox.CANCEL, Messagebox.EXCLAMATION, new EventListener() {
+				    public void onEvent(Event event) throws Exception {    	
+				 		if (((Integer) event.getData()).intValue() == Messagebox.OK) {
+
+				 			masterJobService.delete(mstJobtitle);
+				 			
+				 			BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
+				 		}else{
+				 			return;
+				 		}
+				 	}
+				});
+			}
+		});
 		
-		item.setValue(value);
+		buttonCancel.addEventListener(Events.ON_CLICK, new EventListener() {
+			@Override
+			public void onEvent(Event event) throws Exception {
+				BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
+			}
+		});
 	}
 }

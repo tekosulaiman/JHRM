@@ -12,7 +12,12 @@ public class MstSkillDAOImpl extends BasisDAO<MstSkill> implements MstSkillDAO{
 	@Override
 	public List<MstSkill> getAllMstSkill() {
 		List<MstSkill>list = (List<MstSkill>) getHibernateTemplate().find("FROM MstSkill");
-		
 		return list;
+	}
+	
+	@Override
+	public MstSkill getMstSkillById(Integer id) {
+		MstSkill mstSkill = getHibernateTemplate().get(MstSkill.class, id);
+		return mstSkill;
 	}
 }

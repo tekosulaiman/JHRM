@@ -19,6 +19,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -38,8 +39,9 @@ import javax.xml.bind.annotation.XmlTransient;
 public class MstSkill implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     @Basic(optional = false)
+    @SequenceGenerator(name="MstSkill_idSkill_GENERATOR", sequenceName="SCHEMA_HR.MstSkill_idSkill_SEQ")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="MstSkill_idSkill_GENERATOR")
     @Column(name = "id_skill")
     private Integer idSkill;
     @Column(name = "name_skill")

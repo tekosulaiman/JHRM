@@ -49,6 +49,11 @@ public class MasterQualificationServiceImpl implements MasterQualificationServic
 		return list;
 	}
 
+	@Override
+	public MstSkill getMstSkillById(Integer id) {
+		return mstSkillDAO.getMstSkillById(id);
+	}
+	
 	public void setMstSkillDAO(MstSkillDAO mstSkillDAO) {
 		this.mstSkillDAO = mstSkillDAO;
 	}

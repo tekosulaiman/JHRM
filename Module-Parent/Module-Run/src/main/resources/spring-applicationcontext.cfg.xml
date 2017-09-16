@@ -34,7 +34,7 @@
                 <!--prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop-->
                 <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
                 <!-- <prop key="hibernate.dialect"> org.hibernate.dialect.Oracle10gDialect</prop> -->          
-                <!-- <prop key="hibernate.hbm2ddl.auto">create</prop> -->
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.format_sql">true</prop>
             </props>
@@ -129,16 +129,10 @@
 	
 	<!-- Inject Service -->
 	<!-- Job -->
-	<bean id="mstJobtitleService" class="org.module.hr.service.impl.MstJobtitleServiceImpl">
+	<bean id="masterJobService" class="org.module.hr.service.impl.MasterJobServiceImpl">
         <property name="mstJobtitleDAO" ref="mstJobtitleDAO" />
-    </bean>
-    <bean id="mstPaygradeService" class="org.module.hr.service.impl.MstPaygradeServiceImpl">
         <property name="mstPaygradeDAO" ref="mstPaygradeDAO" />
-    </bean>
-    <bean id="mstEmployementStatusService" class="org.module.hr.service.impl.MstEmployementStatusServiceImpl">
         <property name="mstEmployementStatusDAO" ref="mstEmployementStatusDAO" />
-    </bean>
-    <bean id="mstJobCategoryService" class="org.module.hr.service.impl.MstJobCategoryServiceImpl">
         <property name="mstJobCategoryDAO" ref="mstJobCategoryDAO" />
     </bean>
 	
@@ -152,9 +146,9 @@
     </bean>
     
     <!-- Employee -->
-	<bean id="trsEmployeeEmergencyContactService" class="org.module.hr.service.impl.TrsEmployeeEmergencyContactServiceImpl">
+	<!-- <bean id="trsEmployeeEmergencyContactService" class="org.module.hr.service.impl.TrsEmployeeEmergencyContactServiceImpl">
 		<property name="trsEmployeeEmergencyContactDAO" ref="trsEmployeeEmergencyContactDAO"/>
-	</bean>
+	</bean> -->
     
     
     

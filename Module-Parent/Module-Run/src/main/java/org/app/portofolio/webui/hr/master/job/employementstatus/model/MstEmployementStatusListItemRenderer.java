@@ -1,41 +1,126 @@
 package org.app.portofolio.webui.hr.master.job.employementstatus.model;
 
-import org.app.portofolio.webui.hr.common.components.InlineListItemRenderer;
 import org.module.hr.model.MstEmployementStatus;
-import org.module.hr.model.MstTest;
-import org.zkoss.zul.Combobox;
-import org.zkoss.zul.Datebox;
+import org.module.hr.service.MasterJobService;
+import org.zkoss.bind.BindUtils;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.EventListener;
+import org.zkoss.zk.ui.event.Events;
+import org.zkoss.zkplus.spring.SpringUtil;
+import org.zkoss.zul.Button;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listitem;
+import org.zkoss.zul.ListitemRenderer;
+import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 
-public class MstEmployementStatusListItemRenderer extends InlineListItemRenderer<MstEmployementStatus>{
+public class MstEmployementStatusListItemRenderer implements ListitemRenderer<MstEmployementStatus>{
+	
+	private MasterJobService masterJobService = (MasterJobService) SpringUtil.getBean("masterJobService");		
 	
 	@Override
-	public void renderListItem(Listitem item, MstEmployementStatus value, int index) throws Exception {	
-		Textbox textboxEmployementStatus = new Textbox();
-		textboxEmployementStatus.setValue(value.getEmployementStatusName());
-		textboxEmployementStatus.setVisible(false);
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public void render(Listitem item, final MstEmployementStatus mstEmployementStatus, int index) throws Exception {
+		Listcell listcell;
 		
-		Label labelEmployementStatus = new Label();
-		labelEmployementStatus.setValue(value.getEmployementStatusName());
+		final Button buttonSave = new Button();
+    		buttonSave.setImage("/images/icons/btn_save.gif");
 		
-		setEditingComponents(textboxEmployementStatus);
-		setLabelingComponents(labelEmployementStatus);
-		
-		if (value.getIdEmployementStatus() == null) {
-			textboxEmployementStatus.setVisible(true);
-			onAdding(true);
+		final Button buttonEdit = new Button();
+			buttonEdit.setImage("/images/icons/btn_edit.gif");
+			
+		final Button buttonDelete = new Button();
+        	buttonDelete.setImage("/images/icons/btn_delete.gif");
+        
+        final Button buttonCancel = new Button();
+        	buttonCancel.setImage("/images/icons/btn_cancel.gif");
+        	
+        final Label labelName = new Label();			        
+        
+        final Textbox textboxName = new Textbox();
+        	
+        listcell = new Listcell();
+        	buttonEdit.setParent(listcell); 
+        	buttonSave.setParent(listcell); 
+        	buttonCancel.setParent(listcell); 
+        	buttonDelete.setParent(listcell); 
+		listcell.setParent(item);
+        
+		listcell = new Listcell();
+			textboxName.setParent(listcell); 
+			labelName.setParent(listcell); 
+		listcell.setParent(item);
+
+		if(mstEmployementStatus.getIdEmployementStatus() == null){
+			buttonEdit.setVisible(false);
+			buttonDelete.setVisible(false);
+		} else {
+        	buttonSave.setVisible(false);
+        	buttonCancel.setVisible(false);
+        	buttonDelete.setVisible(false);
+        	
+        	labelName.setValue(mstEmployementStatus.getEmployementStatusName());
+        	
+        	textboxName.setVisible(false);
 		}
 		
-		super.renderListItem(item, value, index);
+		buttonSave.addEventListener(Events.ON_CLICK, new EventListener() {
+			@Override
+			public void onEvent(Event event) throws Exception {
+				if(mstEmployementStatus.getIdEmployementStatus() == null){
+					mstEmployementStatus.setEmployementStatusName(textboxName.getValue());
+
+					masterJobService.save(mstEmployementStatus);
+					
+					BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
+				}else{
+					mstEmployementStatus.setEmployementStatusName(textboxName.getValue());
+
+					masterJobService.update(mstEmployementStatus);
+					
+					BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
+				}
+			}
+		});
 		
-		Listcell listcell = new Listcell();
-			textboxEmployementStatus.setParent(listcell);
-			labelEmployementStatus.setParent(listcell);
-		listcell.setParent(item);
+		buttonEdit.addEventListener(Events.ON_CLICK, new EventListener() {
+			public void onEvent(Event event) throws Exception {		
+				buttonEdit.setVisible(false);
+				buttonSave.setVisible(true);
+				buttonDelete.setVisible(true);
+				
+				textboxName.setVisible(true);
+				
+				labelName.setVisible(false);
+				
+				textboxName.setValue(mstEmployementStatus.getEmployementStatusName());
+			}					
+		});
 		
-		item.setValue(value);
+		buttonDelete.addEventListener(Events.ON_CLICK, new EventListener() {
+			@Override
+			public void onEvent(Event event) throws Exception {
+				Messagebox.show("Do you really want to remove item?", "Confirm", Messagebox.OK | Messagebox.CANCEL, Messagebox.EXCLAMATION, new EventListener() {
+				    public void onEvent(Event event) throws Exception {    	
+				 		if (((Integer) event.getData()).intValue() == Messagebox.OK) {
+
+				 			masterJobService.delete(mstEmployementStatus);
+				 			
+				 			BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
+				 		}else{
+				 			return;
+				 		}
+				 	}
+				});
+			}
+		});
+		
+		buttonCancel.addEventListener(Events.ON_CLICK, new EventListener() {
+			@Override
+			public void onEvent(Event event) throws Exception {
+				BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
+			}
+		});
 	}
 }
