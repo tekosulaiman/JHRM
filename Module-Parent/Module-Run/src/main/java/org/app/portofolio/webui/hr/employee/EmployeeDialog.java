@@ -9,8 +9,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
 
-import org.app.portofolio.webui.hr.common.collections.ArgKey;
-import org.app.portofolio.webui.hr.common.collections.ModalAction;
 import org.module.hr.model.TrsEmployee;
 import org.module.hr.service.TransactionEmployeeService;
 import org.zkoss.bind.BindContext;
@@ -20,13 +18,13 @@ import org.zkoss.bind.annotation.ContextParam;
 import org.zkoss.bind.annotation.ContextType;
 import org.zkoss.bind.annotation.ExecutionArgParam;
 import org.zkoss.bind.annotation.NotifyChange;
+import org.zkoss.image.AImage;
 import org.zkoss.util.media.Media;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.UploadEvent;
 import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
-import org.zkoss.zul.Image;
 import org.zkoss.zul.Messagebox;
 
 public class EmployeeDialog {
@@ -67,7 +65,7 @@ public class EmployeeDialog {
 		if (upEvent != null) {
 			this.media = upEvent.getMedia();
 			int lengthofImage = media.getByteData().length;
-			if (media instanceof Image) {
+			if (media instanceof AImage) {
 				if (lengthofImage > 500 * 1024) {
 					Messagebox.show("Please Select a Image of size less than 500Kb.");
 					return;

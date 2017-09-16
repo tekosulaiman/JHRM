@@ -59,6 +59,9 @@
 		<!-- ====================================================== -->
 		<intercept-url pattern="/pages/**" access="isFullyAuthenticated()"/>
 
+		<headers>
+			<frame-options policy="SAMEORIGIN" />
+		</headers>
 	</http>
 
 	<!-- ====================================================== -->
