@@ -1,8 +1,18 @@
 package org.app.portofolio.webui.hr.recruitment.vacancy;
 
+import java.util.List;
+
 import org.app.portofolio.webui.hr.common.collections.ArgKey;
 import org.app.portofolio.webui.hr.common.collections.ModalAction;
 import org.app.portofolio.webui.hr.common.utilities.ComponentConditionUtil;
+import org.app.portofolio.webui.hr.recruitment.vacancy.validator.TrsJobVacancyFormValidator;
+import org.module.hr.model.MstJobtitle;
+import org.module.hr.model.TrsEmployee;
+import org.module.hr.model.TrsJobVacancy;
+import org.module.hr.service.MasterJobService;
+import org.module.hr.service.RecruitmentService;
+import org.module.hr.service.TransactionEmployeeService;
+import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
@@ -11,33 +21,33 @@ import org.zkoss.bind.annotation.ExecutionArgParam;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.Wire;
+import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.Button;
-import org.zkoss.zul.Checkbox;
 import org.zkoss.zul.Combobox;
+import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
+import org.zkoss.zul.Window;
 
 public class RecruitmentVacancyDialogVM {
-
-	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	 * Wire component
-	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	
+	/*----------- zul ----------*/
+	@Wire("#windowVacancyDialog")
+	private Window windowVacancyDialog;
+	
 	@Wire("#comboboxJobTitle")
 	private Combobox comboboxJobTitle;
 	
 	@Wire("#textboxVacancyName")
 	private Textbox textboxVacancyName;
 	
-	@Wire("#textboxHiringManager")
-	private Textbox textboxHiringManager;
+	@Wire("#comboboxHiringManager")
+	private Combobox comboboxHiringManager;
 	
 	@Wire("#textboxNumberOfPositions")
 	private Textbox textboxNumberOfPositions;
 	
 	@Wire("#textboxDescription")
 	private Textbox textboxDescription;
-	
-	@Wire("#checkboxActive")
-	private Checkbox checkboxActive;
 	
 	@Wire("#buttonSaveVacancy")
 	private Button buttonSaveVacancy;
@@ -48,24 +58,43 @@ public class RecruitmentVacancyDialogVM {
 	@Wire("#buttonEditVacancy")
 	private Button buttonEditVacancy;
 	
-	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	 * Bean
-	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	/*----------- Services -----------*/
+	@WireVariable
+	private MasterJobService masterJobService;
 	
+	@WireVariable
+	private RecruitmentService recruitmentService;
 	
+	@WireVariable
+	private TransactionEmployeeService transactionEmployeeService;
+	
+	/*----------- Bean -----------*/
+	private TrsJobVacancyFormValidator formValidator = new TrsJobVacancyFormValidator();
+	private List<MstJobtitle> listJobtitle;
+	private TrsJobVacancy trsJobVacancy;
+	private List<TrsEmployee> hiringManagerList;
+	private ModalAction action;
 	
 	@AfterCompose
 	public void setupComponents(@ContextParam(ContextType.VIEW) Component component, 
 			@ExecutionArgParam("object") Object object,
-			@ExecutionArgParam(ArgKey.MODAL_ACTION_KEY) ModalAction action) {
+			@ExecutionArgParam(ArgKey.MODAL_ACTION_KEY) ModalAction action,
+			@ExecutionArgParam(ArgKey.SELECTED_TRANSACTION_JOB_VACANCY) TrsJobVacancy selectedJobVacancy) {
 		Selectors.wireComponents(component, this, false);
 		
+		this.action = action;
 		switch(action) {
-			case NEW : this.formAddCondition();
+			case NEW : 
+				this.formAddCondition();
 			break;
-			case DETAIL : this.formDetailCondition();
+			case DETAIL : 
+				this.formDetailCondition();
+				trsJobVacancy = selectedJobVacancy;
 			break;
 		}
+		
+		listJobtitle = masterJobService.getAllMstJobtitles();
+		hiringManagerList = transactionEmployeeService.getAllTrsEmployee();		
 	}
 
 	/**
@@ -74,6 +103,7 @@ public class RecruitmentVacancyDialogVM {
 	private void formAddCondition() {
 		ComponentConditionUtil.visibleButton(buttonEditVacancy, buttonSaveAndNewVacancy);
 		ComponentConditionUtil.invisibleButton(buttonEditVacancy);
+		trsJobVacancy = new TrsJobVacancy();
 	}
 	
 	/**
@@ -82,15 +112,33 @@ public class RecruitmentVacancyDialogVM {
 	private void formDetailCondition() {
 		ComponentConditionUtil.invisibleButton(buttonSaveVacancy, buttonSaveAndNewVacancy);
 		ComponentConditionUtil.visibleButton(buttonEditVacancy);
-		ComponentConditionUtil.disableCombobox(comboboxJobTitle);
-		ComponentConditionUtil.disableTextbox(textboxVacancyName, textboxNumberOfPositions, textboxHiringManager, textboxDescription);
-		ComponentConditionUtil.disableCheckbox(checkboxActive);
+		ComponentConditionUtil.disableCombobox(comboboxJobTitle,comboboxHiringManager);
+		ComponentConditionUtil.disableTextbox(textboxVacancyName, textboxNumberOfPositions, textboxDescription);
+	}
+	
+	@Command
+	public void doEdit() {
+		ComponentConditionUtil.invisibleButton(buttonEditVacancy);
+		ComponentConditionUtil.visibleButton(buttonSaveVacancy);
+		ComponentConditionUtil.enableCombobox(comboboxJobTitle, comboboxHiringManager);
+		ComponentConditionUtil.enableTextbox(textboxVacancyName, textboxNumberOfPositions, textboxDescription);
 	}
 	
 	@Command
 	public void doSave(){
-		ComponentConditionUtil.visibleButton(buttonEditVacancy);
-		ComponentConditionUtil.invisibleButton(buttonSaveVacancy, buttonSaveAndNewVacancy);
+		switch(action) {
+			case NEW : 
+				recruitmentService.save(trsJobVacancy);
+				ComponentConditionUtil.visibleButton(buttonEditVacancy);
+				ComponentConditionUtil.invisibleButton(buttonSaveVacancy, buttonSaveAndNewVacancy);
+			break;
+			case DETAIL : 
+				recruitmentService.update(trsJobVacancy);
+			break;
+		}
+		BindUtils.postGlobalCommand(null, null, "refreshTrsJobVacancyList", null);
+		Messagebox.show("Success !");
+		windowVacancyDialog.detach();
 	}
 	
 	@Command
@@ -98,12 +146,32 @@ public class RecruitmentVacancyDialogVM {
 		
 	}
 	
-	@Command
-	public void doEdit() {
-		ComponentConditionUtil.invisibleButton(buttonEditVacancy);
-		ComponentConditionUtil.visibleButton(buttonSaveVacancy);
-		ComponentConditionUtil.enableCombobox(comboboxJobTitle);
-		ComponentConditionUtil.enableTextbox(textboxVacancyName, textboxNumberOfPositions, textboxHiringManager, textboxDescription);
-		ComponentConditionUtil.enableCheckbox(checkboxActive);
+	/* ---------- GETTER-SETTER --------------*/
+	public List<MstJobtitle> getListJobtitle() {
+		return listJobtitle;
+	}
+	
+	public void setListJobtitle(List<MstJobtitle> listJobtitle) {
+		this.listJobtitle = listJobtitle;
+	}
+		
+	public TrsJobVacancy getTrsJobVacancy() {
+		return trsJobVacancy;
+	}
+	
+	public void setTrsJobVacancy(TrsJobVacancy trsJobVacancy) {
+		this.trsJobVacancy = trsJobVacancy;
+	}
+	
+	public List<TrsEmployee> getHiringManagerList() {
+		return hiringManagerList;
+	}
+	
+	public void setHiringManagerList(List<TrsEmployee> hiringManagerList) {
+		this.hiringManagerList = hiringManagerList;
+	}
+	
+	public TrsJobVacancyFormValidator getFormValidator(){
+		return formValidator;
 	}
 }

@@ -11,10 +11,13 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -33,6 +36,8 @@ public class TrsJobCandidate implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @SequenceGenerator(name="TrsJobCandidate_idTrsJobCandidate_GENERATOR", sequenceName="SCHEMA_HR.TrsJobCandidate_idTrsJobCandidate_SEQ")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="TrsJobCandidate_idTrsJobCandidate_GENERATOR")
     @Column(name = "id_trs_job_candidate")
     private Integer idTrsJobCandidate;
     @OneToMany(mappedBy = "idTrsJobCandidate")

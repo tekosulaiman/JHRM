@@ -46,21 +46,23 @@
 							<button label="${labels.button.delete}"/>
 						</hbox>	
 						<space/>
-						<listbox >
+						<listbox model="@bind(vm.trsJobVacancies)" selectedItem="@bind(vm.selectedTrsJobVacancy)">
 							<listhead>
 								<listheader width="5%" align="center"/>
 								<listheader label="${labels.menu.recruitment.vacancy.listheader.vacancy}" sort="auto" /> 	
-								<listheader label="${labels.menu.recruitment.vacancy.listheader.job-title}" sort="auto" /> 	
-								<listheader label="${labels.menu.recruitment.vacancy.listheader.hiring-manager}" sort="auto" /> 	
-								<listheader label="${labels.menu.recruitment.vacancy.listheader.status}" sort="auto" />
+								<listheader label="${labels.menu.recruitment.vacancy.listheader.jobtitle}" sort="auto" /> 	
+								<listheader label="${labels.menu.recruitment.vacancy.listheader.hiringmanager}" sort="auto" /> 	
+								<listheader label="Number Of Positions" sort="auto" />
 							</listhead>
-							<listitem>
-								<listcell image="/images/icons/btn_edit.gif" tooltiptext="Click For Edit" onClick="@command('doDetail')"/>
-								<listcell label="Lowongan Java Programmer" />
-								<listcell label="Programmer" />
-								<listcell label="Sugar Pramana" />
-								<listcell label="Active" />
-							</listitem>
+							<template name="model">
+								<listitem>
+									<listcell image="/images/icons/btn_edit.gif" tooltiptext="Click For Edit" onClick="@command('doDetail')"/>
+									<listcell label="@load(each.name)" />
+									<listcell label="@load(each.idJobTitle.jobName)" />
+									<listcell label="@load(each.idEmployee.firstName)" />
+									<listcell label="@load(each.noOfPositions)" />
+								</listitem>
+							</template>
 						</listbox>
 					</groupbox>
 				</vbox>

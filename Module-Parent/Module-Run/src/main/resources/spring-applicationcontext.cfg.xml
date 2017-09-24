@@ -121,7 +121,12 @@
   	<bean id="mstEducationDAO" class="org.module.hr.dao.impl.MstEducationDAOImpl" parent="baseDao"/>
   	<bean id="mstMembershipDAO" class="org.module.hr.dao.impl.MstMembershipDAOImpl" parent="baseDao"/>
   	
+  	<!-- Recruitment -->
+  	<bean id="trsJobVacancyDAO" class="org.module.hr.dao.impl.TrsJobVacancyDAOImpl" parent="baseDao"/>
+  	<bean id="trsJobCandidateDAO" class="org.module.hr.dao.impl.TrsJobCandidateDAOImpl" parent="baseDao"/>
+  	
   	<!-- Employee -->
+  	<bean id="trsEmployeeDAO" class="org.module.hr.dao.impl.TrsEmployeeDAOImpl" parent="baseDao"></bean>
   	<bean id="trsEmployeeEmergencyContactDAO" class="org.module.hr.dao.impl.TrsEmployeeEmergencyContactDAOImpl" parent="baseDao"/>
   	
   	<!-- Test -->
@@ -145,13 +150,19 @@
         <property name="mstMembershipDAO" ref="mstMembershipDAO" />
     </bean>
     
+    <!-- Recruitment Service -->
+	<bean id="recruitmentService" class="org.module.hr.service.impl.RecruitmentServiceImpl">
+        <property name="trsJobVacancyDAO" ref="trsJobVacancyDAO" />
+        <property name="trsJobCandidateDAO" ref="trsJobCandidateDAO" />
+    </bean>
+    
     <!-- Employee -->
+    <bean id="transactionEmployeeService" class="org.module.hr.service.impl.TransactionEmployeeServiceImpl">
+    	<property name="trsEmployeeDAO" ref="trsEmployeeDAO"></property>
+    </bean>
 	<!-- <bean id="trsEmployeeEmergencyContactService" class="org.module.hr.service.impl.TrsEmployeeEmergencyContactServiceImpl">
 		<property name="trsEmployeeEmergencyContactDAO" ref="trsEmployeeEmergencyContactDAO"/>
 	</bean> -->
-    
-    
-    
     
 	<!-- Test -->
     <bean id="mstTestService" class="org.module.hr.service.impl.MstTestServiceImpl">
