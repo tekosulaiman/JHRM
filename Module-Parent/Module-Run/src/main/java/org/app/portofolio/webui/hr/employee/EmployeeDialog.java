@@ -10,7 +10,7 @@ import java.io.OutputStream;
 import java.util.HashMap;
 
 import org.module.hr.model.TrsEmployee;
-import org.module.hr.service.TransactionEmployeeService;
+import org.module.hr.service.EmployeeService;
 import org.zkoss.bind.BindContext;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.Command;
@@ -32,7 +32,7 @@ public class EmployeeDialog {
 	private TrsEmployee trsEmployee;
 
 	@WireVariable
-	private TransactionEmployeeService transactionEmployeeService;
+	private EmployeeService employeeService;
 
 	private Media media;
 
@@ -87,7 +87,7 @@ public class EmployeeDialog {
 		 * { String type = this.media.getContentType().split("/")[0]; if
 		 * (type.equals("image")) { saveFile(this.media); } }
 		 */
-		transactionEmployeeService.save(this.trsEmployee);
+		employeeService.save(this.trsEmployee);
 		HashMap<String, Object> arg = new HashMap<>();
 		arg.put("trsEmployee", trsEmployee);
 		Executions.createComponents("/WEB-INF/pages/module_hr/employee/employeeDetailDialog.zul", null, arg);
@@ -138,12 +138,14 @@ public class EmployeeDialog {
 		this.trsEmployee = trsEmployee;
 	}
 
-	public TransactionEmployeeService getTransactionEmployeeService() {
-		return transactionEmployeeService;
+	
+
+	public EmployeeService getEmployeeService() {
+		return employeeService;
 	}
 
-	public void setTransactionEmployeeService(TransactionEmployeeService transactionEmployeeService) {
-		this.transactionEmployeeService = transactionEmployeeService;
+	public void setEmployeeService(EmployeeService employeeService) {
+		this.employeeService = employeeService;
 	}
 
 	public Media getMedia() {

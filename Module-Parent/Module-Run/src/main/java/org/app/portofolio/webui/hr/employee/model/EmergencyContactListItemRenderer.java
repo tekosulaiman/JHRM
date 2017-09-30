@@ -1,75 +1,64 @@
 package org.app.portofolio.webui.hr.employee.model;
 
-import org.app.portofolio.webui.hr.common.components.InlineListItemRenderer;
 import org.module.hr.model.TrsEmployeeEmergencyContact;
+import org.module.hr.service.EmployeeService;
+import org.zkoss.bind.BindUtils;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.EventListener;
+import org.zkoss.zk.ui.event.Events;
+import org.zkoss.zkplus.spring.SpringUtil;
+import org.zkoss.zul.Button;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listitem;
+import org.zkoss.zul.ListitemRenderer;
+import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 
-public class EmergencyContactListItemRenderer extends InlineListItemRenderer<TrsEmployeeEmergencyContact>{
-	
-	private TrsEmployeeEmergencyContact value = new TrsEmployeeEmergencyContact();
-	private Textbox textboxName;
-	private Textbox textboxRelationship;
-	private Textbox textboxHomeTelephone;
-	private Textbox textboxWorkTelephone;
-	private Textbox textboxMobile;
+
+public class EmergencyContactListItemRenderer implements ListitemRenderer<TrsEmployeeEmergencyContact> {
+
+	private EmployeeService employeeService = (EmployeeService) SpringUtil
+			.getBean("transactionEmployeeService");
 
 	@Override
-	public void renderListItem(Listitem item, TrsEmployeeEmergencyContact value, int index) throws Exception{
-		this.value = value;
-		textboxName = new Textbox();
-		textboxName.setValue(value.getName());
-		textboxName.setVisible(false);
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public void render(Listitem item, final TrsEmployeeEmergencyContact trsEmployeeEmergencyContact, int index) throws Exception {
+		Listcell listcell;
+
+		final Button buttonSave = new Button();
+		buttonSave.setImage("/images/icons/btn_save.gif");
+
+		final Button buttonEdit = new Button();
+		buttonEdit.setImage("/images/icons/btn_edit.gif");
+
+		final Button buttonDelete = new Button();
+		buttonDelete.setImage("/images/icons/btn_delete.gif");
+
+		final Button buttonCancel = new Button();
+		buttonCancel.setImage("/images/icons/btn_cancel.gif");
 		
-		textboxRelationship = new Textbox();
-		textboxRelationship.setValue(value.getRelationship());
-		textboxRelationship.setVisible(false);
+		final Label labelName = new Label();
+		final Label labelRelationship = new Label();
+		final Label labelHomeTelephone = new Label();
+		final Label labelMobile = new Label();
+		final Label labelWorkTelephone = new Label();
 		
-		textboxHomeTelephone = new Textbox();
-		textboxHomeTelephone.setValue(value.getHomeTelephone());
-		textboxHomeTelephone.setVisible(false);
+		final Textbox textboxName = new Textbox();
+		final Textbox textboxRelationship = new Textbox();
+		final Textbox textboxHomeTelephone = new Textbox();
+		final Textbox textboxMobile = new Textbox();
+		final Textbox textboxWorkTelephone = new Textbox();
 		
-		textboxWorkTelephone = new Textbox();
-		textboxWorkTelephone.setValue(value.getWorkTelephone());
-		textboxWorkTelephone.setVisible(false);
+
+		listcell = new Listcell();
+		buttonEdit.setParent(listcell);
+		buttonSave.setParent(listcell);
+		buttonCancel.setParent(listcell);
+		buttonDelete.setParent(listcell);
+		listcell.setParent(item);
 		
-		textboxMobile = new Textbox();
-		textboxMobile.setValue(value.getMobile());
-		textboxMobile.setVisible(false);
-		
-		Label labelName = new Label();
-		labelName.setValue(value.getName());
-		
-		Label labelRelationship = new Label();
-		labelRelationship.setValue(value.getRelationship());
-		
-		Label labelHomeTelephone = new Label();
-		labelHomeTelephone.setValue(value.getHomeTelephone());
-		
-		Label labelMobile = new Label();
-		labelMobile.setValue(value.getMobile());
-		
-		Label labelWorkTelephone = new Label();
-		labelWorkTelephone.setValue(value.getWorkTelephone());
-		
-		setEditingComponents(textboxName, textboxRelationship, textboxMobile, textboxHomeTelephone, textboxWorkTelephone);
-		setLabelingComponents(labelName, labelWorkTelephone, labelRelationship, labelHomeTelephone, labelMobile);
-		
-		if (value.getIdEmployeeEmergencyContact() == null){
-			textboxName.setVisible(true);
-			textboxRelationship.setVisible(true);
-			textboxMobile.setVisible(true);
-			textboxHomeTelephone.setVisible(true);
-			textboxWorkTelephone.setVisible(true);
-			onAdding(true);
-		}
-		
-		super.renderListItem(item, value, index);
-		
-		Listcell listcell = new Listcell();
-		
+		listcell = new Listcell();
 		textboxName.setParent(listcell);
 		labelName.setParent(listcell);
 		listcell.setParent(item);
@@ -94,40 +83,125 @@ public class EmergencyContactListItemRenderer extends InlineListItemRenderer<Trs
 		labelWorkTelephone.setParent(listcell);
 		listcell.setParent(item);
 		
-		item.setValue(value);
 		
-	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public TrsEmployeeEmergencyContact getTransactionValue() {
-		System.out.println(textboxName.getValue());
-		value.setName(textboxName.getValue());
-		value.setRelationship(textboxRelationship.getValue());
-		value.setHomeTelephone(textboxHomeTelephone.getValue());
-		value.setMobile(textboxMobile.getValue());
-		value.setWorkTelephone(textboxWorkTelephone.getValue());
-		return value;
-	}
-	
-	/**
-	 * 
-	 * @param mstSkill
-	 */
-	public void setTransactionValue(TrsEmployeeEmergencyContact trsEmployeeEmergencyContact) {
-		this.value = trsEmployeeEmergencyContact;
-		textboxName = new Textbox();
-		textboxHomeTelephone= new Textbox();
-		textboxMobile = new Textbox();
-		textboxRelationship = new Textbox();
-		textboxWorkTelephone = new Textbox();
 		
-		textboxName.setValue(value.getName());
-		textboxHomeTelephone.setValue(value.getHomeTelephone());
-		textboxMobile.setValue(value.getMobile());
-		textboxRelationship.setValue(value.getRelationship());
-		textboxWorkTelephone.setValue(value.getWorkTelephone());
+		// bandbox
+		/*Include include = new Include();
+		include.setSrc("/WEB-INF/pages/module_hr/employee/bandBoxPopup.zul");
+		
+		Bandbox bandbox = new Bandbox();
+		Bandpopup bandpopup = new Bandpopup();
+		
+		bandbox.appendChild(bandpopup);
+		bandpopup.appendChild(include);
+		
+		listcell = new Listcell();
+		bandbox.setParent(listcell);
+		labelWorkTelephone.setParent(listcell);
+		listcell.setParent(item);*/
+		
+		
+		if (trsEmployeeEmergencyContact.getIdEmployeeEmergencyContact() == null){
+			buttonEdit.setVisible(false);
+			buttonDelete.setVisible(false);
+		} else {
+			buttonSave.setVisible(false);
+			buttonCancel.setVisible(false);
+			buttonDelete.setVisible(false);
+			
+			labelName.setValue(trsEmployeeEmergencyContact.getName());
+			labelRelationship.setValue(trsEmployeeEmergencyContact.getRelationship());
+			labelHomeTelephone.setValue(trsEmployeeEmergencyContact.getHomeTelephone());;
+			labelMobile.setValue(trsEmployeeEmergencyContact.getMobile());
+			labelWorkTelephone.setValue(trsEmployeeEmergencyContact.getWorkTelephone());
+			
+			textboxName.setVisible(false);
+			textboxRelationship.setVisible(false);
+			textboxHomeTelephone.setVisible(false);
+			textboxMobile.setVisible(false);
+			textboxWorkTelephone.setVisible(false);
+		}
+		
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Function CRUD Event
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	buttonSave.addEventListener(Events.ON_CLICK, new EventListener() {
+		@Override
+		public void onEvent(Event event) throws Exception {
+			if(trsEmployeeEmergencyContact.getIdEmployeeEmergencyContact() == null){
+				trsEmployeeEmergencyContact.setName(textboxName.getValue());
+				trsEmployeeEmergencyContact.setRelationship(textboxRelationship.getValue());
+				trsEmployeeEmergencyContact.setHomeTelephone(textboxHomeTelephone.getValue());
+				trsEmployeeEmergencyContact.setMobile(textboxMobile.getValue());
+				trsEmployeeEmergencyContact.setWorkTelephone(textboxWorkTelephone.getValue());
+
+				employeeService.save(trsEmployeeEmergencyContact);
+				
+				BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
+			}else{
+				trsEmployeeEmergencyContact.setName(textboxName.getValue());
+				trsEmployeeEmergencyContact.setRelationship(textboxRelationship.getValue());
+				trsEmployeeEmergencyContact.setHomeTelephone(textboxHomeTelephone.getValue());
+				trsEmployeeEmergencyContact.setMobile(textboxMobile.getValue());
+				trsEmployeeEmergencyContact.setWorkTelephone(textboxWorkTelephone.getValue());;
+
+				employeeService.update(trsEmployeeEmergencyContact);
+				
+				BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
+			}
+		}
+	});
+	
+	buttonEdit.addEventListener(Events.ON_CLICK, new EventListener() {
+		public void onEvent(Event event) throws Exception {		
+			buttonEdit.setVisible(false);
+			buttonSave.setVisible(true);
+			buttonDelete.setVisible(true);
+			
+			textboxName.setVisible(true);
+			textboxRelationship.setVisible(true);
+			textboxHomeTelephone.setVisible(true);
+			textboxMobile.setVisible(true);
+			textboxWorkTelephone.setVisible(true);
+			
+			labelName.setVisible(false);
+			labelRelationship.setVisible(false);
+			labelHomeTelephone.setVisible(false);
+			labelMobile.setVisible(false);
+			labelWorkTelephone.setVisible(false);
+			
+			textboxName.setValue(trsEmployeeEmergencyContact.getName());
+			textboxRelationship.setValue(trsEmployeeEmergencyContact.getRelationship());
+			textboxHomeTelephone.setValue(trsEmployeeEmergencyContact.getHomeTelephone());
+			textboxMobile.setValue(trsEmployeeEmergencyContact.getMobile());
+			textboxWorkTelephone.setValue(trsEmployeeEmergencyContact.getWorkTelephone());
+		}					
+	});
+	
+	buttonDelete.addEventListener(Events.ON_CLICK, new EventListener() {
+		@Override
+		public void onEvent(Event event) throws Exception {
+			Messagebox.show("Do you really want to remove item?", "Confirm", Messagebox.OK | Messagebox.CANCEL, Messagebox.EXCLAMATION, new EventListener() {
+			    public void onEvent(Event event) throws Exception {    	
+			 		if (((Integer) event.getData()).intValue() == Messagebox.OK) {
+
+			 			employeeService.delete(trsEmployeeEmergencyContact);
+			 			
+			 			BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
+			 		}else{
+			 			return;
+			 		}
+			 	}
+			});
+		}
+	});
+	
+	buttonCancel.addEventListener(Events.ON_CLICK, new EventListener() {
+		@Override
+		public void onEvent(Event event) throws Exception {
+			BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
+		}
+	});
 	}
 }
+

@@ -1,15 +1,14 @@
 package org.app.portofolio.webui.hr.employee;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.app.portofolio.webui.hr.employee.model.EmergencyContactListItemRenderer;
-import org.app.portofolio.webui.hr.master.qualification.skills.model.SkillsListItemRenderer;
-import org.module.hr.model.MstSkill;
 import org.module.hr.model.TrsEmployee;
 import org.module.hr.model.TrsEmployeeEmergencyContact;
-import org.module.hr.service.TransactionEmployeeService;
+import org.module.hr.service.EmployeeService;
+import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.annotation.AfterCompose;
-import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
 import org.zkoss.bind.annotation.ContextType;
@@ -17,11 +16,14 @@ import org.zkoss.bind.annotation.ExecutionArgParam;
 import org.zkoss.bind.annotation.GlobalCommand;
 import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
+import org.zkoss.zul.Messagebox;
 
 public class EmergencyContact {
 
@@ -29,76 +31,79 @@ public class EmergencyContact {
 	private Listbox listBoxEmergencyContact;
 
 	@WireVariable
-	private TransactionEmployeeService transactionEmployeeService;
+	private EmployeeService employeeService;
+	
+	private TrsEmployee trsEmployee;
 
 	private EmergencyContactListItemRenderer emergencyContactListItemRenderer;
 	private List<TrsEmployeeEmergencyContact> employeeEmergencyContacts;
 	private TrsEmployeeEmergencyContact selectedEmployeeEmergencyContact;
-	private ListModelList<TrsEmployeeEmergencyContact> listModelList;
+	
+	public void doPrepareList(){
+		listBoxEmergencyContact.setCheckmark(true);
+		listBoxEmergencyContact.setMultiple(true);
+		listBoxEmergencyContact.setRows(15);
+		listBoxEmergencyContact.setStyle("border-style: none;");
+	}
 
 	@AfterCompose
 	public void setupComponents(@ContextParam(ContextType.VIEW) Component component,
 			@ExecutionArgParam("object") Object object, 
-			@ExecutionArgParam("params") TrsEmployee trsEmployee) {
+			@ExecutionArgParam("type") TrsEmployee trsEmployee) {
 		Selectors.wireComponents(component, this, false);
+		this.trsEmployee = trsEmployee;
+		HashMap< String, Object> requestMap = new HashMap<>();
+		requestMap.put("trsEmployee", trsEmployee);
+		employeeEmergencyContacts = employeeService.getTrsEmployeeEmergencyContactByTrsEmployeeEmergencyContactRequestMap(requestMap);
+		emergencyContactListItemRenderer = new EmergencyContactListItemRenderer();
 		
-		constructItemRenderer();
-		
-		employeeEmergencyContacts = transactionEmployeeService.getAllTrsEmployeeEmergencyContact();
-		listModelList = new ListModelList<TrsEmployeeEmergencyContact>(employeeEmergencyContacts);
-		
-		constructListbox();
-	}
-	
-	private void constructItemRenderer(){
-		this.emergencyContactListItemRenderer = new EmergencyContactListItemRenderer(){
-			@Override
-			protected void buttonSaveActionListener(){
-				super.buttonSaveActionListener();
-				
-			}
-			
-			@Override
-			protected void buttonDeleteActionListener(){
-				super.buttonDeleteActionListener();
-			}
-		};
-	}
-	
-	private void constructListbox() {
-		listBoxEmergencyContact.setModel(listModelList);
-		listBoxEmergencyContact.setItemRenderer(emergencyContactListItemRenderer.renderer);
+		listBoxEmergencyContact.setModel(new ListModelList<TrsEmployeeEmergencyContact>());
+		listBoxEmergencyContact.setItemRenderer(emergencyContactListItemRenderer);
+		doPrepareList();
 	}
 	
 	@Command
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void doNew() {
-		listModelList.add(0, new TrsEmployeeEmergencyContact());
+		ListModelList listModelList = (ListModelList) listBoxEmergencyContact.getModel();
+		TrsEmployeeEmergencyContact trsEmployeeEmergencyContact = new TrsEmployeeEmergencyContact();
+		trsEmployeeEmergencyContact.setIdEmployee(trsEmployee);
+		listModelList.add(0,  trsEmployeeEmergencyContact);		
 	}
 	
-	@GlobalCommand("refreshAfterSaveOrUpdate")
-	@NotifyChange("employeeEmergencyContacts")
-	public void refreshAfterSaveOrUpdate() {
-		constructItemRenderer();
-		
-		employeeEmergencyContacts = transactionEmployeeService.getAllTrsEmployeeEmergencyContact();
-		listModelList = new ListModelList<TrsEmployeeEmergencyContact>(employeeEmergencyContacts);
-		listBoxEmergencyContact.setModel(listModelList);
-		listBoxEmergencyContact.setItemRenderer(emergencyContactListItemRenderer.renderer);
+	@Command
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public void doDelete(){
+		final ListModelList<TrsEmployeeEmergencyContact> listModelListEmployeeEmergencyContact = (ListModelList)listBoxEmergencyContact.getModel();
+		if (listBoxEmergencyContact.getSelectedIndex() == -1){
+			Messagebox.show("There is no selected record?", "Confirm", Messagebox.OK, Messagebox.ERROR);
+		} else {
+			Messagebox.show("Do you really want to remove item?", "Confirm", Messagebox.OK | Messagebox.CANCEL, Messagebox.EXCLAMATION, new EventListener<Event>() {
+				
+				@Override
+				public void onEvent(Event event) throws Exception {
+					if (((Integer)event.getData()).intValue() == Messagebox.OK){
+						for (TrsEmployeeEmergencyContact trsEmployeeEmergencyContact : listModelListEmployeeEmergencyContact) {
+							if (listModelListEmployeeEmergencyContact.isSelected(trsEmployeeEmergencyContact)){
+								employeeService.delete(trsEmployeeEmergencyContact);
+							}
+						}
+						BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
+					} else {
+						return;
+					}
+				}
+			});
+		}
 	}
 	
-	@GlobalCommand("setTransactionValue")
-	public void setTransactionValue(@BindingParam(EmergencyContactListItemRenderer.SELECTED_TRANSACTION_VALUE) TrsEmployeeEmergencyContact selectedTransactionValue) {
-		emergencyContactListItemRenderer.setTransactionValue(selectedTransactionValue);
+	@GlobalCommand
+	@NotifyChange({"employeeEmergencyContacts","mytest"})
+	public void refreshAfterSaveOrUpdate(){
+		HashMap< String, Object> requestMap = new HashMap<>();
+		requestMap.put("trsEmployee", trsEmployee);
+		employeeEmergencyContacts = employeeService.getTrsEmployeeEmergencyContactByTrsEmployeeEmergencyContactRequestMap(requestMap);
 	}
-	
-	public void save(){
-		transactionEmployeeService.saveOrUpdate(emergencyContactListItemRenderer.getTransactionValue());
-	}
-	
-	public void delete(){
-		transactionEmployeeService.delete(emergencyContactListItemRenderer.getTransactionValue());
-	}
-	
 
 	public Listbox getListBoxEmergencyContact() {
 		return listBoxEmergencyContact;
@@ -132,12 +137,14 @@ public class EmergencyContact {
 		this.selectedEmployeeEmergencyContact = selectedEmployeeEmergencyContact;
 	}
 
-	public TransactionEmployeeService getTransactionEmployeeService() {
-		return transactionEmployeeService;
+	public EmployeeService getEmployeeService() {
+		return employeeService;
 	}
 
-	public void setTransactionEmployeeService(TransactionEmployeeService transactionEmployeeService) {
-		this.transactionEmployeeService = transactionEmployeeService;
+	public void setEmployeeService(EmployeeService employeeService) {
+		this.employeeService = employeeService;
 	}
+
+	
 
 }

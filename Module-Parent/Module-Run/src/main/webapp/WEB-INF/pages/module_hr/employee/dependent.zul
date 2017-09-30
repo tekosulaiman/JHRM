@@ -1,5 +1,5 @@
 <zk>
-	<window id="windowDependent" border="none" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.employee.Dependent')">
+	<window id="windowEmergencyContact" border="none" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.employee.Dependent')">
 		<borderlayout height="450px">
 			<!-- Function CRUD -->
 			<!-- <north/> -->
@@ -8,14 +8,14 @@
 				<div>
 					<groupbox mold="3d">
 						<caption
-							label="${labels.menu.employee.dependent.title}">
+							label="${labels.menu.employee.emergency.contact.title}">
 						</caption>
 						<hbox>
-							<button label="${labels.button.add}" />
+							<button label="${labels.button.add}" onClick="@command('doNew')" />
 							<button label="${labels.button.delete}" />
 						</hbox>
 						<space />
-						<listbox id="ListBoxDependent" model="@bind(vm.trsEmployeeDependents)" selectedItem="@bind(vm.selectedEmployeeDependent)" itemRenderer="@bind(vm.dependentListItemRenderer)">
+						<listbox id="ListBoxDependent" selectedItem="@bind(vm.selectedEmployeeDependent)" itemRenderer="@bind(vm.dependentListItemRenderer)" model="@bind(vm.trsEmployeeDependents)" >
 							<listhead>
 								<listheader width="5%" align="center" />
 								<listheader
@@ -28,14 +28,6 @@
 									label="${labels.menu.employee.dependent.listheader.date.of.birth}"
 									sort="auto" />
 							</listhead>
-							<!-- <listitem>
-								<listcell
-									image="/images/icons/btn_edit.gif"
-									tooltiptext="Click For Edit" />
-								<listcell label="toke" />
-								<listcell label="anak" />
-								<listcell label="1-1-2000" />
-							</listitem> -->
 						</listbox>
 					</groupbox>
 					<groupbox mold="3d">

@@ -72,7 +72,6 @@
     <bean id="baseDao" abstract="true" p:hibernateTemplate-ref="hibernateTemplate" class="org.module.api.common.dao.base.BasisDAO">
     	<property name="sessionFactory" ref="sessionFactory" />
     </bean>
-  	
     <bean id="secGroupDAO" class="org.module.sysadmin.dao.impl.SecGroupDAOImpl" parent="baseDao"/>
     <bean id="secGroupRightDAO" class="org.module.sysadmin.dao.impl.SecGroupRightDAOImpl" parent="baseDao"/>
     <bean id="secRightDAO" class="org.module.sysadmin.dao.impl.SecRightDAOImpl" parent="baseDao"/>
@@ -126,8 +125,12 @@
   	<bean id="trsJobCandidateDAO" class="org.module.hr.dao.impl.TrsJobCandidateDAOImpl" parent="baseDao"/>
   	
   	<!-- Employee -->
-  	<bean id="trsEmployeeDAO" class="org.module.hr.dao.impl.TrsEmployeeDAOImpl" parent="baseDao"></bean>
+  	<bean id="trsEmployeeDAO" class="org.module.hr.dao.impl.TrsEmployeeDAOImpl" parent="baseDao"/>
   	<bean id="trsEmployeeEmergencyContactDAO" class="org.module.hr.dao.impl.TrsEmployeeEmergencyContactDAOImpl" parent="baseDao"/>
+  	<bean id="trsEmployeeDependentDAO" class="org.module.hr.dao.impl.TrsEmployeeDependentDAOImpl" parent="baseDao"/>
+  	<bean id="trsEmployeeLicenseDAO" class="org.module.hr.dao.impl.TrsEmployeeLicenseDAOImpl" parent="baseDao"/>
+	<bean id="trsEmployeeMembershipDAO" class="org.module.hr.dao.impl.TrsEmployeeMembershipDAOImpl" parent="baseDao"/>
+  	  	
   	
   	<!-- Test -->
     <bean id="mstTestDAO" class="org.module.hr.dao.impl.MstTestDAOImpl" parent="baseDao"/>
@@ -157,14 +160,15 @@
     </bean>
     
     <!-- Employee -->
-    <bean id="transactionEmployeeService" class="org.module.hr.service.impl.TransactionEmployeeServiceImpl">
-    	<property name="trsEmployeeDAO" ref="trsEmployeeDAO"></property>
+    <bean id="employeeService" class="org.module.hr.service.impl.EmployeeServiceImpl">
+    	<property name="trsEmployeeDAO" ref="trsEmployeeDAO"/>
+    	<property name="trsEmployeeEmergencyContactDAO" ref="trsEmployeeEmergencyContactDAO"/>	
+    	<property name="trsEmployeeDependentDAO" ref="trsEmployeeDependentDAO"/>
+    	<property name="trsEmployeeLicenseDAO" ref="trsEmployeeLicenseDAO"/>
+    	<property name="trsEmployeeMembershipDAO" ref="trsEmployeeMembershipDAO"/>	
     </bean>
-	<!-- <bean id="trsEmployeeEmergencyContactService" class="org.module.hr.service.impl.TrsEmployeeEmergencyContactServiceImpl">
-		<property name="trsEmployeeEmergencyContactDAO" ref="trsEmployeeEmergencyContactDAO"/>
-	</bean> -->
     
-	<!-- Test -->
+    <!-- Test -->
     <bean id="mstTestService" class="org.module.hr.service.impl.MstTestServiceImpl">
         <property name="mstTestDAO" ref="mstTestDAO" />
     </bean>

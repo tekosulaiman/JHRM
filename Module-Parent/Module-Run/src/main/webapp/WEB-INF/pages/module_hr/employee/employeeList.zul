@@ -63,7 +63,7 @@
 							<button label="${labels.button.delete}"/>
 						</hbox>	
 						<space/>
-						<listbox >
+						<listbox id="listBoxEmployee" model="@bind(vm.trsEmployees)" selectedItem="@bind(vm.trsEmployee)" >
 							<listhead>
 								<listheader width="5%" align="center"/>
 								<listheader label="${labels.menu.employee.listheader.id}" sort="auto" /> 	
@@ -74,15 +74,17 @@
 								<listheader label="${labels.menu.employee.listheader.sub.unit}" sort="auto" /> 	
 								<listheader label="${labels.menu.employee.listheader.supervisor}" sort="auto" />
 							</listhead>
-							<listitem>
-								<listcell image="/images/icons/btn_edit.gif" tooltiptext="Click For Edit" onClick="@command('doDetail')"/>
-								<listcell label="0001" />
-								<listcell label="Moh Yudhi" />
-								<listcell label="Saputra" />
-								<listcell label="Outsource Kontrak" />
-								<listcell label="" />
-								<listcell label="" />
-							</listitem>
+							<template name="model" var="trsEmployee" selectedItem="@bind(vm.trsEmployee)">
+								<listitem>
+									<listcell image="/images/icons/btn_edit.gif" tooltiptext="Click For Edit" onClick="@command('doDetail')"/>
+									<listcell label="@bind(trsEmployee.idEmployee)" />
+									<listcell label="@bind(trsEmployee.firstName)" />
+									<listcell label="@bind(trsEmployee.lastName)" />
+									<listcell label="" />
+									<listcell label="" />
+									<listcell label="" />
+								</listitem>
+							</template>
 						</listbox>
 					</groupbox>
 				</vbox>
