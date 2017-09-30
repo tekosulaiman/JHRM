@@ -7,7 +7,6 @@ import org.app.portofolio.UserWorkspace;
 import org.app.portofolio.common.menu.util.JHRMAdditionalZulPath;
 import org.app.portofolio.webui.hr.common.collections.ArgKey;
 import org.app.portofolio.webui.hr.common.collections.ModalAction;
-import org.module.hr.model.MstSkill;
 import org.module.hr.model.TrsJobVacancy;
 import org.module.hr.service.RecruitmentService;
 import org.zkoss.bind.BindUtils;
@@ -48,12 +47,16 @@ public class RecruitmentVacancyListVM {
 	public void setupComponents(@ContextParam(ContextType.VIEW) Component component, @ExecutionArgParam("object") Object object) {
 		Selectors.wireComponents(component, this, false);
 		
-		HashMap<String, Object> params = new HashMap<>();
-		params.put("active", true);
-		trsJobVacancies = recruitmentService.getTrsJobVacancyByRequest(params);
-		
 		final UserWorkspace workspace = new UserWorkspace();
 		listheaderActiveAllowed = workspace.isAllowed("component_Listheader_Active_Vacancy_List");
+		
+		if (listheaderActiveAllowed) {
+			trsJobVacancies = recruitmentService.getAllTrsJobVacancy();
+		} else {
+			HashMap<String, Object> params = new HashMap<>();
+			params.put("active", true);
+			trsJobVacancies = recruitmentService.getTrsJobVacancyByRequest(params);
+		}
 	}
 	
 	@Command
