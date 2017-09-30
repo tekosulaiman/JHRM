@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -31,7 +32,8 @@ public class SecGroupright implements Serializable {
     
     @Id
     @Basic(optional = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name="SecGroupright_gri_id_GENERATOR", sequenceName="SCHEMA_ADMIN.SecGroupright_griId_SEQ")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SecGroupright_gri_id_GENERATOR")
     @Column(name = "gri_id")
     private Long griId;
     

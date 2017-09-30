@@ -27,6 +27,8 @@ import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import org.hibernate.annotations.ColumnDefault;
+
 /**
  *
  * @author Tom
@@ -38,32 +40,47 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "TrsJobVacancy.findAll", query = "SELECT t FROM TrsJobVacancy t"),
     @NamedQuery(name = "TrsJobVacancy.findByIdTrsJobVacancy", query = "SELECT t FROM TrsJobVacancy t WHERE t.idTrsJobVacancy = :idTrsJobVacancy")})
 public class TrsJobVacancy implements Serializable {
-    @Column(name = "name")
-    private String name;
-    @Column(name = "description")
-    private String description;
-    @Column(name = "no_of_positions")
-    private Integer noOfPositions;
-    @Column(name = "published_in_feed")
-    private Boolean publishedInFeed;
-    @Column(name = "defined_time")
-    @Temporal(TemporalType.DATE)
-    private Date definedTime;
-    @Column(name = "updated_time")
-    @Temporal(TemporalType.DATE)
-    private Date updatedTime;
-    private static final long serialVersionUID = 1L;
-    @Id
+	private static final long serialVersionUID = 1L;
+	
+	@Id
     @Basic(optional = false)
     @SequenceGenerator(name="TrsJobVacancy_idTrsJobVacancy_GENERATOR", sequenceName="SCHEMA_HR.TrsJobVacancy_idTrsJobVacancy_SEQ")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="TrsJobVacancy_idTrsJobVacancy_GENERATOR")
+	
     @Column(name = "id_trs_job_vacancy")
     private Integer idTrsJobVacancy;
+	
+    @Column(name = "name")
+    private String name;
+    
+    @Column(name = "description")
+    private String description;
+    
+    @Column(name = "no_of_positions")
+    private Integer noOfPositions;
+    
+    @Column(name = "published_in_feed")
+    private Boolean publishedInFeed;
+    
+    @Column(name = "defined_time")
+    @Temporal(TemporalType.DATE)
+    private Date definedTime;
+    
+    @Column(name = "updated_time")
+    @Temporal(TemporalType.DATE)
+    private Date updatedTime;
+    
+    @Column(name = "active")
+    @Basic(optional = false)
+    private Boolean active;
+    
     @OneToMany(mappedBy = "idTrsJobVacancy")
     private List<TrsJobCandidateVacancy> trsJobCandidateVacancyList;
+    
     @JoinColumn(name = "id_job_title", referencedColumnName = "id_job_title")
     @ManyToOne
     private MstJobtitle idJobTitle;
+    
     @JoinColumn(name = "id_employee", referencedColumnName = "id_employee")
     @ManyToOne
     private TrsEmployee idEmployee;
@@ -180,5 +197,14 @@ public class TrsJobVacancy implements Serializable {
     public void setUpdatedTime(Date updatedTime) {
         this.updatedTime = updatedTime;
     }
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+    
     
 }

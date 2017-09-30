@@ -1,5 +1,6 @@
 package org.module.hr.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.module.hr.model.TrsJobCandidate;
@@ -14,6 +15,7 @@ public interface RecruitmentService {
     public void delete(TrsJobVacancy trsJobVacancy);
     public List<TrsJobVacancy> getAllTrsJobVacancy();
     public TrsJobVacancy getTrsJobVacancyById(Integer id);
+    public List<TrsJobVacancy> getTrsJobVacancyByRequest(HashMap<String, Object> params);
     
     /* ------- Candidate --------*/
 	public void save(TrsJobCandidate trsJobCandidate);
@@ -22,4 +24,5 @@ public interface RecruitmentService {
     public void delete(TrsJobCandidate trsJobCandidate);
     public List<TrsJobCandidate> getAllTrsJobCandidate();
     public TrsJobCandidate getTrsJobCandidateById(Integer id);
+    public List<TrsJobCandidate> getTrsJobCandidateByRequest(HashMap<String, Object> params);
 }

@@ -19,7 +19,7 @@ public class TrsJobVacancyFormValidator extends AbstractValidator{
 	private MstJobtitle idJobTitle;
 	private String name;
 	private TrsEmployee idEmployee;
-	private Integer noOfPositions;
+	private Object noOfPositions;
 	
 	@Override
 	public void validate(ValidationContext validationContext) {
@@ -28,7 +28,7 @@ public class TrsJobVacancyFormValidator extends AbstractValidator{
 		this.idJobTitle = (MstJobtitle) properties.get(KEY_ID_JOB_TITLE).getValue();
 		this.name = (String) properties.get(KEY_NAME).getValue();
 		this.idEmployee = (TrsEmployee) properties.get(KEY_ID_EMPLOYEE).getValue();
-		this.noOfPositions = (Integer) properties.get(KEY_NO_OF_POSITIONS).getValue();
+		this.noOfPositions = properties.get(KEY_NO_OF_POSITIONS).getValue();
 		
 		notEmptyValidation(validationContext);
 	}
@@ -53,6 +53,12 @@ public class TrsJobVacancyFormValidator extends AbstractValidator{
 		
 		if (noOfPositions == null) {
 			addInvalidMessage(validationContext, KEY_NO_OF_POSITIONS, message);
+		} else {
+			if (noOfPositions instanceof String) {
+				if(((String) noOfPositions).isEmpty()) {
+					addInvalidMessage(validationContext, KEY_NO_OF_POSITIONS, message);
+				}
+			}
 		}
 	}
 }

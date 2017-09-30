@@ -43,16 +43,18 @@
 						<caption/>
 						<hbox>
 							<button label="${labels.button.add}" onClick="@command('doNew')"/>
-							<button label="${labels.button.delete}"/>
+							<button label="${labels.button.delete}" onClick="@command('doDelete')"/>
 						</hbox>	
 						<space/>
-						<listbox model="@bind(vm.trsJobVacancies)" selectedItem="@bind(vm.selectedTrsJobVacancy)">
+						<listbox id="listboxJobVacancy" model="@bind(vm.trsJobVacancies)" selectedItem="@bind(vm.selectedTrsJobVacancy)"
+							checkmark="true" multiple="true">
 							<listhead>
 								<listheader width="5%" align="center"/>
 								<listheader label="${labels.menu.recruitment.vacancy.listheader.vacancy}" sort="auto" /> 	
 								<listheader label="${labels.menu.recruitment.vacancy.listheader.jobtitle}" sort="auto" /> 	
 								<listheader label="${labels.menu.recruitment.vacancy.listheader.hiringmanager}" sort="auto" /> 	
 								<listheader label="Number Of Positions" sort="auto" />
+								<listheader label="Active" sort="auto" visible="@load(vm.listheaderActiveAllowed)"/>
 							</listhead>
 							<template name="model">
 								<listitem>
@@ -61,6 +63,7 @@
 									<listcell label="@load(each.idJobTitle.jobName)" />
 									<listcell label="@load(each.idEmployee.firstName)" />
 									<listcell label="@load(each.noOfPositions)" />
+									<listcell label="@load(each.active)" visible="@load(vm.listheaderActiveAllowed)"/>
 								</listitem>
 							</template>
 						</listbox>

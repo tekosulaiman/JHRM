@@ -84,10 +84,10 @@ public abstract class BasisDAO<T> {
             		queryString.append(entry.getKey()).append(" = ").append("?");
             		params[a] = entry.getValue();
 				
-				}else if (entry.getValue() instanceof String) {
-                	/*queryString.append(entry.getKey()).append(" = ").append("?");
-					params[a] = "'"+entry.getValue()+"'";*/
+				} else if (entry.getValue() instanceof String) {                	
 					queryString.append(entry.getKey()).append(" = ").append("'"+entry.getValue()+"'");
+				} else if (entry.getValue() instanceof Boolean) {
+					queryString.append(entry.getKey()).append(" = ").append(entry.getValue());
 				}
 				
 				if (it.hasNext()) {

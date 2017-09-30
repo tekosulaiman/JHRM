@@ -1,5 +1,6 @@
 package org.module.hr.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.module.api.common.dao.base.BasisDAO;
@@ -18,6 +19,11 @@ public class TrsJobCandidateDAOImpl extends BasisDAO<TrsJobCandidate> implements
 	@Override
 	public TrsJobCandidate getTrsJobCandidateById(Integer id) {
 		return getHibernateTemplate().get(TrsJobCandidate.class, id);
+	}
+
+	@Override
+	public List<TrsJobCandidate> getByRequest(HashMap<String, Object> params) {
+		return getByRequestMap(params);
 	}
 
 }

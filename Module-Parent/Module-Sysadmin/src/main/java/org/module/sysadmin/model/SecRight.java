@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -42,7 +43,8 @@ public class SecRight implements Serializable {
     
     @Id
     @Basic(optional = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name="SecRight_rig_id_GENERATOR", sequenceName="SCHEMA_ADMIN.SecRight_rigId_SEQ")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SecRight_rig_id_GENERATOR")
     @Column(name = "rig_id")
     private Long rigId;
     

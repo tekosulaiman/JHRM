@@ -18,6 +18,7 @@ import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
 import org.zkoss.bind.annotation.ContextType;
 import org.zkoss.bind.annotation.ExecutionArgParam;
+import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -129,8 +130,6 @@ public class RecruitmentVacancyDialogVM {
 		switch(action) {
 			case NEW : 
 				recruitmentService.save(trsJobVacancy);
-				ComponentConditionUtil.visibleButton(buttonEditVacancy);
-				ComponentConditionUtil.invisibleButton(buttonSaveVacancy, buttonSaveAndNewVacancy);
 			break;
 			case DETAIL : 
 				recruitmentService.update(trsJobVacancy);
@@ -142,9 +141,16 @@ public class RecruitmentVacancyDialogVM {
 	}
 	
 	@Command
-	public void doSaveNew() {
+	@NotifyChange("trsJobVacancy")
+	public void doSaveAndNew() {
+		recruitmentService.save(trsJobVacancy);
 		
+		BindUtils.postGlobalCommand(null, null, "refreshTrsJobVacancyList", null);
+		trsJobVacancy = new TrsJobVacancy();
+		Messagebox.show("Success !");
 	}
+	
+	
 	
 	/* ---------- GETTER-SETTER --------------*/
 	public List<MstJobtitle> getListJobtitle() {

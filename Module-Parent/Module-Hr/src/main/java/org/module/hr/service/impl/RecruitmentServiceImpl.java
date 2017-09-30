@@ -1,5 +1,8 @@
 package org.module.hr.service.impl;
 
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.module.hr.dao.TrsJobCandidateDAO;
@@ -16,22 +19,32 @@ public class RecruitmentServiceImpl implements RecruitmentService{
 	/* ------- Vacancy ---------*/
 	@Override
 	public void save(TrsJobVacancy trsJobVacancy) {
+		trsJobVacancy.setDefinedTime(new Timestamp(new Date().getTime()));
+		trsJobVacancy.setActive(Boolean.TRUE);
 		trsJobVacancyDAO.save(trsJobVacancy);
 	}
 
 	@Override
 	public void update(TrsJobVacancy trsJobVacancy) {
+		trsJobVacancy.setUpdatedTime(new Timestamp(new Date().getTime()));
 		trsJobVacancyDAO.update(trsJobVacancy);
 	}
 
 	@Override
 	public void saveOrUpdate(TrsJobVacancy trsJobVacancy) {
+		if (trsJobVacancy.getIdEmployee() == null) {
+			trsJobVacancy.setDefinedTime(new Timestamp(new Date().getTime()));
+		} else {
+			trsJobVacancy.setUpdatedTime(new Timestamp(new Date().getTime()));
+		}
 		trsJobVacancyDAO.saveOrUpdate(trsJobVacancy);
 	}
 
 	@Override
 	public void delete(TrsJobVacancy trsJobVacancy) {
-		trsJobVacancyDAO.delete(trsJobVacancy);
+		trsJobVacancy.setUpdatedTime(new Timestamp(new Date().getTime()));
+		trsJobVacancy.setActive(Boolean.FALSE);
+		trsJobVacancyDAO.update(trsJobVacancy);
 	}
 
 	@Override
@@ -44,6 +57,11 @@ public class RecruitmentServiceImpl implements RecruitmentService{
 		return trsJobVacancyDAO.getTrsJobVacancyById(id);
 	}
 
+	@Override
+	public List<TrsJobVacancy> getTrsJobVacancyByRequest(HashMap<String, Object> params) {
+		return trsJobVacancyDAO.getByRequest(params);
+	}
+	
 	public void setTrsJobVacancyDAO(TrsJobVacancyDAO trsJobVacancyDAO) {
 		this.trsJobVacancyDAO = trsJobVacancyDAO;
 	}
@@ -80,7 +98,13 @@ public class RecruitmentServiceImpl implements RecruitmentService{
 		return trsJobCandidateDAO.getTrsJobCandidateById(id);
 	}
 
+	@Override
+	public List<TrsJobCandidate> getTrsJobCandidateByRequest(HashMap<String, Object> params) {
+		return trsJobCandidateDAO.getByRequest(params);
+	}
+	
 	public void setTrsJobCandidateDAO(TrsJobCandidateDAO trsJobCandidateDAO) {
 		this.trsJobCandidateDAO = trsJobCandidateDAO;
 	}
+	
 }
