@@ -1,5 +1,5 @@
 <zk>
-	<window id="windowMemberships" border="none">
+	<window id="windowMemberships" border="none" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.employee.Membership')" >
 		<borderlayout height="500px">
 			<!-- Function CRUD -->
 			<!-- <north/> -->
@@ -11,10 +11,11 @@
 							label="${labels.menu.employee.membership.title}">
 						</caption>
 						<hbox>
-							<button label="${labels.button.add}" />
+							<button label="${labels.button.add}"  onClick="@command('doNew')"/>
+							<button label="${labels.button.delete}" />
 						</hbox>
 						<space />
-						<listbox>
+						<listbox id="listBoxMembership" selectedItem="@bind(vm.selectedEmployeeMembership)" >
 							<listhead>
 								<listheader width="5%" align="center" />
 								<listheader
@@ -36,17 +37,6 @@
 									label="${labels.menu.employee.membership.listheader.subcription.renewal.date}"
 									sort="auto" />
 							</listhead>
-							<listitem>
-								<listcell
-									image="/images/icons/btn_edit.gif"
-									tooltiptext="Click For Edit" />
-								<listcell label="a" />
-								<listcell label="a" />
-								<listcell label="a" />
-								<listcell label="IDR" />
-								<listcell label="1-1-2000" />
-								<listcell label="1-1-2019" />
-							</listitem>
 						</listbox>
 					</groupbox>
 					<groupbox mold="3d">

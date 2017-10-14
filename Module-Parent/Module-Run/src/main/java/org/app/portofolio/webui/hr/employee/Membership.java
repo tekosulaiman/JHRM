@@ -4,10 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.app.portofolio.webui.hr.employee.model.MembershipListItemRenderer;
+import org.module.hr.model.MstMembership;
 import org.module.hr.model.TrsEmployee;
 import org.module.hr.model.TrsEmployeeMembership;
 import org.module.hr.service.EmployeeService;
 import org.zkoss.bind.annotation.AfterCompose;
+import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
 import org.zkoss.bind.annotation.ContextType;
@@ -20,7 +22,9 @@ import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
+import org.zkoss.zul.ListitemRenderer;
 
+@SuppressWarnings({ "rawtypes", "unchecked" })
 public class Membership {
 	
 	@Wire("#listBoxMembership")
@@ -33,7 +37,8 @@ public class Membership {
 	
 	private MembershipListItemRenderer membershipListItemRenderer;
 	private List<TrsEmployeeMembership> employeeMemberships;
-	private TrsEmployeeMembership selectedDEployeeMembership;
+	private TrsEmployeeMembership selectedEmployeeMembership;
+	
 	
 	public void doPrepareList(){
 		listBoxMembership.setCheckmark(true);
@@ -44,7 +49,7 @@ public class Membership {
 	
 	@AfterCompose
 	public void setupComponents(@ContextParam(ContextType.VIEW) Component component,
-			@ExecutionArgParam("object") Object object,
+			@ExecutionArgParam("object") Object object, 
 			@ExecutionArgParam("type") TrsEmployee trsEmployee) {
 		Selectors.wireComponents(component, this, false);
 		this.trsEmployee = trsEmployee;
@@ -58,7 +63,6 @@ public class Membership {
 		doPrepareList();
 	}
 	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Command
 	public void doNew(){
 		ListModelList listModelList = (ListModelList) listBoxMembership.getModel();
@@ -68,7 +72,28 @@ public class Membership {
 	}
 	
 	@GlobalCommand
-	@NotifyChange({"employeeEmergencyContacts","mytest"})
+	public void updateMembership(@BindingParam("mstMembership") MstMembership mstMembership,
+			@BindingParam("employeeMembershipID") Integer employeeMembershipID){
+		ListModelList<TrsEmployeeMembership> listModelList = (ListModelList) listBoxMembership.getModel();
+		ListitemRenderer<TrsEmployeeMembership> listitemRenderer = listBoxMembership.getItemRenderer();
+		for(TrsEmployeeMembership trsEmployeeMembership:listModelList){
+			System.out.println(trsEmployeeMembership.getIdMembership());
+		}
+		
+		/*if (employeeMembershipID == null){
+			TrsEmployeeMembership trsEmployeeMembership = listModelList.get(0);
+			trsEmployeeMembership.setIdMembership(mstMembership);
+		} else {
+			for (TrsEmployeeMembership trsEmployeeMembership : listModelList) {
+				if (trsEmployeeMembership.getIdEmployeeMembership().equals(employeeMembershipID)) {
+					trsEmployeeMembership.setIdMembership(mstMembership);
+				}
+			}
+		}*/
+	}
+	
+	@GlobalCommand
+	@NotifyChange({"employeeEmergencyContacts"})
 	public void refreshAfterSaveOrUpdate(){
 		HashMap< String, Object> requestMap = new HashMap<>();
 		requestMap.put("trsEmployee", trsEmployee);
@@ -107,13 +132,12 @@ public class Membership {
 		this.employeeMemberships = employeeMemberships;
 	}
 
-	public TrsEmployeeMembership getSelectedDEployeeMembership() {
-		return selectedDEployeeMembership;
+	public TrsEmployeeMembership getSelectedEmployeeMembership() {
+		return selectedEmployeeMembership;
 	}
 
-	public void setSelectedDEployeeMembership(TrsEmployeeMembership selectedDEployeeMembership) {
-		this.selectedDEployeeMembership = selectedDEployeeMembership;
+	public void setSelectedEmployeeMembership(TrsEmployeeMembership selectedEmployeeMembership) {
+		this.selectedEmployeeMembership = selectedEmployeeMembership;
 	}
-	
-	
+
 }

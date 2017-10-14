@@ -113,8 +113,10 @@
 							</columns>
 							<rows>
 								<row>
-									<button label="Edit" onClick="@command('doEdit')" visible="@load(not vm.isEdit)"/>
-									<button label="Save" onClick="@command('doSave')" visible="@load(vm.isEdit)"/>
+									<div>
+										<button label="Edit" onClick="@command('doEdit')" visible="@load(not vm.isEdit)"/>
+										<button label="Save" onClick="@command('doSave')" visible="@load(vm.isEdit)"/>
+									</div>
 								</row>
 							</rows>
 						</grid>

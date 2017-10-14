@@ -7,7 +7,10 @@ import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zkplus.spring.SpringUtil;
+import org.zkoss.zul.Bandbox;
+import org.zkoss.zul.Bandpopup;
 import org.zkoss.zul.Button;
+import org.zkoss.zul.Include;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listitem;
@@ -19,7 +22,7 @@ import org.zkoss.zul.Textbox;
 public class EmergencyContactListItemRenderer implements ListitemRenderer<TrsEmployeeEmergencyContact> {
 
 	private EmployeeService employeeService = (EmployeeService) SpringUtil
-			.getBean("transactionEmployeeService");
+			.getBean("employeeService");
 
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -83,24 +86,6 @@ public class EmergencyContactListItemRenderer implements ListitemRenderer<TrsEmp
 		labelWorkTelephone.setParent(listcell);
 		listcell.setParent(item);
 		
-		
-		
-		// bandbox
-		/*Include include = new Include();
-		include.setSrc("/WEB-INF/pages/module_hr/employee/bandBoxPopup.zul");
-		
-		Bandbox bandbox = new Bandbox();
-		Bandpopup bandpopup = new Bandpopup();
-		
-		bandbox.appendChild(bandpopup);
-		bandpopup.appendChild(include);
-		
-		listcell = new Listcell();
-		bandbox.setParent(listcell);
-		labelWorkTelephone.setParent(listcell);
-		listcell.setParent(item);*/
-		
-		
 		if (trsEmployeeEmergencyContact.getIdEmployeeEmergencyContact() == null){
 			buttonEdit.setVisible(false);
 			buttonDelete.setVisible(false);
@@ -137,7 +122,7 @@ public class EmergencyContactListItemRenderer implements ListitemRenderer<TrsEmp
 
 				employeeService.save(trsEmployeeEmergencyContact);
 				
-				BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
+				BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmergencyContact", null);
 			}else{
 				trsEmployeeEmergencyContact.setName(textboxName.getValue());
 				trsEmployeeEmergencyContact.setRelationship(textboxRelationship.getValue());
@@ -147,7 +132,7 @@ public class EmergencyContactListItemRenderer implements ListitemRenderer<TrsEmp
 
 				employeeService.update(trsEmployeeEmergencyContact);
 				
-				BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
+				BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmergencyContact", null);
 			}
 		}
 	});
@@ -187,7 +172,7 @@ public class EmergencyContactListItemRenderer implements ListitemRenderer<TrsEmp
 
 			 			employeeService.delete(trsEmployeeEmergencyContact);
 			 			
-			 			BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
+			 			BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmergencyContact", null);
 			 		}else{
 			 			return;
 			 		}
@@ -199,7 +184,7 @@ public class EmergencyContactListItemRenderer implements ListitemRenderer<TrsEmp
 	buttonCancel.addEventListener(Events.ON_CLICK, new EventListener() {
 		@Override
 		public void onEvent(Event event) throws Exception {
-			BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
+			BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmergencyContact", null);
 		}
 	});
 	}

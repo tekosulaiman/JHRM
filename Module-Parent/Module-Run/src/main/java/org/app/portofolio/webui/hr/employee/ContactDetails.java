@@ -6,6 +6,7 @@ import java.util.List;
 import org.app.portofolio.webui.hr.employee.model.DummyNationalityItemRender;
 import org.module.hr.model.MstNationality;
 import org.module.hr.model.TrsEmployee;
+import org.module.hr.service.EmployeeService;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
@@ -15,11 +16,15 @@ import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.Wire;
+import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.Bandbox;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
 
 public class ContactDetails {
+	
+	@WireVariable
+	private EmployeeService employeeService;
 
 	private ListModelList<MstNationality> items;
 
@@ -35,6 +40,8 @@ public class ContactDetails {
 	private DummyNationalityItemRender nationalityItemRender;
 	private List<MstNationality> nationalities;
 	private MstNationality selectedNationality;
+	
+	private Boolean isEdit;
 
 	/*
 	 * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -61,6 +68,19 @@ public class ContactDetails {
 				break;
 			}
 		}
+	}
+	
+	@Command
+	@NotifyChange("isEdit")
+	public void doEdit(){
+		isEdit = Boolean.TRUE;
+	}
+	
+	@Command
+	@NotifyChange("isEdit")
+	public void doSave(){
+		employeeService.update(trsEmployee);
+		isEdit = Boolean.FALSE;
 	}
 
 	@Command
@@ -147,4 +167,12 @@ public class ContactDetails {
 		this.bandBoxNationality = bandBoxNationality;
 	}
 
+	public Boolean getIsEdit() {
+		return isEdit;
+	}
+
+	public void setIsEdit(Boolean isEdit) {
+		this.isEdit = isEdit;
+	}
+	
 }

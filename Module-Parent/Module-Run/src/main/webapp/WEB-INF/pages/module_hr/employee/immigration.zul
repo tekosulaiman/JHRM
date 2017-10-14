@@ -1,5 +1,7 @@
 <zk>
-	<window id="windowImmigration" border="none" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.employee.Immigration')">
+	<window id="windowImmigration" border="none"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('org.app.portofolio.webui.hr.employee.Immigration')">
 		<borderlayout height="500px">
 			<!-- Function CRUD -->
 			<!-- <north/> -->
@@ -15,7 +17,9 @@
 							<button label="${labels.button.delete}" />
 						</hbox>
 						<space />
-						<listbox id="listBoxImmigration" model="@bind(vm.employeeImmigrations)" selectedItem="@bind(vm.selectedEmployeeImmigration)" itemRenderer="@bind(vm.immigrationListItemRenderer.renderer)">
+						<listbox id="listBoxImmigration"
+							model="@bind(vm.employeeImmigrations)"
+							selectedItem="@bind(vm.selectedEmployeeImmigration)">
 							<listhead>
 								<listheader width="5%" align="center" />
 								<listheader
@@ -33,17 +37,16 @@
 								<listheader
 									label="${labels.menu.employee.immigration.listheader.expiry.date}"
 									sort="auto" />
+								<listheader
+									label="Eligible Status"
+									sort="auto" />
+								<listheader
+									label="Eligible Review Data"
+									sort="auto" />
+								<listheader
+									label="${labels.menu.employee.immigration.listheader.expiry.date}"
+									sort="auto" />
 							</listhead>
-							<!-- <listitem>
-								<listcell
-									image="/images/icons/btn_edit.gif"
-									tooltiptext="Click For Edit" />
-								<listcell label="toke" />
-								<listcell label="anak" />
-								<listcell label="amy" />
-								<listcell label="1-1-2000" />
-								<listcell label="1-1-2019" />
-							</listitem> -->
 						</listbox>
 					</groupbox>
 					<groupbox mold="3d">

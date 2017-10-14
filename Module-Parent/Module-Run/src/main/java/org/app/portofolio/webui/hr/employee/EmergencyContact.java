@@ -98,9 +98,9 @@ public class EmergencyContact {
 	}
 	
 	@GlobalCommand
-	@NotifyChange({"employeeEmergencyContacts","mytest"})
-	public void refreshAfterSaveOrUpdate(){
-		HashMap< String, Object> requestMap = new HashMap<>();
+	@NotifyChange({"employeeEmergencyContacts"})
+	public void refreshAfterSaveOrUpdateEmergencyContact(){
+		HashMap<String, Object> requestMap = new HashMap<>();
 		requestMap.put("trsEmployee", trsEmployee);
 		employeeEmergencyContacts = employeeService.getTrsEmployeeEmergencyContactByTrsEmployeeEmergencyContactRequestMap(requestMap);
 	}

@@ -19,10 +19,10 @@ public class EmployeeDetailDialogVM {
 	private Boolean isVisibleFormEmergencyContacts;
 	private Boolean isVisibleFormDependents;
 	private Boolean isVisibleFormImmigration;
-	private Boolean isVisibleFormJob;
-	private Boolean isVisibleFormSalary;
-	private Boolean isVisibleFormReportTo;
-	private Boolean isVisibleFormQualification;
+//	private Boolean isVisibleFormJob;
+//	private Boolean isVisibleFormSalary;
+//	private Boolean isVisibleFormReportTo;
+//	private Boolean isVisibleFormQualification;
 	private Boolean isVisibleFormMemberships;
 
 	// used variable
@@ -61,10 +61,10 @@ public class EmployeeDetailDialogVM {
 		isVisibleFormEmergencyContacts = Boolean.FALSE;
 		isVisibleFormDependents = Boolean.FALSE;
 		isVisibleFormImmigration = Boolean.FALSE;
-		isVisibleFormJob = Boolean.FALSE;
-		isVisibleFormSalary = Boolean.FALSE;
-		isVisibleFormReportTo = Boolean.FALSE;
-		isVisibleFormQualification = Boolean.FALSE;
+//		isVisibleFormJob = Boolean.FALSE;
+//		isVisibleFormSalary = Boolean.FALSE;
+//		isVisibleFormReportTo = Boolean.FALSE;
+//		isVisibleFormQualification = Boolean.FALSE;
 		isVisibleFormMemberships = Boolean.FALSE;
 		test = Boolean.FALSE;
 	}
@@ -104,33 +104,33 @@ public class EmployeeDetailDialogVM {
 		isVisibleFormImmigration = Boolean.TRUE;
 	}
 
-	@NotifyChange({ "*" })
-	@Command
-	public void selectFormJob() {
-		setVisibleFalseForAll();
-		isVisibleFormJob = Boolean.TRUE;
-	}
+//	@NotifyChange({ "*" })
+//	@Command
+//	public void selectFormJob() {
+//		setVisibleFalseForAll();
+//		isVisibleFormJob = Boolean.TRUE;
+//	}
 
-	@NotifyChange({ "*" })
-	@Command
-	public void selectFormSalary() {
-		setVisibleFalseForAll();
-		isVisibleFormSalary = Boolean.TRUE;
-	}
-
-	@NotifyChange({ "*" })
-	@Command
-	public void selectFormReportTo() {
-		setVisibleFalseForAll();
-		isVisibleFormReportTo = Boolean.TRUE;
-	}
-
-	@NotifyChange({ "*" })
-	@Command
-	public void selectFormQualification() {
-		setVisibleFalseForAll();
-		isVisibleFormQualification = Boolean.TRUE;
-	}
+//	@NotifyChange({ "*" })
+//	@Command
+//	public void selectFormSalary() {
+//		setVisibleFalseForAll();
+//		isVisibleFormSalary = Boolean.TRUE;
+//	}
+//
+//	@NotifyChange({ "*" })
+//	@Command
+//	public void selectFormReportTo() {
+//		setVisibleFalseForAll();
+//		isVisibleFormReportTo = Boolean.TRUE;
+//	}
+//
+//	@NotifyChange({ "*" })
+//	@Command
+//	public void selectFormQualification() {
+//		setVisibleFalseForAll();
+//		isVisibleFormQualification = Boolean.TRUE;
+//	}
 
 	@NotifyChange({ "*" })
 	@Command
@@ -203,37 +203,37 @@ public class EmployeeDetailDialogVM {
 		this.isVisibleFormImmigration = isVisibleFormImmigration;
 	}
 
-	public Boolean getIsVisibleFormJob() {
-		return isVisibleFormJob;
-	}
-
-	public void setIsVisibleFormJob(Boolean isVisibleFormJob) {
-		this.isVisibleFormJob = isVisibleFormJob;
-	}
-
-	public Boolean getIsVisibleFormSalary() {
-		return isVisibleFormSalary;
-	}
-
-	public void setIsVisibleFormSalary(Boolean isVisibleFormSalary) {
-		this.isVisibleFormSalary = isVisibleFormSalary;
-	}
-
-	public Boolean getIsVisibleFormReportTo() {
-		return isVisibleFormReportTo;
-	}
-
-	public void setIsVisibleFormReportTo(Boolean isVisibleFormReportTo) {
-		this.isVisibleFormReportTo = isVisibleFormReportTo;
-	}
-
-	public Boolean getIsVisibleFormQualification() {
-		return isVisibleFormQualification;
-	}
-
-	public void setIsVisibleFormQualification(Boolean isVisibleFormQualification) {
-		this.isVisibleFormQualification = isVisibleFormQualification;
-	}
+//	public Boolean getIsVisibleFormJob() {
+//		return isVisibleFormJob;
+//	}
+//
+//	public void setIsVisibleFormJob(Boolean isVisibleFormJob) {
+//		this.isVisibleFormJob = isVisibleFormJob;
+//	}
+//
+//	public Boolean getIsVisibleFormSalary() {
+//		return isVisibleFormSalary;
+//	}
+//
+//	public void setIsVisibleFormSalary(Boolean isVisibleFormSalary) {
+//		this.isVisibleFormSalary = isVisibleFormSalary;
+//	}
+//
+//	public Boolean getIsVisibleFormReportTo() {
+//		return isVisibleFormReportTo;
+//	}
+//
+//	public void setIsVisibleFormReportTo(Boolean isVisibleFormReportTo) {
+//		this.isVisibleFormReportTo = isVisibleFormReportTo;
+//	}
+//
+//	public Boolean getIsVisibleFormQualification() {
+//		return isVisibleFormQualification;
+//	}
+//
+//	public void setIsVisibleFormQualification(Boolean isVisibleFormQualification) {
+//		this.isVisibleFormQualification = isVisibleFormQualification;
+//	}
 
 	public Boolean getIsVisibleFormMemberships() {
 		return isVisibleFormMemberships;

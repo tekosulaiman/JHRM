@@ -30,21 +30,6 @@ public class Immigration {
 	public void setupComponent(@ContextParam(ContextType.VIEW) Component component, @ExecutionArgParam("object") Object object){
 		Selectors.wireComponents(component, this, false);
 		
-		// dummy
-		employeeImmigrations = new ArrayList<TrsEmployeeImmigration>();
-		for (int i = 1 ; i < 5 ; i++){
-			TrsEmployeeImmigration trsEmployeeImmigration = new TrsEmployeeImmigration();
-			TrsEmployee trsEmployee = new TrsEmployee();
-			trsEmployee.setIdEmployee("idEmployee" + i);
-			trsEmployeeImmigration.setIdEmployee(trsEmployee);
-			trsEmployeeImmigration.setIdImmigration(i);
-			trsEmployeeImmigration.setDocument("document" +  i);
-			trsEmployeeImmigration.setNumber(i);
-			trsEmployeeImmigration.setIssuedDate(new Date());
-			trsEmployeeImmigration.setExpiredDate(new Date());
-			employeeImmigrations.add(trsEmployeeImmigration);
-		}
-		immigrationListItemRenderer = new ImmigrationListItemRenderer();
 	}
 
 	public Listbox getListImmigration() {

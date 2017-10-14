@@ -15,7 +15,7 @@
 							<button label="${labels.button.delete}" />
 						</hbox>
 						<space />
-						<listbox id="listBoxEmergencyContact" selectedItem="@bind(vm.selectedEmployeeEmergencyContact)">
+						<listbox id="listBoxEmergencyContact" model="@bind(vm.employeeEmergencyContacts)" selectedItem="@bind(vm.selectedEmployeeEmergencyContact)">
 							<listhead>
 								<listheader width="5%" align="center" />
 								<listheader

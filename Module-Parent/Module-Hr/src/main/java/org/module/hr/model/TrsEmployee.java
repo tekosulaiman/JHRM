@@ -7,6 +7,7 @@
 package org.module.hr.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -16,6 +17,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -63,6 +66,38 @@ public class TrsEmployee implements Serializable {
     private List<TrsEmployeeImmigration> trsEmployeeImmigrationList;
     @OneToMany(mappedBy = "idEmployee")
     private List<TrsEmployeeSalary> trsEmployeeSalaryList;
+    @Column(name = "driver_license")
+    private String driverLicense;
+    @Column(name = "other_license")
+    private String otherLicense;
+    @Column(name = "expired_license")
+    @Temporal(TemporalType.DATE)
+    private Date expiredLicense;
+    @Column(name = "gender")
+    private Boolean gender;
+    @Column(name = "dob")
+    @Temporal(TemporalType.DATE)
+    private Date dob;
+    @Column(name = "address_street1")
+    private String addressStreet1;
+    @Column(name = "address_street2")
+    private String addressStreet2;
+    @Column(name = "city")
+    private String city;
+    @Column(name = "province")
+    private String province;
+    @Column(name = "zip")
+    private String zip;
+    @Column(name = "home_telephone")
+    private String homeTelephone;
+    @Column(name = "mobile")
+    private String mobile;
+    @Column(name = "work_telephone")
+    private String workTelephone;
+    @Column(name = "work_email")
+    private String workEmail;
+    @Column(name = "other_email")
+    private String otherEmail;
 
     public TrsEmployee() {
     }
@@ -226,5 +261,127 @@ public class TrsEmployee implements Serializable {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+	public String getDriverLicense() {
+		return driverLicense;
+	}
+
+	public void setDriverLicense(String driverLicense) {
+		this.driverLicense = driverLicense;
+	}
+
+	public String getOtherLicense() {
+		return otherLicense;
+	}
+
+	public void setOtherLicense(String otherLicense) {
+		this.otherLicense = otherLicense;
+	}
+
+	public Date getExpiredLicense() {
+		return expiredLicense;
+	}
+
+	public void setExpiredLicense(Date expiredLicense) {
+		this.expiredLicense = expiredLicense;
+	}
+
+	public Boolean getGender() {
+		return gender;
+	}
+
+	public void setGender(Boolean gender) {
+		this.gender = gender;
+	}
+
+	public Date getDob() {
+		return dob;
+	}
+
+	public void setDob(Date dob) {
+		this.dob = dob;
+	}
+
+	public String getAddressStreet1() {
+		return addressStreet1;
+	}
+
+	public void setAddressStreet1(String addressStreet1) {
+		this.addressStreet1 = addressStreet1;
+	}
+
+	public String getAddressStreet2() {
+		return addressStreet2;
+	}
+
+	public void setAddressStreet2(String addressStreet2) {
+		this.addressStreet2 = addressStreet2;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getProvince() {
+		return province;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
+	}
+
+	public String getZip() {
+		return zip;
+	}
+
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
+
+	public String getHomeTelephone() {
+		return homeTelephone;
+	}
+
+	public void setHomeTelephone(String homeTelephone) {
+		this.homeTelephone = homeTelephone;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+	public String getWorkTelephone() {
+		return workTelephone;
+	}
+
+	public void setWorkTelephone(String workTelephone) {
+		this.workTelephone = workTelephone;
+	}
+
+	public String getWorkEmail() {
+		return workEmail;
+	}
+
+	public void setWorkEmail(String workEmail) {
+		this.workEmail = workEmail;
+	}
+
+	public String getOtherEmail() {
+		return otherEmail;
+	}
+
+	public void setOtherEmail(String otherEmail) {
+		this.otherEmail = otherEmail;
+	}
+    
+    
     
 }

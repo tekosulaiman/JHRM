@@ -6,31 +6,43 @@ import org.module.hr.model.MstMembership;
 import org.module.hr.model.TrsEmployee;
 import org.module.hr.model.TrsEmployeeEmergencyContact;
 import org.module.hr.model.TrsEmployeeMembership;
+import org.module.hr.service.EmployeeService;
 import org.module.hr.service.MasterQualificationService;
+import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.ContextParam;
 import org.zkoss.bind.annotation.ContextType;
 import org.zkoss.bind.annotation.ExecutionArgParam;
+import org.zkoss.bind.annotation.GlobalCommand;
 import org.zkoss.bind.annotation.Init;
+import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.EventListener;
+import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
+import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.Bandbox;
 import org.zkoss.zul.Bandpopup;
 import org.zkoss.zul.Button;
 import org.zkoss.zul.Include;
+import org.zkoss.zul.Label;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listitem;
 import org.zkoss.zul.ListitemRenderer;
+import org.zkoss.zul.Messagebox;
 
 public class MembershipListItemRenderer implements ListitemRenderer<TrsEmployeeMembership>{
 	
-	@Wire("#listBoxMembership")
-	private Listbox listBoxMembership;
-	
 	@WireVariable
 	private MasterQualificationService masterQualificationService;
+	
+	private EmployeeService employeeService = (EmployeeService) SpringUtil
+			.getBean("employeeService");
+	
+//	final Bandbox bandbox = new Bandbox();
 	
 	private MstMembership mstMembership;
 	private List<MstMembership> mstMemberships;
@@ -44,7 +56,8 @@ public class MembershipListItemRenderer implements ListitemRenderer<TrsEmployeeM
 	}
 
 	@Override
-	public void render(Listitem item, TrsEmployeeMembership trsEmployeeMembership, int index) throws Exception {
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public void render(Listitem item, final TrsEmployeeMembership trsEmployeeMembership, int index) throws Exception {
 		Listcell listcell;
 		
 		final Button buttonSave = new Button();
@@ -59,26 +72,94 @@ public class MembershipListItemRenderer implements ListitemRenderer<TrsEmployeeM
 		final Button buttonCancel = new Button();
 		buttonCancel.setImage("/images/icons/btn_cancel.gif");
 		
-		Include include = new Include();
-		include.setSrc("/WEB-INF/pages/module_hr/employee/bandBoxPopupMembership.zul");
-		
-		Bandbox bandbox = new Bandbox();
-		Bandpopup bandpopup = new Bandpopup();
-		bandbox.appendChild(bandpopup);
-		bandpopup.appendChild(include);
+		final Label labelMembership = new Label();
 		
 		listcell = new Listcell();
-		bandbox.setParent(listcell);
+		buttonEdit.setParent(listcell);
+		buttonSave.setParent(listcell);
+		buttonCancel.setParent(listcell);
+		buttonDelete.setParent(listcell);
 		listcell.setParent(item);
 		
-		if (trsEmployeeMembership.getIdEmployeeMembership() == null){
+		final Include include = new Include();
+		include.setSrc("/WEB-INF/pages/module_hr/employee/bandBoxPopupMembership.zul");
+		include.setDynamicProperty("arg", trsEmployeeMembership);
+		
+		listcell = new Listcell();
+		include.setParent(listcell);
+		labelMembership.setParent(listcell);
+		listcell.setParent(item);
+		
+		if (trsEmployeeMembership.getIdEmployeeMembership() == null) {
 			buttonEdit.setVisible(false);
-			buttonSave.setVisible(false);
+			buttonDelete.setVisible(false);
 		} else {
 			buttonSave.setVisible(false);
 			buttonCancel.setVisible(false);
 			buttonDelete.setVisible(false);
+
+			labelMembership.setValue(trsEmployeeMembership.getIdMembership().getNameMembership());
+			include.setVisible(false);
 		}
+	
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Function CRUD Event
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	buttonSave.addEventListener(Events.ON_CLICK, new EventListener() {
+		@Override
+		public void onEvent(Event event) throws Exception {
+			if(trsEmployeeMembership.getIdEmployeeMembership() == null){
+				employeeService.save(trsEmployeeMembership);
+				BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
+			}else{
+				employeeService.update(trsEmployeeMembership);
+				BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
+			}
+		}
+	});
+	
+	buttonEdit.addEventListener(Events.ON_CLICK, new EventListener() {
+		public void onEvent(Event event) throws Exception {		
+			buttonEdit.setVisible(false);
+			buttonSave.setVisible(true);
+			buttonDelete.setVisible(true);
+			
+			include.setVisible(true);
+			
+			labelMembership.setVisible(false);
+			
+		}					
+	});
+	
+	buttonDelete.addEventListener(Events.ON_CLICK, new EventListener() {
+		@Override
+		public void onEvent(Event event) throws Exception {
+			Messagebox.show("Do you really want to remove item?", "Confirm", Messagebox.OK | Messagebox.CANCEL, Messagebox.EXCLAMATION, new EventListener() {
+			    public void onEvent(Event event) throws Exception {    	
+			 		if (((Integer) event.getData()).intValue() == Messagebox.OK) {
+			 			include.getAttribute("selectedMstMembership");
+			 			employeeService.delete(trsEmployeeMembership);
+			 			
+			 			BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
+			 		}else{
+			 			return;
+			 		}
+			 	}
+			});
+		}
+	});
+	
+	buttonCancel.addEventListener(Events.ON_CLICK, new EventListener() {
+		@Override
+		public void onEvent(Event event) throws Exception {
+			BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
+		}
+	});
+	}
+	
+	@GlobalCommand
+	public void updateMembership(@ExecutionArgParam("mstMembership") MstMembership mstMembership){
+		selectedMstMembership = mstMembership;
 	}
 
 	public MasterQualificationService getMasterQualificationService() {
@@ -109,10 +190,9 @@ public class MembershipListItemRenderer implements ListitemRenderer<TrsEmployeeM
 		return selectedMstMembership;
 	}
 
+	@NotifyChange({ "*" })
 	public void setSelectedMstMembership(MstMembership selectedMstMembership) {
 		this.selectedMstMembership = selectedMstMembership;
 	}
-	
-	
 
 }
