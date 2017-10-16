@@ -82,11 +82,14 @@ public class EmployeeDialog {
 
 	@Command
 	public void doSave() {
-		/*
-		 * if (this.media == null) { Messagebox.show("Fotonya mana coy"); } else
-		 * { String type = this.media.getContentType().split("/")[0]; if
-		 * (type.equals("image")) { saveFile(this.media); } }
-		 */
+		if (this.media == null) {
+			Messagebox.show("Fotonya mana coy");
+		} else {
+			String type = this.media.getContentType().split("/")[0];
+			if (type.equals("image")) {
+				saveFile(this.media);
+			}
+		}
 		employeeService.save(this.trsEmployee);
 		HashMap<String, Object> arg = new HashMap<>();
 		arg.put("trsEmployee", trsEmployee);
@@ -99,7 +102,7 @@ public class EmployeeDialog {
 		try {
 			InputStream fin = media.getStreamData();
 			in = new BufferedInputStream(fin);
-			String source = Executions.getCurrent().getDesktop().getWebApp().getRealPath("/image");
+			String source = Executions.getCurrent().getDesktop().getWebApp().getRealPath("/images/employee");
 
 			File file = new File(source + media.getName());
 
@@ -137,8 +140,6 @@ public class EmployeeDialog {
 	public void setTrsEmployee(TrsEmployee trsEmployee) {
 		this.trsEmployee = trsEmployee;
 	}
-
-	
 
 	public EmployeeService getEmployeeService() {
 		return employeeService;
