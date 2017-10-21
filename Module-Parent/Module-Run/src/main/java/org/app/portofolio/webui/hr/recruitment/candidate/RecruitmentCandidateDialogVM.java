@@ -1,8 +1,15 @@
 package org.app.portofolio.webui.hr.recruitment.candidate;
 
+import java.util.List;
+
 import org.app.portofolio.webui.hr.common.collections.ArgKey;
 import org.app.portofolio.webui.hr.common.collections.ModalAction;
 import org.app.portofolio.webui.hr.common.utilities.ComponentConditionUtil;
+import org.app.portofolio.webui.hr.recruitment.candidate.validator.TrsJobCandidateFormValidator;
+import org.module.hr.model.TrsJobCandidate;
+import org.module.hr.model.TrsJobVacancy;
+import org.module.hr.service.EmployeeService;
+import org.module.hr.service.RecruitmentService;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
@@ -11,18 +18,12 @@ import org.zkoss.bind.annotation.ExecutionArgParam;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.Wire;
+import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.Button;
-import org.zkoss.zul.Checkbox;
-import org.zkoss.zul.Combobox;
-import org.zkoss.zul.Textbox;
 
 public class RecruitmentCandidateDialogVM {
 
-	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	 * Wire component
-	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-	
-	
+	/*----------- zul ----------*/
 	@Wire("#buttonSaveCandidate")
 	private Button buttonSaveCandidate;
 	
@@ -32,11 +33,17 @@ public class RecruitmentCandidateDialogVM {
 	@Wire("#buttonEditCandidate")
 	private Button buttonEditCandidate;
 	
-	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	 * Bean
-	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	/*----------- Services -----------*/
+	@WireVariable
+	private RecruitmentService recruitmentService;
 	
+	@WireVariable
+	private EmployeeService employeeService;
 	
+	/*----------- Bean -----------*/
+	private List<TrsJobVacancy> trsJobVacancies;
+	private TrsJobCandidateFormValidator formValidator;
+	private TrsJobCandidate trsJobCandidate;
 	
 	@AfterCompose
 	public void setupComponents(@ContextParam(ContextType.VIEW) Component component, 
@@ -50,6 +57,15 @@ public class RecruitmentCandidateDialogVM {
 			case DETAIL : this.formDetailCondition();
 			break;
 		}
+		
+		initComponents();
+	}
+	
+	/**
+	 * Initialisasi bean yang digunakan di dalam ViewModel
+	 */
+	private void initComponents() {
+		trsJobVacancies = recruitmentService.getAllTrsJobVacancy();
 	}
 
 	/**
@@ -66,9 +82,6 @@ public class RecruitmentCandidateDialogVM {
 	private void formDetailCondition() {
 		ComponentConditionUtil.invisibleButton(buttonSaveCandidate, buttonSaveAndNewCandidate);
 		ComponentConditionUtil.visibleButton(buttonEditCandidate);
-		/*ComponentConditionUtil.disableCombobox(comboboxJobTitle);
-		ComponentConditionUtil.disableTextbox(textboxVacancyName, textboxNumberOfPositions, textboxHiringManager, textboxDescription);
-		ComponentConditionUtil.disableCheckbox(checkboxActive);*/
 	}
 	
 	@Command
@@ -86,8 +99,32 @@ public class RecruitmentCandidateDialogVM {
 	public void doEdit() {
 		ComponentConditionUtil.invisibleButton(buttonEditCandidate);
 		ComponentConditionUtil.visibleButton(buttonSaveCandidate);
-		/*ComponentConditionUtil.enableCombobox(comboboxJobTitle);
-		ComponentConditionUtil.enableTextbox(textboxVacancyName, textboxNumberOfPositions, textboxHiringManager, textboxDescription);
-		ComponentConditionUtil.enableCheckbox(checkboxActive);*/
+	}
+	
+	
+	/* ---------- GETTER-SETTER --------------*/
+	
+	public List<TrsJobVacancy> getTrsJobVacancies() {
+		return trsJobVacancies;
+	}
+	
+	public TrsJobCandidate getTrsJobCandidate() {
+		return trsJobCandidate;
+	}
+
+	public void setTrsJobCandidate(TrsJobCandidate trsJobCandidate) {
+		this.trsJobCandidate = trsJobCandidate;
+	}
+
+	public void setTrsJobVacancies(List<TrsJobVacancy> trsJobVacancies) {
+		this.trsJobVacancies = trsJobVacancies;
+	}
+	
+	public TrsJobCandidateFormValidator getFormValidator() {
+		return formValidator;
+	}
+	
+	public void setFormValidator(TrsJobCandidateFormValidator formValidator) {
+		this.formValidator = formValidator;
 	}
 }

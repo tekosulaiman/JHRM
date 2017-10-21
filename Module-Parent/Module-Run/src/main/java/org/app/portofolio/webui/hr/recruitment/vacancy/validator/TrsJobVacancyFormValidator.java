@@ -25,12 +25,20 @@ public class TrsJobVacancyFormValidator extends AbstractValidator{
 	public void validate(ValidationContext validationContext) {
 		Map<String,Property> properties = validationContext.getProperties(validationContext.getProperty().getBase());
 		
+		initComponents(properties);
+		
+		notEmptyValidation(validationContext);
+	}
+
+	/**
+	 * 
+	 * @param properties
+	 */
+	private void initComponents(Map<String, Property> properties) {
 		this.idJobTitle = (MstJobtitle) properties.get(KEY_ID_JOB_TITLE).getValue();
 		this.name = (String) properties.get(KEY_NAME).getValue();
 		this.idEmployee = (TrsEmployee) properties.get(KEY_ID_EMPLOYEE).getValue();
 		this.noOfPositions = properties.get(KEY_NO_OF_POSITIONS).getValue();
-		
-		notEmptyValidation(validationContext);
 	}
 
 	/**

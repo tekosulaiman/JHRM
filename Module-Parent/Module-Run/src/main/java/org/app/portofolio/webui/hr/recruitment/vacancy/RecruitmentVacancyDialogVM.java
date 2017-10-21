@@ -9,9 +9,9 @@ import org.app.portofolio.webui.hr.recruitment.vacancy.validator.TrsJobVacancyFo
 import org.module.hr.model.MstJobtitle;
 import org.module.hr.model.TrsEmployee;
 import org.module.hr.model.TrsJobVacancy;
+import org.module.hr.service.EmployeeService;
 import org.module.hr.service.MasterJobService;
 import org.module.hr.service.RecruitmentService;
-import org.module.hr.service.TransactionEmployeeService;
 import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.Command;
@@ -67,7 +67,7 @@ public class RecruitmentVacancyDialogVM {
 	private RecruitmentService recruitmentService;
 	
 	@WireVariable
-	private TransactionEmployeeService transactionEmployeeService;
+	private EmployeeService employeeService;
 	
 	/*----------- Bean -----------*/
 	private TrsJobVacancyFormValidator formValidator = new TrsJobVacancyFormValidator();
@@ -95,7 +95,7 @@ public class RecruitmentVacancyDialogVM {
 		}
 		
 		listJobtitle = masterJobService.getAllMstJobtitles();
-		hiringManagerList = transactionEmployeeService.getAllTrsEmployee();		
+		hiringManagerList = employeeService.getAllTrsEmployee();		
 	}
 
 	/**

@@ -9,6 +9,7 @@ package org.module.hr.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,9 +26,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-
-import org.hibernate.annotations.ColumnDefault;
 
 /**
  *
@@ -72,10 +70,10 @@ public class TrsJobVacancy implements Serializable {
     
     @Column(name = "active")
     @Basic(optional = false)
-    private Boolean active;
+    private Boolean active;    
     
     @OneToMany(mappedBy = "idTrsJobVacancy")
-    private List<TrsJobCandidateVacancy> trsJobCandidateVacancyList;
+    private List<TrsJobCandidate> trsJobVacancyList;
     
     @JoinColumn(name = "id_job_title", referencedColumnName = "id_job_title")
     @ManyToOne
@@ -100,15 +98,6 @@ public class TrsJobVacancy implements Serializable {
         this.idTrsJobVacancy = idTrsJobVacancy;
     }
 
-    @XmlTransient
-    public List<TrsJobCandidateVacancy> getTrsJobCandidateVacancyList() {
-        return trsJobCandidateVacancyList;
-    }
-
-    public void setTrsJobCandidateVacancyList(List<TrsJobCandidateVacancy> trsJobCandidateVacancyList) {
-        this.trsJobCandidateVacancyList = trsJobCandidateVacancyList;
-    }
-
     public MstJobtitle getIdJobTitle() {
         return idJobTitle;
     }
@@ -123,31 +112,6 @@ public class TrsJobVacancy implements Serializable {
 
     public void setIdEmployee(TrsEmployee idEmployee) {
         this.idEmployee = idEmployee;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idTrsJobVacancy != null ? idTrsJobVacancy.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TrsJobVacancy)) {
-            return false;
-        }
-        TrsJobVacancy other = (TrsJobVacancy) object;
-        if ((this.idTrsJobVacancy == null && other.idTrsJobVacancy != null) || (this.idTrsJobVacancy != null && !this.idTrsJobVacancy.equals(other.idTrsJobVacancy))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.module.hr.model.TrsJobVacancy[ idTrsJobVacancy=" + idTrsJobVacancy + " ]";
     }
 
     public String getName() {
@@ -205,6 +169,99 @@ public class TrsJobVacancy implements Serializable {
 	public void setActive(Boolean active) {
 		this.active = active;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((active == null) ? 0 : active.hashCode());
+		result = prime * result + ((definedTime == null) ? 0 : definedTime.hashCode());
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((idEmployee == null) ? 0 : idEmployee.hashCode());
+		result = prime * result + ((idJobTitle == null) ? 0 : idJobTitle.hashCode());
+		result = prime * result + ((idTrsJobVacancy == null) ? 0 : idTrsJobVacancy.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((noOfPositions == null) ? 0 : noOfPositions.hashCode());
+		result = prime * result + ((publishedInFeed == null) ? 0 : publishedInFeed.hashCode());
+		result = prime * result + ((trsJobVacancyList == null) ? 0 : trsJobVacancyList.hashCode());
+		result = prime * result + ((updatedTime == null) ? 0 : updatedTime.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TrsJobVacancy other = (TrsJobVacancy) obj;
+		if (active == null) {
+			if (other.active != null)
+				return false;
+		} else if (!active.equals(other.active))
+			return false;
+		if (definedTime == null) {
+			if (other.definedTime != null)
+				return false;
+		} else if (!definedTime.equals(other.definedTime))
+			return false;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		if (idEmployee == null) {
+			if (other.idEmployee != null)
+				return false;
+		} else if (!idEmployee.equals(other.idEmployee))
+			return false;
+		if (idJobTitle == null) {
+			if (other.idJobTitle != null)
+				return false;
+		} else if (!idJobTitle.equals(other.idJobTitle))
+			return false;
+		if (idTrsJobVacancy == null) {
+			if (other.idTrsJobVacancy != null)
+				return false;
+		} else if (!idTrsJobVacancy.equals(other.idTrsJobVacancy))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (noOfPositions == null) {
+			if (other.noOfPositions != null)
+				return false;
+		} else if (!noOfPositions.equals(other.noOfPositions))
+			return false;
+		if (publishedInFeed == null) {
+			if (other.publishedInFeed != null)
+				return false;
+		} else if (!publishedInFeed.equals(other.publishedInFeed))
+			return false;
+		if (trsJobVacancyList == null) {
+			if (other.trsJobVacancyList != null)
+				return false;
+		} else if (!trsJobVacancyList.equals(other.trsJobVacancyList))
+			return false;
+		if (updatedTime == null) {
+			if (other.updatedTime != null)
+				return false;
+		} else if (!updatedTime.equals(other.updatedTime))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "TrsJobVacancy [idTrsJobVacancy=" + idTrsJobVacancy + ", name=" + name + ", description=" + description
+				+ ", noOfPositions=" + noOfPositions + ", publishedInFeed=" + publishedInFeed + ", definedTime="
+				+ definedTime + ", updatedTime=" + updatedTime + ", active=" + active + ", trsJobVacancyList="
+				+ trsJobVacancyList + ", idJobTitle=" + idJobTitle + ", idEmployee=" + idEmployee + "]";
+	}
     
-    
+	
 }

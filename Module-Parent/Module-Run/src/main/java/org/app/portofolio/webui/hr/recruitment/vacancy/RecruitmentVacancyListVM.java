@@ -28,6 +28,7 @@ import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Messagebox;
 
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class RecruitmentVacancyListVM {
 
 	/*---------------- Zul ----------------*/
@@ -74,7 +75,6 @@ public class RecruitmentVacancyListVM {
 		Executions.createComponents(JHRMAdditionalZulPath.Recruitment.Vacancy.DIALOG_FORM, null, arg);
 	}
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Command
 	public void doDelete(){
 		final ListModelList<TrsJobVacancy> listModelListtrsJobVacancy = (ListModelList) listboxJobVacancy.getModel();
