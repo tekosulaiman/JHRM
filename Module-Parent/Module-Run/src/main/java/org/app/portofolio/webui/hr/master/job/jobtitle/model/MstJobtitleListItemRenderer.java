@@ -36,11 +36,13 @@ public class MstJobtitleListItemRenderer implements ListitemRenderer<MstJobtitle
         final Button buttonCancel = new Button();
         	buttonCancel.setImage("/images/icons/btn_cancel.gif");
         	
-        final Label labelName = new Label();			        
+        final Label labelName = new Label();
+        final Label labelNote = new Label();		
         final Label labelDescription = new Label();
         
         final Textbox textboxName = new Textbox();
         final Textbox textboxDescription = new Textbox();
+        final Textbox textboxNote = new Textbox();
         	
         listcell = new Listcell();
         	buttonEdit.setParent(listcell); 
@@ -59,6 +61,11 @@ public class MstJobtitleListItemRenderer implements ListitemRenderer<MstJobtitle
 			labelDescription.setParent(listcell);
 		listcell.setParent(item);
 
+		listcell = new Listcell();
+		textboxNote.setParent(listcell); 
+			labelNote.setParent(listcell);
+		listcell.setParent(item);
+		
 		if(mstJobtitle.getIdJobTitle() == null){
 			buttonEdit.setVisible(false);
 			buttonDelete.setVisible(false);
@@ -69,9 +76,11 @@ public class MstJobtitleListItemRenderer implements ListitemRenderer<MstJobtitle
         	
         	labelName.setValue(mstJobtitle.getJobName());
         	labelDescription.setValue(mstJobtitle.getJobDescription());
+        	labelNote.setValue(mstJobtitle.getJobNote());
         	
         	textboxName.setVisible(false);
         	textboxDescription.setVisible(false);
+        	textboxNote.setVisible(false);
 		}
 		
 		buttonSave.addEventListener(Events.ON_CLICK, new EventListener() {
@@ -80,6 +89,7 @@ public class MstJobtitleListItemRenderer implements ListitemRenderer<MstJobtitle
 				if(mstJobtitle.getIdJobTitle() == null){
 					mstJobtitle.setJobName(textboxName.getValue());
 					mstJobtitle.setJobDescription(textboxDescription.getValue());
+					mstJobtitle.setJobNote(textboxNote.getValue());
 
 					masterJobService.save(mstJobtitle);
 					
@@ -87,7 +97,8 @@ public class MstJobtitleListItemRenderer implements ListitemRenderer<MstJobtitle
 				}else{
 					mstJobtitle.setJobName(textboxName.getValue());
 					mstJobtitle.setJobDescription(textboxDescription.getValue());
-
+					mstJobtitle.setJobNote(textboxNote.getValue());
+					
 					masterJobService.update(mstJobtitle);
 					
 					BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
@@ -103,12 +114,15 @@ public class MstJobtitleListItemRenderer implements ListitemRenderer<MstJobtitle
 				
 				textboxName.setVisible(true);
 				textboxDescription.setVisible(true);
+				textboxNote.setVisible(true);
 				
 				labelName.setVisible(false);
 				labelDescription.setVisible(false);
+				labelNote.setVisible(false);
 				
 				textboxName.setValue(mstJobtitle.getJobName());
 				textboxDescription.setValue(mstJobtitle.getJobDescription());
+				textboxNote.setValue(mstJobtitle.getJobNote());
 			}					
 		});
 		

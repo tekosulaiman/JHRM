@@ -29,7 +29,7 @@
 									<textbox id="textboxLastName" width="100%" placeholder="Last"
 										value="@bind(form.lastName)"></textbox>	
 								</hlayout>
-								<label style="color: red;" value=""/>
+								<label value="@load(vmsgs['firstName'])" width="100%" style="color: red"></label>
 							</vlayout>
 						</row>
 						<row>
@@ -38,7 +38,7 @@
 								<hlayout>
 									<textbox id="textboxEmail" width="130%" value="@bind(form.email)"/>	
 								</hlayout>
-								<label style="color: red;" value=""/>
+								<label value="@load(vmsgs['email'])" width="100%" style="color: red"></label>
 							</vlayout>
 						</row>
 						<row>
@@ -47,7 +47,7 @@
 								<hlayout>
 									<textbox id="textboxContactNo" width="130%" value="@bind(form.contactNo)"/>	
 								</hlayout>
-								<label style="color: red;" value=""/>
+								<label value="@load(vmsgs['contactNo'])" width="100%" style="color: red"></label>
 							</vlayout>
 							<separator/>
 						</row>
@@ -62,7 +62,7 @@
 										</template>
 									</combobox>
 								</hlayout>
-								<label style="color: red;" value=""/>
+								<label value="@load(vmsgs['vacancy'])" width="100%" style="color: red"></label>
 							</vlayout>
 						</row>
 						<row>

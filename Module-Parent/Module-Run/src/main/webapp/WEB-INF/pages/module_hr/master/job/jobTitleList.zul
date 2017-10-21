@@ -15,7 +15,8 @@
 							<listhead >
 								<listheader width="10%" align="center"/>
 								<listheader label="Job Title"/>
-								<listheader label="Job Description"/>	
+								<listheader label="Job Description"/>
+								<listheader label="Note"/>
 							</listhead>
 						</listbox>
 						<paging />
