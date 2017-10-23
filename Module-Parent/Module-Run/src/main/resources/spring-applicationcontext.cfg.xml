@@ -130,7 +130,11 @@
   	<bean id="trsEmployeeDependentDAO" class="org.module.hr.dao.impl.TrsEmployeeDependentDAOImpl" parent="baseDao"/>
   	<bean id="trsEmployeeLicenseDAO" class="org.module.hr.dao.impl.TrsEmployeeLicenseDAOImpl" parent="baseDao"/>
 	<bean id="trsEmployeeMembershipDAO" class="org.module.hr.dao.impl.TrsEmployeeMembershipDAOImpl" parent="baseDao"/>
-  	  	
+	<bean id="trsEmployeeImmigrationDAO" class="org.module.hr.dao.impl.TrsEmployeeImmigrationDAOImpl" parent="baseDao"/>
+	<bean id="trsEmployeeExprienceDAO" class="org.module.hr.dao.impl.TrsEmployeeExprienceDAOImpl" parent="baseDao"/>
+	<bean id="trsEmployeeEducationDAO" class="org.module.hr.dao.impl.TrsEmployeeEducationDAOImpl" parent="baseDao"/>
+	<bean id="trsEmployeeLanguageDAO" class="org.module.hr.dao.impl.TrsEmployeeLanguageDAOImpl" parent="baseDao"/>
+	<bean id="trsEmployeeSkillDAO" class="org.module.hr.dao.impl.TrsEmployeeSkillDAOImpl" parent="baseDao"/>
   	
   	<!-- Test -->
     <bean id="mstTestDAO" class="org.module.hr.dao.impl.MstTestDAOImpl" parent="baseDao"/>
@@ -166,6 +170,11 @@
     	<property name="trsEmployeeDependentDAO" ref="trsEmployeeDependentDAO"/>
     	<property name="trsEmployeeLicenseDAO" ref="trsEmployeeLicenseDAO"/>
     	<property name="trsEmployeeMembershipDAO" ref="trsEmployeeMembershipDAO"/>	
+    	<property name="trsEmployeeImmigrationDAO" ref="trsEmployeeImmigrationDAO"/>
+    	<property name="trsEmployeeExprienceDAO" ref="trsEmployeeExprienceDAO"/>
+    	<property name="trsEmployeeEducationDAO" ref="trsEmployeeEducationDAO"/>
+    	<property name="trsEmployeeLanguageDAO" ref="trsEmployeeLanguageDAO"/>
+    	<property name="trsEmployeeSkillDAO" ref="trsEmployeeSkillDAO"/>
     </bean>
     
     <!-- Test -->

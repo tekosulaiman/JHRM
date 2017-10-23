@@ -13,13 +13,14 @@
 							label="${labels.menu.employee.immigration.title}">
 						</caption>
 						<hbox>
-							<button label="${labels.button.add}" />
+							<button label="${labels.button.add}" onClick="@command('doNew')" />
 							<button label="${labels.button.delete}" />
 						</hbox>
 						<space />
 						<listbox id="listBoxImmigration"
-							model="@bind(vm.employeeImmigrations)"
-							selectedItem="@bind(vm.selectedEmployeeImmigration)">
+							model="@bind(vm.trsEmployeeImmigrations)"
+							selectedItem="@bind(vm.selectedEmployeeImmigration)"
+							itemRenderer="@bind(vm.immigrationListItemRenderer)" >
 							<listhead>
 								<listheader width="5%" align="center" />
 								<listheader
@@ -43,8 +44,8 @@
 								<listheader
 									label="Eligible Review Data"
 									sort="auto" />
-								<listheader
-									label="${labels.menu.employee.immigration.listheader.expiry.date}"
+							   	<listheader
+									label="Comment"
 									sort="auto" />
 							</listhead>
 						</listbox>

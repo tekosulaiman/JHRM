@@ -7,6 +7,7 @@ import org.module.api.common.dao.base.BasisDAO;
 import org.module.hr.dao.TrsEmployeeDependentDAO;
 import org.module.hr.model.TrsEmployeeDependent;
 
+@SuppressWarnings("unchecked")
 public class TrsEmployeeDependentDAOImpl extends BasisDAO<TrsEmployeeDependent> implements TrsEmployeeDependentDAO{
 
 	@Override
@@ -15,6 +16,7 @@ public class TrsEmployeeDependentDAOImpl extends BasisDAO<TrsEmployeeDependent> 
 		return list;
 	}
 
+	
 	@Override
 	public List<TrsEmployeeDependent> getTrsEmployeeDependentByTrsEmployeeDependentRequestMap(
 			Map<String, Object> requestMap) {

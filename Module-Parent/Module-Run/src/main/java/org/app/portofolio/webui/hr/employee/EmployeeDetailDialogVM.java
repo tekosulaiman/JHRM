@@ -22,7 +22,7 @@ public class EmployeeDetailDialogVM {
 //	private Boolean isVisibleFormJob;
 //	private Boolean isVisibleFormSalary;
 //	private Boolean isVisibleFormReportTo;
-//	private Boolean isVisibleFormQualification;
+	private Boolean isVisibleFormQualification;
 	private Boolean isVisibleFormMemberships;
 
 	// used variable
@@ -125,12 +125,12 @@ public class EmployeeDetailDialogVM {
 //		isVisibleFormReportTo = Boolean.TRUE;
 //	}
 //
-//	@NotifyChange({ "*" })
-//	@Command
-//	public void selectFormQualification() {
-//		setVisibleFalseForAll();
-//		isVisibleFormQualification = Boolean.TRUE;
-//	}
+	@NotifyChange({ "*" })
+	@Command
+	public void selectFormQualification() {
+		setVisibleFalseForAll();
+		isVisibleFormQualification = Boolean.TRUE;
+	}
 
 	@NotifyChange({ "*" })
 	@Command
@@ -227,13 +227,13 @@ public class EmployeeDetailDialogVM {
 //		this.isVisibleFormReportTo = isVisibleFormReportTo;
 //	}
 //
-//	public Boolean getIsVisibleFormQualification() {
-//		return isVisibleFormQualification;
-//	}
-//
-//	public void setIsVisibleFormQualification(Boolean isVisibleFormQualification) {
-//		this.isVisibleFormQualification = isVisibleFormQualification;
-//	}
+	public Boolean getIsVisibleFormQualification() {
+		return isVisibleFormQualification;
+	}
+
+	public void setIsVisibleFormQualification(Boolean isVisibleFormQualification) {
+		this.isVisibleFormQualification = isVisibleFormQualification;
+	}
 
 	public Boolean getIsVisibleFormMemberships() {
 		return isVisibleFormMemberships;

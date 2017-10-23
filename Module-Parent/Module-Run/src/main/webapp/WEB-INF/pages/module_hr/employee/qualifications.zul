@@ -8,10 +8,10 @@
 						<caption
 							label="${labels.menu.employee.qualification.title.work.experience}" />
 						<hbox>
-							<button label="${labels.button.add}" />
+							<button label="${labels.button.add}" onClick="@command('doNewExperience')"/>
 						</hbox>
 						<space/>
-						<listbox id="ListBoxEmployeeExperience" model="@bind(vm.employeeExpriences)" selectedItem="@bind(vm.selectedEmployeeExprience)" itemRenderer="@bind(vm.employeeExperienceListItemRenderer.renderer)">
+						<listbox id="ListBoxEmployeeExperience" model="@bind(vm.employeeExpriences)" selectedItem="@bind(vm.selectedEmployeeExprience)" itemRenderer="@bind(vm.employeeExperienceListItemRenderer)">
 							<listhead>
 								<listheader width="5%" align="center" />
 								<listheader
@@ -34,14 +34,20 @@
 						<caption
 							label="${labels.menu.employee.qualification.title.education}" />
 						<hbox>
-							<button label="${labels.button.add}" />
+							<button label="${labels.button.add}" onClick="@command('doNewEducation')"/>
 						</hbox>
 						<space/>
-						<listbox id="ListBoxEmployeeEducation" model="@bind(vm.employeeEducations)" selectedItem="@bind(vm.selectedEmployeeEducation)" itemRenderer="@bind(vm.employeeEducationListItemRenderer.renderer)">
+						<listbox id="ListBoxEmployeeEducation" model="@bind(vm.employeeEducations)" selectedItem="@bind(vm.selectedEmployeeEducation)" itemRenderer="@bind(vm.employeeEducationListItemRenderer)">
 							<listhead>
 								<listheader width="5%" align="center" />
 								<listheader
 									label="${labels.menu.employee.qualification.listheader.level}"
+									sort="auto" />
+								<listheader
+									label="Institute"
+									sort="auto" />
+								<listheader
+									label="Major/Specialization"
 									sort="auto" />
 								<listheader
 									label="year"
@@ -49,6 +55,13 @@
 								<listheader
 									label="${labels.menu.employee.qualification.listheader.gpa.score}"
 									sort="auto" />
+								<listheader
+									label="Start Date"
+									sort="auto" />
+								<listheader
+									label="End Date"
+									sort="auto" />
+								
 							</listhead>
 						</listbox>
 					</groupbox>
@@ -56,10 +69,10 @@
 						<caption
 							label="${labels.menu.employee.qualification.title.skill}" />
 						<hbox>
-							<button label="${labels.button.add}" />
+							<button label="${labels.button.add}" onClick="@command('doNewSkill')"/>
 						</hbox>
 						<space/>
-						<listbox id="ListBoxEmployeeSkill" model="@bind(vm.employeeSkills)" selectedItem="@bind(vm.selectedEmployeeSkill)" itemRenderer="@bind(vm.employeeSkillListItemRenderer.renderer)">
+						<listbox id="ListBoxEmployeeSkill" model="@bind(vm.employeeSkills)" selectedItem="@bind(vm.selectedEmployeeSkill)" itemRenderer="@bind(vm.employeeSkillListItemRenderer)">
 							<listhead>
 								<listheader width="5%" align="center" />
 								<listheader
@@ -75,10 +88,10 @@
 						<caption
 							label="${labels.menu.employee.qualification.title.languages}" />
 						<hbox>
-							<button label="${labels.button.add}" />
+							<button label="${labels.button.add}" onClick="@command('doNewLanguage')"/>
 						</hbox>
 						<space/>
-						<listbox id="ListBoxEmployeeLanguage" model="@bind(vm.employeeLanguages)" selectedItem="@bind(vm.selectedEmployeeLanguage)" itemRenderer="@bind(vm.employeeLanguageListItemRenderer.renderer)">
+						<listbox id="ListBoxEmployeeLanguage" model="@bind(vm.employeeLanguages)" selectedItem="@bind(vm.selectedEmployeeLanguage)" itemRenderer="@bind(vm.employeeLanguageListItemRenderer)">
 							<listhead>
 								<listheader width="5%" align="center" />
 								<listheader
@@ -100,10 +113,10 @@
 						<caption
 							label="${labels.menu.employee.qualification.title.license}" />
 						<hbox>
-							<button label="${labels.button.add}" />
+							<button label="${labels.button.add}" onClick="@command('doNewLicense')"/>
 						</hbox>
 						<space/>
-						<listbox id="ListBoxEmployeeLicense" model="@bind(vm.employeeLicenses)" selectedItem="@bind(vm.selectedEmployeeLicense)" itemRenderer="@bind(vm.employeeLicenseListItemRenderer.renderer)">
+						<listbox id="ListBoxEmployeeLicense" model="@bind(vm.employeeLicenses)" selectedItem="@bind(vm.selectedEmployeeLicense)" itemRenderer="@bind(vm.employeeLicenseListItemRenderer)">
 							<listhead>
 								<listheader width="5%" align="center" />
 								<listheader

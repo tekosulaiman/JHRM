@@ -60,6 +60,12 @@
 							</treeitem>
 							<treeitem>
 								<treerow>
+									<treecell label="Qualifications"
+										onClick="@command('selectFormQualification')" />
+								</treerow>
+							</treeitem> 
+							<treeitem>
+								<treerow>
 									<treecell label="Memberships"
 										onClick="@command('selectFormMembership')" />
 								</treerow>
@@ -83,12 +89,7 @@
 										onClick="@command('selectFormReportTo')" />
 								</treerow>
 							</treeitem>
-							<treeitem>
-								<treerow>
-									<treecell label="Qualifications"
-										onClick="@command('selectFormQualification')" />
-								</treerow>
-							</treeitem> -->
+							-->
 							
 						</treechildren>
 					</tree>
@@ -118,13 +119,20 @@
 						<row
 							visible="@load(employee.isVisibleFormDependents)">
 							<include  type="@load(employee.trsEmployee)"
-								src="/WEB-INF/pages/module_hr/employee/dependents.zul" />
+								src="@load('/WEB-INF/pages/module_hr/employee/dependents.zul')" />
 						</row>
 						<row
 							visible="@load(employee.isVisibleFormImmigration)">
-							<include
-								src="/WEB-INF/pages/module_hr/employee/immigration.zul" />
+							<include type="@load(employee.trsEmployee)"
+								src="@load('/WEB-INF/pages/module_hr/employee/immigration.zul')" />
 						</row>
+						<row
+							visible="@load(employee.isVisibleFormQualification)">
+							<div>
+								<include type="@load(employee.trsEmployee)"
+									src="@load('/WEB-INF/pages/module_hr/employee/qualifications.zul')" />
+							</div>
+						</row> 
 						<row
 							visible="@load(employee.isVisibleFormMemberships)">
 							<include  type="@load(employee.trsEmployee)"
@@ -144,13 +152,7 @@
 							<include
 								src="/WEB-INF/pages/module_hr/employee/reportTo.zul" />
 						</row>
-						<row
-							visible="@load(employee.isVisibleFormQualification)">
-							<div>
-								<include
-									src="/WEB-INF/pages/module_hr/employee/qualifications.zul" />
-							</div>
-						</row> -->
+						-->
 						
 					</rows>
 				</grid>

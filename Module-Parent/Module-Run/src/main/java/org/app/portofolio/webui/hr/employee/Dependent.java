@@ -27,6 +27,8 @@ import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Messagebox;
 
+
+@SuppressWarnings({ "rawtypes", "unchecked" })
 public class Dependent {
 
 	@Wire("#ListBoxDependent")
@@ -65,7 +67,6 @@ public class Dependent {
 	}
 	
 	@Command
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void doNew() {
 		ListModelList listModelList = (ListModelList) ListBoxDependent.getModel();
 		TrsEmployeeDependent trsEmployeeDependent = new TrsEmployeeDependent();
@@ -76,7 +77,7 @@ public class Dependent {
 	
 	@GlobalCommand
 	@NotifyChange("trsEmployeeDependents")
-	public void b(){
+	public void trsEmployeeDependents(){
 		HashMap< String, Object> requestMap = new HashMap<>();
 		requestMap.put("trsEmployee", trsEmployee);
 		trsEmployeeDependents = employeeService.getTrsEmployeeDependentByTrsEmployeeDependentRequestMap(requestMap);
@@ -94,10 +95,6 @@ public class Dependent {
 
 	public TrsEmployee getTrsEmployee() {
 		return trsEmployee;
-	}
-
-	public void setTrsEmployee2(TrsEmployee trsEmployee) {
-		this.trsEmployee = trsEmployee;
 	}
 
 	public DependentListItemRenderer getDependentListItemRenderer() {

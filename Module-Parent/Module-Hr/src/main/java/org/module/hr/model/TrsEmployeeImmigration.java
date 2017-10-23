@@ -11,11 +11,14 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -43,12 +46,14 @@ public class TrsEmployeeImmigration implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @SequenceGenerator(name="TrsEmployeeImmigration_idEmployeeImmigration_GENERATOR", sequenceName="SCHEMA_HR.TrsEmployeeImmigration_idEmployeeImmigration_SEQ")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="TrsEmployeeImmigration_idEmployeeImmigration_GENERATOR")
     @Column(name = "id_immigration")
     private Integer idImmigration;
     @Column(name = "document")
     private String document;
     @Column(name = "number")
-    private Integer number;
+    private String number;
     @Column(name = "issued_date")
     @Temporal(TemporalType.DATE)
     private Date issuedDate;
@@ -91,11 +96,11 @@ public class TrsEmployeeImmigration implements Serializable {
         this.document = document;
     }
 
-    public Integer getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(Integer number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 
