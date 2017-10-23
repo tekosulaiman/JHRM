@@ -135,6 +135,8 @@
 	<bean id="trsEmployeeEducationDAO" class="org.module.hr.dao.impl.TrsEmployeeEducationDAOImpl" parent="baseDao"/>
 	<bean id="trsEmployeeLanguageDAO" class="org.module.hr.dao.impl.TrsEmployeeLanguageDAOImpl" parent="baseDao"/>
 	<bean id="trsEmployeeSkillDAO" class="org.module.hr.dao.impl.TrsEmployeeSkillDAOImpl" parent="baseDao"/>
+  	<!-- System Setting -->
+  	<bean id="systemSettingDAO" class="org.module.hr.dao.impl.SystemSettingDAOImpl" parent="baseDao"/>
   	
   	<!-- Test -->
     <bean id="mstTestDAO" class="org.module.hr.dao.impl.MstTestDAOImpl" parent="baseDao"/>
@@ -175,6 +177,11 @@
     	<property name="trsEmployeeEducationDAO" ref="trsEmployeeEducationDAO"/>
     	<property name="trsEmployeeLanguageDAO" ref="trsEmployeeLanguageDAO"/>
     	<property name="trsEmployeeSkillDAO" ref="trsEmployeeSkillDAO"/>
+    </bean>
+    
+    <!-- System Setting  -->
+    <bean id="systemSettingService" class="org.module.hr.service.impl.SystemSettingServiceImpl">
+    	<property name="systemSettingDAO" ref="systemSettingDAO"/>
     </bean>
     
     <!-- Test -->
