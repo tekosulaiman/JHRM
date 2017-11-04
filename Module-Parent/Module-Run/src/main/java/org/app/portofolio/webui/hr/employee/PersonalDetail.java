@@ -131,7 +131,6 @@ public class PersonalDetail {
 	/**
 	 * 
 	 */
-	@Command
 	private void formEditCondition() {
 		ComponentConditionUtil.visibleButton(buttonSave);
 		ComponentConditionUtil.invisibleButton(buttonEdit);
@@ -144,7 +143,6 @@ public class PersonalDetail {
 	/**
 	 * 
 	 */
-	@Command
 	private void formDetailCondition() {
 		ComponentConditionUtil.invisibleButton(buttonSave);
 		ComponentConditionUtil.visibleButton(buttonEdit);
