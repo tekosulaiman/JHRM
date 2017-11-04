@@ -111,6 +111,11 @@ public class TrsEmployee implements Serializable {
     @JoinColumn(name = "id_sub_unit", referencedColumnName = "id_sub_unit")
     @ManyToOne
     private MstSubUnit idSubUnit;
+    
+    @OneToMany(mappedBy = "idEmployeeSupervisor")
+    private List<TrsEmployeeReportto> trsEmployeeReporttoSupervisorList;
+    @OneToMany(mappedBy = "idEmployeeSub")
+    private List<TrsEmployeeReportto> trsEmployeeReporttoSubList;
 
     public TrsEmployee() {
     }
