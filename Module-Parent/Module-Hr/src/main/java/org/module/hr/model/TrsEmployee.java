@@ -9,10 +9,13 @@ package org.module.hr.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -98,6 +101,16 @@ public class TrsEmployee implements Serializable {
     private String workEmail;
     @Column(name = "other_email")
     private String otherEmail;
+    
+    @JoinColumn(name = "id_location", referencedColumnName = "id_location")
+    @ManyToOne
+    private MstLocation idLocation;
+    @JoinColumn(name = "id_nationality", referencedColumnName = "id_nationality")
+    @ManyToOne
+    private MstNationality idNationality;
+    @JoinColumn(name = "id_sub_unit", referencedColumnName = "id_sub_unit")
+    @ManyToOne
+    private MstSubUnit idSubUnit;
 
     public TrsEmployee() {
     }
