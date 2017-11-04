@@ -101,7 +101,10 @@ public class TrsEmployee implements Serializable {
     private String workEmail;
     @Column(name = "other_email")
     private String otherEmail;
-    
+    @Column(name = "marital_status")
+    private Character maritalStatus;
+    @Column(name = "country")
+    private String country;
     @JoinColumn(name = "id_location", referencedColumnName = "id_location")
     @ManyToOne
     private MstLocation idLocation;
@@ -221,8 +224,51 @@ public class TrsEmployee implements Serializable {
     public void setTrsEmployeeSalaryList(List<TrsEmployeeSalary> trsEmployeeSalaryList) {
         this.trsEmployeeSalaryList = trsEmployeeSalaryList;
     }
+    
+    public MstLocation getIdLocation() {
+		return idLocation;
+	}
 
-    @Override
+	public void setIdLocation(MstLocation idLocation) {
+		this.idLocation = idLocation;
+	}
+
+	public MstNationality getIdNationality() {
+		return idNationality;
+	}
+
+	public void setIdNationality(MstNationality idNationality) {
+		this.idNationality = idNationality;
+	}
+
+	public MstSubUnit getIdSubUnit() {
+		return idSubUnit;
+	}
+
+	public void setIdSubUnit(MstSubUnit idSubUnit) {
+		this.idSubUnit = idSubUnit;
+	}
+	
+	
+	@XmlTransient
+	public List<TrsEmployeeReportto> getTrsEmployeeReporttoSupervisorList() {
+		return trsEmployeeReporttoSupervisorList;
+	}
+
+	public void setTrsEmployeeReporttoSupervisorList(List<TrsEmployeeReportto> trsEmployeeReporttoSupervisorList) {
+		this.trsEmployeeReporttoSupervisorList = trsEmployeeReporttoSupervisorList;
+	}
+
+	@XmlTransient
+	public List<TrsEmployeeReportto> getTrsEmployeeReporttoSubList() {
+		return trsEmployeeReporttoSubList;
+	}
+
+	public void setTrsEmployeeReporttoSubList(List<TrsEmployeeReportto> trsEmployeeReporttoSubList) {
+		this.trsEmployeeReporttoSubList = trsEmployeeReporttoSubList;
+	}
+
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (idEmployee != null ? idEmployee.hashCode() : 0);
@@ -399,7 +445,12 @@ public class TrsEmployee implements Serializable {
 	public void setOtherEmail(String otherEmail) {
 		this.otherEmail = otherEmail;
 	}
-    
-    
-    
+
+	public Character getMaritalStatus() {
+		return maritalStatus;
+	}
+
+	public void setMaritalStatus(Character maritalStatus) {
+		this.maritalStatus = maritalStatus;
+	}
 }

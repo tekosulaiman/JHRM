@@ -1,8 +1,11 @@
 package org.app.portofolio.webui.hr.common.utilities;
 
+import org.zkoss.zul.Bandbox;
 import org.zkoss.zul.Button;
 import org.zkoss.zul.Checkbox;
 import org.zkoss.zul.Combobox;
+import org.zkoss.zul.Datebox;
+import org.zkoss.zul.Radio;
 import org.zkoss.zul.Textbox;
 
 public class ComponentConditionUtil {
@@ -144,6 +147,64 @@ public class ComponentConditionUtil {
 	public static void invisibleButton(Button...buttons) {
 		for (Button button: buttons) {
 			button.setVisible(false);
+		}
+	}
+	
+	/**
+	 * 
+	 * @param radios
+	 */
+	public static void disableRadio(Radio...radios){
+		for (Radio radio : radios) {
+			radio.setDisabled(true);
+		}
+	}
+	
+	/**
+	 * 
+	 * @param radios
+	 */
+	public static void enableRadio(Radio...radios){
+		for (Radio radio : radios) {
+			radio.setDisabled(false);
+		}
+	}
+	
+	/**
+	 * 
+	 * @param dateboxs
+	 */
+	public static void enableDateBox(Datebox...dateboxs){
+		for (Datebox datebox : dateboxs) {
+			datebox.setDisabled(false);
+		}
+	}
+	
+	/**
+	 * 
+	 * @param dateboxs
+	 */
+	public static void disableDateBox(Datebox...dateboxs){
+		for (Datebox datebox : dateboxs) {
+			datebox.setDisabled(true);
+		}
+	}
+	
+	/**
+	 * 
+	 */
+	public static void enableBandBox(Bandbox...bandboxs){
+		for (Bandbox bandbox : bandboxs) {
+			bandbox.setDisabled(false);
+		}
+	}
+	
+	/**
+	 * 
+	 */
+	public static void disableBandBox(Bandbox...bandboxs){
+		for (Bandbox bandbox : bandboxs) {
+			bandbox.setDisabled(true);
 		}
 	}
 }
