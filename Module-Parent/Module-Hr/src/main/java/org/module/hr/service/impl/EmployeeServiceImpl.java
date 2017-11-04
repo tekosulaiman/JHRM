@@ -12,6 +12,7 @@ import org.module.hr.dao.TrsEmployeeImmigrationDAO;
 import org.module.hr.dao.TrsEmployeeLanguageDAO;
 import org.module.hr.dao.TrsEmployeeLicenseDAO;
 import org.module.hr.dao.TrsEmployeeMembershipDAO;
+import org.module.hr.dao.TrsEmployeeSalaryDAO;
 import org.module.hr.dao.TrsEmployeeSkillDAO;
 import org.module.hr.model.TrsEmployee;
 import org.module.hr.model.TrsEmployeeDependent;
@@ -22,6 +23,7 @@ import org.module.hr.model.TrsEmployeeImmigration;
 import org.module.hr.model.TrsEmployeeLanguage;
 import org.module.hr.model.TrsEmployeeLicense;
 import org.module.hr.model.TrsEmployeeMembership;
+import org.module.hr.model.TrsEmployeeSalary;
 import org.module.hr.model.TrsEmployeeSkill;
 import org.module.hr.model.dto.MaritalStatusType;
 import org.module.hr.model.dto.RelationshipType;
@@ -61,6 +63,9 @@ public class EmployeeServiceImpl implements EmployeeService{
 	
 	@Autowired
 	private TrsEmployeeSkillDAO trsEmployeeSkillDAO;
+	
+	@Autowired
+	private TrsEmployeeSalaryDAO trsEmployeeSalaryDAO;
 	
 	/*---------- Employee Detail ----------*/
 	@Override
@@ -317,7 +322,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 		return trsEmployeeLanguageDAO.getTrsEmployeeLanguageByTrsEmployeeLanguageRequestMap(requestMap);
 	}
 	
-/*---------- Employee Skill ----------*/
+	/*---------- Employee Skill ----------*/
 	
 	@Override
 	public void save(TrsEmployeeSkill trsEmployeeSkill){
@@ -347,6 +352,38 @@ public class EmployeeServiceImpl implements EmployeeService{
 	@Override
 	public List<TrsEmployeeSkill> getTrsEmployeeSkillByTrsEmployeeSkillRequestMap(Map<String, Object> requestMap){
 		return trsEmployeeSkillDAO.getTrsEmployeeSkillByTrsEmployeeSkillRequestMap(requestMap);
+	}
+	
+	/*---------- Employee Salary ----------*/
+	
+	@Override
+	public void save(TrsEmployeeSalary trsEmployeeSalary){
+		trsEmployeeSalaryDAO.save(trsEmployeeSalary);
+	}
+	
+	@Override
+	public void update(TrsEmployeeSalary trsEmployeeSalary){
+		trsEmployeeSalaryDAO.update(trsEmployeeSalary);
+	}
+	
+	@Override
+	public void saveOrUpdate(TrsEmployeeSalary trsEmployeeSalary){
+		trsEmployeeSalaryDAO.saveOrUpdate(trsEmployeeSalary);
+	}
+	
+	@Override
+	public void delete(TrsEmployeeSalary trsEmployeeSalary){
+		trsEmployeeSalaryDAO.delete(trsEmployeeSalary);
+	}
+	
+	@Override
+	public List<TrsEmployeeSalary> getAllTrsEmployeeSalary(){
+		return trsEmployeeSalaryDAO.getAllTrsEmployeeSalary();
+	}
+	
+	@Override
+	public List<TrsEmployeeSalary> getTrsEmployeeSalaryByTrsEmployeeSalaryRequestMap(Map<String, Object> requestMap){
+		return trsEmployeeSalaryDAO.getTrsEmployeeSalaryByTrsEmployeeSalaryRequestMap(requestMap);
 	}
 	
 	/*---------- Employee License ----------*/
@@ -399,7 +436,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 	}
 	
 	@Override
-	public MaritalStatusType getMaritalStatusTypeTypeById(int id){
+	public MaritalStatusType getMaritalStatusTypeTypeById(Character id){
 		return MaritalStatusType.getTypById(id);
 	}
 
@@ -444,7 +481,9 @@ public class EmployeeServiceImpl implements EmployeeService{
 	public void setTrsEmployeeSkillDAO(TrsEmployeeSkillDAO trsEmployeeSkillDAO) {
 		this.trsEmployeeSkillDAO = trsEmployeeSkillDAO;
 	}
-	
-	
+
+	public void setTrsEmployeeSalaryDAO(TrsEmployeeSalaryDAO trsEmployeeSalaryDAO) {
+		this.trsEmployeeSalaryDAO = trsEmployeeSalaryDAO;
+	}
 	
 }

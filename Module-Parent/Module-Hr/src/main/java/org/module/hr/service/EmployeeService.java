@@ -13,6 +13,7 @@ import org.module.hr.model.TrsEmployeeImmigration;
 import org.module.hr.model.TrsEmployeeLanguage;
 import org.module.hr.model.TrsEmployeeLicense;
 import org.module.hr.model.TrsEmployeeMembership;
+import org.module.hr.model.TrsEmployeeSalary;
 import org.module.hr.model.TrsEmployeeSkill;
 import org.module.hr.model.dto.MaritalStatusType;
 import org.module.hr.model.dto.RelationshipType;
@@ -91,6 +92,14 @@ public interface EmployeeService {
 	public List<TrsEmployeeSkill> getAllTrsEmployeeSkill();
 	public List<TrsEmployeeSkill> getTrsEmployeeSkillByTrsEmployeeSkillRequestMap(Map<String, Object> requestMap);
 	
+	/*Employee salary*/
+	public void save(TrsEmployeeSalary trsEmployeeSkill);
+	public void update(TrsEmployeeSalary trsEmployeeSkill);
+	public void saveOrUpdate(TrsEmployeeSalary trsEmployeeSkill);
+	public void delete(TrsEmployeeSalary trsEmployeeSkill);
+	public List<TrsEmployeeSalary> getAllTrsEmployeeSalary();
+	public List<TrsEmployeeSalary> getTrsEmployeeSalaryByTrsEmployeeSalaryRequestMap(Map<String, Object> requestMap);
+	
 	/*Employee License*/
 	public void save(TrsEmployeeLicense trsEmployeeLicense);
 	public void update(TrsEmployeeLicense trsEmployeeLicense);
@@ -105,7 +114,7 @@ public interface EmployeeService {
 
 	/*MaritalStatus Type*/
 	public List<MaritalStatusType> getAllMaritalStatusType();
-	public MaritalStatusType getMaritalStatusTypeTypeById(int id);
+	public MaritalStatusType getMaritalStatusTypeTypeById(Character id);
 	
 
 }
