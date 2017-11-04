@@ -23,6 +23,7 @@
 		<mapping class="org.module.hr.model.MstPaygrade"/>
 		<mapping class="org.module.hr.model.MstPaygradeCurrency"/>
 		<mapping class="org.module.hr.model.MstSkill"/>
+		<mapping class="org.module.hr.model.MstSubUnit"/>
 		<mapping class="org.module.hr.model.MstTest"/>
 		<mapping class="org.module.hr.model.TrsEmployee"/>
 		<mapping class="org.module.hr.model.TrsEmployeeDependent"/>
