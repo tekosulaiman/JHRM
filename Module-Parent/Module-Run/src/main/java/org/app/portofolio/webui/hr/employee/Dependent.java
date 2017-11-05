@@ -77,7 +77,7 @@ public class Dependent {
 	
 	@GlobalCommand
 	@NotifyChange("trsEmployeeDependents")
-	public void trsEmployeeDependents(){
+	public void updateTrsEmployeeDependent(){
 		HashMap< String, Object> requestMap = new HashMap<>();
 		requestMap.put("trsEmployee", trsEmployee);
 		trsEmployeeDependents = employeeService.getTrsEmployeeDependentByTrsEmployeeDependentRequestMap(requestMap);

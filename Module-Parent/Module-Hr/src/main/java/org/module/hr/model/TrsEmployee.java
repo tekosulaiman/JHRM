@@ -105,20 +105,43 @@ public class TrsEmployee implements Serializable {
     private Character maritalStatus;
     @Column(name = "country")
     private String country;
-    @JoinColumn(name = "id_location", referencedColumnName = "id_location")
-    @ManyToOne
-    private MstLocation idLocation;
+   
     @JoinColumn(name = "id_nationality", referencedColumnName = "id_nationality")
     @ManyToOne
     private MstNationality idNationality;
-    @JoinColumn(name = "id_sub_unit", referencedColumnName = "id_sub_unit")
-    @ManyToOne
-    private MstSubUnit idSubUnit;
     
     @OneToMany(mappedBy = "idEmployeeSupervisor")
     private List<TrsEmployeeReportto> trsEmployeeReporttoSupervisorList;
     @OneToMany(mappedBy = "idEmployeeSub")
     private List<TrsEmployeeReportto> trsEmployeeReporttoSubList;
+    
+    
+    /*---------- Property For Job ----------*/
+    @JoinColumn(name = "id_job_category", referencedColumnName = "id_job_category")
+    @ManyToOne
+    private MstJobCategory idJobCategory;
+    
+    @JoinColumn(name = "id_sub_unit", referencedColumnName = "id_sub_unit")
+    @ManyToOne
+    private MstSubUnit idSubUnit;
+
+    @JoinColumn(name = "id_employement_status", referencedColumnName = "id_employement_status")
+    @ManyToOne
+    private MstEmployementStatus idEmployementStatus;
+    
+    @JoinColumn(name = "id_location", referencedColumnName = "id_location")
+    @ManyToOne
+    private MstLocation idLocation;
+    
+    @JoinColumn(name = "id_job_title", referencedColumnName = "id_job_title")
+    @ManyToOne
+    private MstJobtitle idJobTitle;
+    
+    @Column(name = "join_date")
+    @Temporal(TemporalType.DATE)
+    private Date joinDate;
+    
+    
 
     public TrsEmployee() {
     }
@@ -452,5 +475,13 @@ public class TrsEmployee implements Serializable {
 
 	public void setMaritalStatus(Character maritalStatus) {
 		this.maritalStatus = maritalStatus;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
 	}
 }

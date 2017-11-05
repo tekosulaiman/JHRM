@@ -37,6 +37,18 @@ public class TrsEmployeeSalary implements Serializable {
     @JoinColumn(name = "id_employee", referencedColumnName = "id_employee")
     @ManyToOne
     private TrsEmployee idEmployee;
+    @Column(name = "pay_grade")
+    private String payGrade;
+    @Column(name = "salary_component")
+    private String salaryComponent;
+    @Column(name = "pay_frequency")
+    private String payFrequency;
+    @Column(name = "currency")
+    private String currency;
+    @Column(name = "amount")
+    private String amount;
+    @Column(name = "comment")
+    private String comment;
 
     public TrsEmployeeSalary() {
     }
@@ -60,8 +72,56 @@ public class TrsEmployeeSalary implements Serializable {
     public void setIdEmployee(TrsEmployee idEmployee) {
         this.idEmployee = idEmployee;
     }
+    
+    public String getPayGrade() {
+		return payGrade;
+	}
 
-    @Override
+	public void setPayGrade(String payGrade) {
+		this.payGrade = payGrade;
+	}
+
+	public String getSalaryComponent() {
+		return salaryComponent;
+	}
+
+	public void setSalaryComponent(String salaryComponent) {
+		this.salaryComponent = salaryComponent;
+	}
+
+	public String getPayFrequency() {
+		return payFrequency;
+	}
+
+	public void setPayFrequency(String payFrequency) {
+		this.payFrequency = payFrequency;
+	}
+
+	public String getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(String currency) {
+		this.currency = currency;
+	}
+
+	public String getAmount() {
+		return amount;
+	}
+
+	public void setAmount(String amount) {
+		this.amount = amount;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (idSalary != null ? idSalary.hashCode() : 0);

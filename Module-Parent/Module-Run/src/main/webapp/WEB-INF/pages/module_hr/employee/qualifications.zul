@@ -122,8 +122,11 @@
 								<listheader
 									label="${labels.menu.employee.qualification.listheader.license.type}"
 									sort="auto" />
+									<listheader
+									label="License Number"
+									sort="auto" />
 								<listheader
-									label="${labels.menu.employee.qualifications.licenses.listheader.issued.date}"
+									label="Issued Date"
 									sort="auto" />
 								<listheader
 									label="${labels.menu.employee.qualification.listheader.expiry.date}"

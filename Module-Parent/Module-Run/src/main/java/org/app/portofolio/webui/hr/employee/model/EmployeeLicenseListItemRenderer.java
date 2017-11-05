@@ -103,8 +103,8 @@ public class EmployeeLicenseListItemRenderer implements ListitemRenderer<TrsEmpl
 			buttonCancel.setVisible(false);
 			buttonDelete.setVisible(false);
 			
-			labelExpiryDate.setValue(trsEmployeeLicense.getExpiryDate().toString());
-			labelIssuedDate.setValue(trsEmployeeLicense.getIssuedDate().toString());
+			labelExpiryDate.setValue(trsEmployeeLicense.getExpiryDate() != null ? trsEmployeeLicense.getExpiryDate().toString() : "");
+			labelIssuedDate.setValue(trsEmployeeLicense.getIssuedDate() != null ? trsEmployeeLicense.getIssuedDate().toString() : "");
 			labelLicenseNumber.setValue(trsEmployeeLicense.getLicenseNumber());
 			labelLicensetype.setValue(trsEmployeeLicense.getIdLicense().getNameLicense());
 			

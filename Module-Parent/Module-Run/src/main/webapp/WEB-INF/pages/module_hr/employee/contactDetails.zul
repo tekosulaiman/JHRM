@@ -2,8 +2,9 @@
 <zk>
 	<window border="none" width="100%"
 		apply="org.zkoss.bind.BindComposer"
-		viewModel="@id('vm') @init('org.app.portofolio.webui.hr.employee.ContactDetails')">
-		<borderlayout height="450px">
+		viewModel="@id('vm') @init('org.app.portofolio.webui.hr.employee.ContactDetails')"
+		validationMessages="@id('vmsgs')">
+		<borderlayout form="@id('form') @load(vm.trsEmployee) @save(vm.trsEmployee, before={'doSave'}) @validator(vm.formValidator)" height="500px">
 			<north size="100%" collapsible="true" autoscroll="true">
 				<div>
 					<groupbox mold="3d">
@@ -14,32 +15,32 @@
 								<row>
 									<label
 										value="${labels.menu.employee.contact.form.address.street.one}" />
-									<textbox value="@bind(vm.trsEmployee.addressStreet1)" disabled="@load(not vm.isEdit)"/>
+									<textbox id="textBoxAddressStreet1" value="@bind(form.addressStreet1)" disabled="@load(not vm.isEdit)"/>
 								</row>
 								<row>
 									<label
 										value="${labels.menu.employee.contact.form.address.street.two}" />
-									<textbox value="@bind(vm.trsEmployee.addressStreet2)" disabled="@load(not vm.isEdit)"/>
+									<textbox id="textBoxAddressStreet2" value="@bind(form.addressStreet2)" disabled="@load(not vm.isEdit)"/>
 								</row>
 								<row>
 									<label
 										value="${labels.menu.employee.contact.form.city}" />
-									<textbox value="@bind(vm.trsEmployee.city)" disabled="@load(not vm.isEdit)"/>
+									<textbox id="textBoxCity" value="@bind(form.city)" disabled="@load(not vm.isEdit)"/>
 								</row>
 								<row>
 									<label
 										value="${labels.menu.employee.contact.form.state.province}" />
-									<textbox value="@bind(vm.trsEmployee.province)" disabled="@load(not vm.isEdit)"/>
+									<textbox id="textBoxProvince" value="@bind(form.province)" disabled="@load(not vm.isEdit)"/>
 								</row>
 								<row>
 									<label
 										value="${labels.menu.employee.contact.form.zip.postal.code}" />
-									<textbox value="@bind(vm.trsEmployee.zip)" disabled="@load(not vm.isEdit)"/>
+									<textbox id="textBoxZip" value="@bind(form.zip)" disabled="@load(not vm.isEdit)"/>
 								</row>
 								<row>
 									<label
 										value="${labels.menu.employee.contact.form.country}" />
-									<bandbox id="bandBoxNationality" onOpen="@command('openBandBoxNationality')" disabled="@load(not vm.isEdit)">
+									<bandbox id="bandBoxNationality" value="@bind(form.country)" onOpen="@command('openBandBoxNationality')" disabled="@load(not vm.isEdit)">
 										<bandpopup>
 											<vbox>
 												<hbox>
@@ -63,17 +64,17 @@
 								<row>
 									<label
 										value="${labels.menu.employee.contact.form.home.telephone}" />
-									<textbox value="@bind(vm.trsEmployee.homeTelephone)" disabled="@load(not vm.isEdit)"/>
+									<textbox id="textBoxHomeTelephone" value="@bind(form.homeTelephone)" disabled="@load(not vm.isEdit)"/>
 								</row>
 								<row>
 									<label
 										value="${labels.menu.employee.contact.form.mobile.telephone}" />
-									<textbox value="@bind(vm.trsEmployee.mobile)" disabled="@load(not vm.isEdit)"/>
+									<textbox id="textBoxMobile" value="@bind(form.mobile)" disabled="@load(not vm.isEdit)"/>
 								</row>
 								<row>
 									<label
 										value="${labels.menu.employee.contact.form.work.telephone}" />
-									<textbox value="@bind(vm.trsEmployee.workTelephone)" disabled="@load(not vm.isEdit)"/>
+									<textbox id="textBoxWorkTelephone" value="@bind(form.workTelephone)" disabled="@load(not vm.isEdit)"/>
 								</row>
 							</rows>
 						</grid>
@@ -82,12 +83,12 @@
 								<row>
 									<label
 										value="${labels.menu.employee.contact.form.work.email}" />
-									<textbox value="@bind(vm.trsEmployee.workEmail)" disabled="@load(not vm.isEdit)"/>
+									<textbox id="textBoxWorkEmail" value="@bind(form.workEmail)" disabled="@load(not vm.isEdit)"/>
 								</row>
 								<row>
 									<label
 										value="${labels.menu.employee.contact.form.other.email}" />
-									<textbox value="@bind(vm.trsEmployee.otherEmail)" disabled="@load(not vm.isEdit)"/>
+									<textbox id="textBoxOtherEmail" value="@bind(form.otherEmail)" disabled="@load(not vm.isEdit)"/>
 								</row>
 							</rows>
 						</grid>
@@ -95,8 +96,8 @@
 							<rows>
 								<row>
 									<div>
-										<button label="Edit" onClick="@command('doEdit')" visible="@load(not vm.isEdit)"/>
-										<button label="Save" onClick="@command('doSave')" visible="@load(vm.isEdit)"/>
+										<button id="buttonEdit" label="Edit" onClick="@command('doEdit')" visible="@load(not vm.isEdit)"/>
+										<button id="buttonSave" label="Save" onClick="@command('doSave')" visible="@load(vm.isEdit)"/>
 									</div>
 								</row>
 							</rows>

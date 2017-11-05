@@ -3,7 +3,9 @@ package org.app.portofolio.webui.hr.employee;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.app.portofolio.webui.hr.common.utilities.ComponentConditionUtil;
 import org.app.portofolio.webui.hr.employee.model.DummyNationalityItemRender;
+import org.app.portofolio.webui.hr.employee.validator.TrsEmployeeContactDetailsValidator;
 import org.module.hr.model.MstNationality;
 import org.module.hr.model.TrsEmployee;
 import org.module.hr.service.EmployeeService;
@@ -18,10 +20,54 @@ import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.Bandbox;
+import org.zkoss.zul.Button;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
+import org.zkoss.zul.Textbox;
 
 public class ContactDetails {
+
+	@Wire("#listBoxCountry")
+	private Listbox listBoxCountry;
+
+	@Wire("#bandBoxNationality")
+	private Bandbox bandBoxNationality;
+	
+	@Wire("#textBoxAddressStreet1")
+	private Textbox textBoxAddressStreet1;
+	
+	@Wire("#textBoxAddressStreet2")
+	private Textbox textBoxAddressStreet2;
+	
+	@Wire("#textBoxCity")
+	private Textbox textBoxCity;
+	
+	@Wire("#textBoxProvince")
+	private Textbox textBoxProvince;
+	
+	@Wire("#textBoxZip")
+	private Textbox textBoxZip;
+	
+	@Wire("#textBoxHomeTelephone")
+	private Textbox textBoxHomeTelephone;
+	
+	@Wire("#textBoxMobile")
+	private Textbox textBoxMobile;
+	
+	@Wire("#textBoxWorkTelephone")
+	private Textbox textBoxWorkTelephone;
+	
+	@Wire("#textBoxWorkEmail")
+	private Textbox textBoxWorkEmail;
+	
+	@Wire("#textBoxOtherEmail")
+	private Textbox textBoxOtherEmail;
+	
+	@Wire("#buttonEdit")
+	private Button buttonEdit;
+	
+	@Wire("#buttonSave")
+	private Button buttonSave;
 	
 	@WireVariable
 	private EmployeeService employeeService;
@@ -31,12 +77,9 @@ public class ContactDetails {
 	private TrsEmployee trsEmployee;
 	private String countryKeySearch;
 
-	@Wire("#listBoxCountry")
-	private Listbox listBoxCountry;
-
-	@Wire("#bandBoxNationality")
-	private Bandbox bandBoxNationality;
-
+	
+	/*---------- Bean ----------*/
+	private TrsEmployeeContactDetailsValidator formValidator = new TrsEmployeeContactDetailsValidator();
 	private DummyNationalityItemRender nationalityItemRender;
 	private List<MstNationality> nationalities;
 	private MstNationality selectedNationality;
@@ -56,6 +99,7 @@ public class ContactDetails {
 			@ExecutionArgParam("type") TrsEmployee trsEmployee) {
 		Selectors.wireComponents(component, this, false);
 		this.trsEmployee = trsEmployee;
+		formDetailCondition();
 	}
 
 	@NotifyChange("items")
@@ -98,6 +142,26 @@ public class ContactDetails {
 		items.addAll(nationalities);
 		listBoxCountry.setModel(items);
 		listBoxCountry.setItemRenderer(new DummyNationalityItemRender());
+	}
+	
+	/**
+	 * 
+	 */
+	private void formEditCondition() {
+		ComponentConditionUtil.visibleButton(buttonSave);
+		ComponentConditionUtil.invisibleButton(buttonEdit);
+		ComponentConditionUtil.enableBandBox(bandBoxNationality);
+		ComponentConditionUtil.enableTextbox(textBoxAddressStreet1, textBoxAddressStreet2, textBoxCity, textBoxHomeTelephone, textBoxMobile, textBoxOtherEmail, textBoxProvince, textBoxWorkEmail, textBoxWorkTelephone, textBoxZip);
+	}
+	
+	/**
+	 * 
+	 */
+	private void formDetailCondition() {
+		ComponentConditionUtil.invisibleButton(buttonSave);
+		ComponentConditionUtil.visibleButton(buttonEdit);
+		ComponentConditionUtil.disableTextbox(textBoxAddressStreet1, textBoxAddressStreet2, textBoxCity, textBoxHomeTelephone, textBoxMobile, textBoxOtherEmail, textBoxProvince, textBoxWorkEmail, textBoxWorkTelephone, textBoxZip);
+		ComponentConditionUtil.disableBandBox(bandBoxNationality);
 	}
 
 	public TrsEmployee getTrsEmployee() {
@@ -144,10 +208,11 @@ public class ContactDetails {
 		return selectedNationality;
 	}
 
-	@NotifyChange("bandBoxNationality")
+	
 	public void setSelectedNationality(MstNationality selectedNationality) {
 		this.selectedNationality = selectedNationality;
-		bandBoxNationality.setValue(selectedNationality.getNameNationality());
+		trsEmployee.setCountry(selectedNationality.getNameNationality());
+		bandBoxNationality.setValue(trsEmployee.getCountry());
 		bandBoxNationality.close();
 	}
 
@@ -173,6 +238,14 @@ public class ContactDetails {
 
 	public void setIsEdit(Boolean isEdit) {
 		this.isEdit = isEdit;
+	}
+
+	public TrsEmployeeContactDetailsValidator getFormValidator() {
+		return formValidator;
+	}
+
+	public void setFormValidator(TrsEmployeeContactDetailsValidator formValidator) {
+		this.formValidator = formValidator;
 	}
 	
 }

@@ -1,5 +1,7 @@
 <zk>
-	<window id="windowSalary" border="none">
+	<window id="windowSalary" border="none" 
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('org.app.portofolio.webui.hr.employee.Salary')">
 		<borderlayout height="450px">
 			<!-- Function CRUD -->
 			<!-- <north/> -->
@@ -12,9 +14,45 @@
 						</caption>
 						<hbox>
 							<button label="${labels.button.add}" />
+							<button label="Delete"/>
 						</hbox>
 						<space />
-						<listbox>
+						<borderlayout>
+							<north title="List Salary" splittable="true" collapsible="true">
+								<listbox id="listBoxSalary" model="@bind(vm.secUsers)" selectedItem="@bind(vm.secUser)" onSelect="@command('doSelect')">
+									<listhead sizable="true">
+										<listheader width="5%" align="center"/>
+										<listheader label="ID User" sort="auto(usrId)" />
+										<listheader label="Login Name" sort="auto(usrLoginname)" />
+									</listhead>
+									<template name="model" var="secUser">
+									<listitem>
+										<listcell image="/images/icons/btn_edit.gif" tooltiptext="Click For Edit" onClick="@command('doDetail')"/>
+										<listcell label="@bind(secUser.usrId)" />
+										<listcell label="@bind(secUser.usrLoginname)" />
+									</listitem>
+									</template>
+								</listbox>
+							</north>
+							<south title="List Role" splittable="true" collapsible="true">
+								<listbox id="listBoxRoleUserRole" model="@bind(vm.secRoles)" selectedItem="@bind(vm.secRole)">
+									<listhead sizable="true">
+										<listheader label="ID Role" sort="auto(usrId)" />
+										<listheader label="Role Name" sort="auto(usrLoginname)" />
+									</listhead>
+									<template name="model" var="secRole">
+									<listitem>
+										<listcell label="@bind(secRole.rolId)" />
+										<listcell label="@bind(secRole.rolShortdescription)" />
+									</listitem>
+									</template>
+								</listbox>
+							</south>
+						</borderlayout>
+						<!-- <listbox id="listBoxSalary"
+							model="@bind(vm.trsEmployeeSalarys)"
+							selectedItem="@bind(vm.selectedEmployeeSalary)"
+							itemRenderer="@bind(vm.salaryListItemRenderer)">
 							<listhead>
 								<listheader width="5%" align="center" />
 								<listheader
@@ -35,18 +73,7 @@
 									label="${labels.menu.employee.salary.listheader.show.direct.deposit.details}"
 									sort="auto" />
 							</listhead>
-							<listitem>
-								<listcell
-									image="/images/icons/btn_edit.gif"
-									tooltiptext="Click For Edit" />
-								<listcell label="a" />
-								<listcell label="a" />
-								<listcell label="IDR" />
-								<listcell label="10000000" />
-								<listcell label="a" />
-								<listcell label="10000000" />
-							</listitem>
-						</listbox>
+						</listbox> -->
 					</groupbox>
 					<groupbox mold="3d">
 						<caption label="${labels.title.attachments}" />

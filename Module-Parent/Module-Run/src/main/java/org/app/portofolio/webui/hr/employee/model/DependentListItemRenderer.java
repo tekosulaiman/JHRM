@@ -111,7 +111,7 @@ public class DependentListItemRenderer implements ListitemRenderer<TrsEmployeeDe
 
 				employeeService.save(trsEmployeeDependent);
 				
-				BindUtils.postGlobalCommand(null, null, "b", null);
+				BindUtils.postGlobalCommand(null, null, "updateTrsEmployeeDependent", null);
 			}else{
 				trsEmployeeDependent.setName(textboxName.getValue());
 				trsEmployeeDependent.setRelationship(String.valueOf(comboboxRelationshipType.getSelectedIndex()));
@@ -119,7 +119,7 @@ public class DependentListItemRenderer implements ListitemRenderer<TrsEmployeeDe
 
 				employeeService.update(trsEmployeeDependent);
 				
-				BindUtils.postGlobalCommand(null, null, "b", null);
+				BindUtils.postGlobalCommand(null, null, "updateTrsEmployeeDependent", null);
 			}
 		}
 	});
@@ -158,7 +158,7 @@ public class DependentListItemRenderer implements ListitemRenderer<TrsEmployeeDe
 
 			 			employeeService.delete(trsEmployeeDependent);
 			 			
-			 			BindUtils.postGlobalCommand(null, null, "b", null);
+			 			BindUtils.postGlobalCommand(null, null, "updateTrsEmployeeDependent", null);
 			 		}else{
 			 			return;
 			 		}
@@ -170,7 +170,7 @@ public class DependentListItemRenderer implements ListitemRenderer<TrsEmployeeDe
 	buttonCancel.addEventListener(Events.ON_CLICK, new EventListener() {
 		@Override
 		public void onEvent(Event event) throws Exception {
-			BindUtils.postGlobalCommand(null, null, "b", null);
+			BindUtils.postGlobalCommand(null, null, "updateTrsEmployeeDependent", null);
 		}
 	});
 	}
