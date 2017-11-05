@@ -272,7 +272,38 @@ public class TrsEmployee implements Serializable {
 		this.idSubUnit = idSubUnit;
 	}
 	
-	
+	public MstJobCategory getIdJobCategory() {
+		return idJobCategory;
+	}
+
+	public void setIdJobCategory(MstJobCategory idJobCategory) {
+		this.idJobCategory = idJobCategory;
+	}
+
+	public MstEmployementStatus getIdEmployementStatus() {
+		return idEmployementStatus;
+	}
+
+	public void setIdEmployementStatus(MstEmployementStatus idEmployementStatus) {
+		this.idEmployementStatus = idEmployementStatus;
+	}
+
+	public MstJobtitle getIdJobTitle() {
+		return idJobTitle;
+	}
+
+	public void setIdJobTitle(MstJobtitle idJobTitle) {
+		this.idJobTitle = idJobTitle;
+	}
+
+	public Date getJoinDate() {
+		return joinDate;
+	}
+
+	public void setJoinDate(Date joinDate) {
+		this.joinDate = joinDate;
+	}
+
 	@XmlTransient
 	public List<TrsEmployeeReportto> getTrsEmployeeReporttoSupervisorList() {
 		return trsEmployeeReporttoSupervisorList;
