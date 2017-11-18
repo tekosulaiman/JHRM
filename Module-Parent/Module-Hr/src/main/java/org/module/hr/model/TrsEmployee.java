@@ -31,10 +31,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "trs_employee", catalog = "dbhr", schema = "schema_hr")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "TrsEmployee.findAll", query = "SELECT t FROM TrsEmployee t"),
-    @NamedQuery(name = "TrsEmployee.findByIdEmployee", query = "SELECT t FROM TrsEmployee t WHERE t.idEmployee = :idEmployee")})
 public class TrsEmployee implements Serializable {
     @Column(name = "first_name")
     private String firstName;

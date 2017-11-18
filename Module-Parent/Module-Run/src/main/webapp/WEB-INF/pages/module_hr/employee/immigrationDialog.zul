@@ -1,0 +1,66 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window title="new page title" border="normal" apply="org.zkoss.bind.BindComposer" 
+		viewModel="@id('vm') @init('org.app.portofolio.webui.hr.employee.ImmigrationDialog')"
+		validationMessages="@id('vmsgs')">
+		<borderlayout form="@id('form') @load(vm.trsEmployee) @save(vm.trsEmployee, before={'doSave'}) @validator(vm.formValidator)" height="500px">
+			<!-- Function CRUD -->
+			<north>
+				<toolbar>
+					<button image="/images/icons/btn_save.gif"
+						label="Save" onClick="@command('doSave')" />
+				</toolbar>
+			</north>
+			<center>
+				<groupbox mold="3d">
+					<caption label="Immigration dialog" />
+					<grid>
+						<rows>
+							<row>
+								<label
+									value="Document" />
+								<radiogroup 
+										selectedItem="@bind(form.gender)" >
+										<radio id="radioMale" label="Pria" value="true" selected="@load(form.gender eq false ? false: true)" />
+										<radio id="radioFemale" label="Wanita" value="false" selected="@load(form.gender eq false ? true : false)" />
+								</radiogroup>
+							</row>
+							<row>
+								<label
+									value="Number" />
+								<textbox value="@bind()"/>
+							</row>
+							<row>
+								<label
+									value="Issued Date" />
+								<datebox />
+							</row>
+							<row>
+								<label value="Expiry Date"/>
+								<datebox/>
+							</row>
+							<row>
+								<label value="Eligible Status"/>
+								<textbox/>
+							</row>
+							<row>
+								<label value="Issued by"/>
+								<bandbox>
+								</bandbox>
+							</row>
+							<row>
+								<label value="Eligible Review Date"/>
+								<datebox/>
+							</row>
+							<row>
+								<label value="Comment"/>
+								<textbox multiline="true" rows="3"/>
+							</row>
+						</rows>
+					</grid>
+				</groupbox>
+			</center>
+			<south />
+		</borderlayout>
+	</window>
+</zk>

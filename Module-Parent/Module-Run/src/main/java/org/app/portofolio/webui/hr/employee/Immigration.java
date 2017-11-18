@@ -3,9 +3,7 @@ package org.app.portofolio.webui.hr.employee;
 import java.util.HashMap;
 import java.util.List;
 
-import org.app.portofolio.webui.hr.employee.model.ImmigrationListItemRenderer;
 import org.module.hr.model.TrsEmployee;
-import org.module.hr.model.TrsEmployeeDependent;
 import org.module.hr.model.TrsEmployeeImmigration;
 import org.module.hr.service.EmployeeService;
 import org.zkoss.bind.annotation.AfterCompose;
@@ -16,10 +14,10 @@ import org.zkoss.bind.annotation.ExecutionArgParam;
 import org.zkoss.bind.annotation.GlobalCommand;
 import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
-import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
@@ -33,7 +31,6 @@ public class Immigration {
 	
 	private TrsEmployee trsEmployee;
 	
-	private ImmigrationListItemRenderer immigrationListItemRenderer;
 	private List<TrsEmployeeImmigration> trsEmployeeImmigrations;
 	private TrsEmployeeImmigration selectedEmployeeImmigration;
 	
@@ -53,19 +50,22 @@ public class Immigration {
 		HashMap< String, Object> requestMap = new HashMap<>();
 		requestMap.put("trsEmployee", trsEmployee);
 		trsEmployeeImmigrations = employeeService.getTrsEmployeeImmigrationByTrsEmployeeImmigrationRequestMap(requestMap);
-		immigrationListItemRenderer = new ImmigrationListItemRenderer();
 		
-		listBoxImmigration.setModel(new ListModelList<TrsEmployeeImmigration>());
-		listBoxImmigration.setItemRenderer(immigrationListItemRenderer);
 		doPrepareList();
 	}
 	
 	@Command
 	public void doNew() {
-		ListModelList listModelList = (ListModelList) listBoxImmigration.getModel();
-		TrsEmployeeImmigration employeeImmigration = new TrsEmployeeImmigration();
-		employeeImmigration.setIdEmployee(trsEmployee);
-		listModelList.add(0,  employeeImmigration);		
+		Executions.createComponents("/WEB-INF/pages/module_hr/employee/immigrationDialog.zul", null, null);
+	}
+	
+	@Command
+	public void doDetail(){
+		/*HashMap<K, V> K = Key, V = Value*/
+		HashMap<String, Object> arg = new HashMap<String, Object>();
+		arg.put("trsEmployeeImmigration", selectedEmployeeImmigration);
+		
+		Executions.createComponents("", null, arg);
 	}
 	
 	@GlobalCommand
@@ -98,14 +98,6 @@ public class Immigration {
 
 	public void setTrsEmployeeImmigrations(List<TrsEmployeeImmigration> trsEmployeeImmigrations) {
 		this.trsEmployeeImmigrations = trsEmployeeImmigrations;
-	}
-
-	public ImmigrationListItemRenderer getImmigrationListItemRenderer() {
-		return immigrationListItemRenderer;
-	}
-
-	public void setImmigrationListItemRenderer(ImmigrationListItemRenderer immigrationListItemRenderer) {
-		this.immigrationListItemRenderer = immigrationListItemRenderer;
 	}
 
 	public List<TrsEmployeeImmigration> getEmployeeImmigrations() {

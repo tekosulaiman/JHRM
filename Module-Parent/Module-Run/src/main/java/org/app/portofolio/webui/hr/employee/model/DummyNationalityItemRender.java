@@ -10,10 +10,6 @@ public class DummyNationalityItemRender implements ListitemRenderer<MstNationali
 	@Override
 	public void render(Listitem item, MstNationality data, int index) throws Exception {
 		Listcell listcell = new Listcell();
-//        listcell.setLabel(data.getIdNationality().toString());
-//        item.appendChild(listcell);
-        
-//        listcell = new Listcell();
         listcell.setLabel(data.getNameNationality());
         item.appendChild(listcell);
 	}

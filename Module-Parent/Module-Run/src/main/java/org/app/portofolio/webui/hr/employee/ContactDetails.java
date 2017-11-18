@@ -5,10 +5,11 @@ import java.util.List;
 
 import org.app.portofolio.webui.hr.common.utilities.ComponentConditionUtil;
 import org.app.portofolio.webui.hr.employee.model.DummyNationalityItemRender;
-import org.app.portofolio.webui.hr.employee.validator.TrsEmployeeContactDetailsValidator;
+import org.app.portofolio.webui.hr.employee.validator.TrsEmployeeContactDetailsFormValidator;
 import org.module.hr.model.MstNationality;
 import org.module.hr.model.TrsEmployee;
 import org.module.hr.service.EmployeeService;
+import org.module.sysadmin.model.SecRight;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
@@ -23,6 +24,7 @@ import org.zkoss.zul.Bandbox;
 import org.zkoss.zul.Button;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
+import org.zkoss.zul.ListitemRenderer;
 import org.zkoss.zul.Textbox;
 
 public class ContactDetails {
@@ -72,15 +74,14 @@ public class ContactDetails {
 	@WireVariable
 	private EmployeeService employeeService;
 
-	private ListModelList<MstNationality> items;
 
-	private TrsEmployee trsEmployee;
-	private String countryKeySearch;
 
 	
 	/*---------- Bean ----------*/
-	private TrsEmployeeContactDetailsValidator formValidator = new TrsEmployeeContactDetailsValidator();
-	private DummyNationalityItemRender nationalityItemRender;
+	private TrsEmployeeContactDetailsFormValidator formValidator = new TrsEmployeeContactDetailsFormValidator();
+	private ListitemRenderer<MstNationality> listitemRenderer;
+	private TrsEmployee trsEmployee;
+	private String countryKeySearch;
 	private List<MstNationality> nationalities;
 	private MstNationality selectedNationality;
 	
@@ -102,29 +103,29 @@ public class ContactDetails {
 		formDetailCondition();
 	}
 
-	@NotifyChange("items")
 	@Command
 	public void search() {
-		for (MstNationality mstNationality : items) {
+		for (MstNationality mstNationality : nationalities) {
 			if (mstNationality.getNameNationality().contains(countryKeySearch)) {
-				items.clear();
-				items.add(mstNationality);
+				nationalities.clear();
+				nationalities.add(mstNationality);
 				break;
 			}
 		}
+		listBoxCountry.setModel(new ListModelList<MstNationality>(nationalities));
 	}
 	
 	@Command
 	@NotifyChange("isEdit")
 	public void doEdit(){
-		isEdit = Boolean.TRUE;
+		formEditCondition();
 	}
 	
 	@Command
 	@NotifyChange("isEdit")
 	public void doSave(){
 		employeeService.update(trsEmployee);
-		isEdit = Boolean.FALSE;
+		formEditCondition();
 	}
 
 	@Command
@@ -138,10 +139,9 @@ public class ContactDetails {
 			nationality.setNameNationality("Nationality " + i);
 			nationalities.add(nationality);
 		}
-		items = new ListModelList<MstNationality>();
-		items.addAll(nationalities);
-		listBoxCountry.setModel(items);
-		listBoxCountry.setItemRenderer(new DummyNationalityItemRender());
+		listitemRenderer = new DummyNationalityItemRender();
+		listBoxCountry.setModel(new ListModelList<MstNationality>(nationalities));
+		listBoxCountry.setItemRenderer(listitemRenderer);
 	}
 	
 	/**
@@ -188,14 +188,6 @@ public class ContactDetails {
 		this.listBoxCountry = listBoxCountry;
 	}
 
-	public DummyNationalityItemRender getNationalityItemRender() {
-		return nationalityItemRender;
-	}
-
-	public void setNationalityItemRender(DummyNationalityItemRender nationalityItemRender) {
-		this.nationalityItemRender = nationalityItemRender;
-	}
-
 	public List<MstNationality> getNationalities() {
 		return nationalities;
 	}
@@ -216,14 +208,6 @@ public class ContactDetails {
 		bandBoxNationality.close();
 	}
 
-	public ListModelList<MstNationality> getItems() {
-		return items;
-	}
-
-	public void setItems(ListModelList<MstNationality> items) {
-		this.items = items;
-	}
-
 	public Bandbox getBandBoxNationality() {
 		return bandBoxNationality;
 	}
@@ -240,11 +224,11 @@ public class ContactDetails {
 		this.isEdit = isEdit;
 	}
 
-	public TrsEmployeeContactDetailsValidator getFormValidator() {
+	public TrsEmployeeContactDetailsFormValidator getFormValidator() {
 		return formValidator;
 	}
 
-	public void setFormValidator(TrsEmployeeContactDetailsValidator formValidator) {
+	public void setFormValidator(TrsEmployeeContactDetailsFormValidator formValidator) {
 		this.formValidator = formValidator;
 	}
 	

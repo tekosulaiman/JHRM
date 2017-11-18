@@ -7,7 +7,7 @@ import org.zkoss.bind.Property;
 import org.zkoss.bind.ValidationContext;
 import org.zkoss.bind.validator.AbstractValidator;
 
-public class TrsEmployeeContactDetailsValidator extends AbstractValidator {
+public class TrsEmployeeContactDetailsFormValidator extends AbstractValidator {
 	
 	@Override
 	public void validate(ValidationContext validationContext) {

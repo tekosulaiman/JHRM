@@ -17,12 +17,9 @@
 							<button label="${labels.button.delete}" />
 						</hbox>
 						<space />
-						<listbox id="listBoxImmigration"
-							model="@bind(vm.trsEmployeeImmigrations)"
-							selectedItem="@bind(vm.selectedEmployeeImmigration)"
-							itemRenderer="@bind(vm.immigrationListItemRenderer)" >
+						<listbox id="listBoxImmigration" model="@bind(vm.trsEmployeeImmigrations)" selectedItem="@bind(vm.selectedEmployeeImmigration)" onSelect="@command('doSelect')">
 							<listhead>
-								<listheader width="5%" align="center" />
+								<listheader width="5%" align="center"/>
 								<listheader
 									label="${labels.menu.employee.immigration.listheader.document}"
 									sort="auto" />
@@ -42,12 +39,25 @@
 									label="Eligible Status"
 									sort="auto" />
 								<listheader
-									label="Eligible Review Data"
+									label="Eligible Review Date"
 									sort="auto" />
 							   	<listheader
 									label="Comment"
 									sort="auto" />
-							</listhead>
+								</listhead>
+							<template name="model" var="trsEmployeeImmigration">
+								<listitem>
+									<listcell image="/images/icons/btn_edit.gif" tooltiptext="Click For Edit" onClick="@command('doDetail')"/>
+									<listcell label="@bind(trsEmployeeImmigration.document)"/>
+									<listcell label="@bind(trsEmployeeImmigration.number)"/>
+									<listcell label="@bind(trsEmployeeImmigration.idNationality.nameNationality)"/>
+									<listcell label="@bind(trsEmployeeImmigration.issuedDate)"/>
+									<listcell label="@bind(trsEmployeeImmigration.expiredDate)"/>
+									<listcell label="@bind(trsEmployeeImmigration.eligibleStatus)"/>
+									<listcell label="@bind(trsEmployeeImmigration.eligibleReview)"/>
+									<listcell label="@bind(trsEmployeeImmigration.comment)"/>
+								</listitem>
+							</template>
 						</listbox>
 					</groupbox>
 					<groupbox mold="3d">

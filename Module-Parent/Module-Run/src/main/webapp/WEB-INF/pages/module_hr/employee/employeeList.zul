@@ -74,7 +74,7 @@
 								<listheader label="${labels.menu.employee.listheader.sub.unit}" sort="auto" /> 	
 								<listheader label="${labels.menu.employee.listheader.supervisor}" sort="auto" />
 							</listhead>
-							<template name="model" var="trsEmployee" selectedItem="@bind(vm.trsEmployee)">
+							<template name="model" var="trsEmployee">
 								<listitem>
 									<listcell image="/images/icons/btn_edit.gif" tooltiptext="Click For Edit" onClick="@command('doDetail')"/>
 									<listcell label="@bind(trsEmployee.idEmployee)" />

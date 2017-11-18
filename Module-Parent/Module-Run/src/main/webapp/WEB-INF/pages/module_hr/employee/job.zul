@@ -1,7 +1,9 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
-	<window border="none" width="100%">
-		<borderlayout height="450px">
+	<window id="windowJob" border="none" width="100%" apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('org.app.portofolio.webui.hr.employee.Job')"
+		validationMessages="@id('vmsgs')" >
+		<borderlayout form="@id('form') @load(vm.trsEmployee) @save(vm.trsEmployee, before={'doSave'}) @validator(vm.formValidator)" height="500px">
 			<north size="100%" collapsible="true" autoscroll="true">
 				<div>
 					<groupbox mold="3d">
@@ -10,53 +12,155 @@
 						<grid>
 							<rows>
 								<row>
+									<label value="${labels.menu.employee.job.form.job.title}" />
+									<bandbox id="bandBoxJobTitle" onOpen="@command('openBandBoxJobTitle')" >
+										<bandpopup>
+											<vbox>
+												<hbox>
+													<textbox value="@bind(vm.jobTitleKeySearch)"/>
+													<button label="Search" onClick="@command('searchJobTitle')"/>
+												</hbox>
+												<listbox id="listBoxJobTitle" >
+													<listhead>
+														<listheader
+															label="Description" />
+													</listhead>
+												</listbox>
+											</vbox>
+										</bandpopup>
+									</bandbox>
+								</row>
+								<!-- <row>
 									<label
 										value="${labels.menu.employee.job.form.job.title}" />
 									<textbox />
-								</row>
+								</row> 
 								<row>
 									<label
 										value="${labels.menu.employee.job.form.job.spesification}" />
 									<label value="Not Defined" />
-								</row>
+								</row> -->
 								<row>
+									<label
+										value="${labels.menu.employee.job.form.employment.status}" />
+									<bandbox id="bandBoxEmploymentStatus" onOpen="@command('openBandBoxEmploymentStatus')" >
+										<bandpopup>
+											<vbox>
+												<hbox>
+													<textbox value="@bind(vm.employmentStatusKeySearch)"/>
+													<button label="Search" onClick="@command('searchEmploymentStatus')"/>
+												</hbox>
+												<listbox id="listBoxEmploymentStatus" >
+													<listhead>
+														<listheader
+															label="Description" />
+													</listhead>
+												</listbox>
+											</vbox>
+										</bandpopup>
+									</bandbox>
+								</row>
+								<!-- <row>
 									<label
 										value="${labels.menu.employee.job.form.employment.status}" />
 									<listbox rows="1" mold="select">
 										<listitem selected="true"
 											label=" " />
 									</listbox>
-								</row>
+								</row> -->
 								<row>
+									<label
+										value="${labels.menu.employee.job.form.job.category}" />
+									<bandbox id="bandBoxJobCategory" onOpen="@command('openBandBoxJobCategory')" >
+										<bandpopup>
+											<vbox>
+												<hbox>
+													<textbox value="@bind(vm.jobCategoryKeySearch)"/>
+													<button label="Search" onClick="@command('searchJobCategory')"/>
+												</hbox>
+												<listbox id="listBoxJobCategory" >
+													<listhead>
+														<listheader
+															label="Description" />
+													</listhead>
+												</listbox>
+											</vbox>
+										</bandpopup>
+									</bandbox>
+								</row>
+								<!-- <row>
 									<label
 										value="${labels.menu.employee.job.form.job.category}" />
 									<listbox rows="1" mold="select">
 										<listitem selected="true"
 											label=" " />
 									</listbox>
-								</row>
+								</row> -->
 								<row>
 									<label
 										value="${labels.menu.employee.job.form.joined.date}" />
-									<datebox />
+									<datebox id="dateBoxJoinedDate"/>
 								</row>
 								<row>
+									<label
+										value="${labels.menu.employee.job.form.sub.unit}" />
+									<bandbox id="bandBoxSubUnit" onOpen="@command('openBandBoxSubUnit')" >
+										<bandpopup>
+											<vbox>
+												<hbox>
+													<textbox value="@bind(vm.SubUnitKeySearch)"/>
+													<button label="Search" onClick="@command('searchSubUnit')"/>
+												</hbox>
+												<listbox id="listBoxSubUnit" >
+													<listhead>
+														<listheader
+															label="Description" />
+													</listhead>
+												</listbox>
+											</vbox>
+										</bandpopup>
+									</bandbox>
+								</row>
+								<!-- <row>
 									<label
 										value="${labels.menu.employee.job.form.sub.unit}" />
 									<listbox rows="1" mold="select">
 										<listitem selected="true"
 											label=" " />
 									</listbox>
-								</row>
+								</row> -->
 								<row>
+									<label
+										value="${labels.menu.employee.job.form.location}" />
+									<bandbox id="bandBoxLocation" onOpen="@command('openBandBoxLocation')" >
+										<bandpopup>
+											<vbox>
+												<hbox>
+													<textbox value="@bind(vm.locationKeySearch)"/>
+													<button label="Search" onClick="@command('searchLocation')"/>
+												</hbox>
+												<listbox id="listBoxLocation" >
+													<listhead>
+														<listheader
+															label="Description" />
+													</listhead>
+												</listbox>
+											</vbox>
+										</bandpopup>
+									</bandbox>
+								</row>
+								<!-- <row>
 									<label
 										value="${labels.menu.employee.job.form.location}" />
 									<listbox rows="1" mold="select">
 										<listitem selected="true"
 											label=" " />
 									</listbox>
-								</row>
-								<row>
+								</row> -->
+								
+								<!-- employment contract
+								
+								 <row>
 									<label
 										value="${labels.menu.employee.job.form.employment.contract}"
 										style="font-weight:bold;" />
@@ -81,16 +185,17 @@
 									<label
 										value="${labels.menu.employee.job.form.contract.details}" />
 									<label value="Not Defined" />
-								</row>
+								</row> -->
 								<row>
-									<button label="Edit" />
-									<button
+									<button id="buttonEdit" label="Edit" />
+									<button id="buttonSave" label="Save" />
+									<button id="buttonTerminateEmployment"
 										label="Terminate Employment" />
-								</row>
+								</row> 
 							</rows>
 						</grid>
 					</groupbox>
-					<groupbox mold="3d">
+					<!-- <groupbox mold="3d">
 						<caption label="${labels.title.attachments}" />
 						<grid>
 							<columns>
@@ -103,7 +208,7 @@
 								</row>
 							</rows>
 						</grid>
-					</groupbox>
+					</groupbox> -->
 				</div>
 			</north>
 		</borderlayout>

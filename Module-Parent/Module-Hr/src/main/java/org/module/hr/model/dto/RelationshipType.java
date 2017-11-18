@@ -14,16 +14,16 @@ final public class RelationshipType implements Serializable{
 	
 	final public static List<RelationshipType> ALLTYPES;
 	final private static Map<Integer, RelationshipType> STDID_MAP;
-	final public static RelationshipType EMPTY_RELATIONSHIPTYP = new RelationshipType(-1,"");
+	final public static RelationshipType EMPTY_RELATIONSHIPTYP = new RelationshipType(null,"");
 	
-	final private int stpId;
+	final private Character stpId;
 	final private String stpTypname;
 	
 	static{
 		List<RelationshipType> result = new ArrayList<RelationshipType>();
 		
-		result.add(new RelationshipType(0, "Child"));
-		result.add(new RelationshipType(1, "Other"));
+		result.add(new RelationshipType('0', "Child"));
+		result.add(new RelationshipType('1', "Other"));
 		
 		ALLTYPES = Collections.unmodifiableList(result);
 		STDID_MAP = new HashMap<Integer, RelationshipType>(result.size());
@@ -37,7 +37,7 @@ final public class RelationshipType implements Serializable{
 		return STDID_MAP.get(Integer.valueOf(typId));
 	}
 	
-	public RelationshipType(int stpId, String stpTypname) {
+	public RelationshipType(Character stpId, String stpTypname) {
 		this.stpId = stpId;
 		this.stpTypname = stpTypname;
 	}
