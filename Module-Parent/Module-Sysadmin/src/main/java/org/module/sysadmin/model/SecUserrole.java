@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -31,7 +32,8 @@ public class SecUserrole implements Serializable {
     
 	@Id
     @Basic(optional = false)
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@SequenceGenerator(name="SecUserrole_urr_id_GENERATOR", sequenceName="SCHEMA_ADMIN.SecUserrole_urrId_SEQ")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SecUserrole_urr_id_GENERATOR")
     @Column(name = "urr_id")
     private Long urrId;
 	

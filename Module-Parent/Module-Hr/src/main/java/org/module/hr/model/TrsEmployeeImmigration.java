@@ -49,9 +49,14 @@ public class TrsEmployeeImmigration implements Serializable {
     @Column(name = "eligible_status")
     private String eligibleStatus;
     
+<<<<<<< HEAD
     @JoinColumn(name = "id_nationality", referencedColumnName = "id_nationality")
     @ManyToOne
     private MstNationality idNationality;
+=======
+    @Column(name = "id_country")
+    private String idCountry;
+>>>>>>> branch 'master' of https://github.com/sugarpramana/JHRM.git
     
     @Column(name = "eligible_review")
     @Temporal(TemporalType.DATE)

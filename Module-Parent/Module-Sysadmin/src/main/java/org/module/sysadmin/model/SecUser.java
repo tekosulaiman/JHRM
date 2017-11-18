@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -44,7 +45,8 @@ public class SecUser implements Serializable {
     
     @Id
     @Basic(optional = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name="SecUser_usr_id_GENERATOR", sequenceName="SCHEMA_ADMIN.SecUser_usrId_SEQ")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SecUser_usr_id_GENERATOR")
     @Column(name = "usr_id")
     private Long usrId;
     
