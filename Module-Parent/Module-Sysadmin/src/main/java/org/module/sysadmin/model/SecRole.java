@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -35,7 +36,8 @@ public class SecRole implements Serializable {
     
     @Id
     @Basic(optional = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name="SecRole_rol_id_GENERATOR", sequenceName="SCHEMA_ADMIN.SecRole_rolId_SEQ")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SecRole_rol_id_GENERATOR")
     @Column(name = "rol_id")
     private Long rolId;
    
