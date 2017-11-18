@@ -1,83 +1,65 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package org.module.hr.model;
 
 import java.io.Serializable;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
- * @author Tom
- */
+*
+* @author tekosulaiman@yahoo.com
+*/
 @Entity
 @Table(name = "mst_general_information", catalog = "dbhr", schema = "schema_hr")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "MstGeneralInformation.findAll", query = "SELECT m FROM MstGeneralInformation m"),
-    @NamedQuery(name = "MstGeneralInformation.findByIdGeneralInformation", query = "SELECT m FROM MstGeneralInformation m WHERE m.idGeneralInformation = :idGeneralInformation"),
-    @NamedQuery(name = "MstGeneralInformation.findByName", query = "SELECT m FROM MstGeneralInformation m WHERE m.name = :name"),
-    @NamedQuery(name = "MstGeneralInformation.findByTaxId", query = "SELECT m FROM MstGeneralInformation m WHERE m.taxId = :taxId"),
-    @NamedQuery(name = "MstGeneralInformation.findByRegistrationNumber", query = "SELECT m FROM MstGeneralInformation m WHERE m.registrationNumber = :registrationNumber"),
-    @NamedQuery(name = "MstGeneralInformation.findByPhone", query = "SELECT m FROM MstGeneralInformation m WHERE m.phone = :phone"),
-    @NamedQuery(name = "MstGeneralInformation.findByFax", query = "SELECT m FROM MstGeneralInformation m WHERE m.fax = :fax"),
-    @NamedQuery(name = "MstGeneralInformation.findByEmail", query = "SELECT m FROM MstGeneralInformation m WHERE m.email = :email"),
-    @NamedQuery(name = "MstGeneralInformation.findByCountry", query = "SELECT m FROM MstGeneralInformation m WHERE m.country = :country"),
-    @NamedQuery(name = "MstGeneralInformation.findByProvince", query = "SELECT m FROM MstGeneralInformation m WHERE m.province = :province"),
-    @NamedQuery(name = "MstGeneralInformation.findByCity", query = "SELECT m FROM MstGeneralInformation m WHERE m.city = :city"),
-    @NamedQuery(name = "MstGeneralInformation.findByZipCode", query = "SELECT m FROM MstGeneralInformation m WHERE m.zipCode = :zipCode"),
-    @NamedQuery(name = "MstGeneralInformation.findByStreet1", query = "SELECT m FROM MstGeneralInformation m WHERE m.street1 = :street1"),
-    @NamedQuery(name = "MstGeneralInformation.findByStreet2", query = "SELECT m FROM MstGeneralInformation m WHERE m.street2 = :street2"),
-    @NamedQuery(name = "MstGeneralInformation.findByNote", query = "SELECT m FROM MstGeneralInformation m WHERE m.note = :note")})
 public class MstGeneralInformation implements Serializable {
     private static final long serialVersionUID = 1L;
+    
     @Id
     @Basic(optional = false)
     @Column(name = "id_general_information")
     private Integer idGeneralInformation;
+    
     @Column(name = "name")
     private String name;
+    
     @Column(name = "tax_id")
     private String taxId;
+    
     @Column(name = "registration_number")
     private String registrationNumber;
+    
     @Column(name = "phone")
     private String phone;
+    
     @Column(name = "fax")
     private String fax;
+    
     @Column(name = "email")
     private String email;
+    
     @Column(name = "country")
     private String country;
+    
     @Column(name = "province")
     private String province;
+    
     @Column(name = "city")
     private String city;
+    
     @Column(name = "zip_code")
     private String zipCode;
+    
     @Column(name = "street1")
     private String street1;
+    
     @Column(name = "street2")
     private String street2;
+    
     @Column(name = "note")
     private String note;
-
-    public MstGeneralInformation() {
-    }
-
-    public MstGeneralInformation(Integer idGeneralInformation) {
-        this.idGeneralInformation = idGeneralInformation;
-    }
 
     public Integer getIdGeneralInformation() {
         return idGeneralInformation;
@@ -190,30 +172,4 @@ public class MstGeneralInformation implements Serializable {
     public void setNote(String note) {
         this.note = note;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idGeneralInformation != null ? idGeneralInformation.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof MstGeneralInformation)) {
-            return false;
-        }
-        MstGeneralInformation other = (MstGeneralInformation) object;
-        if ((this.idGeneralInformation == null && other.idGeneralInformation != null) || (this.idGeneralInformation != null && !this.idGeneralInformation.equals(other.idGeneralInformation))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.module.hr.model.MstGeneralInformation[ idGeneralInformation=" + idGeneralInformation + " ]";
-    }
-    
 }

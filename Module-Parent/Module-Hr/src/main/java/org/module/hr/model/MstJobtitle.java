@@ -14,6 +14,10 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlTransient;
 
+/**
+*
+* @author tekosulaiman@yahoo.com
+*/
 @Entity
 @Table(name = "mst_jobtitle", catalog = "dbhr", schema = "schema_hr")
 public class MstJobtitle implements Serializable {

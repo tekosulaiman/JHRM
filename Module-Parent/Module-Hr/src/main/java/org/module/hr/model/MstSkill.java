@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package org.module.hr.model;
 
 import java.io.Serializable;
@@ -16,38 +10,33 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
- *
- * @author Tom
- */
+*
+* @author tekosulaiman@yahoo.com
+*/
 @Entity
 @Table(name = "mst_skill", catalog = "dbhr", schema = "schema_hr")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "MstSkill.findAll", query = "SELECT m FROM MstSkill m"),
-    @NamedQuery(name = "MstSkill.findByIdSkill", query = "SELECT m FROM MstSkill m WHERE m.idSkill = :idSkill"),
-    @NamedQuery(name = "MstSkill.findByNameSkill", query = "SELECT m FROM MstSkill m WHERE m.nameSkill = :nameSkill"),
-    @NamedQuery(name = "MstSkill.findByDescriptionSkill", query = "SELECT m FROM MstSkill m WHERE m.descriptionSkill = :descriptionSkill")})
 public class MstSkill implements Serializable {
     private static final long serialVersionUID = 1L;
+    
     @Id
     @Basic(optional = false)
     @SequenceGenerator(name="MstSkill_idSkill_GENERATOR", sequenceName="SCHEMA_HR.MstSkill_idSkill_SEQ")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="MstSkill_idSkill_GENERATOR")
     @Column(name = "id_skill")
     private Integer idSkill;
+    
     @Column(name = "name_skill")
     private String nameSkill;
+    
     @Column(name = "description_skill")
     private String descriptionSkill;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSkill")
     private List<TrsEmployeeSkill> trsEmployeeSkillList;
 
@@ -90,30 +79,4 @@ public class MstSkill implements Serializable {
     public void setTrsEmployeeSkillList(List<TrsEmployeeSkill> trsEmployeeSkillList) {
         this.trsEmployeeSkillList = trsEmployeeSkillList;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idSkill != null ? idSkill.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof MstSkill)) {
-            return false;
-        }
-        MstSkill other = (MstSkill) object;
-        if ((this.idSkill == null && other.idSkill != null) || (this.idSkill != null && !this.idSkill.equals(other.idSkill))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.module.hr.model.MstSkill[ idSkill=" + idSkill + " ]";
-    }
-    
 }
