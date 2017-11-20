@@ -63,15 +63,12 @@
         <property name="sessionFactory" ref="sessionFactory" />
         <property name="maxResults" value="3000" />
     </bean>
-  	
-    <!-- <bean id="baseDao" abstract="true" p:hibernateTemplate-ref="hibernateTemplate" class="org.module.sysadmin.dao.base.BasisDAO">
-    	<property name="sessionFactory" ref="sessionFactory" />
-    </bean> -->
     
     <!-- Konek ke API Common -->
     <bean id="baseDao" abstract="true" p:hibernateTemplate-ref="hibernateTemplate" class="org.module.api.common.dao.base.BasisDAO">
     	<property name="sessionFactory" ref="sessionFactory" />
     </bean>
+    
     <bean id="secGroupDAO" class="org.module.sysadmin.dao.impl.SecGroupDAOImpl" parent="baseDao"/>
     <bean id="secGroupRightDAO" class="org.module.sysadmin.dao.impl.SecGroupRightDAOImpl" parent="baseDao"/>
     <bean id="secRightDAO" class="org.module.sysadmin.dao.impl.SecRightDAOImpl" parent="baseDao"/>
