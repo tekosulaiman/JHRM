@@ -1,5 +1,6 @@
 package org.module.hr.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.module.hr.model.MstEmployementStatus;
@@ -15,6 +16,8 @@ public interface MasterJobService {
     public void saveOrUpdate(MstJobtitle mstJobtitle);
     public void delete(MstJobtitle mstJobtitle);
     public List<MstJobtitle> getAllMstJobtitles();
+    public List<MstJobtitle> getByRequestMstJobtitles(HashMap<String, Object> hashMap);
+    public Long getCountMsJobtitles();
     
     /* ----------- PayGrade -----------*/
     public void save(MstPaygrade mstPaygrade);

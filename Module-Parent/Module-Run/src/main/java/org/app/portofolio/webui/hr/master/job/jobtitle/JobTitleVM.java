@@ -1,5 +1,6 @@
 package org.app.portofolio.webui.hr.master.job.jobtitle;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.app.portofolio.webui.hr.master.job.jobtitle.model.MstJobtitleListItemRenderer;
@@ -16,18 +17,25 @@ import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
+import org.zkoss.zk.ui.event.ForwardEvent;
 import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
+import org.zkoss.zul.ListModel;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Messagebox;
+import org.zkoss.zul.Paging;
+import org.zkoss.zul.event.PagingEvent;
 
 public class JobTitleVM {
 	
 	/* ------------ Zul -------------- */
 	@Wire("#listBoxJobTitle")
 	private Listbox listBoxJobTitle;
+	
+	@Wire("#pagingJobTitle")
+	private Paging pagingJobTitle;
 
 	/* ----------Services -------------*/
 	@WireVariable
@@ -37,26 +45,51 @@ public class JobTitleVM {
 	private List<MstJobtitle> mstJobtitles;
 	private MstJobtitle mstJobtitle;
 	private MstJobtitleListItemRenderer mstJobtitleListItemRenderer;
+	private JobTitleListModel jobTitleListModel;
 
 	public void doPrepareList(){
 		listBoxJobTitle.setCheckmark(true);
 		listBoxJobTitle.setMultiple(true);
-		listBoxJobTitle.setRows(15);
+		listBoxJobTitle.setRows(10);
 		listBoxJobTitle.setStyle("border-style: none;");
+		listBoxJobTitle.setMold("paging");
+		
+		listBoxJobTitle.setPaginal(pagingJobTitle);
 	}
 	
 	@AfterCompose
-	public void setupComponents(@ContextParam(ContextType.VIEW) Component component, @ExecutionArgParam("object") Object object) {
+	public void setupComponents(@ContextParam(ContextType.VIEW) Component component, 
+		@ExecutionArgParam("object") Object object,
+		@ExecutionArgParam("mstJobtitle") MstJobtitle mstJobtitle) {
 		
 		Selectors.wireComponents(component, this, false);
+
+		//mstJobtitles = masterJobService.getAllMstJobtitles();
 		
-		mstJobtitles = masterJobService.getAllMstJobtitles();
-		mstJobtitleListItemRenderer = new MstJobtitleListItemRenderer();
+		jobTitleListModel = new JobTitleListModel(masterJobService);
+		listBoxJobTitle.setModel(jobTitleListModel);
 		
+		/*hashMap.put("firstResult", 0);
+		hashMap.put("maxResult", 10);
+		mstJobtitles = masterJobService.getByRequestMstJobtitles(hashMap);*/
+		
+		/*long count = masterJobService.getCountMsJobtitles();
+		int i = (int) count;
+		pagingJobTitle.setTotalSize(i);
+		pagingJobTitle.setDetailed(true);
+		pagingJobTitle.setDetailed(true);*/
+		
+		/*mstJobtitleListItemRenderer = new MstJobtitleListItemRenderer();
+
 		listBoxJobTitle.setModel(new ListModelList<MstJobtitle>());
-		listBoxJobTitle.setItemRenderer(mstJobtitleListItemRenderer);
-		
-		doPrepareList();
+		listBoxJobTitle.setItemRenderer(mstJobtitleListItemRenderer);*/
+
+		//doPrepareList();
+	}
+	
+	@Command
+	public void onPaging(@ContextParam(ContextType.TRIGGER_EVENT) PagingEvent event){
+	    System.out.println("doPaging");
 	}
 
 	@Command
@@ -132,5 +165,13 @@ public class JobTitleVM {
 
 	public void setMstJobtitleListItemRenderer(MstJobtitleListItemRenderer mstJobtitleListItemRenderer) {
 		this.mstJobtitleListItemRenderer = mstJobtitleListItemRenderer;
+	}
+
+	public JobTitleListModel getJobTitleListModel() {
+		return jobTitleListModel;
+	}
+
+	public void setJobTitleListModel(JobTitleListModel jobTitleListModel) {
+		this.jobTitleListModel = jobTitleListModel;
 	}
 }
