@@ -1,6 +1,7 @@
 package org.module.sysadmin.service;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +24,7 @@ public interface UserService {
     public void saveOrUpdate(SecUser secUser);
     public void delete(SecUser secUser);
     public List<SecUser> getAllUsers();
+    public List<SecUser> getAllByRequestMapUsers(HashMap<String, Object> hashMap);
     public List<SecUser> getUserLikeLoginNames(String likeloginname);
     public List<SecUser> getUserLikeLastNames(String lastnames);
     public List<SecUser> getUserLikeEmails(String likeemail);

@@ -1,5 +1,6 @@
 package org.module.sysadmin.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ public interface SecUserDAO {
     public void saveOrUpdate(SecUser secUser);
     public void delete(SecUser secUser);
     public List<SecUser> getAllUsers();
+    public List<SecUser> getAllByRequestMapUsers(HashMap<String, Object> hashMap);
     public List<SecUser> getAllUserByLoginNames(String loginname);
     public List<SecUser> getUserLikeLoginNames(String likeloginname);
     public List<SecUser> getUserLikeLastNames(String lastname);

@@ -7,6 +7,7 @@ import org.module.api.common.dao.base.BasisDAO;
 import org.module.hr.dao.MstJobtitleDAO;
 import org.module.hr.model.MstJobtitle;
 
+@SuppressWarnings("unchecked")
 public class MstJobtitleDAOImpl extends BasisDAO<MstJobtitle> implements MstJobtitleDAO{
 
 	@Override
@@ -17,7 +18,7 @@ public class MstJobtitleDAOImpl extends BasisDAO<MstJobtitle> implements MstJobt
 	
 	@Override
 	public List<MstJobtitle> getByRequestMstJobtitles(HashMap<String, Object> hashMap) {
-		List<MstJobtitle>list = (List<MstJobtitle>) getHibernateTemplate().findByExample(new MstJobtitle(), (Integer)hashMap.get("firstResult"), (Integer)hashMap.get("maxResult"));
+		List<MstJobtitle>list = (List<MstJobtitle>) getHibernateTemplate().findByExample(new MstJobtitle(), (Integer)hashMap.get("firstResult"), (Integer)hashMap.get("maxResults"));
 	
 		return list;
 	}

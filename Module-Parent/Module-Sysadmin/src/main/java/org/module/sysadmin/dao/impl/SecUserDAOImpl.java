@@ -1,5 +1,6 @@
 package org.module.sysadmin.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
@@ -14,6 +15,7 @@ import org.module.sysadmin.model.SecUser;
  *
  * @author tekosulaiman@yahoo.com
  */
+@SuppressWarnings("unchecked")
 public class SecUserDAOImpl extends BasisDAO<SecUser> implements SecUserDAO {
 
 	@Override
@@ -27,7 +29,13 @@ public class SecUserDAOImpl extends BasisDAO<SecUser> implements SecUserDAO {
 	}
 	
 	@Override
-	@SuppressWarnings("unchecked")
+	public List<SecUser> getAllByRequestMapUsers(HashMap<String, Object> hashMap){
+		List<SecUser>list = (List<SecUser>) getHibernateTemplate().findByExample(new SecUser(), (Integer)hashMap.get("firstResult"), (Integer)hashMap.get("maxResults"));
+		System.out.println("List dari Backend >>>"+list.size());
+		return list;
+	}
+	
+	@Override
 	public List<SecUser> getAllUserByLoginNames(String loginname) {
 		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(SecUser.class);
 		detachedCriteria.add(Restrictions.like("usrLoginname", loginname, MatchMode.ANYWHERE));
@@ -39,7 +47,6 @@ public class SecUserDAOImpl extends BasisDAO<SecUser> implements SecUserDAO {
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public List<SecUser> getUserLikeLoginNames(String likeloginname) {
 		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(SecUser.class);
 		detachedCriteria.add(Restrictions.like("usrLoginname", likeloginname, MatchMode.ANYWHERE));
@@ -51,7 +58,6 @@ public class SecUserDAOImpl extends BasisDAO<SecUser> implements SecUserDAO {
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public List<SecUser> getUserLikeLastNames(String lastname) {
 		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(SecUser.class);
 		detachedCriteria.add(Restrictions.like("usrLastname", lastname, MatchMode.ANYWHERE));
@@ -63,7 +69,6 @@ public class SecUserDAOImpl extends BasisDAO<SecUser> implements SecUserDAO {
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public List<SecUser> getUserLikeEmails(String email) {
 		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(SecUser.class);
 		detachedCriteria.add(Restrictions.like("usrEmail", email, MatchMode.ANYWHERE));
