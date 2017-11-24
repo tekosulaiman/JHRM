@@ -37,6 +37,14 @@ public class JobTitleVM {
 	@Wire("#pagingJobTitle")
 	private Paging pagingJobTitle;
 
+	public Paging getPagingJobTitle() {
+		return pagingJobTitle;
+	}
+
+	public void setPagingJobTitle(Paging pagingJobTitle) {
+		this.pagingJobTitle = pagingJobTitle;
+	}
+
 	/* ----------Services -------------*/
 	@WireVariable
 	private MasterJobService masterJobService;
@@ -51,23 +59,69 @@ public class JobTitleVM {
 		listBoxJobTitle.setCheckmark(true);
 		listBoxJobTitle.setMultiple(true);
 		listBoxJobTitle.setRows(10);
+		
 		listBoxJobTitle.setStyle("border-style: none;");
+		//
 		listBoxJobTitle.setMold("paging");
 		
-		listBoxJobTitle.setPaginal(pagingJobTitle);
+		listBoxJobTitle.setVflex(true);
+		//listBoxJobTitle.setPageSize(10);
+		
+		//listBoxJobTitle.setPaginal(pagingJobTitle);
 	}
 	
+	private int startPageNumber = 0;
+	private int pageSize = 10;
+	
+	
+	
+	public int getStartPageNumber() {
+		return startPageNumber;
+	}
+
+	public void setStartPageNumber(int startPageNumber) {
+		this.startPageNumber = startPageNumber;
+	}
+
+	public int getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+
 	@AfterCompose
 	public void setupComponents(@ContextParam(ContextType.VIEW) Component component, 
 		@ExecutionArgParam("object") Object object,
 		@ExecutionArgParam("mstJobtitle") MstJobtitle mstJobtitle) {
 		
 		Selectors.wireComponents(component, this, false);
-
-		//mstJobtitles = masterJobService.getAllMstJobtitles();
 		
-		jobTitleListModel = new JobTitleListModel(masterJobService);
-		listBoxJobTitle.setModel(jobTitleListModel);
+		//mstJobtitles = getPersons();
+		doPrepareList();
+		//mstJobtitles = masterJobService.getAllMstJobtitles();
+		refreshPageListLookUpMemo(startPageNumber);
+		
+		
+		/*hashMapMemo = new HashMap<String, Object>();
+		hashMapMemo.put("firstResult", 0);
+		hashMapMemo.put("maxResult", 5);
+		
+		mstJobtitles = masterJobService.getByRequestMstJobtitles(hashMapMemo);*/
+		
+		/*mstJobtitles = masterJobService.getAllMstJobtitles();
+		listModelListNoMemos = new ListModelList(mstJobtitles);
+		listBoxJobTitle.setModel(listModelListNoMemos);*/
+		
+		//listBoxJobTitle.setPaginal(pagingJobTitle);
+		
+		/*System.out.println(listModelListNoMemos.size());
+		System.out.println(listBoxJobTitle.getPaginal());*/
+		
+		
+		/*jobTitleListModel = new JobTitleListModel(masterJobService);
+		listBoxJobTitle.setModel(jobTitleListModel);*/
 		
 		/*hashMap.put("firstResult", 0);
 		hashMap.put("maxResult", 10);
@@ -84,12 +138,71 @@ public class JobTitleVM {
 		listBoxJobTitle.setModel(new ListModelList<MstJobtitle>());
 		listBoxJobTitle.setItemRenderer(mstJobtitleListItemRenderer);*/
 
-		//doPrepareList();
+		
 	}
 	
+	/*int pageSize = 10;
+    int activePage = 0;
+     
+    public int getTotalSize()
+    {
+    	long count = masterJobService.getCountMsJobtitles();
+		int i = (int) count;
+        return i;
+    }
+     
+    public Integer getPageSize()
+    {
+        return pageSize;
+    }
+ 
+    @NotifyChange("mstJobtitles")
+    public void setActivePage(int activePage)
+    {
+        this.activePage = activePage;
+    }
+ 
+    public List<MstJobtitle> getPersons()
+    {
+    	HashMap<String, Object> hashMap = new HashMap<String, Object>();
+    	hashMap.put("firstResult", activePage*pageSize);
+    	hashMap.put("maxResult", pageSize);
+        return masterJobService.getByRequestMstJobtitles(hashMap);
+    }*/
+	
+	private HashMap<String, Object> hashMapMemo;
+	private ListModelList listModelListNoMemos;
+	
 	@Command
-	public void onPaging(@ContextParam(ContextType.TRIGGER_EVENT) PagingEvent event){
+	public void onPaging(@ContextParam(ContextType.TRIGGER_EVENT) PagingEvent pe){
 	    System.out.println("doPaging");
+	    
+	    //final PagingEvent pe = (PagingEvent) event.getOrigin();
+		startPageNumber = pe.getActivePage();
+		refreshPageListLookUpMemo(startPageNumber);
+	}
+	
+	private void refreshPageListLookUpMemo(int refreshActivePage) {
+		//pagingJobTitle.setPageSize(listBoxJobTitle.getPageSize()/*pageSize*/);
+
+		if (refreshActivePage == 0) {
+			//pagingJobTitle.setActivePage(0);
+		}
+		
+		refreshActivePage += 1;
+		
+		hashMapMemo = new HashMap<String, Object>();
+		hashMapMemo.put("firstResult", refreshActivePage);
+		hashMapMemo.put("maxResult", listBoxJobTitle.getPageSize()/*pagingJobTitle.getPageSize()*/);
+		
+		mstJobtitles = masterJobService.getByRequestMstJobtitles(hashMapMemo);
+		//listModelListNoMemos = new ListModelList(mstJobtitles);
+		//listBoxJobTitle.setModel(listModelListNoMemos);
+		
+		long count = masterJobService.getCountMsJobtitles();
+		int i = (int) count;
+		//pagingJobTitle.setTotalSize(i);
+		//pagingJobTitle.setDetailed(true);
 	}
 
 	@Command

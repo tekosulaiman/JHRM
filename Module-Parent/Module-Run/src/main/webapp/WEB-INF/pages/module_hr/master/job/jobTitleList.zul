@@ -20,7 +20,8 @@
 			</north>
 			<center>
 				<!-- <listbox id="listBoxJobTitle" model="@bind(vm.mstJobtitles)" itemRenderer="@bind(vm.mstJobtitleListItemRenderer)" selectedItem="@bind(vm.mstJobtitle)"> -->
-					<listbox id="listBoxJobTitle" model="@bind(vm.jobTitleListModel)" selectedItem="@bind(vm.mstJobtitle)" mold="paging" pageSize="5" >
+					<!-- <listbox id="listBoxJobTitle" model="@bind(vm.jobTitleListModel)" selectedItem="@bind(vm.mstJobtitle)" mold="paging" pageSize="10" hflex="true"> -->
+				<listbox id="listBoxJobTitle" model="@bind(vm.mstJobtitles)" selectedItem="@bind(vm.mstJobtitle)" onPaging="@command('onPaging')" pageSize="@bind(vm.pageSize)"><!-- mold="paging"  selectedItem="@bind(vm.mstJobtitle)" paginal="${pagingJobTitle}" -->	
 					<listhead sizable="true">
 						<listheader width="10%" align="center"/>
 						<listheader label="Job Title"/>
@@ -38,8 +39,8 @@
 				</listbox>
 			</center>
 			<south>
-				<!-- <paging id="pagingJobTitle" totalSize="@load(vm.totalSize)" pageSize="@load(vm.pageSize)" activePage="@bind(vm.activePage)"/> -->
-				<paging id="pagingJobTitle" onPaging="@command('onPaging')"/> 
+				<!-- <paging id="pagingJobTitle" totalSize="@load(vm.totalSize)" pageSize="@load(vm.pageSize)" activePage="@bind(vm.activePage)"/> --> 
+				<!-- <paging id="pagingJobTitle" onPaging="@command('onPaging')"/> --> 
 			</south>
 		</borderlayout>
 	</window>
