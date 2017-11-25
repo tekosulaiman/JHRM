@@ -53,7 +53,7 @@
         <maven.compiler.target>1.7</maven.compiler.target>
     </properties>
     <build>
-    <finalName>Module-Sysadmin</finalName>
+    <finalName>Module-API-Common</finalName>
     <plugins>
        <plugin>
            <groupId>org.apache.maven.plugins</groupId>

@@ -30,7 +30,7 @@ import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Paging;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
-
+import org.zkoss.zul.event.PagingEvent;
 import org.app.portofolio.UserWorkspace;
 import org.module.sysadmin.model.SecUser;
 import org.module.sysadmin.service.UserService;
@@ -39,6 +39,7 @@ import org.module.sysadmin.service.UserService;
 *
 * @author tekosulaiman@yahoo.com
 */
+@SuppressWarnings({ "rawtypes", "unchecked" })
 public class SecUserListVM{
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Wire component
@@ -60,10 +61,22 @@ public class SecUserListVM{
 	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	private SecUser secUser;
 	private List<SecUser> secUsers;
-	
 	@WireVariable
 	private UserService userService;
 	
+	private HashMap<String, Object> hashMapSecUser;
+	
+	private int startPageNumber = 0;
+	private int pageSize = 2;
+
+	public int getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Function Custom sesuai kebutuhan
 	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
@@ -77,11 +90,31 @@ public class SecUserListVM{
 	public void doPrepareList(){
 		listBoxUser.setCheckmark(true);
 		listBoxUser.setMultiple(true);
-		listBoxUser.setRows(15);
+		//listBoxUser.setRows(2);
 		listBoxUser.setStyle("border-style: none;");
-		listBoxUser.setMold("paging");
-		
+		/*listBoxUser.setMold("paging");
 		listBoxUser.setPaginal(pagingUser);
+		
+		long count = userService.getCountAllSecUser();
+		int i = (int) count;
+		
+		pagingUser.setTotalSize(i);
+		pagingUser.setDetailed(true);
+		pagingUser.setPageSize(pageSize);*/
+	}
+	
+	private void refreshPageList(int refreshActivePage) {
+		/*if (refreshActivePage == 0) {
+			pagingUser.setActivePage(0);
+		}*/
+		
+		refreshActivePage += 1;
+		
+		hashMapSecUser = new HashMap<String, Object>();
+		hashMapSecUser.put("firstResult", refreshActivePage);
+		hashMapSecUser.put("maxResults", listBoxUser.getPageSize()/*pagingUser.getPageSize()*/);
+		
+		secUsers = userService.getAllByRequestMapUsers(hashMapSecUser);
 	}
 	
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -94,8 +127,9 @@ public class SecUserListVM{
 		
 		Selectors.wireComponents(component, this, false);
 		
-		secUsers = userService.getAllUsers();
-			
+		//secUsers = userService.getAllUsers();
+		refreshPageList(startPageNumber);
+		
 		doCheckRights();
 		doPrepareList();
 	}
@@ -103,6 +137,12 @@ public class SecUserListVM{
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Function CRUD Event
 	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	@Command
+	public void onPaging(@ContextParam(ContextType.TRIGGER_EVENT) PagingEvent pagingEvent){
+		startPageNumber = pagingEvent.getActivePage();
+		refreshPageList(startPageNumber);
+	}
+	
 	@Command
 	@NotifyChange("secUsers")
 	public void doFilter(){
@@ -140,7 +180,6 @@ public class SecUserListVM{
 	}
 	
 	@Command
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void doDelete(){
 		final ListModelList<SecUser> listModelListSecUsers = (ListModelList) listBoxUser.getModel();
 		
@@ -202,7 +241,6 @@ public class SecUserListVM{
 	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	@GlobalCommand
 	@NotifyChange("listBoxUser")
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void refreshAfterClose(){
 		System.out.println("di Refresh dari Window!");
 		listBoxUser.clearSelection();

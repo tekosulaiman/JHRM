@@ -1,5 +1,6 @@
 package org.module.hr.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.module.hr.dao.MstEmployementStatusDAO;
@@ -45,8 +46,18 @@ public class MasterJobServiceImpl implements MasterJobService{
 		return mstJobtitleDAO.getAllMstJobtitles();
 	}
 	
+	@Override
+	public List<MstJobtitle> getByRequestMstJobtitles(HashMap<String, Object> hashMap) {
+		return mstJobtitleDAO.getByRequestMstJobtitles(hashMap);
+	}
+	
 	public void setMstJobtitleDAO(MstJobtitleDAO mstJobtitleDAO) {
 		this.mstJobtitleDAO = mstJobtitleDAO;
+	}
+	
+	@Override
+	public Long getCountMsJobtitles() {
+		return mstJobtitleDAO.getCountMsJobtitles();
 	}
 	
 	/* ----------- PayGrade -----------*/

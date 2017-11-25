@@ -6,8 +6,7 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.dao.support.DataAccessUtils;
-
-import org.module.sysadmin.dao.base.BasisDAO;
+import org.module.api.common.dao.base.BasisDAO;
 import org.module.sysadmin.dao.SecRoleDAO;
 import org.module.sysadmin.model.SecRole;
 import org.module.sysadmin.model.SecUser;

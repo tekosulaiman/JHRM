@@ -7,9 +7,8 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.dao.support.DataAccessUtils;
-
+import org.module.api.common.dao.base.BasisDAO;
 import org.module.sysadmin.dao.SecRightDAO;
-import org.module.sysadmin.dao.base.BasisDAO;
 import org.module.sysadmin.model.SecGroupright;
 import org.module.sysadmin.model.SecRight;
 import org.module.sysadmin.model.SecUser;

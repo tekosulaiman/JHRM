@@ -2,6 +2,7 @@ package org.module.sysadmin.service.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,7 +10,6 @@ import javax.jws.WebService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import org.module.sysadmin.dao.SecGroupDAO;
 import org.module.sysadmin.dao.SecGroupRightDAO;
 import org.module.sysadmin.dao.SecRightDAO;
@@ -80,6 +80,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<SecUser> getAllUsers() {
 		return secUserDAO.getAllUsers();
+	}
+	
+	@Override
+	public List<SecUser> getAllByRequestMapUsers(HashMap<String, Object> hashMap) {
+		return secUserDAO.getAllByRequestMapUsers(hashMap);
 	}
 
 	@Override

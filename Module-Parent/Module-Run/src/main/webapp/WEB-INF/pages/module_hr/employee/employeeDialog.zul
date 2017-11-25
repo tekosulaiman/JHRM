@@ -9,54 +9,55 @@
 				<toolbar>
 					<button image="/images/icons/btn_save.gif"
 						label="Save" onClick="@command('doSave')" />
+					<button image="/images/icons/btn_edit.gif"
+						label="Edit" onClick="@command('doEdit')" />
+					<button image="/images/icons/btn_new.gif"
+						label="New" onClick="@command('doNew')" />		
 				</toolbar>
 			</north>
 			<center>
-				<groupbox mold="3d">
-					<caption label="Add Employee" />
-					<grid>
-						<rows>
-							<row>
+				<grid>
+					<rows>
+						<row>
+							<label
+								value="${labels.menu.employee.personal.details.form.full.name}" />
+							<div>
 								<label
-									value="${labels.menu.employee.personal.details.form.full.name}" />
-								<div>
-									<label
-										value="${labels.menu.employee.personal.details.form.first.name}"
-										style="text-align: justify; display: block;" />
-									<textbox value="@bind(vm.trsEmployee.firstName)"/>
-								</div>
-								<div>
-									<label
-										value="${labels.menu.employee.personal.details.form.middle.name}"
-										style="text-align: justify; display: block;" />
-									<textbox value="@bind(vm.trsEmployee.middleName)"/>
-								</div>
-								<div>
-									<label
-										value="${labels.menu.employee.personal.details.form.last.name}"
-										style="text-align: justify; display: block;" />
-									<textbox value="@bind(vm.trsEmployee.lastName)"/>
-								</div>
-							</row>
-							<row>
+									value="${labels.menu.employee.personal.details.form.first.name}"
+									style="text-align: justify; display: block;" />
+								<textbox value="@bind(vm.trsEmployee.firstName)"/>
+							</div>
+							<div>
 								<label
-									value="${labels.menu.employee.form.employee.id}" />
-								<textbox value="@bind(vm.trsEmployee.idEmployee)"/>
-						    </row>
-						    <row>
+									value="${labels.menu.employee.personal.details.form.middle.name}"
+									style="text-align: justify; display: block;" />
+								<textbox value="@bind(vm.trsEmployee.middleName)"/>
+							</div>
+							<div>
 								<label
-									value="${labels.menu.employee.form.photograph}" />
-									<label
-										value="@load(vm.labelUploadFoto)" />
-									<button id="btnUpload" mold="trendy"
-										upload="true" label="upload"
-										onUpload="@command('upload')" />
-						    </row>
-						</rows>
-					</grid>
-				</groupbox>
+									value="${labels.menu.employee.personal.details.form.last.name}"
+									style="text-align: justify; display: block;" />
+								<textbox value="@bind(vm.trsEmployee.lastName)"/>
+							</div>
+						</row>
+						<row>
+							<label
+								value="${labels.menu.employee.form.employee.id}" />
+							<textbox value="@bind(vm.trsEmployee.idEmployee)"/>
+					    </row>
+					    <row>
+							<label
+								value="${labels.menu.employee.form.photograph}" />
+								<label
+									value="@load(vm.labelUploadFoto)" />
+								<button id="btnUpload" mold="trendy"
+									upload="true" label="upload"
+									onUpload="@command('upload')" />
+					    </row>
+					</rows>
+				</grid>
 			</center>
 			<south />
-			</borderlayout>
+		</borderlayout>
 	</window>
 </zk>

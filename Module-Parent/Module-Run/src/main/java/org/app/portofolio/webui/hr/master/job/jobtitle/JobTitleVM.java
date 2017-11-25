@@ -1,5 +1,6 @@
 package org.app.portofolio.webui.hr.master.job.jobtitle;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.app.portofolio.webui.hr.master.job.jobtitle.model.MstJobtitleListItemRenderer;
@@ -22,45 +23,102 @@ import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Messagebox;
+import org.zkoss.zul.Paging;
+import org.zkoss.zul.event.PagingEvent;
 
+@SuppressWarnings({ "rawtypes", "unchecked" })
 public class JobTitleVM {
 	
-	/* ------------ Zul -------------- */
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Wire component
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	@Wire("#listBoxJobTitle")
 	private Listbox listBoxJobTitle;
+	
+	@Wire("#pagingJobTitle")
+	private Paging pagingJobTitle;
 
-	/* ----------Services -------------*/
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Service yang dibutuhkan sesuai bisnis proses
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	@WireVariable
 	private MasterJobService masterJobService;
-	
-	/* ------------ Beans -------------*/
 	private List<MstJobtitle> mstJobtitles;
 	private MstJobtitle mstJobtitle;
 	private MstJobtitleListItemRenderer mstJobtitleListItemRenderer;
+	private JobTitleListModel jobTitleListModel;
+	
+	private HashMap<String, Object> hashMapJobTitle;
+	
+	private int startPageNumber = 0;
+	private int pageSize = 10;
+	
+	public int getPageSize() {
+		return pageSize;
+	}
 
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Function Custom sesuai kebutuhan
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	public void doPrepareList(){
 		listBoxJobTitle.setCheckmark(true);
 		listBoxJobTitle.setMultiple(true);
-		listBoxJobTitle.setRows(15);
+		//listBoxJobTitle.setRows(10);
 		listBoxJobTitle.setStyle("border-style: none;");
+		/*listBoxJobTitle.setMold("paging");
+		listBoxJobTitle.setPaginal(pagingJobTitle);
+		
+		long count = masterJobService.getCountMsJobtitles();
+		int i = (int) count;
+		
+		pagingJobTitle.setTotalSize(i);
+		pagingJobTitle.setDetailed(true);
+		pagingJobTitle.setPageSize(pageSize);*/
 	}
 	
+	private void refreshPageList(int refreshActivePage) {
+		/*if (refreshActivePage == 0) {
+			pagingJobTitle.setActivePage(0);
+		}*/
+		
+		refreshActivePage += 1;
+		
+		hashMapJobTitle = new HashMap<String, Object>();
+		hashMapJobTitle.put("firstResult", refreshActivePage);
+		hashMapJobTitle.put("maxResult", listBoxJobTitle.getPageSize()/*pagingJobTitle.getPageSize()*/);
+		
+		mstJobtitles = masterJobService.getByRequestMstJobtitles(hashMapJobTitle);
+		mstJobtitleListItemRenderer = new MstJobtitleListItemRenderer();
+	}
+
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Inisialize Methode MVVM yang pertama kali dijalankan
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	@AfterCompose
-	public void setupComponents(@ContextParam(ContextType.VIEW) Component component, @ExecutionArgParam("object") Object object) {
+	public void setupComponents(@ContextParam(ContextType.VIEW) Component component, 
+		@ExecutionArgParam("object") Object object,
+		@ExecutionArgParam("mstJobtitle") MstJobtitle mstJobtitle) {
 		
 		Selectors.wireComponents(component, this, false);
-		
-		mstJobtitles = masterJobService.getAllMstJobtitles();
-		mstJobtitleListItemRenderer = new MstJobtitleListItemRenderer();
-		
-		listBoxJobTitle.setModel(new ListModelList<MstJobtitle>());
-		listBoxJobTitle.setItemRenderer(mstJobtitleListItemRenderer);
-		
+
+		refreshPageList(startPageNumber);
 		doPrepareList();
+	}
+	
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Function CRUD Event
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	@Command
+	public void onPaging(@ContextParam(ContextType.TRIGGER_EVENT) PagingEvent pagingEvent){
+		startPageNumber = pagingEvent.getActivePage();
+		refreshPageList(startPageNumber);
 	}
 
 	@Command
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void doNew(){
 		ListModelList listModelList = (ListModelList) listBoxJobTitle.getModel();
 		listModelList.add(0,  new MstJobtitle());
@@ -73,7 +131,6 @@ public class JobTitleVM {
 	}
 	
 	@Command
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void doDelete(){
 		final ListModelList<MstJobtitle> listModelListJobtitle= (ListModelList) listBoxJobTitle.getModel();
 		
@@ -98,10 +155,9 @@ public class JobTitleVM {
 		}
 	}
 	
-	/*
-	 * -------------- GETTER - SETTER -----------------
-	 */
-	
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Getter Setter
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	public MstJobtitle getMstJobtitle() {
 		return mstJobtitle;
 	}
@@ -132,5 +188,13 @@ public class JobTitleVM {
 
 	public void setMstJobtitleListItemRenderer(MstJobtitleListItemRenderer mstJobtitleListItemRenderer) {
 		this.mstJobtitleListItemRenderer = mstJobtitleListItemRenderer;
+	}
+
+	public JobTitleListModel getJobTitleListModel() {
+		return jobTitleListModel;
+	}
+
+	public void setJobTitleListModel(JobTitleListModel jobTitleListModel) {
+		this.jobTitleListModel = jobTitleListModel;
 	}
 }

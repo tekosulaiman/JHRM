@@ -36,7 +36,8 @@ public class MstJobtitleServiceImpl implements MstJobtitleService{
 
 	@Override
 	public List<MstJobtitle> getAllMstJobtitles() {
-		return mstJobtitleDAO.getAllMstJobtitles();
+		return null;
+		//return mstJobtitleDAO.getAllMstJobtitles();
 	}
 	
 	public MstJobtitleDAO getMstJobtitleDAO() {
