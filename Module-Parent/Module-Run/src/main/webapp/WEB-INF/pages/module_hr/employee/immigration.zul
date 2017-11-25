@@ -17,7 +17,7 @@
 							<button label="${labels.button.delete}" />
 						</hbox>
 						<space />
-						<listbox id="listBoxImmigration" model="@bind(vm.trsEmployeeImmigrations)" selectedItem="@bind(vm.selectedEmployeeImmigration)" onSelect="@command('doSelect')">
+						<listbox id="listBoxImmigration" model="@bind(vm.trsEmployeeImmigrations)" selectedItem="@bind(vm.selectedEmployeeImmigration)" >
 							<listhead>
 								<listheader width="5%" align="center"/>
 								<listheader
@@ -51,10 +51,10 @@
 									<listcell label="@bind(trsEmployeeImmigration.document)"/>
 									<listcell label="@bind(trsEmployeeImmigration.number)"/>
 									<listcell label="@bind(trsEmployeeImmigration.idNationality.nameNationality)"/>
-									<listcell label="@bind(trsEmployeeImmigration.issuedDate)"/>
-									<listcell label="@bind(trsEmployeeImmigration.expiredDate)"/>
+									<listcell label="@bind(trsEmployeeImmigration.issuedDate)  @converter('formatedDate', format='yyyy/MM/dd')"/>
+									<listcell label="@bind(trsEmployeeImmigration.expiredDate)  @converter('formatedDate', format='yyyy/MM/dd')"/>
 									<listcell label="@bind(trsEmployeeImmigration.eligibleStatus)"/>
-									<listcell label="@bind(trsEmployeeImmigration.eligibleReview)"/>
+									<listcell label="@bind(trsEmployeeImmigration.eligibleReview)  @converter('formatedDate', format='yyyy/MM/dd')"/>
 									<listcell label="@bind(trsEmployeeImmigration.comment)"/>
 								</listitem>
 							</template>

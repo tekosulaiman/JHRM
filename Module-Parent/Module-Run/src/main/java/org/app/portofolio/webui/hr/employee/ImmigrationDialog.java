@@ -1,7 +1,10 @@
 package org.app.portofolio.webui.hr.employee;
 
+import org.app.portofolio.webui.hr.employee.validator.TrsEmployeeImmigrationFormValidator;
+import org.module.hr.model.TrsEmployee;
 import org.module.hr.model.TrsEmployeeImmigration;
 import org.module.hr.service.EmployeeService;
+import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
@@ -17,17 +20,25 @@ public class ImmigrationDialog {
 	private EmployeeService employeeService;
 	
 	/* ---------- Bean ----------*/
+	private TrsEmployeeImmigrationFormValidator formValidator = new TrsEmployeeImmigrationFormValidator();
 	private TrsEmployeeImmigration trsEmployeeImmigration;
+	private TrsEmployee trsEmployee;
 	
 	@AfterCompose
 	public void setupComponents(@ContextParam(ContextType.VIEW) Component component,
-			@ExecutionArgParam("object") TrsEmployeeImmigration trsEmployeeImmigration) {
+			@ExecutionArgParam("trsEmployeeImmigration") TrsEmployeeImmigration trsEmployeeImmigration,
+			@ExecutionArgParam("trsEmployee") TrsEmployee trsEmployee) {
 		Selectors.wireComponents(component, this, false);
-		if (trsEmployeeImmigration == null){
-			this.trsEmployeeImmigration = new TrsEmployeeImmigration();
-		} else {
+		
+		if (trsEmployeeImmigration != null){
 			this.trsEmployeeImmigration = trsEmployeeImmigration;
 		}
+		
+		// use for set default value when new condition
+		if (trsEmployeeImmigration.getIdImmigration() == null){
+			trsEmployeeImmigration.setDocument("passport");
+		}
+		
 	}
 	
 	@Command
@@ -37,6 +48,7 @@ public class ImmigrationDialog {
 		} else {
 			employeeService.update(trsEmployeeImmigration);
 		}
+		BindUtils.postGlobalCommand(null, null, "updateTrsEmployeeImmigration", null);
 	}
 
 	public TrsEmployeeImmigration getTrsEmployeeImmigration() {
@@ -46,6 +58,20 @@ public class ImmigrationDialog {
 	public void setTrsEmployeeImmigration(TrsEmployeeImmigration trsEmployeeImmigration) {
 		this.trsEmployeeImmigration = trsEmployeeImmigration;
 	}
-	
-	
+
+	public TrsEmployeeImmigrationFormValidator getFormValidator() {
+		return formValidator;
+	}
+
+	public void setFormValidator(TrsEmployeeImmigrationFormValidator formValidator) {
+		this.formValidator = formValidator;
+	}
+
+	public TrsEmployee getTrsEmployee() {
+		return trsEmployee;
+	}
+
+	public void setTrsEmployee(TrsEmployee trsEmployee) {
+		this.trsEmployee = trsEmployee;
+	}
 }

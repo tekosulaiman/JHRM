@@ -56,21 +56,23 @@ public class Immigration {
 	
 	@Command
 	public void doNew() {
-		Executions.createComponents("/WEB-INF/pages/module_hr/employee/immigrationDialog.zul", null, null);
+		TrsEmployeeImmigration trsEmployeeImmigration = new TrsEmployeeImmigration();
+		trsEmployeeImmigration.setIdEmployee(trsEmployee);
+		HashMap<String, Object> arg = new HashMap<>();
+		arg.put("trsEmployeeImmigration", trsEmployeeImmigration);
+		Executions.createComponents("/WEB-INF/pages/module_hr/employee/immigrationDialog.zul", null, arg);
 	}
 	
 	@Command
 	public void doDetail(){
-		/*HashMap<K, V> K = Key, V = Value*/
 		HashMap<String, Object> arg = new HashMap<String, Object>();
 		arg.put("trsEmployeeImmigration", selectedEmployeeImmigration);
-		
-		Executions.createComponents("", null, arg);
+		Executions.createComponents("/WEB-INF/pages/module_hr/employee/immigrationDialog.zul", null, arg);
 	}
 	
 	@GlobalCommand
 	@NotifyChange("trsEmployeeImmigrations")
-	public void trsEmployeeDependents(){
+	public void updateTrsEmployeeImmigration(){
 		HashMap< String, Object> requestMap = new HashMap<>();
 		requestMap.put("trsEmployee", trsEmployee);
 		trsEmployeeImmigrations = employeeService.getTrsEmployeeImmigrationByTrsEmployeeImmigrationRequestMap(requestMap);

@@ -78,8 +78,8 @@ public class PersonalDetail {
 	@WireVariable
 	private EmployeeService employeeService;
 	
-	@Wire("#comboBoxNationality")
-	private Combobox comboBoxNationality;
+//	@Wire("#comboBoxNationality")
+//	private Combobox comboBoxNationality;
 	
 	@Wire("#comboBoxMaritalStatus")
 	private Combobox comboBoxMaritalStatus;
@@ -90,7 +90,7 @@ public class PersonalDetail {
 	private TrsEmployee trsEmployee;
 	private MaritalStatusType selectedMaritalStatus;
 	private List<MaritalStatusType> maritalStatusTypes;
-	private List<MstNationality> mstNationalities;
+//	private List<MstNationality> mstNationalities;
 	private Boolean isEdit;
 	private ModalAction action;
 	
@@ -118,14 +118,14 @@ public class PersonalDetail {
 		formDetailCondition();
 		
 		// Dummy nationality
-		mstNationalities = new ArrayList<MstNationality>();
-		MstNationality mstNationality = null;
-		for (int i = 0; i < 5; i++) {
-			mstNationality = new MstNationality();
-			mstNationality.setIdNationality(0);
-			mstNationality.setNameNationality("Nationality ke "+i);
-			mstNationalities.add(mstNationality);
-		}
+//		mstNationalities = new ArrayList<MstNationality>();
+//		MstNationality mstNationality = null;
+//		for (int i = 0; i < 5; i++) {
+//			mstNationality = new MstNationality();
+//			mstNationality.setIdNationality(0);
+//			mstNationality.setNameNationality("Nationality ke "+i);
+//			mstNationalities.add(mstNationality);
+//		}
 	}
 	
 	/**
@@ -134,7 +134,7 @@ public class PersonalDetail {
 	private void formEditCondition() {
 		ComponentConditionUtil.visibleButton(buttonSave);
 		ComponentConditionUtil.invisibleButton(buttonEdit);
-		ComponentConditionUtil.enableCombobox(comboBoxMaritalStatus, comboBoxNationality);
+		ComponentConditionUtil.enableCombobox(comboBoxMaritalStatus);
 		ComponentConditionUtil.enableTextbox(textBoxDriverLicense, textBoxFirstName, textBoxIdEmployee, textBoxLastName, textBoxMiddleName, textBoxOtherLicense);
 		ComponentConditionUtil.enableDateBox(dateBoxDateOfBirth, dateBoxExpiredLicense);
 		ComponentConditionUtil.enableRadio(radioFemale, radioMale);
@@ -146,7 +146,7 @@ public class PersonalDetail {
 	private void formDetailCondition() {
 		ComponentConditionUtil.invisibleButton(buttonSave);
 		ComponentConditionUtil.visibleButton(buttonEdit);
-		ComponentConditionUtil.disableCombobox(comboBoxMaritalStatus, comboBoxNationality);
+		ComponentConditionUtil.disableCombobox(comboBoxMaritalStatus);
 		ComponentConditionUtil.disableTextbox(textBoxDriverLicense, textBoxFirstName, textBoxIdEmployee, textBoxLastName, textBoxMiddleName, textBoxOtherLicense);
 		ComponentConditionUtil.disableDateBox(dateBoxDateOfBirth, dateBoxExpiredLicense);
 		ComponentConditionUtil.disableRadio(radioFemale, radioMale);
@@ -222,13 +222,13 @@ public class PersonalDetail {
 		this.formValidator = formValidator;
 	}
 
-	public List<MstNationality> getMstNationalities() {
-		return mstNationalities;
-	}
-
-	public void setMstNationalities(List<MstNationality> mstNationalities) {
-		this.mstNationalities = mstNationalities;
-	}
+//	public List<MstNationality> getMstNationalities() {
+//		return mstNationalities;
+//	}
+//
+//	public void setMstNationalities(List<MstNationality> mstNationalities) {
+//		this.mstNationalities = mstNationalities;
+//	}
 
 	public MaritalStatusType getMaritalStatusType() {
 		return maritalStatusType;

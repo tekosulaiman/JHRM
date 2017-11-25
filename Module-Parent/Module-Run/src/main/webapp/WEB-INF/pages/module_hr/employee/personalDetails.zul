@@ -101,11 +101,14 @@
 								<row>
 									<label
 										value="${labels.menu.employee.personal.details.form.nationality}" />
-									<combobox id="comboBoxNationality" width="100%" model="@bind(vm.mstNationalities)" selectedItem="@bind(form.idNationality)" >
+										<bandbox>
+										</bandbox>
+										
+									<!-- <combobox id="comboBoxNationality" width="100%" model="@bind(vm.mstNationalities)" selectedItem="@bind(form.idNationality)" >
 										<template name="model">
 											<comboitem label="@load(each.nameNationality)" value="@load(each)"></comboitem>	
 										</template>	
-									</combobox>
+									</combobox> -->
 									<label
 										value="${labels.menu.employee.personal.details.form.date.of.birth}" />
 									<datebox id="dateBoxDateOfBirth" value="@bind(form.dob)" />

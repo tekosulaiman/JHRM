@@ -1,9 +1,14 @@
-<?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
-	<window title="new page title" border="normal" apply="org.zkoss.bind.BindComposer" 
-		viewModel="@id('vm') @init('org.app.portofolio.webui.hr.employee.ImmigrationDialog')"
-		validationMessages="@id('vmsgs')">
-		<borderlayout form="@id('form') @load(vm.trsEmployee) @save(vm.trsEmployee, before={'doSave'}) @validator(vm.formValidator)" height="500px">
+<window id="windowImmigrationDialog" title="Form Employee"
+		border="normal" width="60%" position="center,center" closable="true"
+		maximizable="true" action="show: slideDown; hide: slideUp"
+		mode="modal" apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('org.app.portofolio.webui.hr.employee.ImmigrationDialog')">
+	<!-- <window id="windowImmigrationDialog" title="new page title" border="normal" apply="org.zkoss.bind.BindComposer" 
+		viewModel="@id('vm') @init('org.app.portofolio.webui.hr.employee.ImmigrationDialog')" mode="modal" 
+		width="550px" position="center,center" closable="true" maximizable="true"
+		validationMessages="@id('vmsgs')"> -->
+		<borderlayout height="500px">
 			<!-- Function CRUD -->
 			<north>
 				<toolbar>
@@ -19,29 +24,28 @@
 							<row>
 								<label
 									value="Document" />
-								<radiogroup 
-										selectedItem="@bind(form.gender)" >
-										<radio id="radioMale" label="Pria" value="true" selected="@load(form.gender eq false ? false: true)" />
-										<radio id="radioFemale" label="Wanita" value="false" selected="@load(form.gender eq false ? true : false)" />
+								<radiogroup selectedItem="@bind(vm.trsEmployeeImmigration.document)" >
+										<radio id="radioPassort" label="Passport" value="passport" />
+										<radio id="radioVisa" label="Visa" value="visa"/>
 								</radiogroup>
 							</row>
 							<row>
 								<label
 									value="Number" />
-								<textbox value="@bind()"/>
+								<textbox value="@bind(vm.trsEmployeeImmigration.number)" />
 							</row>
 							<row>
 								<label
 									value="Issued Date" />
-								<datebox />
+								<datebox value="@bind(vm.trsEmployeeImmigration.issuedDate)" />
 							</row>
 							<row>
 								<label value="Expiry Date"/>
-								<datebox/>
+								<datebox value="@bind(vm.trsEmployeeImmigration.expiredDate)" />
 							</row>
 							<row>
 								<label value="Eligible Status"/>
-								<textbox/>
+								<textbox value="@bind(vm.trsEmployeeImmigration.eligibleStatus)"/>
 							</row>
 							<row>
 								<label value="Issued by"/>
@@ -50,11 +54,11 @@
 							</row>
 							<row>
 								<label value="Eligible Review Date"/>
-								<datebox/>
+								<datebox value="@bind(vm.trsEmployeeImmigration.eligibleReview)" />
 							</row>
 							<row>
 								<label value="Comment"/>
-								<textbox multiline="true" rows="3"/>
+								<textbox value="@bind(vm.trsEmployeeImmigration.comment)" multiline="true" rows="3"/>
 							</row>
 						</rows>
 					</grid>
