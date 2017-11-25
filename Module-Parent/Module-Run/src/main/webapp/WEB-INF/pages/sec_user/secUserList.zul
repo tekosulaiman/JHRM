@@ -21,7 +21,7 @@
 			</north>
 			<!-- Table Database -->
 			<center>
-				<listbox id="listBoxUser" model="@bind(vm.secUsers)" selectedItem="@bind(vm.secUser)" vflex="true" mold="paging" pageSize="@init(vm.pageSize)" onPaging="@command('onPaging')">
+				<listbox id="listBoxUser" model="@bind(vm.secUsers)" selectedItem="@bind(vm.secUser)" mold="paging"> <!-- pageSize="2" -->
 					<listhead sizable="true">
 						<listheader width="5%" align="center"/>
 						<listheader label="ID User" sort="auto(usrId)" />

@@ -19,7 +19,6 @@ public class MstJobtitleDAOImpl extends BasisDAO<MstJobtitle> implements MstJobt
 	@Override
 	public List<MstJobtitle> getByRequestMstJobtitles(HashMap<String, Object> hashMap) {
 		List<MstJobtitle>list = (List<MstJobtitle>) getHibernateTemplate().findByExample(new MstJobtitle(), (Integer)hashMap.get("firstResult"), (Integer)hashMap.get("maxResults"));
-	
 		return list;
 	}
 

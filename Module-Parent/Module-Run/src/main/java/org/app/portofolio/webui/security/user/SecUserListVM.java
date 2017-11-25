@@ -69,14 +69,6 @@ public class SecUserListVM{
 	private int startPageNumber = 0;
 	private int pageSize = 2;
 
-	public int getPageSize() {
-		return pageSize;
-	}
-
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
-	}
-
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Function Custom sesuai kebutuhan
 	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
@@ -90,29 +82,25 @@ public class SecUserListVM{
 	public void doPrepareList(){
 		listBoxUser.setCheckmark(true);
 		listBoxUser.setMultiple(true);
-		//listBoxUser.setRows(2);
 		listBoxUser.setStyle("border-style: none;");
-		/*listBoxUser.setMold("paging");
-		listBoxUser.setPaginal(pagingUser);
+		listBoxUser.setMold("paging");
 		
-		long count = userService.getCountAllSecUser();
-		int i = (int) count;
-		
-		pagingUser.setTotalSize(i);
+		int count = userService.getCountAllSecUser();
+		pagingUser.setTotalSize(count);
 		pagingUser.setDetailed(true);
-		pagingUser.setPageSize(pageSize);*/
+		pagingUser.setPageSize(pageSize);
 	}
 	
 	private void refreshPageList(int refreshActivePage) {
-		/*if (refreshActivePage == 0) {
+		if (refreshActivePage == 0) {
 			pagingUser.setActivePage(0);
-		}*/
+		}
 		
 		refreshActivePage += 1;
 		
 		hashMapSecUser = new HashMap<String, Object>();
 		hashMapSecUser.put("firstResult", refreshActivePage);
-		hashMapSecUser.put("maxResults", listBoxUser.getPageSize()/*pagingUser.getPageSize()*/);
+		hashMapSecUser.put("maxResults", pagingUser.getPageSize());
 		
 		secUsers = userService.getAllByRequestMapUsers(hashMapSecUser);
 	}
@@ -126,18 +114,19 @@ public class SecUserListVM{
 		@ExecutionArgParam("secUser") SecUser secUser) {
 		
 		Selectors.wireComponents(component, this, false);
-		
-		//secUsers = userService.getAllUsers();
-		refreshPageList(startPageNumber);
-		
+
 		doCheckRights();
 		doPrepareList();
+		refreshPageList(startPageNumber);
+		
+		/*secUsers = userService.getAllUsers();*/
 	}
 	
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Function CRUD Event
 	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	@Command
+	@NotifyChange("secUsers")
 	public void onPaging(@ContextParam(ContextType.TRIGGER_EVENT) PagingEvent pagingEvent){
 		startPageNumber = pagingEvent.getActivePage();
 		refreshPageList(startPageNumber);
