@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.app.portofolio.webui.hr.master.job.paygrade.model.MstPaygradeListItemRenderer;
 import org.module.hr.model.MstPaygrade;
-import org.module.hr.service.MstPaygradeService;
+import org.module.hr.service.MasterJobService;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.ContextParam;
 import org.zkoss.bind.annotation.ContextType;
@@ -24,7 +24,7 @@ public class PayGradeVM {
 	private MstPaygrade mstPaygrade;
 	private List<MstPaygrade> mstPaygrades;
 	@WireVariable
-	private MstPaygradeService mstPaygradeService;
+	private MasterJobService masterJobService;
 	private MstPaygradeListItemRenderer mstPaygradeListItemRenderer;
 
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -36,7 +36,7 @@ public class PayGradeVM {
 		
 		Selectors.wireComponents(component, this, false);
 		
-		mstPaygrades = mstPaygradeService.getAllMstPaygrades();
+		mstPaygrades = masterJobService.getAllMstPaygrades();
 
 		this.mstPaygradeListItemRenderer = new MstPaygradeListItemRenderer() {
 			@Override
@@ -64,12 +64,12 @@ public class PayGradeVM {
 		this.mstPaygrades = mstPaygrades;
 	}
 
-	public MstPaygradeService getMstPaygradeService() {
-		return mstPaygradeService;
+	public MasterJobService getMasterJobService() {
+		return masterJobService;
 	}
 
-	public void setMstPaygradeService(MstPaygradeService mstPaygradeService) {
-		this.mstPaygradeService = mstPaygradeService;
+	public void setMasterJobService(MasterJobService masterJobService) {
+		this.masterJobService = masterJobService;
 	}
 
 	public MstPaygradeListItemRenderer getMstPaygradeListItemRenderer() {
