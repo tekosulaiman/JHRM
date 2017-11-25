@@ -52,14 +52,6 @@ public class JobTitleVM {
 	
 	private int startPageNumber = 0;
 	private int pageSize = 10;
-	
-	public int getPageSize() {
-		return pageSize;
-	}
-
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
-	}
 
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Function Custom sesuai kebutuhan
@@ -67,29 +59,28 @@ public class JobTitleVM {
 	public void doPrepareList(){
 		listBoxJobTitle.setCheckmark(true);
 		listBoxJobTitle.setMultiple(true);
-		//listBoxJobTitle.setRows(10);
 		listBoxJobTitle.setStyle("border-style: none;");
-		/*listBoxJobTitle.setMold("paging");
-		listBoxJobTitle.setPaginal(pagingJobTitle);
+		listBoxJobTitle.setMold("paging");
 		
 		long count = masterJobService.getCountMsJobtitles();
 		int i = (int) count;
 		
 		pagingJobTitle.setTotalSize(i);
 		pagingJobTitle.setDetailed(true);
-		pagingJobTitle.setPageSize(pageSize);*/
+		pagingJobTitle.setPageSize(pageSize);
 	}
 	
+	
 	private void refreshPageList(int refreshActivePage) {
-		/*if (refreshActivePage == 0) {
+		if (refreshActivePage == 0) {
 			pagingJobTitle.setActivePage(0);
-		}*/
+		}
 		
 		refreshActivePage += 1;
 		
 		hashMapJobTitle = new HashMap<String, Object>();
 		hashMapJobTitle.put("firstResult", refreshActivePage);
-		hashMapJobTitle.put("maxResult", listBoxJobTitle.getPageSize()/*pagingJobTitle.getPageSize()*/);
+		hashMapJobTitle.put("maxResults", pagingJobTitle.getPageSize());
 		
 		mstJobtitles = masterJobService.getByRequestMstJobtitles(hashMapJobTitle);
 		mstJobtitleListItemRenderer = new MstJobtitleListItemRenderer();
@@ -105,14 +96,15 @@ public class JobTitleVM {
 		
 		Selectors.wireComponents(component, this, false);
 
-		refreshPageList(startPageNumber);
 		doPrepareList();
+		refreshPageList(startPageNumber);
 	}
 	
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Function CRUD Event
 	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	@Command
+	@NotifyChange("mstJobtitles")
 	public void onPaging(@ContextParam(ContextType.TRIGGER_EVENT) PagingEvent pagingEvent){
 		startPageNumber = pagingEvent.getActivePage();
 		refreshPageList(startPageNumber);

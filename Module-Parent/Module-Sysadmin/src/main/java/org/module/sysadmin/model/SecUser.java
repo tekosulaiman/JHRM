@@ -7,6 +7,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -93,7 +94,7 @@ public class SecUser implements Serializable {
     @Column(name = "version")
     private int version;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usrId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usrId", fetch = FetchType.LAZY)
     private List<SecUserrole> secUserroleList;
 
     public SecUser() {

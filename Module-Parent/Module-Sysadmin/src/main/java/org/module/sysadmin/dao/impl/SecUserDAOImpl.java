@@ -31,7 +31,6 @@ public class SecUserDAOImpl extends BasisDAO<SecUser> implements SecUserDAO {
 	@Override
 	public List<SecUser> getAllByRequestMapUsers(HashMap<String, Object> hashMap){
 		List<SecUser>list = (List<SecUser>) getHibernateTemplate().findByExample(new SecUser(), (Integer)hashMap.get("firstResult"), (Integer)hashMap.get("maxResults"));
-		System.out.println("List dari Backend >>>"+list.size());
 		return list;
 	}
 	
