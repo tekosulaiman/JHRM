@@ -2,6 +2,7 @@ package org.module.hr.service.impl;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.module.hr.dao.MstEmployementStatusDAO;
 import org.module.hr.dao.MstJobCategoryDAO;
@@ -49,6 +50,11 @@ public class MasterJobServiceImpl implements MasterJobService{
 	@Override
 	public List<MstJobtitle> getByRequestMstJobtitles(HashMap<String, Object> hashMap) {
 		return mstJobtitleDAO.getByRequestMstJobtitles(hashMap);
+	}
+	
+	@Override
+	public List<MstJobtitle> getByRequestMap(Map<String, Object> requestMap) {
+		return mstJobtitleDAO.getByRequestMap(requestMap);
 	}
 	
 	public void setMstJobtitleDAO(MstJobtitleDAO mstJobtitleDAO) {

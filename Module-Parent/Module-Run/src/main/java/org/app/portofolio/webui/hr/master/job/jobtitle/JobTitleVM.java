@@ -6,6 +6,7 @@ import java.util.List;
 import org.app.portofolio.webui.hr.master.job.jobtitle.model.MstJobtitleListItemRenderer;
 import org.module.hr.model.MstJobtitle;
 import org.module.hr.service.MasterJobService;
+import org.module.sysadmin.model.SecRight;
 import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.Command;
@@ -24,6 +25,7 @@ import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Paging;
+import org.zkoss.zul.Textbox;
 import org.zkoss.zul.event.PagingEvent;
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
@@ -32,6 +34,9 @@ public class JobTitleVM {
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Wire component
 	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	@Wire("#textboxFilter")
+	private Textbox textboxFilter;
+	
 	@Wire("#listBoxJobTitle")
 	private Listbox listBoxJobTitle;
 	
@@ -46,7 +51,6 @@ public class JobTitleVM {
 	private List<MstJobtitle> mstJobtitles;
 	private MstJobtitle mstJobtitle;
 	private MstJobtitleListItemRenderer mstJobtitleListItemRenderer;
-	private JobTitleListModel jobTitleListModel;
 	
 	private HashMap<String, Object> hashMapJobTitle;
 	
@@ -103,6 +107,24 @@ public class JobTitleVM {
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Function CRUD Event
 	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	@Command
+	@NotifyChange("mstJobtitles")
+	public void doFilter(){
+		mstJobtitles.clear();
+        
+		String getName = textboxFilter.getValue();
+		
+		if(getName == null || "".equals(getName)) {
+			doPrepareList();
+			refreshPageList(startPageNumber);
+		} else {
+			HashMap<String, Object> hashMap = new HashMap<String, Object>();
+			hashMap.put("jobName", getName);
+			mstJobtitles = masterJobService.getByRequestMap(hashMap);
+			mstJobtitleListItemRenderer = new MstJobtitleListItemRenderer();
+		}
+	}
+	
 	@Command
 	@NotifyChange("mstJobtitles")
 	public void onPaging(@ContextParam(ContextType.TRIGGER_EVENT) PagingEvent pagingEvent){
@@ -180,13 +202,5 @@ public class JobTitleVM {
 
 	public void setMstJobtitleListItemRenderer(MstJobtitleListItemRenderer mstJobtitleListItemRenderer) {
 		this.mstJobtitleListItemRenderer = mstJobtitleListItemRenderer;
-	}
-
-	public JobTitleListModel getJobTitleListModel() {
-		return jobTitleListModel;
-	}
-
-	public void setJobTitleListModel(JobTitleListModel jobTitleListModel) {
-		this.jobTitleListModel = jobTitleListModel;
 	}
 }

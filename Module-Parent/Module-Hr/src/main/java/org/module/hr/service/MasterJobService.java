@@ -2,6 +2,7 @@ package org.module.hr.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.module.hr.model.MstEmployementStatus;
 import org.module.hr.model.MstJobCategory;
@@ -17,6 +18,7 @@ public interface MasterJobService {
     public void delete(MstJobtitle mstJobtitle);
     public List<MstJobtitle> getAllMstJobtitles();
     public List<MstJobtitle> getByRequestMstJobtitles(HashMap<String, Object> hashMap);
+    public List<MstJobtitle> getByRequestMap(Map<String, Object> requestMap);
     public Long getCountMsJobtitles();
     
     /* ----------- PayGrade -----------*/
