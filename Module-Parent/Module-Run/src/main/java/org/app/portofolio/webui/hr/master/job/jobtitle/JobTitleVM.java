@@ -6,7 +6,6 @@ import java.util.List;
 import org.app.portofolio.webui.hr.master.job.jobtitle.model.MstJobtitleListItemRenderer;
 import org.module.hr.model.MstJobtitle;
 import org.module.hr.service.MasterJobService;
-import org.module.sysadmin.model.SecRight;
 import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.Command;
@@ -128,7 +127,7 @@ public class JobTitleVM {
 	@Command
 	@NotifyChange("mstJobtitles")
 	public void onPaging(@ContextParam(ContextType.TRIGGER_EVENT) PagingEvent pagingEvent){
-		startPageNumber = pagingEvent.getActivePage();
+		startPageNumber = pagingEvent.getActivePage() * pageSize;
 		refreshPageList(startPageNumber);
 	}
 

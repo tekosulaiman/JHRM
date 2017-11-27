@@ -67,7 +67,7 @@ public class SecUserListVM{
 	private HashMap<String, Object> hashMapSecUser;
 	
 	private int startPageNumber = 0;
-	private int pageSize = 2;
+	private int pageSize = 10;
 
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Function Custom sesuai kebutuhan
@@ -86,6 +86,7 @@ public class SecUserListVM{
 		listBoxUser.setMold("paging");
 		
 		int count = userService.getCountAllSecUser();
+		
 		pagingUser.setTotalSize(count);
 		pagingUser.setDetailed(true);
 		pagingUser.setPageSize(pageSize);
@@ -119,7 +120,7 @@ public class SecUserListVM{
 		doPrepareList();
 		refreshPageList(startPageNumber);
 		
-		/*secUsers = userService.getAllUsers();*/
+		//secUsers = userService.getAllUsers();
 	}
 	
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -128,7 +129,7 @@ public class SecUserListVM{
 	@Command
 	@NotifyChange("secUsers")
 	public void onPaging(@ContextParam(ContextType.TRIGGER_EVENT) PagingEvent pagingEvent){
-		startPageNumber = pagingEvent.getActivePage();
+		startPageNumber = pagingEvent.getActivePage() * pageSize;
 		refreshPageList(startPageNumber);
 	}
 	
