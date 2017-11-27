@@ -3,13 +3,17 @@ package org.module.sysadmin.dao.impl;
 import java.util.HashMap;
 import java.util.List;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
-import org.springframework.dao.support.DataAccessUtils;
 import org.module.api.common.dao.base.BasisDAO;
 import org.module.sysadmin.dao.SecUserDAO;
 import org.module.sysadmin.model.SecUser;
+import org.springframework.dao.support.DataAccessUtils;
+import org.springframework.orm.hibernate5.HibernateCallback;
 
 /**
  *
@@ -29,8 +33,22 @@ public class SecUserDAOImpl extends BasisDAO<SecUser> implements SecUserDAO {
 	}
 	
 	@Override
-	public List<SecUser> getAllByRequestMapUsers(HashMap<String, Object> hashMap){
-		List<SecUser>list = (List<SecUser>) getHibernateTemplate().findByExample(new SecUser(), (Integer)hashMap.get("firstResult"), (Integer)hashMap.get("maxResults"));
+	public List<SecUser> getAllByRequestMapUsers(final HashMap<String, Object> hashMap){
+		/*List<SecUser>list = (List<SecUser>) getHibernateTemplate().findByExample(new SecUser(), (Integer)hashMap.get("firstResult"), (Integer)hashMap.get("maxResults"));
+		return list;*/
+		
+		List<SecUser> list = (List<SecUser>)getHibernateTemplate().execute(new HibernateCallback<List<SecUser>>(){
+			public List<SecUser> doInHibernate(Session session) throws HibernateException {
+				Query query = session.createQuery("FROM SecUser");
+				query.setFirstResult((Integer)hashMap.get("firstResult"));
+				query.setMaxResults((Integer)hashMap.get("maxResults"));
+		      
+				List<SecUser> list = query.list();
+				
+				return list;
+		    }
+		});
+		  
 		return list;
 	}
 	
