@@ -1,7 +1,7 @@
 package org.module.sysadmin.dao;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.module.sysadmin.model.SecGroup;
 import org.module.sysadmin.model.SecRole;
@@ -18,7 +18,7 @@ public interface SecRoleGroupDAO {
     public void saveOrUpdate(SecRolegroup secRolegroup);
     public void delete(SecRolegroup secRolegroup);
     public List<SecRolegroup> getAllRoleGroups();
-    public List<SecRolegroup> getByRequestMap(Map<String, Object> requestMap);
+    public List<SecRolegroup> getByRequestMap(HashMap<String, Object> hashMap);
     public List<SecGroup> getGroupByRoles(SecRole secRole);
     public int getCountAllSecRoleGroups();
     public boolean isGroupInRole(SecGroup secGroup, SecRole secRole);

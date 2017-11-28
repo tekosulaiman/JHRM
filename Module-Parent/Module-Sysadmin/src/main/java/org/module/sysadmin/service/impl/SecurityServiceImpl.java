@@ -1,18 +1,15 @@
 package org.module.sysadmin.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import org.module.sysadmin.dao.SecGroupDAO;
 import org.module.sysadmin.dao.SecGroupRightDAO;
 import org.module.sysadmin.dao.SecRightDAO;
 import org.module.sysadmin.dao.SecRoleDAO;
 import org.module.sysadmin.dao.SecRoleGroupDAO;
-import org.module.sysadmin.dao.SecUserRoleDAO;
 import org.module.sysadmin.dao.SecUserDAO;
+import org.module.sysadmin.dao.SecUserRoleDAO;
 import org.module.sysadmin.model.SecGroup;
 import org.module.sysadmin.model.SecGroupright;
 import org.module.sysadmin.model.SecRight;
@@ -22,6 +19,8 @@ import org.module.sysadmin.model.SecUser;
 import org.module.sysadmin.model.SecUserrole;
 import org.module.sysadmin.model.dto.SecType;
 import org.module.sysadmin.service.SecurityService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
@@ -82,8 +81,8 @@ public class SecurityServiceImpl implements SecurityService {
 	}
 
 	@Override
-	public List<SecUserrole> getRequestMapBySecUserrole(Map<String, Object> requestMap) {
-		return secUserRoleDAO.getByRequestMap(requestMap);
+	public List<SecUserrole> getRequestMapBySecUserrole(HashMap<String, Object> hashMap) {
+		return secUserRoleDAO.getByRequestMap(hashMap);
 	}
 	
 	@Override
@@ -132,8 +131,8 @@ public class SecurityServiceImpl implements SecurityService {
 	}
 	
 	@Override
-	public List<SecRole> getRequestMapBySecRole(Map<String, Object> requestMap) {
-		return secRoleDAO.getByRequestMap(requestMap);
+	public List<SecRole> getRequestMapBySecRole(HashMap<String, Object> hashMap) {
+		return secRoleDAO.getByRequestMap(hashMap);
 	}
 
 	@Override
@@ -187,8 +186,8 @@ public class SecurityServiceImpl implements SecurityService {
 	}
 	
 	@Override
-	public List<SecRolegroup> getRequestMapBySecRolegroup(Map<String, Object> requestMap) {
-		return secRoleGroupDAO.getByRequestMap(requestMap);
+	public List<SecRolegroup> getRequestMapBySecRolegroup(HashMap<String, Object> hashMap) {
+		return secRoleGroupDAO.getByRequestMap(hashMap);
 	}
 
 	@Override
@@ -242,8 +241,8 @@ public class SecurityServiceImpl implements SecurityService {
 	}
 	
 	@Override
-	public List<SecGroup> getRequestMapBySecGroup(Map<String, Object> requestMap) {
-		return secGroupDAO.getByRequestMap(requestMap);
+	public List<SecGroup> getRequestMapBySecGroup(HashMap<String, Object> hashMap) {
+		return secGroupDAO.getByRequestMap(hashMap);
 	}
 
 	@Override
@@ -322,8 +321,8 @@ public class SecurityServiceImpl implements SecurityService {
 	}
 	
 	@Override
-	public List<SecGroupright> getRequestMapBySecGroupright(Map<String, Object> requestMap) {
-		return secGroupRightDAO.getByRequestMap(requestMap);
+	public List<SecGroupright> getRequestMapBySecGroupright(HashMap<String, Object> hashMap) {
+		return secGroupRightDAO.getByRequestMap(hashMap);
 	}
 
 	@Override
@@ -407,8 +406,8 @@ public class SecurityServiceImpl implements SecurityService {
 	}
 	
 	@Override
-	public List<SecRight> getRequestMapBySecRight(Map<String, Object> requestMap) {
-		return secRightDAO.getByRequestMap(requestMap);
+	public List<SecRight> getRequestMapBySecRight(HashMap<String, Object> hashMap) {
+		return secRightDAO.getByRequestMap(hashMap);
 	}
 
 	@Override

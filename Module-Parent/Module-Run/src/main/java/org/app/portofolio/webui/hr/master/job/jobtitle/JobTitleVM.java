@@ -8,7 +8,6 @@ import net.sf.jasperreports.engine.JRException;
 import org.app.portofolio.webui.hr.master.job.jobtitle.model.MstJobtitleListItemRenderer;
 import org.module.hr.model.MstJobtitle;
 import org.module.hr.service.MasterJobService;
-import org.module.sysadmin.model.SecRight;
 import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.Command;
@@ -53,7 +52,6 @@ public class JobTitleVM {
 	private MasterJobService masterJobService;
 	private List<MstJobtitle> mstJobtitles;
 	private MstJobtitle mstJobtitle;
-	private MstJobtitleListItemRenderer mstJobtitleListItemRenderer;
 	private ListitemRenderer<MstJobtitle> listitemRenderer;
 	
 	private HashMap<String, Object> hashMapJobTitle;
@@ -89,8 +87,8 @@ public class JobTitleVM {
 		hashMapJobTitle.put("firstResult", refreshActivePage);
 		hashMapJobTitle.put("maxResults", pagingJobTitle.getPageSize());
 		
-		mstJobtitles = masterJobService.getByRequestMstJobtitles(hashMapJobTitle);
-		mstJobtitleListItemRenderer = new MstJobtitleListItemRenderer();
+		mstJobtitles = masterJobService.getByMstJobtitleRequestMap(hashMapJobTitle);
+		listitemRenderer = new MstJobtitleListItemRenderer();
 	}
 
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -123,8 +121,8 @@ public class JobTitleVM {
 		} else {
 			HashMap<String, Object> hashMap = new HashMap<String, Object>();
 			hashMap.put("jobName", getName);
-			mstJobtitles = masterJobService.getByRequestMap(hashMap);
-			mstJobtitleListItemRenderer = new MstJobtitleListItemRenderer();
+			mstJobtitles = masterJobService.getByMstJobtitleRequestMap(hashMap);
+			listitemRenderer = new MstJobtitleListItemRenderer();
 		}
 	}
 	
@@ -183,16 +181,28 @@ public class JobTitleVM {
 	public void doPrint() throws JRException{
 
 	}
-	
+
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Getter Setter
 	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	public MasterJobService getMasterJobService() {
+		return masterJobService;
+	}
+
+	public void setMasterJobService(MasterJobService masterJobService) {
+		this.masterJobService = masterJobService;
+	}
+
 	public MstJobtitle getMstJobtitle() {
 		return mstJobtitle;
 	}
 
 	public void setMstJobtitle(MstJobtitle mstJobtitle) {
 		this.mstJobtitle = mstJobtitle;
+	}
+
+	public ListitemRenderer<MstJobtitle> getListitemRenderer() {
+		return listitemRenderer;
 	}
 
 	public List<MstJobtitle> getMstJobtitles() {
@@ -203,19 +213,7 @@ public class JobTitleVM {
 		this.mstJobtitles = mstJobtitles;
 	}
 
-	public MasterJobService getMasterJobService() {
-		return masterJobService;
-	}
-	
-	public void setMasterJobService(MasterJobService masterJobService) {
-		this.masterJobService = masterJobService;
-	}
-
-	public MstJobtitleListItemRenderer getMstJobtitleListItemRenderer() {
-		return mstJobtitleListItemRenderer;
-	}
-
-	public void setMstJobtitleListItemRenderer(MstJobtitleListItemRenderer mstJobtitleListItemRenderer) {
-		this.mstJobtitleListItemRenderer = mstJobtitleListItemRenderer;
+	public void setListitemRenderer(ListitemRenderer<MstJobtitle> listitemRenderer) {
+		this.listitemRenderer = listitemRenderer;
 	}
 }

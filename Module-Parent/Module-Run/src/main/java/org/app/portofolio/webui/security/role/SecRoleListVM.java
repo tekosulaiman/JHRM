@@ -2,7 +2,6 @@ package org.app.portofolio.webui.security.role;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -10,6 +9,9 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.view.JasperViewer;
 
+import org.app.portofolio.webui.security.role.model.SecRoleListModelItemRenderer;
+import org.module.sysadmin.model.SecRole;
+import org.module.sysadmin.service.SecurityService;
 import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.Command;
@@ -31,10 +33,6 @@ import org.zkoss.zul.ListitemRenderer;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Paging;
 import org.zkoss.zul.Textbox;
-
-import org.module.sysadmin.model.SecRole;
-import org.module.sysadmin.service.SecurityService;
-import org.app.portofolio.webui.security.role.model.SecRoleListModelItemRenderer;
 
 /**
 *
@@ -169,7 +167,7 @@ public class SecRoleListVM {
 	@Command
 	public void doPrint() throws JRException{
 		/*Test Viewer*/
-		Map<String, Object> requestMap = new HashMap<String, Object>();
+		HashMap<String, Object> requestMap = new HashMap<String, Object>();
         requestMap.put("rolShortdescription", textboxFilter.getText().trim());
 		
 		//JRBeanCollectionDataSource jRBeanCollectionDataSource = new JRBeanCollectionDataSource(securityService.getAllRoles());

@@ -19,7 +19,7 @@
 				</div>
 			</north>
 			<center>
-				<listbox id="listBoxEmployementStatus" model="@bind(vm.mstEmployementStatusList)" itemRenderer="@bind(vm.mstEmployementStatusListItemRenderer)" selectedItem="@bind(vm.mstEmployementStatus)">
+				<listbox id="listboxEmployementStatus" model="@bind(vm.employementStatus)" itemRenderer="@bind(vm.listitemRenderer)" selectedItem="@bind(vm.mstEmployementStatus)">
 					<listhead sizable="true">
 						<listheader width="10%" align="center"/>
 						<listheader label="Employement Status"/>	
@@ -27,7 +27,7 @@
 				</listbox>
 			</center>
 			<south>
-				<paging/>
+				<paging id="pagingEmployementStatus"/>
 			</south>
 		</borderlayout>
 	</window>

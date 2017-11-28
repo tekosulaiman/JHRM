@@ -1,7 +1,7 @@
 package org.module.sysadmin.dao;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.module.sysadmin.model.SecRole;
 import org.module.sysadmin.model.SecUser;
@@ -18,7 +18,7 @@ public interface SecUserRoleDAO {
     public void saveOrUpdate(SecUserrole secUserrole);
     public void delete(SecUserrole secUserrole);
     public List<SecUserrole> getAllUserRoles();
-    public List<SecUserrole> getByRequestMap(Map<String, Object> requestMap);
+    public List<SecUserrole> getByRequestMap(HashMap<String, Object> hashMap);
     public int getCountAllSecUserRoles();
     public boolean isUserInRole(SecUser secUser, SecRole secRole);
     public SecUserrole getUseRoleByUserAndRole(SecUser secUser, SecRole secRole);

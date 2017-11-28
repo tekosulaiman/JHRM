@@ -2,7 +2,6 @@ package org.module.hr.service.impl;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.module.hr.dao.MstEmployementStatusDAO;
 import org.module.hr.dao.MstJobCategoryDAO;
@@ -21,7 +20,6 @@ public class MasterJobServiceImpl implements MasterJobService{
 	private MstEmployementStatusDAO mstEmployementStatusDAO;
 	private MstJobCategoryDAO mstJobCategoryDAO;
 	
-	/* ------------ JobTitle ----------*/
 	@Override
 	public void save(MstJobtitle mstJobtitle) {
 		mstJobtitleDAO.save(mstJobtitle);
@@ -41,32 +39,26 @@ public class MasterJobServiceImpl implements MasterJobService{
 	public void delete(MstJobtitle mstJobtitle) {
 		mstJobtitleDAO.delete(mstJobtitle);
 	}
-	
 	@Override
 	public List<MstJobtitle> getAllMstJobtitles() {
 		return mstJobtitleDAO.getAllMstJobtitles();
 	}
 	
 	@Override
-	public List<MstJobtitle> getByRequestMstJobtitles(HashMap<String, Object> hashMap) {
-		return mstJobtitleDAO.getByRequestMstJobtitles(hashMap);
+	public List<MstJobtitle> getByMstJobtitleRequestMap(HashMap<String, Object> hashMap) {
+		return mstJobtitleDAO.getByRequestMap(hashMap);
 	}
 	
 	@Override
-	public List<MstJobtitle> getByRequestMap(Map<String, Object> requestMap) {
-		return mstJobtitleDAO.getByRequestMap(requestMap);
-	}
-	
-	public void setMstJobtitleDAO(MstJobtitleDAO mstJobtitleDAO) {
-		this.mstJobtitleDAO = mstJobtitleDAO;
+	public List<MstJobtitle> getMstJobtitlePaging(HashMap<String, Object> hashMap) {
+		return mstJobtitleDAO.getMstJobtitlePaging(hashMap);
 	}
 	
 	@Override
-	public Long getCountMsJobtitles() {
+	public int getCountMsJobtitles() {
 		return mstJobtitleDAO.getCountMsJobtitles();
 	}
 	
-	/* ----------- PayGrade -----------*/
 	@Override
 	public void save(MstPaygrade mstPaygrade) {
 		mstPaygradeDAO.save(mstPaygrade);
@@ -92,11 +84,6 @@ public class MasterJobServiceImpl implements MasterJobService{
 		return mstPaygradeDAO.getAllMstPaygrades();
 	}
 	
-	public void setMstPaygradeDAO(MstPaygradeDAO mstPaygradeDAO) {
-		this.mstPaygradeDAO = mstPaygradeDAO;
-	}
-	
-	/* ------- Employment Status --------*/
 	@Override
 	public void save(MstEmployementStatus mstEmployementStatus) {
 		mstEmployementStatusDAO.save(mstEmployementStatus);
@@ -122,11 +109,21 @@ public class MasterJobServiceImpl implements MasterJobService{
 		return mstEmployementStatusDAO.getAllMstEmployementStatus();
 	}
 	
-	public void setMstEmployementStatusDAO(MstEmployementStatusDAO mstEmployementStatusDAO) {
-		this.mstEmployementStatusDAO = mstEmployementStatusDAO;
+	@Override
+	public List<MstEmployementStatus> getByMstEmployementStatusRequestMap(HashMap<String, Object> hashMap) {
+		return mstEmployementStatusDAO.getByRequestMap(hashMap);
 	}
 	
-	/* ---------- Job Category -----------*/
+	@Override
+	public List<MstEmployementStatus> getMstEmployementStatusPaging(HashMap<String, Object> hashMap) {
+		return mstEmployementStatusDAO.getMstEmployementStatusPaging(hashMap);
+	}
+	
+	@Override
+	public int getCountAllMstEmployementStatus() {
+		return mstEmployementStatusDAO.getCountAllMstEmployementStatus();
+	}
+	
 	@Override
 	public void save(MstJobCategory mstJobCategory) {
 		mstJobCategoryDAO.save(mstJobCategory);
@@ -152,7 +149,18 @@ public class MasterJobServiceImpl implements MasterJobService{
 		return mstJobCategoryDAO.getAllMstJobCategories();
 	}
 	
-	public void setMstJobCategoryDAO(MstJobCategoryDAO mstJobCategoryDAO) {
-		this.mstJobCategoryDAO = mstJobCategoryDAO;
+	@Override
+	public List<MstJobCategory> getByMstJobCategoryRequestMap(HashMap<String, Object> hashMap) {
+		return mstJobCategoryDAO.getByRequestMap(hashMap);
+	}
+	
+	@Override
+	public List<MstJobCategory> getMstJobCategoryPaging(HashMap<String, Object> hashMap) {
+		return mstJobCategoryDAO.getMstJobCategoryPaging(hashMap);
+	}
+	
+	@Override
+	public int getCountAllMstJobCategory() {
+		return mstJobCategoryDAO.getCountAllMstJobCategory();
 	}
 }

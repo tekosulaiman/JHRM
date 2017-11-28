@@ -1,7 +1,7 @@
 package org.module.sysadmin.dao;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.module.sysadmin.model.SecGroup;
 import org.module.sysadmin.model.SecGroupright;
@@ -21,7 +21,7 @@ public interface SecGroupDAO {
     public List<SecGroup> getAllGroups();
     public List<SecGroup> getGroupByUsers(SecUser secUser);
     public List<SecGroup> getGroupLikeGroupNames(String groupname);  
-    public List<SecGroup> getByRequestMap(Map<String, Object> requestMap);
+    public List<SecGroup> getByRequestMap(HashMap<String, Object> hashMap);
     public int getCountAllSecGroups();
     public SecGroup getSecGroupById(Long groupid);
     public SecGroup getGroupByGroupRight(SecGroupright secGroupright);

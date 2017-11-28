@@ -1,7 +1,7 @@
 package org.module.sysadmin.dao;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.module.sysadmin.model.SecRole;
 import org.module.sysadmin.model.SecUser;
@@ -19,7 +19,7 @@ public interface SecRoleDAO {
     public List<SecRole> getAllRoles();
     public List<SecRole> getRoleByUsers(SecUser secUser);
     public List<SecRole> getRoleLikeRoleNames(String rolename);
-    public List<SecRole> getByRequestMap(Map<String, Object> requestMap);
+    public List<SecRole> getByRequestMap(HashMap<String, Object> hashMap);
     public int getCountAllSecRoles();
     public SecRole getRoleById(Long roleid);
 }

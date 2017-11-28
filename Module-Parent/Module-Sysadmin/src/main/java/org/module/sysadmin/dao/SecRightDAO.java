@@ -1,7 +1,7 @@
 package org.module.sysadmin.dao;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.module.sysadmin.model.SecGroupright;
 import org.module.sysadmin.model.SecRight;
@@ -26,6 +26,6 @@ public interface SecRightDAO {
     public List<SecRight> getAllRights(List<Integer> listofrighttype);
     public List<SecRight> getRightByGroupRights(SecGroupright secGroupright);
     public List<SecRight> getRightByUsers(SecUser secUser);
-    public List<SecRight> getByRequestMap(Map<String, Object> requestMap);
+    public List<SecRight> getByRequestMap(HashMap<String, Object> hashMap);
     public SecRight getRightById(Long rightid);
 }

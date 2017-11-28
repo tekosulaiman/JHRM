@@ -1,5 +1,6 @@
 package org.app.portofolio.webui.hr.master.job.employementstatus;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.app.portofolio.webui.hr.master.job.employementstatus.model.MstEmployementStatusListItemRenderer;
@@ -21,61 +22,107 @@ import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
+import org.zkoss.zul.ListitemRenderer;
 import org.zkoss.zul.Messagebox;
+import org.zkoss.zul.Paging;
+import org.zkoss.zul.event.PagingEvent;
 
+@SuppressWarnings({ "rawtypes", "unchecked" })
 public class EmployementStatusVM {
 	
-	/* ------------ Zul -------------- */
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Wire component
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	@Wire("#listBoxEmployementStatus")
-	private Listbox listBoxEmployementStatus;
+	private Listbox listboxEmployementStatus;
+	
+	@Wire("#pagingEmployementStatus")
+	private Paging pagingEmployementStatus;
 
-	/* ----------Services -------------*/
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Service yang dibutuhkan sesuai bisnis proses
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	private MstEmployementStatus mstEmployementStatus;
+	private List<MstEmployementStatus> employementStatus;
 	@WireVariable
 	private MasterJobService masterJobService;
+	private ListitemRenderer<MstEmployementStatus> listitemRenderer;
 	
-	/* ------------ Beans -------------*/
-	private MstEmployementStatus mstEmployementStatus;
-	private List<MstEmployementStatus> mstEmployementStatusList;
-	private MstEmployementStatusListItemRenderer mstEmployementStatusListItemRenderer;
+	private HashMap<String, Object> hashMapJobTitle;
+	
+	private int startPageNumber = 0;
+	private int pageSize = 10;
 
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Function Custom sesuai kebutuhan
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	public void doPrepareList(){
-		listBoxEmployementStatus.setCheckmark(true);
-		listBoxEmployementStatus.setMultiple(true);
-		listBoxEmployementStatus.setRows(15);
-		listBoxEmployementStatus.setStyle("border-style: none;");
+		listboxEmployementStatus.setCheckmark(true);
+		listboxEmployementStatus.setMultiple(true);
+		listboxEmployementStatus.setStyle("border-style: none;");
+		listboxEmployementStatus.setMold("paging");
+		
+		long count = masterJobService.getCountMsJobtitles();
+		int i = (int) count;
+		
+		pagingEmployementStatus.setTotalSize(i);
+		pagingEmployementStatus.setDetailed(true);
+		pagingEmployementStatus.setPageSize(pageSize);
 	}
 	
+	private void refreshPageList(int refreshActivePage) {
+		if (refreshActivePage == 0) {
+			pagingEmployementStatus.setActivePage(0);
+		}
+		
+		refreshActivePage += 1;
+		
+		hashMapJobTitle = new HashMap<String, Object>();
+		hashMapJobTitle.put("firstResult", refreshActivePage);
+		hashMapJobTitle.put("maxResults", pagingEmployementStatus.getPageSize());
+		
+		employementStatus = masterJobService.getByMstEmployementStatusRequestMap(hashMapJobTitle);
+		listitemRenderer = new MstEmployementStatusListItemRenderer();
+	}
+	
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Inisialize Methode MVVM yang pertama kali dijalankan
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	@AfterCompose
 	public void setupComponents(@ContextParam(ContextType.VIEW) Component component, @ExecutionArgParam("object") Object object) {
 		Selectors.wireComponents(component, this, false);
 		
-		mstEmployementStatusList = masterJobService.getAllMstEmployementStatus();
-		mstEmployementStatusListItemRenderer = new MstEmployementStatusListItemRenderer();
-		
-		listBoxEmployementStatus.setModel(new ListModelList<MstEmployementStatus>());
-		listBoxEmployementStatus.setItemRenderer(mstEmployementStatusListItemRenderer);
-		
+		doPrepareList();
+		refreshPageList(startPageNumber);
 	}
 
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Function CRUD Event
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	@Command
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public void doNew(){
-		ListModelList listModelList = (ListModelList) listBoxEmployementStatus.getModel();
-		listModelList.add(0,  new MstEmployementStatus());
-	}
-
-	@GlobalCommand
-	@NotifyChange("mstEmployementStatusList")
-	public void refreshAfterSaveOrUpdate(){
-		mstEmployementStatusList = masterJobService.getAllMstEmployementStatus();
+	@NotifyChange("employementStatus")
+	public void onPaging(@ContextParam(ContextType.TRIGGER_EVENT) PagingEvent pagingEvent){
+		startPageNumber = pagingEvent.getActivePage() * pageSize;
+		refreshPageList(startPageNumber);
 	}
 	
 	@Command
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public void doNew(){
+		ListModelList listModelList = (ListModelList) listboxEmployementStatus.getModel();
+		listModelList.add(0, new MstEmployementStatus());
+	}
+
+	@GlobalCommand
+	@NotifyChange("employementStatus")
+	public void refreshAfterSaveOrUpdate(){
+		employementStatus = masterJobService.getAllMstEmployementStatus();
+	}
+	
+	@Command
 	public void doDelete(){
-		final ListModelList<MstEmployementStatus> listModelListEmploymentStatus = (ListModelList) listBoxEmployementStatus.getModel();
+		final ListModelList<MstEmployementStatus> listModelListEmploymentStatus = (ListModelList) listboxEmployementStatus.getModel();
 		
-		if(listBoxEmployementStatus.getSelectedIndex() == -1){
+		if(listboxEmployementStatus.getSelectedIndex() == -1){
 			Messagebox.show("There is no selected record?", "Confirm", Messagebox.OK, Messagebox.ERROR);
 		}else{
 			Messagebox.show("Do you really want to remove item?", "Confirm", Messagebox.OK | Messagebox.CANCEL, Messagebox.EXCLAMATION, new EventListener() {
@@ -95,11 +142,10 @@ public class EmployementStatusVM {
 			});
 		}
 	}
-	
-	/*
-	 * -------------- GETTER - SETTER -----------------
-	 */
-	
+
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Getter Setter
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	public MstEmployementStatus getMstEmployementStatus() {
 		return mstEmployementStatus;
 	}
@@ -108,27 +154,28 @@ public class EmployementStatusVM {
 		this.mstEmployementStatus = mstEmployementStatus;
 	}
 
-	public List<MstEmployementStatus> getMstEmployementStatusList() {
-		return mstEmployementStatusList;
+	public List<MstEmployementStatus> getEmployementStatus() {
+		return employementStatus;
 	}
-	
-	public void setMstEmployementStatusList(List<MstEmployementStatus> mstEmployementStatusList) {
-		this.mstEmployementStatusList = mstEmployementStatusList;
+
+	public void setEmployementStatus(List<MstEmployementStatus> employementStatus) {
+		this.employementStatus = employementStatus;
 	}
-	
+
 	public MasterJobService getMasterJobService() {
 		return masterJobService;
 	}
-	
+
 	public void setMasterJobService(MasterJobService masterJobService) {
 		this.masterJobService = masterJobService;
 	}
 
-	public MstEmployementStatusListItemRenderer getMstEmployementStatusListItemRenderer() {
-		return mstEmployementStatusListItemRenderer;
+	public ListitemRenderer<MstEmployementStatus> getListitemRenderer() {
+		return listitemRenderer;
 	}
 
-	public void setMstEmployementStatusListItemRenderer(MstEmployementStatusListItemRenderer mstEmployementStatusListItemRenderer) {
-		this.mstEmployementStatusListItemRenderer = mstEmployementStatusListItemRenderer;
+	public void setListitemRenderer(
+			ListitemRenderer<MstEmployementStatus> listitemRenderer) {
+		this.listitemRenderer = listitemRenderer;
 	}
 }

@@ -4,24 +4,23 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.jws.WebService;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.module.sysadmin.dao.SecGroupDAO;
 import org.module.sysadmin.dao.SecGroupRightDAO;
 import org.module.sysadmin.dao.SecRightDAO;
 import org.module.sysadmin.dao.SecRoleDAO;
 import org.module.sysadmin.dao.SecRoleGroupDAO;
-import org.module.sysadmin.dao.SecUserRoleDAO;
 import org.module.sysadmin.dao.SecUserDAO;
+import org.module.sysadmin.dao.SecUserRoleDAO;
 import org.module.sysadmin.model.SecGroup;
 import org.module.sysadmin.model.SecRight;
 import org.module.sysadmin.model.SecRole;
 import org.module.sysadmin.model.SecUser;
 import org.module.sysadmin.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
@@ -103,8 +102,8 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public List<SecUser> getRequestMapBySecUser(Map<String, Object> requestMap) {
-		return secUserDAO.getByRequestMap(requestMap);
+	public List<SecUser> getRequestMapBySecUser(HashMap<String, Object> hashMap) {
+		return secUserDAO.getByRequestMap(hashMap);
 	}
 
 	@Override

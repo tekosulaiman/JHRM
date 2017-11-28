@@ -2,9 +2,13 @@ package org.app.portofolio.webui.security.userrole;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
+import org.module.sysadmin.model.SecRole;
+import org.module.sysadmin.model.SecUser;
+import org.module.sysadmin.model.SecUserrole;
+import org.module.sysadmin.service.SecurityService;
+import org.module.sysadmin.service.UserService;
 import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.Command;
@@ -25,12 +29,6 @@ import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
-
-import org.module.sysadmin.model.SecRole;
-import org.module.sysadmin.model.SecUser;
-import org.module.sysadmin.model.SecUserrole;
-import org.module.sysadmin.service.SecurityService;
-import org.module.sysadmin.service.UserService;
 
 /**
 *
@@ -175,7 +173,7 @@ public class SecUserRoleListVM {
 			 		if (((Integer) event.getData()).intValue() == Messagebox.OK) {
 			 			for(SecUser secUser : listModelListUsers){
 			 				if(listModelListUsers.isSelected(secUser)){
-			 					Map<String, Object> map = new HashMap<String, Object>();
+			 					HashMap<String, Object> map = new HashMap<String, Object>();
 			 					map.put("usrId", secUser);
 			 					List<SecUserrole> secUserroles = securityService.getRequestMapBySecUserrole(map);
 			 					

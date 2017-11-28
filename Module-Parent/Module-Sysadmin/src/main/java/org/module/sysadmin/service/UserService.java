@@ -3,7 +3,6 @@ package org.module.sysadmin.service;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.jws.WebService;
 
@@ -28,7 +27,7 @@ public interface UserService {
     public List<SecUser> getUserLikeLoginNames(String likeloginname);
     public List<SecUser> getUserLikeLastNames(String lastnames);
     public List<SecUser> getUserLikeEmails(String likeemail);
-    public List<SecUser> getRequestMapBySecUser(Map<String, Object> requestMap);
+    public List<SecUser> getRequestMapBySecUser(HashMap<String, Object> hashMap);
     public List<SecRole> getRoleByUsers(SecUser secUser);
     public List<SecRole> getAllRoles();
     public List<SecGroup> getGroupByUsers(SecUser secUser);

@@ -1,7 +1,7 @@
 package org.module.sysadmin.service;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.module.sysadmin.model.SecGroup;
 import org.module.sysadmin.model.SecGroupright;
@@ -25,7 +25,7 @@ public interface SecurityService {
     public void saveOrUpdate(SecUserrole secUserrole);
     public void delete(SecUserrole secUserrole);
     public List<SecUserrole> getAllUserRoles();
-    public List<SecUserrole> getRequestMapBySecUserrole(Map<String, Object> requestMap);
+    public List<SecUserrole> getRequestMapBySecUserrole(HashMap<String, Object> hashMap);
     public int getCountAllSecUserRoles();
     public boolean isUserInRole(SecUser secUser, SecRole secRole);
     public SecUserrole getUseRoleByUserAndRole(SecUser secUser, SecRole secRole);
@@ -39,7 +39,7 @@ public interface SecurityService {
     public List<SecRole> getAllRoles();
     public List<SecRole> getRoleByUsers(SecUser secUser);
     public List<SecRole> getRoleLikeRoleNames(String rolename);
-    public List<SecRole> getRequestMapBySecRole(Map<String, Object> requestMap);
+    public List<SecRole> getRequestMapBySecRole(HashMap<String, Object> hashMap);
     public int getCountAllSecRoles();
     public SecRole getRoleById(Long roleid);
    
@@ -50,7 +50,7 @@ public interface SecurityService {
     public void saveOrUpdate(SecRolegroup secRolegroup);
     public void delete(SecRolegroup secRolegroup);
     public List<SecRolegroup> getAllRoleGroups();
-    public List<SecRolegroup> getRequestMapBySecRolegroup(Map<String, Object> requestMap);
+    public List<SecRolegroup> getRequestMapBySecRolegroup(HashMap<String, Object> hashMap);
     public List<SecGroup> getGroupByRoles(SecRole secRole);
     public int getCountAllSecRoleGroups();
     public boolean isGroupInRole(SecGroup secGroup, SecRole secRole);
@@ -65,7 +65,7 @@ public interface SecurityService {
     public List<SecGroup> getAllGroups();
     public List<SecGroup> getGroupByUsers(SecUser secUser);
     public List<SecGroup> getGroupLikeGroupNames(String groupname);  
-    public List<SecGroup> getRequestMapBySecGroup(Map<String, Object> requestMap);
+    public List<SecGroup> getRequestMapBySecGroup(HashMap<String, Object> hashMap);
     public int getCountAllSecGroups();
     public SecGroup getSecGroupById(Long groupid);
     public SecGroup getGroupByGroupRight(SecGroupright secGroupright);
@@ -80,7 +80,7 @@ public interface SecurityService {
     public int getCountAllSecGrouprights();
     public boolean isRightInGroup(SecRight secRight, SecGroup secGroup);
     public List<SecGroupright> getAllGroupRights();
-    public List<SecGroupright> getRequestMapBySecGroupright(Map<String, Object> requestMap);
+    public List<SecGroupright> getRequestMapBySecGroupright(HashMap<String, Object> hashMap);
     public List<SecRight> getGroupRightByGroups(SecGroup secGroup);
     public List<SecRight> getRightByGroups(SecGroup secGroup);
     public SecGroupright getGroupRightByGroupAndRights(SecGroup secGroup, SecRight secRight);
@@ -100,7 +100,7 @@ public interface SecurityService {
     public List<SecRight> getAllRights(List<Integer> listofrighttype);
     public List<SecRight> getRightByGroupRights(SecGroupright secGroupright);
     public List<SecRight> getRightByUsers(SecUser secUser);
-    public List<SecRight> getRequestMapBySecRight(Map<String, Object> requestMap);
+    public List<SecRight> getRequestMapBySecRight(HashMap<String, Object> hashMap);
     public SecRight getRightById(Long rightid);
     
     /* +++++ Security: Security Typs +++++++ */

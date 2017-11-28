@@ -2,6 +2,7 @@ package org.module.api.common.dao.base;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -63,20 +64,20 @@ public abstract class BasisDAO<T> {
     }
     
     @SuppressWarnings("unchecked")
-	public List<T> getByRequestMap(Map<String, Object> requestMap) {
+	public List<T> getByRequestMap(HashMap<String, Object> hashMap) {
 		
     	final StringBuffer queryString = new StringBuffer();
 		
 		queryString.append(" FROM "+ genericType.getSimpleName());
 
-		Object params[] = new Object[requestMap.size()];
+		Object params[] = new Object[hashMap.size()];
     	
 		int a = 0;
 		
-    	if ((requestMap != null) && !requestMap.isEmpty()){
+    	if ((hashMap != null) && !hashMap.isEmpty()){
     		queryString.append(" WHERE ");
             
-            for (final Iterator<Map.Entry<String, Object>> it = requestMap.entrySet().iterator(); it.hasNext();){
+            for (final Iterator<Map.Entry<String, Object>> it = hashMap.entrySet().iterator(); it.hasNext();){
                 
             	final Map.Entry<String,Object> entry = it.next(); 
                 
