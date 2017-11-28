@@ -1,5 +1,5 @@
 <zk>
-	<window apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.master.job.paygrade.PayGradeVM')" border="none" width="100%" >
+	<window apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.master.job.paygrade.PayGradeListVM')" border="none" width="100%" >
 		<borderlayout height="500px">
 			<north>
 				<div sclass="z-toolbar" style="padding:0">
@@ -19,17 +19,28 @@
 				</div>
 			</north>
 			<center>
-				<listbox id="listBoxPayGrade" model="@bind(vm.mstPaygrades)" itemRenderer="@bind(vm.mstPaygradeListItemRenderer.renderer)">
-					<listhead sizable="true">
-						<listheader width="50px" align="center"/>
-						<listheader label="Pay Grade"/>
-						<listheader label="Curency"/>	
-					</listhead>
-				</listbox>		
+				<borderlayout>
+					<north title="List Pay Grade" splittable="true" collapsible="true">
+						<listbox id="listboxPayGrade">
+							<listhead sizable="true">
+								<listheader width="50px" align="center"/>
+								<listheader label="Pay Grade"/>
+								<listheader label="Curency"/>	
+							</listhead>
+						</listbox>	
+					</north>
+					<south title="List Currency" splittable="true" collapsible="true">
+						<listbox id="listboxCurrency">
+							<listhead sizable="true">
+								<listheader label="Currency"/>
+								<listheader label="Minimum Salary"/>
+								<listheader label="Maximum Salary"/>
+							</listhead>		
+						</listbox>
+					</south>
+				</borderlayout>	
 			</center>
-			<south>
-				<paging/>
-			</south>
+			<south/>
 		</borderlayout>
 	</window>
 </zk>

@@ -6,27 +6,38 @@ import org.app.portofolio.webui.hr.master.job.paygrade.model.MstPaygradeListItem
 import org.module.hr.model.MstPaygrade;
 import org.module.hr.service.MasterJobService;
 import org.zkoss.bind.annotation.AfterCompose;
+import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
 import org.zkoss.bind.annotation.ContextType;
 import org.zkoss.bind.annotation.ExecutionArgParam;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
-import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
 
-public class PayGradeVM {
+public class PayGradeListVM {
 	
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Wire component
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	@Wire("#listBoxPayGrade")
 	private Listbox listBoxPayGrade;
 
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Service yang dibutuhkan sesuai bisnis proses
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	private MstPaygrade mstPaygrade;
 	private List<MstPaygrade> mstPaygrades;
 	@WireVariable
 	private MasterJobService masterJobService;
 	private MstPaygradeListItemRenderer mstPaygradeListItemRenderer;
 
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Function Custom sesuai kebutuhan
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Inisialize Methode MVVM yang pertama kali dijalankan
 	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
@@ -35,19 +46,19 @@ public class PayGradeVM {
 		@ExecutionArgParam("object") Object object) {
 		
 		Selectors.wireComponents(component, this, false);
-		
-		mstPaygrades = masterJobService.getAllMstPaygrades();
-
-		this.mstPaygradeListItemRenderer = new MstPaygradeListItemRenderer() {
-			@Override
-			protected void buttonSaveActionListener() {
-				super.buttonSaveActionListener();
-			}
-		};
-		
-		listBoxPayGrade.setModel(new ListModelList<MstPaygrade>(mstPaygrades));
 	}
-
+	
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Function CRUD Event
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	@Command
+	public void doNew(){
+		Executions.createComponents("/WEB-INF/pages/module_hr/master/job/paygrade/payGradeDialog.zul", null, null);
+	}
+	
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Getter Setter
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	public MstPaygrade getMstPaygrade() {
 		return mstPaygrade;
 	}
