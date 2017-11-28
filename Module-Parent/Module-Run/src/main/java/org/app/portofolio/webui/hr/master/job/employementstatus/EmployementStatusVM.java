@@ -33,7 +33,7 @@ public class EmployementStatusVM {
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Wire component
 	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-	@Wire("#listBoxEmployementStatus")
+	@Wire("#listboxEmployementStatus")
 	private Listbox listboxEmployementStatus;
 	
 	@Wire("#pagingEmployementStatus")
@@ -81,7 +81,7 @@ public class EmployementStatusVM {
 		hashMapJobTitle.put("firstResult", refreshActivePage);
 		hashMapJobTitle.put("maxResults", pagingEmployementStatus.getPageSize());
 		
-		employementStatus = masterJobService.getByMstEmployementStatusRequestMap(hashMapJobTitle);
+		employementStatus = masterJobService.getMstEmployementStatusPaging(hashMapJobTitle);
 		listitemRenderer = new MstEmployementStatusListItemRenderer();
 	}
 	

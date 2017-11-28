@@ -87,7 +87,7 @@ public class JobTitleVM {
 		hashMapJobTitle.put("firstResult", refreshActivePage);
 		hashMapJobTitle.put("maxResults", pagingJobTitle.getPageSize());
 		
-		mstJobtitles = masterJobService.getByMstJobtitleRequestMap(hashMapJobTitle);
+		mstJobtitles = masterJobService.getMstJobtitlePaging(hashMapJobTitle);
 		listitemRenderer = new MstJobtitleListItemRenderer();
 	}
 
