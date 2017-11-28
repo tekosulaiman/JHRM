@@ -3,9 +3,12 @@ package org.app.portofolio.webui.hr.master.job.jobtitle;
 import java.util.HashMap;
 import java.util.List;
 
+import net.sf.jasperreports.engine.JRException;
+
 import org.app.portofolio.webui.hr.master.job.jobtitle.model.MstJobtitleListItemRenderer;
 import org.module.hr.model.MstJobtitle;
 import org.module.hr.service.MasterJobService;
+import org.module.sysadmin.model.SecRight;
 import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.Command;
@@ -22,6 +25,7 @@ import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
+import org.zkoss.zul.ListitemRenderer;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Paging;
 import org.zkoss.zul.Textbox;
@@ -50,6 +54,7 @@ public class JobTitleVM {
 	private List<MstJobtitle> mstJobtitles;
 	private MstJobtitle mstJobtitle;
 	private MstJobtitleListItemRenderer mstJobtitleListItemRenderer;
+	private ListitemRenderer<MstJobtitle> listitemRenderer;
 	
 	private HashMap<String, Object> hashMapJobTitle;
 	
@@ -72,7 +77,6 @@ public class JobTitleVM {
 		pagingJobTitle.setDetailed(true);
 		pagingJobTitle.setPageSize(pageSize);
 	}
-	
 	
 	private void refreshPageList(int refreshActivePage) {
 		if (refreshActivePage == 0) {
@@ -133,8 +137,8 @@ public class JobTitleVM {
 
 	@Command
 	public void doNew(){
-		ListModelList listModelList = (ListModelList) listBoxJobTitle.getModel();
-		listModelList.add(0,  new MstJobtitle());
+		final ListModelList<MstJobtitle> listModelListJobtitle = (ListModelList) listBoxJobTitle.getModel();
+		listModelListJobtitle.add(0, new MstJobtitle());
 	}
 
 	@GlobalCommand
@@ -145,7 +149,7 @@ public class JobTitleVM {
 	
 	@Command
 	public void doDelete(){
-		final ListModelList<MstJobtitle> listModelListJobtitle= (ListModelList) listBoxJobTitle.getModel();
+		final ListModelList<MstJobtitle> listModelListJobtitle = (ListModelList) listBoxJobTitle.getModel();
 		
 		if(listBoxJobTitle.getSelectedIndex() == -1){
 			Messagebox.show("There is no selected record?", "Confirm", Messagebox.OK, Messagebox.ERROR);
@@ -166,6 +170,18 @@ public class JobTitleVM {
 			 	}
 			});
 		}
+	}
+	
+	@Command
+	@NotifyChange({"mstJobtitles", "mstJobtitleListItemRenderer"})
+	public void doRefresh(){
+		doPrepareList();
+		refreshPageList(startPageNumber);
+	}
+	
+	@Command
+	public void doPrint() throws JRException{
+
 	}
 	
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

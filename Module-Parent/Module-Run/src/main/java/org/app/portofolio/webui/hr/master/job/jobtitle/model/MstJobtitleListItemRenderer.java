@@ -15,12 +15,12 @@ import org.zkoss.zul.ListitemRenderer;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class MstJobtitleListItemRenderer implements ListitemRenderer<MstJobtitle>{
 	
-	private MasterJobService masterJobService = (org.module.hr.service.MasterJobService) SpringUtil.getBean("masterJobService");		
+	private MasterJobService masterJobService = (MasterJobService) SpringUtil.getBean("masterJobService");		
 	
 	@Override
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void render(Listitem item, final MstJobtitle mstJobtitle, int index) throws Exception {
 		Listcell listcell;
 		
@@ -57,12 +57,12 @@ public class MstJobtitleListItemRenderer implements ListitemRenderer<MstJobtitle
 		listcell.setParent(item);
 
 		listcell = new Listcell();
-		textboxDescription.setParent(listcell); 
+			textboxDescription.setParent(listcell); 
 			labelDescription.setParent(listcell);
 		listcell.setParent(item);
 
 		listcell = new Listcell();
-		textboxNote.setParent(listcell); 
+			textboxNote.setParent(listcell); 
 			labelNote.setParent(listcell);
 		listcell.setParent(item);
 		
