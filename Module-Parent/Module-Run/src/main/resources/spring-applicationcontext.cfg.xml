@@ -110,12 +110,16 @@
   	<bean id="mstPaygradeDAO" class="org.module.hr.dao.impl.MstPaygradeDAOImpl" parent="baseDao"/>
   	<bean id="mstEmployementStatusDAO" class="org.module.hr.dao.impl.MstEmployementStatusDAOImpl" parent="baseDao"/>
   	<bean id="mstJobCategoryDAO" class="org.module.hr.dao.impl.MstJobCategoryDAOImpl" parent="baseDao"/>
-  	<!-- Qualification Skill -->
+  	
+  	<!-- Qualification -->
   	<bean id="mstSkillDAO" class="org.module.hr.dao.impl.MstSkillDAOImpl" parent="baseDao"/>
   	<bean id="mstLicenseDAO" class="org.module.hr.dao.impl.MstLicenseDAOImpl" parent="baseDao"/>
   	<bean id="mstLanguageDAO" class="org.module.hr.dao.impl.MstLanguageDAOImpl" parent="baseDao"/>
   	<bean id="mstEducationDAO" class="org.module.hr.dao.impl.MstEducationDAOImpl" parent="baseDao"/>
   	<bean id="mstMembershipDAO" class="org.module.hr.dao.impl.MstMembershipDAOImpl" parent="baseDao"/>
+  	
+  	<!-- Nationality -->
+  	<bean id="mstNationalityDAO" class="org.module.hr.dao.impl.MstNationalityDAOImpl" parent="baseDao"/>
   	
   	<!-- Recruitment -->
   	<bean id="trsJobVacancyDAO" class="org.module.hr.dao.impl.TrsJobVacancyDAOImpl" parent="baseDao"/>
