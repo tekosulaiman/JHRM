@@ -25,9 +25,9 @@
 			<menuItem id="menu.item.job.workshift" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/job/workshift/workShiftList.zul" rightName="menu_Item_Work_Shifts" />
 		</menu>		
 		<menu id="menu.parent.organization" rightName="menu_Master_Organization">
-			<menuItem id="menu.item.organization.generalinformation" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/organization/generalInformationList.zul" rightName="menu_Item_General_Information" />
-			<menuItem id="menu.item.organization.location" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/organization/locationsList.zul" rightName="menu_Item_Locations" />
-			<menuItem id="menu.item.organization.structureorganization" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/organization/structureOrganizationList.zul" rightName="menu_Item_Organization_Structure" />
+			<menuItem id="menu.item.organization.generalinformation" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/organization/generalinformation/generalInformationList.zul" rightName="menu_Item_General_Information" />
+			<menuItem id="menu.item.organization.location" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/organization/location/locationList.zul" rightName="menu_Item_Locations" />
+			<menuItem id="menu.item.organization.structureorganization" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/organization/structure/structureList.zul" rightName="menu_Item_Organization_Structure" />
 		</menu>
 		
 		<menu id="menu.parent.qualification" rightName="menu_Master_Qualifications">
