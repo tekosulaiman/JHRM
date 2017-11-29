@@ -24,7 +24,7 @@ public class MstJobtitleDAOImpl extends BasisDAO<MstJobtitle> implements MstJobt
 	}
 
 	@Override
-	public int getCountMsJobtitles() {
+	public int getCountMstJobtitles() {
 		return DataAccessUtils.intResult(getHibernateTemplate().find("SELECT COUNT(*) FROM MstJobtitle"));
 	}
 }

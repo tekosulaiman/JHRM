@@ -1,7 +1,7 @@
 package org.app.portofolio.webui.hr.employee.model;
 
 import org.app.portofolio.webui.hr.common.components.InlineListItemRenderer;
-import org.app.portofolio.webui.hr.master.qualification.licenses.model.LicenseListItemRenderer;
+import org.app.portofolio.webui.hr.master.qualification.license.model.LicenseListItemRenderer;
 import org.module.hr.model.TrsEmployeeSalary;
 import org.module.hr.model.dto.RelationshipType;
 import org.module.hr.service.EmployeeService;

@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.app.portofolio.webui.hr.master.job.employementstatus.model.MstEmployementStatusListItemRenderer;
 import org.module.hr.model.MstEmployementStatus;
-import org.module.hr.service.MasterJobService;
+import org.module.hr.service.JobService;
 import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.Command;
@@ -45,7 +45,7 @@ public class EmployementStatusVM {
 	private MstEmployementStatus mstEmployementStatus;
 	private List<MstEmployementStatus> employementStatus;
 	@WireVariable
-	private MasterJobService masterJobService;
+	private JobService masterJobService;
 	private ListitemRenderer<MstEmployementStatus> listitemRenderer;
 	
 	private HashMap<String, Object> hashMapJobTitle;
@@ -62,10 +62,9 @@ public class EmployementStatusVM {
 		listboxEmployementStatus.setStyle("border-style: none;");
 		listboxEmployementStatus.setMold("paging");
 		
-		long count = masterJobService.getCountMsJobtitles();
-		int i = (int) count;
+		int count = masterJobService.getCountAllMstEmployementStatus();
 		
-		pagingEmployementStatus.setTotalSize(i);
+		pagingEmployementStatus.setTotalSize(count);
 		pagingEmployementStatus.setDetailed(true);
 		pagingEmployementStatus.setPageSize(pageSize);
 	}
@@ -162,11 +161,11 @@ public class EmployementStatusVM {
 		this.employementStatus = employementStatus;
 	}
 
-	public MasterJobService getMasterJobService() {
+	public JobService getMasterJobService() {
 		return masterJobService;
 	}
 
-	public void setMasterJobService(MasterJobService masterJobService) {
+	public void setMasterJobService(JobService masterJobService) {
 		this.masterJobService = masterJobService;
 	}
 
@@ -174,8 +173,7 @@ public class EmployementStatusVM {
 		return listitemRenderer;
 	}
 
-	public void setListitemRenderer(
-			ListitemRenderer<MstEmployementStatus> listitemRenderer) {
+	public void setListitemRenderer(ListitemRenderer<MstEmployementStatus> listitemRenderer) {
 		this.listitemRenderer = listitemRenderer;
 	}
 }

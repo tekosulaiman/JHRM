@@ -139,7 +139,7 @@
 
 	<!-- Inject Service -->
 	<!-- Job -->
-	<bean id="masterJobService" class="org.module.hr.service.impl.MasterJobServiceImpl">
+	<bean id="jobService" class="org.module.hr.service.impl.JobServiceImpl">
         <property name="mstJobtitleDAO" ref="mstJobtitleDAO" />
         <property name="mstPaygradeDAO" ref="mstPaygradeDAO" />
         <property name="mstEmployementStatusDAO" ref="mstEmployementStatusDAO" />
@@ -147,7 +147,7 @@
     </bean>
 	
 	<!-- Qualification Service -->
-	<bean id="masterQualificationService" class="org.module.hr.service.impl.MasterQualificationServiceImpl">
+	<bean id="qualificationService" class="org.module.hr.service.impl.QualificationServiceImpl">
         <property name="mstSkillDAO" ref="mstSkillDAO" />
         <property name="mstLicenseDAO" ref="mstLicenseDAO" />
         <property name="mstEducationDAO" ref="mstEducationDAO" />

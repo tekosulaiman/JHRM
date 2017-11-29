@@ -1,5 +1,6 @@
 package org.module.hr.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.module.hr.model.MstSkill;
@@ -11,4 +12,7 @@ public interface MstSkillDAO {
     public void delete(MstSkill mstSkill);
     public List<MstSkill> getAllMstSkill();
     public MstSkill getMstSkillById(Integer id);
+    public List<MstSkill> getByRequestMap(HashMap<String, Object> hashMap);
+    public List<MstSkill> getMstSkillPaging(HashMap<String, Object> hashMap);
+    public int getCountMstSkills();
 }

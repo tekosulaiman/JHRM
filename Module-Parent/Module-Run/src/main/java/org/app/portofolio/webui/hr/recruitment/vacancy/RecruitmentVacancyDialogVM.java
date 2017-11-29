@@ -1,5 +1,6 @@
 package org.app.portofolio.webui.hr.recruitment.vacancy;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.app.portofolio.webui.hr.common.collections.ArgKey;
@@ -10,7 +11,7 @@ import org.module.hr.model.MstJobtitle;
 import org.module.hr.model.TrsEmployee;
 import org.module.hr.model.TrsJobVacancy;
 import org.module.hr.service.EmployeeService;
-import org.module.hr.service.MasterJobService;
+import org.module.hr.service.JobService;
 import org.module.hr.service.RecruitmentService;
 import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.annotation.AfterCompose;
@@ -61,7 +62,7 @@ public class RecruitmentVacancyDialogVM {
 	
 	/*----------- Services -----------*/
 	@WireVariable
-	private MasterJobService masterJobService;
+	private JobService masterJobService;
 	
 	@WireVariable
 	private RecruitmentService recruitmentService;

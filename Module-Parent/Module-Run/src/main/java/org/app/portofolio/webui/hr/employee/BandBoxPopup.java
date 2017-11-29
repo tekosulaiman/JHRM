@@ -6,7 +6,7 @@ import java.util.List;
 import org.module.hr.model.MstMembership;
 import org.module.hr.model.TrsEmployeeMembership;
 import org.module.hr.service.EmployeeService;
-import org.module.hr.service.MasterQualificationService;
+import org.module.hr.service.QualificationService;
 import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.ContextParam;
@@ -23,7 +23,7 @@ public class BandBoxPopup {
 	
 	
 	@WireVariable
-	private MasterQualificationService masterQualificationService;
+	private QualificationService masterQualificationService;
 	
 	@WireVariable
 	private EmployeeService employeeService;
@@ -45,11 +45,11 @@ public class BandBoxPopup {
  		this.trsEmployeeMembership = trsEmployeeMembership;
  		
 	}
-	public MasterQualificationService getMasterQualificationService() {
+	public QualificationService getMasterQualificationService() {
 		return masterQualificationService;
 	}
 
-	public void setMasterQualificationService(MasterQualificationService masterQualificationService) {
+	public void setMasterQualificationService(QualificationService masterQualificationService) {
 		this.masterQualificationService = masterQualificationService;
 	}
 

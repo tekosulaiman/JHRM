@@ -7,7 +7,7 @@ import net.sf.jasperreports.engine.JRException;
 
 import org.app.portofolio.webui.hr.master.job.jobtitle.model.MstJobtitleListItemRenderer;
 import org.module.hr.model.MstJobtitle;
-import org.module.hr.service.MasterJobService;
+import org.module.hr.service.JobService;
 import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.Command;
@@ -48,10 +48,10 @@ public class JobTitleVM {
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Service yang dibutuhkan sesuai bisnis proses
 	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-	@WireVariable
-	private MasterJobService masterJobService;
-	private List<MstJobtitle> mstJobtitles;
 	private MstJobtitle mstJobtitle;
+	private List<MstJobtitle> mstJobtitles;
+	@WireVariable
+	private JobService jobService;
 	private ListitemRenderer<MstJobtitle> listitemRenderer;
 	
 	private HashMap<String, Object> hashMapJobTitle;
@@ -68,10 +68,9 @@ public class JobTitleVM {
 		listBoxJobTitle.setStyle("border-style: none;");
 		listBoxJobTitle.setMold("paging");
 		
-		long count = masterJobService.getCountMsJobtitles();
-		int i = (int) count;
-		
-		pagingJobTitle.setTotalSize(i);
+		int count = jobService.getCountMstJobtitles();
+
+		pagingJobTitle.setTotalSize(count);
 		pagingJobTitle.setDetailed(true);
 		pagingJobTitle.setPageSize(pageSize);
 	}
@@ -87,7 +86,7 @@ public class JobTitleVM {
 		hashMapJobTitle.put("firstResult", refreshActivePage);
 		hashMapJobTitle.put("maxResults", pagingJobTitle.getPageSize());
 		
-		mstJobtitles = masterJobService.getMstJobtitlePaging(hashMapJobTitle);
+		mstJobtitles = jobService.getMstJobtitlePaging(hashMapJobTitle);
 		listitemRenderer = new MstJobtitleListItemRenderer();
 	}
 
@@ -121,7 +120,7 @@ public class JobTitleVM {
 		} else {
 			HashMap<String, Object> hashMap = new HashMap<String, Object>();
 			hashMap.put("jobName", getName);
-			mstJobtitles = masterJobService.getByMstJobtitleRequestMap(hashMap);
+			mstJobtitles = jobService.getByMstJobtitleRequestMap(hashMap);
 			listitemRenderer = new MstJobtitleListItemRenderer();
 		}
 	}
@@ -142,7 +141,7 @@ public class JobTitleVM {
 	@GlobalCommand
 	@NotifyChange("mstJobtitles")
 	public void refreshAfterSaveOrUpdate(){
-		mstJobtitles = masterJobService.getAllMstJobtitles();
+		mstJobtitles = jobService.getAllMstJobtitles();
 	}
 	
 	@Command
@@ -157,7 +156,7 @@ public class JobTitleVM {
 			 		if (((Integer) event.getData()).intValue() == Messagebox.OK) {
 			 			for(MstJobtitle jobtitle: listModelListJobtitle){
 			 				if(listModelListJobtitle.isSelected(jobtitle)){
-			 					masterJobService.delete(jobtitle);
+			 					jobService.delete(jobtitle);
 			 				}
 			 			}
 			 			
@@ -185,14 +184,6 @@ public class JobTitleVM {
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Getter Setter
 	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-	public MasterJobService getMasterJobService() {
-		return masterJobService;
-	}
-
-	public void setMasterJobService(MasterJobService masterJobService) {
-		this.masterJobService = masterJobService;
-	}
-
 	public MstJobtitle getMstJobtitle() {
 		return mstJobtitle;
 	}
@@ -201,16 +192,24 @@ public class JobTitleVM {
 		this.mstJobtitle = mstJobtitle;
 	}
 
-	public ListitemRenderer<MstJobtitle> getListitemRenderer() {
-		return listitemRenderer;
-	}
-
 	public List<MstJobtitle> getMstJobtitles() {
 		return mstJobtitles;
 	}
 
 	public void setMstJobtitles(List<MstJobtitle> mstJobtitles) {
 		this.mstJobtitles = mstJobtitles;
+	}
+
+	public JobService getJobService() {
+		return jobService;
+	}
+
+	public void setJobService(JobService jobService) {
+		this.jobService = jobService;
+	}
+
+	public ListitemRenderer<MstJobtitle> getListitemRenderer() {
+		return listitemRenderer;
 	}
 
 	public void setListitemRenderer(ListitemRenderer<MstJobtitle> listitemRenderer) {

@@ -13,5 +13,5 @@ public interface MstJobtitleDAO {
     public List<MstJobtitle> getAllMstJobtitles();
     public List<MstJobtitle> getByRequestMap(HashMap<String, Object> hashMap);
     public List<MstJobtitle> getMstJobtitlePaging(HashMap<String, Object> hashMap);
-    public int getCountMsJobtitles();
+    public int getCountMstJobtitles();
 }

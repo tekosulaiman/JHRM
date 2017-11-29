@@ -31,11 +31,11 @@
 		</menu>
 		
 		<menu id="menu.parent.qualification" rightName="menu_Master_Qualifications">
-			<menuItem id="menu.item.qualification.skill" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/qualifications/skills/skillList.zul" rightName="menu_Item_Skills" />
-			<menuItem id="menu.item.qualification.education" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/qualifications/educations/educationList.zul" rightName="menu_Item_Education" />
-			<menuItem id="menu.item.qualification.license" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/qualifications/licenses/licenseList.zul" rightName="menu_Item_Licenses" />
-			<menuItem id="menu.item.qualification.language" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/qualifications/languages/languageList.zul" rightName="menu_Item_Languages" />
-			<menuItem id="menu.item.qualification.membership" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/qualifications/memberships/membershipList.zul" rightName="menu_Item_Memberships" />
+			<menuItem id="menu.item.qualification.skill" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/qualification/skill/skillList.zul" rightName="menu_Item_Skills" />
+			<menuItem id="menu.item.qualification.education" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/qualification/education/educationList.zul" rightName="menu_Item_Education" />
+			<menuItem id="menu.item.qualification.license" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/qualification/license/licenseList.zul" rightName="menu_Item_Licenses" />
+			<menuItem id="menu.item.qualification.language" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/qualification/language/languageList.zul" rightName="menu_Item_Languages" />
+			<menuItem id="menu.item.qualification.membership" iconName="" zulNavigation="/WEB-INF/pages/module_hr/master/qualification/membership/membershipList.zul" rightName="menu_Item_Memberships" />
 		</menu>	
 		
 		<menu id="menu.parent.nationality" rightName="menu_Master_Nationalities">

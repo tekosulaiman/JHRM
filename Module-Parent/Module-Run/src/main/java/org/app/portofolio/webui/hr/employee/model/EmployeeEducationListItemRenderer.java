@@ -5,7 +5,7 @@ import org.module.hr.model.MstEducation;
 import org.module.hr.model.TrsEmployeeEducation;
 import org.module.hr.model.dto.RelationshipType;
 import org.module.hr.service.EmployeeService;
-import org.module.hr.service.MasterQualificationService;
+import org.module.hr.service.QualificationService;
 import org.module.sysadmin.model.dto.SecType;
 import org.zkoss.bind.BindUtils;
 import org.zkoss.zk.ui.event.Event;
@@ -31,7 +31,7 @@ public class EmployeeEducationListItemRenderer implements ListitemRenderer<TrsEm
 
 	private EmployeeService employeeService = (EmployeeService) SpringUtil.getBean("employeeService");
 
-	private MasterQualificationService masterQualificationService = (MasterQualificationService) SpringUtil
+	private QualificationService masterQualificationService = (QualificationService) SpringUtil
 			.getBean("masterQualificationService");
 
 	@Override

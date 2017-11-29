@@ -5,7 +5,7 @@ import org.module.hr.model.MstEducation;
 import org.module.hr.model.MstSkill;
 import org.module.hr.model.TrsEmployeeSkill;
 import org.module.hr.service.EmployeeService;
-import org.module.hr.service.MasterQualificationService;
+import org.module.hr.service.QualificationService;
 import org.zkoss.bind.BindUtils;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
@@ -29,7 +29,7 @@ public class EmployeeSkillListItemRenderer implements ListitemRenderer<TrsEmploy
 	
 	private EmployeeService employeeService = (EmployeeService) SpringUtil.getBean("employeeService");
 
-	private MasterQualificationService masterQualificationService = (MasterQualificationService) SpringUtil.getBean("masterQualificationService");
+	private QualificationService masterQualificationService = (QualificationService) SpringUtil.getBean("masterQualificationService");
 		
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })

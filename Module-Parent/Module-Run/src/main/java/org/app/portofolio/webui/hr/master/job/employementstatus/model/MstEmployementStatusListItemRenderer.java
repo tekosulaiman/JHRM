@@ -1,7 +1,7 @@
 package org.app.portofolio.webui.hr.master.job.employementstatus.model;
 
 import org.module.hr.model.MstEmployementStatus;
-import org.module.hr.service.MasterJobService;
+import org.module.hr.service.JobService;
 import org.zkoss.bind.BindUtils;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
@@ -17,7 +17,7 @@ import org.zkoss.zul.Textbox;
 
 public class MstEmployementStatusListItemRenderer implements ListitemRenderer<MstEmployementStatus>{
 	
-	private MasterJobService masterJobService = (MasterJobService) SpringUtil.getBean("masterJobService");		
+	private JobService masterJobService = (JobService) SpringUtil.getBean("masterJobService");		
 	
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })

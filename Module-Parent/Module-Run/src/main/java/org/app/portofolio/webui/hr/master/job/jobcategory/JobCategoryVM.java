@@ -5,7 +5,7 @@ import java.util.List;
 import org.app.portofolio.webui.hr.master.job.jobcategory.model.MstJobCategoryListItemRenderer;
 import org.module.hr.model.MstJobCategory;
 import org.module.hr.model.MstLicense;
-import org.module.hr.service.MasterJobService;
+import org.module.hr.service.JobService;
 import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.Command;
@@ -32,7 +32,7 @@ public class JobCategoryVM {
 
 	/* ----------Services -------------*/
 	@WireVariable
-	private MasterJobService masterJobService;
+	private JobService masterJobService;
 	
 	/* ------------ Beans -------------*/
 	private MstJobCategory mstJobCategory;
@@ -122,11 +122,11 @@ public class JobCategoryVM {
 		this.mstJobCategories = mstJobCategories;
 	}
 
-	public MasterJobService getMasterJobService() {
+	public JobService getMasterJobService() {
 		return masterJobService;
 	}
 	
-	public void setMasterJobService(MasterJobService masterJobService) {
+	public void setMasterJobService(JobService masterJobService) {
 		this.masterJobService = masterJobService;
 	}
 

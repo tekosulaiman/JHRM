@@ -6,7 +6,7 @@ import org.app.portofolio.webui.hr.common.components.InlineListItemRenderer;
 import org.module.hr.model.MstLicense;
 import org.module.hr.model.TrsEmployeeLicense;
 import org.module.hr.service.EmployeeService;
-import org.module.hr.service.MasterQualificationService;
+import org.module.hr.service.QualificationService;
 import org.zkoss.bind.BindUtils;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
@@ -28,7 +28,7 @@ import org.zkoss.zul.Textbox;
 public class EmployeeLicenseListItemRenderer implements ListitemRenderer<TrsEmployeeLicense>{
 
 	private EmployeeService employeeService = (EmployeeService) SpringUtil.getBean("employeeService");
-	private MasterQualificationService masterQualificationService = (MasterQualificationService) SpringUtil
+	private QualificationService masterQualificationService = (QualificationService) SpringUtil
 			.getBean("masterQualificationService");
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })

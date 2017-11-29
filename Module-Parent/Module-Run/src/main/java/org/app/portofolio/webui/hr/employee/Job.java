@@ -1,6 +1,7 @@
 package org.app.portofolio.webui.hr.employee;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.app.portofolio.webui.hr.common.utilities.ComponentConditionUtil;
@@ -19,7 +20,7 @@ import org.module.hr.model.MstNationality;
 import org.module.hr.model.MstSubUnit;
 import org.module.hr.model.TrsEmployee;
 import org.module.hr.service.EmployeeService;
-import org.module.hr.service.MasterJobService;
+import org.module.hr.service.JobService;
 import org.module.sysadmin.model.SecRight;
 import org.springframework.beans.factory.parsing.Location;
 import org.zkoss.bind.annotation.AfterCompose;
@@ -93,7 +94,7 @@ public class Job {
 	private EmployeeService employeeService;
 	
 	@WireVariable
-	private MasterJobService masterJobService;
+	private JobService masterJobService;
 	
 	/*---------- bean ---------*/
 	private TrsEmployee trsEmployee;

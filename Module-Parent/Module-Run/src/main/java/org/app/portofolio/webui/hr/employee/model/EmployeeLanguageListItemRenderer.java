@@ -6,7 +6,7 @@ import org.module.hr.model.MstLanguage;
 import org.module.hr.model.TrsEmployeeLanguage;
 import org.module.hr.model.dto.RelationshipType;
 import org.module.hr.service.EmployeeService;
-import org.module.hr.service.MasterQualificationService;
+import org.module.hr.service.QualificationService;
 import org.zkoss.bind.BindUtils;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
@@ -28,7 +28,7 @@ public class EmployeeLanguageListItemRenderer implements ListitemRenderer<TrsEmp
 
 	private EmployeeService employeeService = (EmployeeService) SpringUtil.getBean("employeeService");
 
-	private MasterQualificationService masterQualificationService = (MasterQualificationService) SpringUtil
+	private QualificationService masterQualificationService = (QualificationService) SpringUtil
 			.getBean("masterQualificationService");
 
 	@Override

@@ -7,7 +7,7 @@ import org.module.hr.model.TrsEmployee;
 import org.module.hr.model.TrsEmployeeEmergencyContact;
 import org.module.hr.model.TrsEmployeeMembership;
 import org.module.hr.service.EmployeeService;
-import org.module.hr.service.MasterQualificationService;
+import org.module.hr.service.QualificationService;
 import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.ContextParam;
@@ -37,7 +37,7 @@ import org.zkoss.zul.Messagebox;
 public class MembershipListItemRenderer implements ListitemRenderer<TrsEmployeeMembership>{
 	
 	@WireVariable
-	private MasterQualificationService masterQualificationService;
+	private QualificationService masterQualificationService;
 	
 	private EmployeeService employeeService = (EmployeeService) SpringUtil
 			.getBean("employeeService");
@@ -162,11 +162,11 @@ public class MembershipListItemRenderer implements ListitemRenderer<TrsEmployeeM
 		selectedMstMembership = mstMembership;
 	}
 
-	public MasterQualificationService getMasterQualificationService() {
+	public QualificationService getMasterQualificationService() {
 		return masterQualificationService;
 	}
 
-	public void setMasterQualificationService(MasterQualificationService masterQualificationService) {
+	public void setMasterQualificationService(QualificationService masterQualificationService) {
 		this.masterQualificationService = masterQualificationService;
 	}
 
