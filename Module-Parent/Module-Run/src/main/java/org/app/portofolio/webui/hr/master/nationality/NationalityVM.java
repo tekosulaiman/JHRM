@@ -41,10 +41,10 @@ public class NationalityVM {
 	private Textbox textboxFilter;
 	
 	@Wire("#listboxnNationality")
-	private Listbox listboxnNationality;
+	private Listbox listboxNationality;
 	
-	@Wire("#Nationality")
-	private Paging Nationality;
+	@Wire("#pagingNationality")
+	private Paging pagingNationality;
 
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Service yang dibutuhkan sesuai bisnis proses
@@ -64,28 +64,28 @@ public class NationalityVM {
 	 * Function Custom sesuai kebutuhan
 	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	public void doPrepareList(){
-		listboxnNationality.setCheckmark(true);
-		listboxnNationality.setMultiple(true);
-		listboxnNationality.setStyle("border-style: none;");
-		listboxnNationality.setMold("paging");
+		listboxNationality.setCheckmark(true);
+		listboxNationality.setMultiple(true);
+		listboxNationality.setStyle("border-style: none;");
+		listboxNationality.setMold("paging");
 		
 		int count = nationalityService.getCountMstNationalities();
 
-		Nationality.setTotalSize(count);
-		Nationality.setDetailed(true);
-		Nationality.setPageSize(pageSize);
+		pagingNationality.setTotalSize(count);
+		pagingNationality.setDetailed(true);
+		pagingNationality.setPageSize(pageSize);
 	}
 	
 	private void refreshPageList(int refreshActivePage) {
 		if (refreshActivePage == 0) {
-			Nationality.setActivePage(0);
+			pagingNationality.setActivePage(0);
 		}
 		
 		refreshActivePage += 1;
 		
 		hashMapMstNationality = new HashMap<String, Object>();
 		hashMapMstNationality.put("firstResult", refreshActivePage);
-		hashMapMstNationality.put("maxResults", Nationality.getPageSize());
+		hashMapMstNationality.put("maxResults", pagingNationality.getPageSize());
 		
 		mstNationalities = nationalityService.getMstNationalityPaging(hashMapMstNationality);
 		listitemRenderer = new NationalityListItemRenderer();
@@ -135,7 +135,7 @@ public class NationalityVM {
 
 	@Command
 	public void doNew(){
-		final ListModelList<MstJobtitle> listModelListJobtitle = (ListModelList) listboxnNationality.getModel();
+		final ListModelList<MstJobtitle> listModelListJobtitle = (ListModelList) listboxNationality.getModel();
 		listModelListJobtitle.add(0, new MstJobtitle());
 	}
 
@@ -147,9 +147,9 @@ public class NationalityVM {
 	
 	@Command
 	public void doDelete(){
-		final ListModelList<MstNationality> listModelListJobtitle = (ListModelList) listboxnNationality.getModel();
+		final ListModelList<MstNationality> listModelListJobtitle = (ListModelList) listboxNationality.getModel();
 		
-		if(listboxnNationality.getSelectedIndex() == -1){
+		if(listboxNationality.getSelectedIndex() == -1){
 			Messagebox.show("There is no selected record?", "Confirm", Messagebox.OK, Messagebox.ERROR);
 		}else{
 			Messagebox.show("Do you really want to remove item?", "Confirm", Messagebox.OK | Messagebox.CANCEL, Messagebox.EXCLAMATION, new EventListener() {

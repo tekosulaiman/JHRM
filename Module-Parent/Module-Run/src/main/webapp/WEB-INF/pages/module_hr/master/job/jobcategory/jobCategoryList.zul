@@ -19,7 +19,7 @@
 				</div>
 			</north>
 			<center>
-				<listbox id="listBoxJobCategory" model="@bind(vm.mstJobCategories)" itemRenderer="@bind(vm.mstJobCategoryListItemRenderer)" selectedItem="@bind(vm.mstJobCategory)">
+				<listbox id="listboxJobCategory" model="@bind(vm.mstJobCategories)" itemRenderer="@bind(vm.listitemRenderer)" selectedItem="@bind(vm.mstJobCategory)">
 					<listhead sizable="true">
 						<listheader width="10%" align="center"/>
 						<listheader label="Job Categories"/>	
@@ -27,7 +27,7 @@
 				</listbox>
 			</center>
 			<south>
-				<paging/>
+				<paging id="pagingJobCategory"/>
 			</south>
 		</borderlayout> 
 	</window>

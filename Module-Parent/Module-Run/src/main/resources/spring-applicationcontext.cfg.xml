@@ -158,6 +158,11 @@
         <property name="mstLanguageDAO" ref="mstLanguageDAO" />
         <property name="mstMembershipDAO" ref="mstMembershipDAO" />
     </bean>
+
+    <!-- Nationality -->
+    <bean id="nationalityService" class="org.module.hr.service.impl.NationalityServiceImpl">
+        <property name="mstNationalityDAO" ref="mstNationalityDAO" />
+    </bean>
     
     <!-- Recruitment Service -->
 	<bean id="recruitmentService" class="org.module.hr.service.impl.RecruitmentServiceImpl">

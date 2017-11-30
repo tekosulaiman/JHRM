@@ -1,10 +1,10 @@
 package org.app.portofolio.webui.hr.master.job.jobcategory;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.app.portofolio.webui.hr.master.job.jobcategory.model.MstJobCategoryListItemRenderer;
 import org.module.hr.model.MstJobCategory;
-import org.module.hr.model.MstLicense;
 import org.module.hr.service.JobService;
 import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.annotation.AfterCompose;
@@ -22,60 +22,92 @@ import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
+import org.zkoss.zul.ListitemRenderer;
 import org.zkoss.zul.Messagebox;
+import org.zkoss.zul.Paging;
 
+@SuppressWarnings({ "rawtypes", "unchecked" })
 public class JobCategoryVM {
 	
-	/* ------------ Zul -------------- */
-	@Wire("#listBoxJobCategory")
-	private Listbox listBoxJobCategory;
-
-	/* ----------Services -------------*/
-	@WireVariable
-	private JobService masterJobService;
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Wire component
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	@Wire("#listboxJobCategory")
+	private Listbox listboxJobCategory;
 	
-	/* ------------ Beans -------------*/
+	@Wire("#pagingJobCategory")
+	private Paging pagingJobCategory;
+
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Service yang dibutuhkan sesuai bisnis proses
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	private MstJobCategory mstJobCategory;
 	private List<MstJobCategory> mstJobCategories;
-	private MstJobCategoryListItemRenderer mstJobCategoryListItemRenderer;
+	@WireVariable
+	private JobService jobService;
+	private ListitemRenderer<MstJobCategory> listitemRenderer;
+	
+	private HashMap<String, Object> hashMapMstJobCategory;
+	
+	private int startPageNumber = 0;
+	private int pageSize = 10;
 
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Function Custom sesuai kebutuhan
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	public void doPrepareList(){
-		listBoxJobCategory.setCheckmark(true);
-		listBoxJobCategory.setMultiple(true);
-		listBoxJobCategory.setRows(15);
-		listBoxJobCategory.setStyle("border-style: none;");
+		listboxJobCategory.setCheckmark(true);
+		listboxJobCategory.setMultiple(true);
+		listboxJobCategory.setStyle("border-style: none;");
+		listboxJobCategory.setMold("paging");
+		
+		int count = jobService.getCountMstJobtitles();
+
+		pagingJobCategory.setTotalSize(count);
+		pagingJobCategory.setDetailed(true);
+		pagingJobCategory.setPageSize(pageSize);
 	}
 	
+	private void refreshPageList(int refreshActivePage) {
+		if (refreshActivePage == 0) {
+			pagingJobCategory.setActivePage(0);
+		}
+		
+		refreshActivePage += 1;
+		
+		hashMapMstJobCategory = new HashMap<String, Object>();
+		hashMapMstJobCategory.put("firstResult", refreshActivePage);
+		hashMapMstJobCategory.put("maxResults", pagingJobCategory.getPageSize());
+		
+		mstJobCategories = jobService.getMstJobCategoryPaging(hashMapMstJobCategory);
+		listitemRenderer = new MstJobCategoryListItemRenderer();
+	}
+
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Inisialize Methode MVVM yang pertama kali dijalankan
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	@AfterCompose
 	public void setupComponents(@ContextParam(ContextType.VIEW) Component component, @ExecutionArgParam("object") Object object) {
 		Selectors.wireComponents(component, this, false);
 		
-		mstJobCategories = masterJobService.getAllMstJobCategories();
-	
-		mstJobCategoryListItemRenderer = new MstJobCategoryListItemRenderer();
-		
-		listBoxJobCategory.setModel(new ListModelList<MstLicense>());
-		listBoxJobCategory.setItemRenderer(mstJobCategoryListItemRenderer);
-		
 		doPrepareList();
+		refreshPageList(startPageNumber);
 	}
 
-	/**
-	 * 
-	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Function CRUD Event
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	@Command
 	public void doNew(){
-		ListModelList listModelList = (ListModelList) listBoxJobCategory.getModel();
+		ListModelList listModelList = (ListModelList) listboxJobCategory.getModel();
 		listModelList.add(0, new MstJobCategory());
 	}
 
 	@Command
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void doDelete(){
-		final ListModelList<MstJobCategory> listModelListLicenses = (ListModelList) listBoxJobCategory.getModel();
+		final ListModelList<MstJobCategory> listModelListLicenses = (ListModelList) listboxJobCategory.getModel();
 		
-		if(listBoxJobCategory.getSelectedIndex() == -1){
+		if(listboxJobCategory.getSelectedIndex() == -1){
 			Messagebox.show("There is no selected record?", "Confirm", Messagebox.OK, Messagebox.ERROR);
 		}else{
 			Messagebox.show("Do you really want to remove item?", "Confirm", Messagebox.OK | Messagebox.CANCEL, Messagebox.EXCLAMATION, new EventListener() {
@@ -83,7 +115,7 @@ public class JobCategoryVM {
 			 		if (((Integer) event.getData()).intValue() == Messagebox.OK) {
 			 			for(MstJobCategory jobCategory: listModelListLicenses){
 			 				if(listModelListLicenses.isSelected(jobCategory)){
-			 					masterJobService.delete(jobCategory);
+			 					jobService.delete(jobCategory);
 			 				}
 			 			}
 			 			
@@ -99,13 +131,12 @@ public class JobCategoryVM {
 	@GlobalCommand
 	@NotifyChange("mstJobCategories")
 	public void refreshAfterSaveOrUpdate(){
-		mstJobCategories = masterJobService.getAllMstJobCategories();
+		mstJobCategories = jobService.getAllMstJobCategories();
 	}
-	
-	/*
-	 * -------------- GETTER - SETTER -----------------
-	 */
-	
+
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Getter Setter
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	public MstJobCategory getMstJobCategory() {
 		return mstJobCategory;
 	}
@@ -122,19 +153,20 @@ public class JobCategoryVM {
 		this.mstJobCategories = mstJobCategories;
 	}
 
-	public JobService getMasterJobService() {
-		return masterJobService;
-	}
-	
-	public void setMasterJobService(JobService masterJobService) {
-		this.masterJobService = masterJobService;
+	public JobService getJobService() {
+		return jobService;
 	}
 
-	public MstJobCategoryListItemRenderer getMstJobCategoryListItemRenderer() {
-		return mstJobCategoryListItemRenderer;
+	public void setJobService(JobService jobService) {
+		this.jobService = jobService;
 	}
 
-	public void setMstJobCategoryListItemRenderer(MstJobCategoryListItemRenderer mstJobCategoryListItemRenderer) {
-		this.mstJobCategoryListItemRenderer = mstJobCategoryListItemRenderer;
+	public ListitemRenderer<MstJobCategory> getListitemRenderer() {
+		return listitemRenderer;
+	}
+
+	public void setListitemRenderer(
+			ListitemRenderer<MstJobCategory> listitemRenderer) {
+		this.listitemRenderer = listitemRenderer;
 	}
 }

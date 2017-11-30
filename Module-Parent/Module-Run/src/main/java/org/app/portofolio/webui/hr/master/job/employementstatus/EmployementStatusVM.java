@@ -45,7 +45,7 @@ public class EmployementStatusVM {
 	private MstEmployementStatus mstEmployementStatus;
 	private List<MstEmployementStatus> employementStatus;
 	@WireVariable
-	private JobService masterJobService;
+	private JobService jobService;
 	private ListitemRenderer<MstEmployementStatus> listitemRenderer;
 	
 	private HashMap<String, Object> hashMapJobTitle;
@@ -62,7 +62,7 @@ public class EmployementStatusVM {
 		listboxEmployementStatus.setStyle("border-style: none;");
 		listboxEmployementStatus.setMold("paging");
 		
-		int count = masterJobService.getCountAllMstEmployementStatus();
+		int count = jobService.getCountAllMstEmployementStatus();
 		
 		pagingEmployementStatus.setTotalSize(count);
 		pagingEmployementStatus.setDetailed(true);
@@ -80,7 +80,7 @@ public class EmployementStatusVM {
 		hashMapJobTitle.put("firstResult", refreshActivePage);
 		hashMapJobTitle.put("maxResults", pagingEmployementStatus.getPageSize());
 		
-		employementStatus = masterJobService.getMstEmployementStatusPaging(hashMapJobTitle);
+		employementStatus = jobService.getMstEmployementStatusPaging(hashMapJobTitle);
 		listitemRenderer = new MstEmployementStatusListItemRenderer();
 	}
 	
@@ -114,7 +114,7 @@ public class EmployementStatusVM {
 	@GlobalCommand
 	@NotifyChange("employementStatus")
 	public void refreshAfterSaveOrUpdate(){
-		employementStatus = masterJobService.getAllMstEmployementStatus();
+		employementStatus = jobService.getAllMstEmployementStatus();
 	}
 	
 	@Command
@@ -129,7 +129,7 @@ public class EmployementStatusVM {
 			 		if (((Integer) event.getData()).intValue() == Messagebox.OK) {
 			 			for(MstEmployementStatus employmentStatus: listModelListEmploymentStatus){
 			 				if(listModelListEmploymentStatus.isSelected(employmentStatus)){
-			 					masterJobService.delete(employmentStatus);
+			 					jobService.delete(employmentStatus);
 			 				}
 			 			}
 			 			
@@ -161,12 +161,12 @@ public class EmployementStatusVM {
 		this.employementStatus = employementStatus;
 	}
 
-	public JobService getMasterJobService() {
-		return masterJobService;
+	public JobService getJobService() {
+		return jobService;
 	}
 
-	public void setMasterJobService(JobService masterJobService) {
-		this.masterJobService = masterJobService;
+	public void setJobService(JobService jobService) {
+		this.jobService = jobService;
 	}
 
 	public ListitemRenderer<MstEmployementStatus> getListitemRenderer() {
