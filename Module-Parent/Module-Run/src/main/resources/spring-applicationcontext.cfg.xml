@@ -111,6 +111,9 @@
   	<bean id="mstEmployementStatusDAO" class="org.module.hr.dao.impl.MstEmployementStatusDAOImpl" parent="baseDao"/>
   	<bean id="mstJobCategoryDAO" class="org.module.hr.dao.impl.MstJobCategoryDAOImpl" parent="baseDao"/>
   	
+  	<!-- Organization -->
+  	<bean id="mstLocationDAO" class="org.module.hr.dao.impl.MstLocationDAOImpl" parent="baseDao"/>
+  	
   	<!-- Qualification -->
   	<bean id="mstSkillDAO" class="org.module.hr.dao.impl.MstSkillDAOImpl" parent="baseDao"/>
   	<bean id="mstLicenseDAO" class="org.module.hr.dao.impl.MstLicenseDAOImpl" parent="baseDao"/>
@@ -149,6 +152,11 @@
         <property name="mstEmployementStatusDAO" ref="mstEmployementStatusDAO" />
         <property name="mstJobCategoryDAO" ref="mstJobCategoryDAO" />
     </bean>
+    
+    <!-- Organization -->
+  	<bean id="organizationService" class="org.module.hr.service.impl.OrganizationServiceImpl">
+  		<property name="mstLocationDAO" ref="mstLocationDAO" />
+  	</bean>
 	
 	<!-- Qualification Service -->
 	<bean id="qualificationService" class="org.module.hr.service.impl.QualificationServiceImpl">
