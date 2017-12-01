@@ -43,35 +43,22 @@
 		</menu>
 	</menu>
 	
-	<menu id="menu.parent.pim" rightName="menu_Pim" >
-		<menuItem id="menu.item.pim.employee" iconName="" zulNavigation="/WEB-INF/pages/module_hr/employee/employeeList.zul" rightName="menu_Item_Employee" />
-	</menu>
-	
-	<menu id="menu.parent.leave" rightName="menu_Leave" >
-		<menuItem id="menu.item.leave" iconName="" zulNavigation="" rightName="menu_Item_Leave_Period" />
-	</menu>
-	
-	<menu id="menu.parent.time" rightName="menu_Time">
-		<menuItem id="menu.item.time" iconName="" zulNavigation="" rightName="menu_Item_Define_Timesheet_Period" />
-	</menu>
-	
-	<menu id="menu.parent.recruitment" rightName="menu_Recruitment">
-		<menuItem id="menu.item.recruitment.candidate" iconName="" zulNavigation="/WEB-INF/pages/module_hr/recruitment/candidate/candidateList.zul" rightName="menu_Item_Candidates" />
-		<menuItem id="menu.item.recruitment.vacancy" iconName="" zulNavigation="/WEB-INF/pages/module_hr/recruitment/vacancy/vacancyList.zul" rightName="menu_Item_Vacancies" />
-	</menu>
-	
-	<menu id="menu.parent.performance" rightName="">
-		<menu id="menu.parent.configure" rightName="">
-			<menuItem id="menu.item.configure.kpi" iconName="" zulNavigation="" rightName="" />
-			<menuItem id="menu.item.configure.tracker" iconName="" zulNavigation="" rightName="" />
-		</menu>	
+	<menu id="menu.parent.transaction.hr" rightName="menu_Transaction_Data">
+		<menu id="menu.parent.pim" rightName="menu_Pim" >
+			<menuItem id="menu.item.pim.employee" iconName="" zulNavigation="/WEB-INF/pages/module_hr/transaction/employee/employeeList.zul" rightName="menu_Item_Employee" />
+		</menu>
 		
-		<menu id="menu.parent.manage.review" rightName="menu_Performance">
-			<menuItem id="menu.item.manage.review" iconName="" zulNavigation="" rightName="" />
-		</menu>	
+		<menu id="menu.parent.leave" rightName="menu_Leave" >
+			<menuItem id="menu.item.leave" iconName="" zulNavigation="" rightName="menu_Item_Leave_Period" />
+		</menu>
 		
-		<menu id="menu.parent.employee.tracker" rightName="menu_Performance">
-			<menuItem id="menu.item.employee.tracker" iconName="" zulNavigation="" rightName="" />
-		</menu>	
-	</menu>	
+		<menu id="menu.parent.time" rightName="menu_Time">
+			<menuItem id="menu.item.time" iconName="" zulNavigation="" rightName="menu_Item_Define_Timesheet_Period" />
+		</menu>
+		
+		<menu id="menu.parent.recruitment" rightName="menu_Recruitment">
+			<menuItem id="menu.item.recruitment.candidate" iconName="" zulNavigation="/WEB-INF/pages/module_hr/recruitment/candidate/candidateList.zul" rightName="menu_Item_Candidates" />
+			<menuItem id="menu.item.recruitment.vacancy" iconName="" zulNavigation="/WEB-INF/pages/module_hr/recruitment/vacancy/vacancyList.zul" rightName="menu_Item_Vacancies" />
+		</menu>
+	</menu>
 </XMLRootMenu>

@@ -23,7 +23,7 @@ public class BandBoxPopup {
 	
 	
 	@WireVariable
-	private QualificationService masterQualificationService;
+	private QualificationService qualificationService;
 	
 	@WireVariable
 	private EmployeeService employeeService;
@@ -40,18 +40,23 @@ public class BandBoxPopup {
 	public void setupComponents(@ContextParam(ContextType.VIEW) Component component,
 			@ExecutionArgParam("object") Object object,
 			@ExecutionArgParam("arg") TrsEmployeeMembership trsEmployeeMembership) {
- 		mstMemberships = masterQualificationService.getAllMstMembership();
+ 		mstMemberships = qualificationService.getAllMstMembership();
  		isBandboxOpen = Boolean.FALSE;
  		this.trsEmployeeMembership = trsEmployeeMembership;
  		
 	}
-	public QualificationService getMasterQualificationService() {
-		return masterQualificationService;
+	
+	public QualificationService getQualificationService() {
+		return qualificationService;
 	}
 
-	public void setMasterQualificationService(QualificationService masterQualificationService) {
-		this.masterQualificationService = masterQualificationService;
+
+
+	public void setQualificationService(QualificationService qualificationService) {
+		this.qualificationService = qualificationService;
 	}
+
+
 
 	public MstMembership getMstMembership() {
 		return mstMembership;

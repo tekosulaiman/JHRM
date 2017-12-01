@@ -55,14 +55,14 @@ public class EmployeeListVM {
 	
 	@Command
 	public void doNew(){
-		Executions.createComponents("/WEB-INF/pages/module_hr/employee/employeeDialog.zul", null, null);
+		Executions.createComponents("/WEB-INF/pages/module_hr/transaction/employee/employeeDialog.zul", null, null);
 	}
 	
 	@Command
 	public void doDetail(){
 		HashMap<String, Object> arg = new HashMap<>();
 		arg.put("trsEmployee", trsEmployee);
-		Executions.createComponents("/WEB-INF/pages/module_hr/employee/employeeDetailDialog.zul", null, arg);
+		Executions.createComponents("/WEB-INF/pages/module_hr/transaction/employee/employeeDetailDialog.zul", null, arg);
 	}
 
 

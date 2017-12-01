@@ -60,14 +60,14 @@ public class Immigration {
 		trsEmployeeImmigration.setIdEmployee(trsEmployee);
 		HashMap<String, Object> arg = new HashMap<>();
 		arg.put("trsEmployeeImmigration", trsEmployeeImmigration);
-		Executions.createComponents("/WEB-INF/pages/module_hr/employee/immigrationDialog.zul", null, arg);
+		Executions.createComponents("/WEB-INF/pages/module_hr/transaction/employee/immigrationDialog.zul", null, arg);
 	}
 	
 	@Command
 	public void doDetail(){
 		HashMap<String, Object> arg = new HashMap<String, Object>();
 		arg.put("trsEmployeeImmigration", selectedEmployeeImmigration);
-		Executions.createComponents("/WEB-INF/pages/module_hr/employee/immigrationDialog.zul", null, arg);
+		Executions.createComponents("/WEB-INF/pages/module_hr/transaaction/employee/immigrationDialog.zul", null, arg);
 	}
 	
 	@GlobalCommand

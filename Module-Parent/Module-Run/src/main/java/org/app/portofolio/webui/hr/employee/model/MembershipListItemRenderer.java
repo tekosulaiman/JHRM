@@ -82,7 +82,7 @@ public class MembershipListItemRenderer implements ListitemRenderer<TrsEmployeeM
 		listcell.setParent(item);
 		
 		final Include include = new Include();
-		include.setSrc("/WEB-INF/pages/module_hr/employee/bandBoxPopupMembership.zul");
+		include.setSrc("/WEB-INF/pages/module_hr/transaction/employee/tab_membership/bandBoxPopupMembership.zul");
 		include.setDynamicProperty("arg", trsEmployeeMembership);
 		
 		listcell = new Listcell();

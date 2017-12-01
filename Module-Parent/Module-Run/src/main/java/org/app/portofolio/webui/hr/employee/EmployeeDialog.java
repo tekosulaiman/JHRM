@@ -93,7 +93,7 @@ public class EmployeeDialog {
 		employeeService.save(this.trsEmployee);
 		HashMap<String, Object> arg = new HashMap<>();
 		arg.put("trsEmployee", trsEmployee);
-		Executions.createComponents("/WEB-INF/pages/module_hr/employee/employeeDetailDialog.zul", null, arg);
+		Executions.createComponents("/WEB-INF/pages/module_hr/transaction/employee/employeeDetailDialog.zul", null, arg);
 	}
 
 	private void saveFile(Media media) {
