@@ -1,7 +1,7 @@
 <?page title="Add Unit" contentType="text/html;charset=UTF-8"?>
 <zk>
 	<window id="windowVacancyDialog" title="${labels.menu.recruitment.vacancy.form.title}" border="normal" height="350px" width="40%" mode="modal" closable="true" apply="org.zkoss.bind.BindComposer" 
-		viewModel="@id('vm') @init('org.app.portofolio.webui.hr.recruitment.vacancy.RecruitmentVacancyDialogVM')" 
+		viewModel="@id('vm') @init('org.app.portofolio.webui.hr.transaction.recruitment.vacancy.RecruitmentVacancyDialogVM')" 
 		validationMessages="@id('vmsgs')">
 		<borderlayout 
 			form="@id('form') @load(vm.trsJobVacancy) @save(vm.trsJobVacancy, before={'doSave', 'doSaveAndNew'}) 

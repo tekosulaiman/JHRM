@@ -1,6 +1,6 @@
 <?page title="Add Unit" contentType="text/html;charset=UTF-8"?>
 <zk>
-	<window title="${labels.menu.recruitment.candidate.form.title}" border="normal" height="350px" width="60%" mode="modal" closable="true" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.recruitment.candidate.RecruitmentCandidateDialogVM')">
+	<window title="${labels.menu.recruitment.candidate.form.title}" border="normal" height="350px" width="60%" mode="modal" closable="true" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.transaction.recruitment.candidate.RecruitmentCandidateDialogVM')">
 		<borderlayout
 			form="@id('form') @load(vm.trsJobCandidate) @save(vm.trsJobCandidate, before={'doSave', 'doSaveAndNew'}) 
 				@validator(vm.formValidator)">
