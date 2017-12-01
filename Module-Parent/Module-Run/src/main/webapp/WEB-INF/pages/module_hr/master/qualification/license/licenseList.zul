@@ -1,6 +1,6 @@
 <zk>
-	<window id="windowLicenseList" border="none" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.master.qualification.license.LicenseVM')">
-		<borderlayout height="500px">
+	<window id="windowLicenseList" border="none" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.master.qualification.license.LicenseVM')" vflex="true">
+		<borderlayout height="500px" vflex="true">
 			<!-- Function CRUD -->
 			<north>
 				<div sclass="z-toolbar" style="padding:0">
@@ -20,7 +20,7 @@
 				</div>
 			</north>
 			<!-- Table Database -->
-			<center>
+			<center border="none">
 				<listbox id="listboxLicense" model="@bind(vm.licenses)" itemRenderer="@bind(vm.listitemRenderer)" selectedItem="@bind(vm.mstLicense)">
 					<listhead>
 						<listheader width="10%" align="center"/>

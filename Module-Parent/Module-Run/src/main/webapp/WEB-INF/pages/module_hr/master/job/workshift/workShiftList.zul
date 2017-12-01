@@ -1,7 +1,7 @@
 <?page title="Work Shift" contentType="text/html;charset=UTF-8"?>
 <zk>
-	<window  border="none" width="100%" >
-		<borderlayout height="500px">
+	<window  border="none" width="100%"  vflex="true">
+		<borderlayout vflex="true">
 			<north/>
 			<center>
 				<vbox>

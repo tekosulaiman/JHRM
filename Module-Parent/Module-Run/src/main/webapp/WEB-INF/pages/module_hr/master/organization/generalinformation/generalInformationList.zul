@@ -1,9 +1,9 @@
 <zk>
-	<window>
+	<window vflex="true">
 		<groupbox mold="3d">
 			<caption label="General Information" />
 			
-			<borderlayout height="500px">
+			<borderlayout vflex="true">
 				<north>
 					<toolbar>
 						<button image="/images/icons/btn_edit.gif" label="Edit" onClick="@command('doSave')"/> 

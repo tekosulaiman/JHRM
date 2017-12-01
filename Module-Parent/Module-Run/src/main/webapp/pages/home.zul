@@ -1,24 +1,25 @@
 <?page title="Menu"?>
 <?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
 <zk>
-	<window id="mainMenuWindow" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.HomeVM')">
-		<borderlayout id="borderlayoutMain" height="600px">
-			<north border="none">
-				<borderlayout height="50px">
-					<north>
+	<window id="mainMenuWindow" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.HomeVM')" vflex="true" hflex="true"
+		style="">
+		<borderlayout id="borderlayoutMain" vflex="true" hflex="true">
+			<north border="none" height="55px">
+				<borderlayout vflex="true">
+					<north border="none">
 						<hbox>
 							<label value="User Login :"/>
 							<label id="labelUserName"/>
 							<a onClick="@command('doLogout')">Logout</a>
 						</hbox>
 					</north>
-					<south>
+					<south vflex="true">
 						<menubar id="menubarMenu"/>
 					</south>
 				</borderlayout>
 			</north>
 	   
-	        <west title="Tree Menu"  width="20%" border="normal" splittable="true" collapsible="true" open="false">
+	        <west title="Tree Menu"  width="20%" border="none" splittable="true" collapsible="true" open="false">
 	        	<panel width="100%" border="none">
 	                <panelchildren>
 	                	<tree id="treeMenu"/>
@@ -26,14 +27,14 @@
 	             </panel>   
 			</west>
 			
-			<center id="center">
-				<tabbox id="tabbox" height="100%">
+			<center id="center" border="none">
+				<tabbox id="tabbox" vflex="true">
 					<tabs id="tabs"/>
-					<tabpanels id="tabpanels"/>
+					<tabpanels id="tabpanels" vflex="true" />
 				</tabbox>
 			</center>
 			
-			<south>
+			<south height="4%">
 				<hbox pack="center" width="100%">
 					<label id="labelZkVersion"/>
 					<label id="userName"/>
