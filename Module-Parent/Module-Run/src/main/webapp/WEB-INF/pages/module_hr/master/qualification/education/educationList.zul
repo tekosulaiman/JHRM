@@ -1,6 +1,6 @@
 <zk>
-	<window id="windowEducationList" border="none" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.master.qualification.education.EducationVM')">
-		<borderlayout height="500px">
+	<window id="windowEducationList" border="none" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.master.qualification.education.EducationVM')" vflex="true">
+		<borderlayout vflex="true">
 			<!-- Function CRUD -->
 			<north>
 				<div sclass="z-toolbar" style="padding:0">
@@ -20,7 +20,7 @@
 				</div>
 			</north>
 			<!-- Table Database -->
-			<center>
+			<center border="none">
 				<listbox id="listboxEducation" model="@bind(vm.educations)" itemRenderer="@bind(vm.listitemRenderer)" selectedItem="@bind(vm.mstEducation)">
 					<listhead>
 						<listheader width="10%" align="center"/>

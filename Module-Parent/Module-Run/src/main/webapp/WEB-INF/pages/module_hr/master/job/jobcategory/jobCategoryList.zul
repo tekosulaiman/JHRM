@@ -1,6 +1,6 @@
 <zk>
-	<window apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.master.job.jobcategory.JobCategoryVM')" border="none" width="100%" >
-		<borderlayout height="500px">
+	<window apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.master.job.jobcategory.JobCategoryVM')" border="none" width="100%" vflex="true">
+		<borderlayout vflex="true">
 			<north>
 				<div sclass="z-toolbar" style="padding:0">
 					<hbox pack="stretch" width="100%">

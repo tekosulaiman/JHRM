@@ -1,6 +1,6 @@
 <zk>
-	<window id="windowLanguageList" border="none" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.master.qualification.language.LanguageVM')">
-		<borderlayout height="500px">
+	<window id="windowLanguageList" border="none" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.master.qualification.language.LanguageVM')" vflex="true">
+		<borderlayout height="500px" vflex="true">
 			<!-- Function CRUD -->
 			<north>
 				<div sclass="z-toolbar" style="padding:0">
@@ -20,7 +20,7 @@
 				</div>
 			</north>
 			<!-- Table Database -->
-			<center>
+			<center border="none">
 				<listbox id="listboxLanguage" model="@bind(vm.languages)" itemRenderer="@bind(vm.listitemRenderer)" selectedItem="@bind(vm.mstLanguage)">
 					<listhead>
 						<listheader width="10%" align="center"/>

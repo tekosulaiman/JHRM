@@ -1,6 +1,6 @@
 <zk>
-	<window id="windowMembershipList" border="none" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.master.qualification.membership.MembershipVM')">
-		<borderlayout height="500px">
+	<window id="windowMembershipList" border="none" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.master.qualification.membership.MembershipVM')" vflex="true">
+		<borderlayout vflex="true">
 			<!-- Function CRUD -->
 			<north>
 				<div sclass="z-toolbar" style="padding:0">
@@ -20,7 +20,7 @@
 				</div>
 			</north>
 			<!-- Table Database -->
-			<center>
+			<center border="none">
 				<listbox id="listboxMembership" model="@bind(vm.memberships)" itemRenderer="@bind(vm.listitemRenderer)" selectedItem="@bind(vm.memberships)">
 					<listhead>
 						<listheader width="10%" align="center"/>
