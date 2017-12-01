@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
 
+import org.app.portofolio.webui.hr.common.utilities.ComponentConditionUtil;
 import org.module.hr.model.TrsEmployee;
 import org.module.hr.service.EmployeeService;
 import org.zkoss.bind.BindContext;
@@ -24,10 +25,37 @@ import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.UploadEvent;
 import org.zkoss.zk.ui.select.Selectors;
+import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
+import org.zkoss.zul.Button;
 import org.zkoss.zul.Messagebox;
+import org.zkoss.zul.Textbox;
 
 public class EmployeeDialog {
+	
+	@Wire("#buttonSave")
+	private Button buttonSave;
+	
+	@Wire("#buttonEdit")
+	private Button buttonEdit;
+	
+	@Wire("#buttonNew")
+	private Button buttonNew;
+	
+	@Wire("#textBoxFirstName")
+	private Textbox textboxFirstName;
+	
+	@Wire("#textBoxMiddleName")
+	private Textbox textBoxMiddleName;
+	
+	@Wire("#textBoxLastName")
+	private Textbox textBoxLastName;
+	
+	@Wire("#textBoxIdEmployee")
+	private Textbox textBoxIdEmployee;
+	
+	@Wire("#buttonUpload")
+	private Button buttonUpload;
 
 	private TrsEmployee trsEmployee;
 
@@ -52,6 +80,7 @@ public class EmployeeDialog {
 		Selectors.wireComponents(component, this, false);
 		this.trsEmployee = new TrsEmployee();
 		labelUploadFoto = "Select Foto";
+		formEditCondition();
 	}
 
 	@NotifyChange("labelUploadFoto")
@@ -79,6 +108,18 @@ public class EmployeeDialog {
 			Messagebox.show("Upload Event Is not Coming");
 		}
 	}
+	
+	@Command
+	public void doEdit() {
+		formEditCondition();
+	}
+	
+	@NotifyChange("trsEmployee")
+	@Command
+	public void doNew() {
+		formEditCondition();
+		this.trsEmployee = new TrsEmployee();
+	}
 
 	@Command
 	public void doSave() {
@@ -90,10 +131,24 @@ public class EmployeeDialog {
 				saveFile(this.media);
 			}
 		}
-		employeeService.save(this.trsEmployee);
-		HashMap<String, Object> arg = new HashMap<>();
-		arg.put("trsEmployee", trsEmployee);
-		Executions.createComponents("/WEB-INF/pages/module_hr/transaction/employee/employeeDetailDialog.zul", null, arg);
+		if (trsEmployee.getIdEmployee() == null){
+			employeeService.save(this.trsEmployee);
+		} else {
+			employeeService.saveOrUpdate(trsEmployee);
+		}
+		formSaveCondition();
+	}
+	
+	private void formEditCondition() {
+		ComponentConditionUtil.enableButton(buttonSave, buttonUpload);
+		ComponentConditionUtil.disableButton(buttonEdit, buttonNew);
+		ComponentConditionUtil.enableTextbox(textboxFirstName, textBoxIdEmployee, textBoxLastName, textBoxMiddleName);
+	}
+	
+	private void formSaveCondition() {
+		ComponentConditionUtil.disableButton(buttonSave, buttonUpload);
+		ComponentConditionUtil.enableButton(buttonEdit, buttonNew);
+		ComponentConditionUtil.disableTextbox(textboxFirstName, textBoxIdEmployee, textBoxLastName, textBoxMiddleName);
 	}
 
 	private void saveFile(Media media) {

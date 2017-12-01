@@ -10,8 +10,10 @@ import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.Button;
 import org.zkoss.zul.Combobox;
+import org.zkoss.zul.Comboitem;
 import org.zkoss.zul.Datebox;
 import org.zkoss.zul.Label;
+import org.zkoss.zul.ListModel;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listitem;
@@ -87,7 +89,7 @@ public class DependentListItemRenderer implements ListitemRenderer<TrsEmployeeDe
 			buttonCancel.setVisible(false);
 			buttonDelete.setVisible(false);
 			
-        	RelationshipType relationshipType = employeeService.getRelationshipTypeById(Integer.parseInt(trsEmployeeDependent.getRelationship()));
+        	RelationshipType relationshipType = employeeService.getRelationshipTypeById(trsEmployeeDependent.getRelationship());
         	
         	labelName.setValue(trsEmployeeDependent.getName());
         	labelRelationship.setValue(relationshipType.getStpTypname());
@@ -105,16 +107,22 @@ public class DependentListItemRenderer implements ListitemRenderer<TrsEmployeeDe
 		@Override
 		public void onEvent(Event event) throws Exception {
 			if(trsEmployeeDependent.getIdDependent() == null){
+				Comboitem model = comboboxRelationshipType.getSelectedItem();
+				RelationshipType RelationshipType = (RelationshipType) model.getAttribute("data");
+				
 				trsEmployeeDependent.setName(textboxName.getValue());
-				trsEmployeeDependent.setRelationship(String.valueOf(comboboxRelationshipType.getSelectedIndex()));
+				trsEmployeeDependent.setRelationship(RelationshipType.getStpId());
 				trsEmployeeDependent.setDateOfBirth(dateboxDateOfBirth.getValue());
 
 				employeeService.save(trsEmployeeDependent);
 				
 				BindUtils.postGlobalCommand(null, null, "updateTrsEmployeeDependent", null);
 			}else{
+				Comboitem model = comboboxRelationshipType.getSelectedItem();
+				RelationshipType RelationshipType = (RelationshipType) model.getAttribute("data");
+				
 				trsEmployeeDependent.setName(textboxName.getValue());
-				trsEmployeeDependent.setRelationship(String.valueOf(comboboxRelationshipType.getSelectedIndex()));
+				trsEmployeeDependent.setRelationship(RelationshipType.getStpId());
 				trsEmployeeDependent.setDateOfBirth(dateboxDateOfBirth.getValue());
 
 				employeeService.update(trsEmployeeDependent);
@@ -141,7 +149,7 @@ public class DependentListItemRenderer implements ListitemRenderer<TrsEmployeeDe
 			textboxName.setValue(trsEmployeeDependent.getName());
 			dateboxDateOfBirth.setValue(trsEmployeeDependent.getDateOfBirth());
 			
-			RelationshipType relationshipType = employeeService.getRelationshipTypeById(Integer.parseInt(trsEmployeeDependent.getRelationship()));
+			RelationshipType relationshipType = employeeService.getRelationshipTypeById(trsEmployeeDependent.getRelationship());
 			
 			comboboxRelationshipType.setModel(new ListModelList<RelationshipType>(employeeService.getAllRelationshipType()));
 			comboboxRelationshipType.setItemRenderer(new RelationshipListItemRenderer());

@@ -116,7 +116,6 @@ public class ContactDetails {
 	}
 	
 	@Command
-	@NotifyChange("isEdit")
 	public void doEdit(){
 		formEditCondition();
 	}
@@ -125,7 +124,7 @@ public class ContactDetails {
 	@NotifyChange("isEdit")
 	public void doSave(){
 		employeeService.update(trsEmployee);
-		formEditCondition();
+		formDetailCondition();
 	}
 
 	@Command

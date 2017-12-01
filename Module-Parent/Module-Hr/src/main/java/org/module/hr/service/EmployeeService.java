@@ -110,7 +110,7 @@ public interface EmployeeService {
 	
 	/*Relationship Type*/
 	public List<RelationshipType> getAllRelationshipType();
-	public RelationshipType getRelationshipTypeById(int id);
+	public RelationshipType getRelationshipTypeById(Character id);
 
 	/*MaritalStatus Type*/
 	public List<MaritalStatusType> getAllMaritalStatusType();

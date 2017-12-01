@@ -101,31 +101,31 @@ public class SalaryListItemRenderer implements ListitemRenderer<TrsEmployeeSalar
 			buttonDelete.setVisible(false);
 
 			comboboxCurrency.setModel(new ListModelList<RelationshipType>(employeeService.getAllRelationshipType()));
-			comboboxCurrency.setItemRenderer(new RelationshipListItemRenderer());
+//			comboboxCurrency.setItemRenderer(new RelationshipListItemRenderer());
 
 			comboboxPayFrequency.setModel(new ListModelList<RelationshipType>(employeeService.getAllRelationshipType()));
-			comboboxPayFrequency.setItemRenderer(new RelationshipListItemRenderer());
+//			comboboxPayFrequency.setItemRenderer(new RelationshipListItemRenderer());
 			
 			comboboxPayGrade.setModel(new ListModelList<RelationshipType>(employeeService.getAllRelationshipType()));
-			comboboxPayGrade.setItemRenderer(new RelationshipListItemRenderer());
+//			comboboxPayGrade.setItemRenderer(new RelationshipListItemRenderer());
 
 		} else {
 			buttonSave.setVisible(false);
 			buttonCancel.setVisible(false);
 			buttonDelete.setVisible(false);
 
-			RelationshipType dummyCurrency = employeeService
-					.getRelationshipTypeById(Integer.parseInt(trsEmployeeSalary.getCurrency()));
-			RelationshipType dummyPayFrequency = employeeService
-					.getRelationshipTypeById(Integer.parseInt(trsEmployeeSalary.getPayFrequency()));
-			RelationshipType dummyPayGrade = employeeService
-					.getRelationshipTypeById(Integer.parseInt(trsEmployeeSalary.getPayGrade()));
+//			RelationshipType dummyCurrency = employeeService
+//					.getRelationshipTypeById(trsEmployeeSalary.getCurrency());
+//			RelationshipType dummyPayFrequency = employeeService
+//					.getRelationshipTypeById(Integer.parseInt(trsEmployeeSalary.getPayFrequency()));
+//			RelationshipType dummyPayGrade = employeeService
+//					.getRelationshipTypeById(Integer.parseInt(trsEmployeeSalary.getPayGrade()));
 			
 			labelAmount.setValue(trsEmployeeSalary.getAmount());
 			labelComment.setValue(trsEmployeeSalary.getComment());
-			labelCurrency.setValue(dummyCurrency.getStpTypname());
-			labelPayFrequency.setValue(dummyPayFrequency.getStpTypname());
-			labelPayGrade.setValue(dummyPayGrade.getStpTypname());
+//			labelCurrency.setValue(dummyCurrency.getStpTypname());
+//			labelPayFrequency.setValue(dummyPayFrequency.getStpTypname());
+//			labelPayGrade.setValue(dummyPayGrade.getStpTypname());
 			labelSalaryComponent.setValue(trsEmployeeSalary.getSalaryComponent());
 			
 			textboxAmount.setVisible(false);
@@ -177,27 +177,27 @@ public class SalaryListItemRenderer implements ListitemRenderer<TrsEmployeeSalar
 				labelPayGrade.setVisible(false);
 				labelSalaryComponent.setVisible(false);
 
-				RelationshipType dummyCurrency = employeeService
-						.getRelationshipTypeById(Integer.parseInt(trsEmployeeSalary.getCurrency()));
-				RelationshipType dummyPayFrequency = employeeService
-						.getRelationshipTypeById(Integer.parseInt(trsEmployeeSalary.getPayFrequency()));
-				RelationshipType dummyPayGrade = employeeService
-						.getRelationshipTypeById(Integer.parseInt(trsEmployeeSalary.getPayGrade()));
-
-				comboboxCurrency.setModel(new ListModelList<RelationshipType>(employeeService.getAllRelationshipType()));
-				comboboxCurrency.setItemRenderer(new RelationshipListItemRenderer());
-
-				comboboxPayFrequency.setModel(new ListModelList<RelationshipType>(employeeService.getAllRelationshipType()));
-				comboboxPayFrequency.setItemRenderer(new RelationshipListItemRenderer());
-				
-				comboboxPayGrade.setModel(new ListModelList<RelationshipType>(employeeService.getAllRelationshipType()));
-				comboboxPayGrade.setItemRenderer(new RelationshipListItemRenderer());
+//				RelationshipType dummyCurrency = employeeService
+//						.getRelationshipTypeById(Integer.parseInt(trsEmployeeSalary.getCurrency()));
+//				RelationshipType dummyPayFrequency = employeeService
+//						.getRelationshipTypeById(Integer.parseInt(trsEmployeeSalary.getPayFrequency()));
+//				RelationshipType dummyPayGrade = employeeService
+//						.getRelationshipTypeById(Integer.parseInt(trsEmployeeSalary.getPayGrade()));
+//
+//				comboboxCurrency.setModel(new ListModelList<RelationshipType>(employeeService.getAllRelationshipType()));
+//				comboboxCurrency.setItemRenderer(new RelationshipListItemRenderer());
+//
+//				comboboxPayFrequency.setModel(new ListModelList<RelationshipType>(employeeService.getAllRelationshipType()));
+//				comboboxPayFrequency.setItemRenderer(new RelationshipListItemRenderer());
+//				
+//				comboboxPayGrade.setModel(new ListModelList<RelationshipType>(employeeService.getAllRelationshipType()));
+//				comboboxPayGrade.setItemRenderer(new RelationshipListItemRenderer());
 				
 				textboxAmount.setValue(trsEmployeeSalary.getAmount());
 				textboxComment.setValue(trsEmployeeSalary.getComment());
-				comboboxCurrency.setValue(dummyCurrency.getStpTypname());
-				comboboxPayFrequency.setValue(dummyPayFrequency.getStpTypname());
-				comboboxPayGrade.setValue(dummyPayGrade.getStpTypname());
+//				comboboxCurrency.setValue(dummyCurrency.getStpTypname());
+//				comboboxPayFrequency.setValue(dummyPayFrequency.getStpTypname());
+//				comboboxPayGrade.setValue(dummyPayGrade.getStpTypname());
 				textboxSalaryComponent.setValue(trsEmployeeSalary.getSalaryComponent());
 
 			}

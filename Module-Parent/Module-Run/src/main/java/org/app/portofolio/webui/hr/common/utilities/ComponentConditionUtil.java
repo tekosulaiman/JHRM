@@ -104,6 +104,26 @@ public class ComponentConditionUtil {
 	 * 
 	 * @param buttons
 	 */
+	public static void enableButton(Button...buttons) {
+		for (Button button: buttons) {
+			button.setDisabled(false);
+		}
+	}
+	
+	/**
+	 * 
+	 * @param buttons
+	 */
+	public static void disableButton(Button...buttons) {
+		for (Button button: buttons) {
+			button.setDisabled(true);
+		}
+	}
+	
+	/**
+	 * 
+	 * @param buttons
+	 */
 	public static void visibleButton(Button...buttons) {
 		for (Button button: buttons) {
 			button.setVisible(true);

@@ -13,8 +13,8 @@ final public class RelationshipType implements Serializable{
 	private static final long serialVersionUID = -1060144618443900336L;
 	
 	final public static List<RelationshipType> ALLTYPES;
-	final private static Map<Integer, RelationshipType> STDID_MAP;
-	final public static RelationshipType EMPTY_RELATIONSHIPTYP = new RelationshipType(null,"");
+	final private static Map<Character, RelationshipType> STDID_MAP;
+	final public static RelationshipType EMPTY_RELATIONSHIPTYP = new RelationshipType('0',"");
 	
 	final private Character stpId;
 	final private String stpTypname;
@@ -26,15 +26,15 @@ final public class RelationshipType implements Serializable{
 		result.add(new RelationshipType('1', "Other"));
 		
 		ALLTYPES = Collections.unmodifiableList(result);
-		STDID_MAP = new HashMap<Integer, RelationshipType>(result.size());
+		STDID_MAP = new HashMap<Character, RelationshipType>(result.size());
 		
 		for (RelationshipType relationshipType : result) {
-			STDID_MAP.put(Integer.valueOf(relationshipType.getStpId()), relationshipType);
+			STDID_MAP.put(relationshipType.getStpId(), relationshipType);
 		}
 	}
 	
-	public static RelationshipType getTypById(int typId) {
-		return STDID_MAP.get(Integer.valueOf(typId));
+	public static RelationshipType getTypById(Character typId) {
+		return STDID_MAP.get(typId);
 	}
 	
 	public RelationshipType(Character stpId, String stpTypname) {
@@ -42,7 +42,7 @@ final public class RelationshipType implements Serializable{
 		this.stpTypname = stpTypname;
 	}
 
-	public int getStpId() {
+	public Character getStpId() {
 		return stpId;
 	}
 

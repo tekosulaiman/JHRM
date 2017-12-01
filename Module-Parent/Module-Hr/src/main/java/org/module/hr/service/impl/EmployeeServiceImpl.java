@@ -425,7 +425,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 	}
 	
 	@Override
-	public RelationshipType getRelationshipTypeById(int id){
+	public RelationshipType getRelationshipTypeById(Character id){
 		return RelationshipType.getTypById(id);
 	}
 	

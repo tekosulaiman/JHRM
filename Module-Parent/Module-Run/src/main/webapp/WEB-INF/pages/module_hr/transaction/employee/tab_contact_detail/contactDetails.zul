@@ -15,32 +15,32 @@
 								<row>
 									<label
 										value="${labels.menu.employee.contact.form.address.street.one}" />
-									<textbox id="textBoxAddressStreet1" value="@bind(form.addressStreet1)" disabled="@load(not vm.isEdit)"/>
+									<textbox id="textBoxAddressStreet1" value="@bind(form.addressStreet1)" />
 								</row>
 								<row>
 									<label
 										value="${labels.menu.employee.contact.form.address.street.two}" />
-									<textbox id="textBoxAddressStreet2" value="@bind(form.addressStreet2)" disabled="@load(not vm.isEdit)"/>
+									<textbox id="textBoxAddressStreet2" value="@bind(form.addressStreet2)" />
 								</row>
 								<row>
 									<label
 										value="${labels.menu.employee.contact.form.city}" />
-									<textbox id="textBoxCity" value="@bind(form.city)" disabled="@load(not vm.isEdit)"/>
+									<textbox id="textBoxCity" value="@bind(form.city)" />
 								</row>
 								<row>
 									<label
 										value="${labels.menu.employee.contact.form.state.province}" />
-									<textbox id="textBoxProvince" value="@bind(form.province)" disabled="@load(not vm.isEdit)"/>
+									<textbox id="textBoxProvince" value="@bind(form.province)" />
 								</row>
 								<row>
 									<label
 										value="${labels.menu.employee.contact.form.zip.postal.code}" />
-									<textbox id="textBoxZip" value="@bind(form.zip)" disabled="@load(not vm.isEdit)"/>
+									<textbox id="textBoxZip" value="@bind(form.zip)" />
 								</row>
 								<row>
 									<label
 										value="${labels.menu.employee.contact.form.country}" />
-									<bandbox id="bandBoxNationality" value="@bind(form.country)" onOpen="@command('openBandBoxNationality')" disabled="@load(not vm.isEdit)">
+									<bandbox id="bandBoxNationality" value="@bind(form.country)" onOpen="@command('openBandBoxNationality')" >
 										<bandpopup>
 											<vbox>
 												<hbox>
@@ -64,17 +64,17 @@
 								<row>
 									<label
 										value="${labels.menu.employee.contact.form.home.telephone}" />
-									<textbox id="textBoxHomeTelephone" value="@bind(form.homeTelephone)" disabled="@load(not vm.isEdit)"/>
+									<textbox id="textBoxHomeTelephone" value="@bind(form.homeTelephone)" />
 								</row>
 								<row>
 									<label
 										value="${labels.menu.employee.contact.form.mobile.telephone}" />
-									<textbox id="textBoxMobile" value="@bind(form.mobile)" disabled="@load(not vm.isEdit)"/>
+									<textbox id="textBoxMobile" value="@bind(form.mobile)" />
 								</row>
 								<row>
 									<label
 										value="${labels.menu.employee.contact.form.work.telephone}" />
-									<textbox id="textBoxWorkTelephone" value="@bind(form.workTelephone)" disabled="@load(not vm.isEdit)"/>
+									<textbox id="textBoxWorkTelephone" value="@bind(form.workTelephone)" />
 								</row>
 							</rows>
 						</grid>
@@ -83,12 +83,12 @@
 								<row>
 									<label
 										value="${labels.menu.employee.contact.form.work.email}" />
-									<textbox id="textBoxWorkEmail" value="@bind(form.workEmail)" disabled="@load(not vm.isEdit)"/>
+									<textbox id="textBoxWorkEmail" value="@bind(form.workEmail)" />
 								</row>
 								<row>
 									<label
 										value="${labels.menu.employee.contact.form.other.email}" />
-									<textbox id="textBoxOtherEmail" value="@bind(form.otherEmail)" disabled="@load(not vm.isEdit)"/>
+									<textbox id="textBoxOtherEmail" value="@bind(form.otherEmail) "/>
 								</row>
 							</rows>
 						</grid>
@@ -96,8 +96,8 @@
 							<rows>
 								<row>
 									<div>
-										<button id="buttonEdit" label="Edit" onClick="@command('doEdit')" visible="@load(not vm.isEdit)"/>
-										<button id="buttonSave" label="Save" onClick="@command('doSave')" visible="@load(vm.isEdit)"/>
+										<button id="buttonEdit" label="Edit" onClick="@command('doEdit')"/>
+										<button id="buttonSave" label="Save" onClick="@command('doSave')"/>
 									</div>
 								</row>
 							</rows>

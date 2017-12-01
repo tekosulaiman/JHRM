@@ -124,12 +124,12 @@ public class EmployeeLanguageListItemRenderer implements ListitemRenderer<TrsEmp
 			buttonCancel.setVisible(false);
 			buttonDelete.setVisible(false);
 
-			RelationshipType fluencyType = employeeService.getRelationshipTypeById(Integer.valueOf(trsEmployeeLanguage.getFluency()));
-			RelationshipType competencyType = employeeService.getRelationshipTypeById(Integer.valueOf(trsEmployeeLanguage.getCompetency()));
+//			RelationshipType fluencyType = employeeService.getRelationshipTypeById(Integer.valueOf(trsEmployeeLanguage.getFluency()));
+//			RelationshipType competencyType = employeeService.getRelationshipTypeById(Integer.valueOf(trsEmployeeLanguage.getCompetency()));
 			
 			labelLanguage.setValue(trsEmployeeLanguage.getIdLanguage().getNameLanguage());
-			labelFluency.setValue(fluencyType.getStpTypname());
-			labelCompetency.setValue(competencyType.getStpTypname());
+//			labelFluency.setValue(fluencyType.getStpTypname());
+//			labelCompetency.setValue(competencyType.getStpTypname());
 			labelComment.setValue(trsEmployeeLanguage.getComment());
 
 			comboboxCompetency.setVisible(false);
@@ -195,8 +195,8 @@ public class EmployeeLanguageListItemRenderer implements ListitemRenderer<TrsEmp
 				
 				comboboxLanguage.setValue(trsEmployeeLanguage.getIdLanguage().getNameLanguage());
 				
-				RelationshipType fluencyType = employeeService.getRelationshipTypeById(Integer.valueOf(trsEmployeeLanguage.getFluency()));
-				RelationshipType competencyType = employeeService.getRelationshipTypeById(Integer.valueOf(trsEmployeeLanguage.getCompetency()));
+//				RelationshipType fluencyType = employeeService.getRelationshipTypeById(Integer.valueOf(trsEmployeeLanguage.getFluency()));
+//				RelationshipType competencyType = employeeService.getRelationshipTypeById(Integer.valueOf(trsEmployeeLanguage.getCompetency()));
 				
 				comboboxFluency.setModel(new ListModelList<RelationshipType>(employeeService.getAllRelationshipType()));
 				comboboxFluency.setItemRenderer(new ComboitemRenderer<RelationshipType> () {
@@ -209,7 +209,7 @@ public class EmployeeLanguageListItemRenderer implements ListitemRenderer<TrsEmp
 				
 				
 				
-				comboboxFluency.setValue(fluencyType.getStpTypname());
+//				comboboxFluency.setValue(fluencyType.getStpTypname());
 				
 				comboboxCompetency.setModel(new ListModelList<RelationshipType>(employeeService.getAllRelationshipType()));
 				comboboxCompetency.setItemRenderer(new ComboitemRenderer<RelationshipType> () {
@@ -220,7 +220,7 @@ public class EmployeeLanguageListItemRenderer implements ListitemRenderer<TrsEmp
 					}
 				});
 				
-				comboboxCompetency.setValue(competencyType.getStpTypname());
+//				comboboxCompetency.setValue(competencyType.getStpTypname());
 				textboxComment.setValue(trsEmployeeLanguage.getComment());
 			}
 		});

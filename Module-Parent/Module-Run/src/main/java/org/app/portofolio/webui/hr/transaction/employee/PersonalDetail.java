@@ -1,17 +1,11 @@
 package org.app.portofolio.webui.hr.transaction.employee;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.app.portofolio.webui.hr.common.collections.ModalAction;
 import org.app.portofolio.webui.hr.common.utilities.ComponentConditionUtil;
-import org.app.portofolio.webui.hr.transaction.employee.model.MaritalStatusListItemRenderer;
 import org.app.portofolio.webui.hr.transaction.employee.validator.TrsEmployeePersonalDetailFormValidator;
-import org.app.portofolio.webui.hr.transaction.recruitment.vacancy.validator.TrsJobVacancyFormValidator;
-import org.module.hr.model.MstNationality;
 import org.module.hr.model.TrsEmployee;
-import org.module.hr.model.TrsJobVacancy;
 import org.module.hr.model.dto.MaritalStatusType;
 import org.module.hr.service.EmployeeService;
 import org.zkoss.bind.annotation.AfterCompose;
@@ -19,7 +13,7 @@ import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
 import org.zkoss.bind.annotation.ContextType;
 import org.zkoss.bind.annotation.ExecutionArgParam;
-import org.zkoss.bind.annotation.NotifyChange;
+import org.zkoss.bind.annotation.ImmutableFields;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -27,9 +21,7 @@ import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.Button;
 import org.zkoss.zul.Combobox;
 import org.zkoss.zul.Datebox;
-import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Radio;
-import org.zkoss.zul.Radiogroup;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
@@ -159,11 +151,14 @@ public class PersonalDetail {
 	
 	@Command
 	public void doSave(){
-		trsEmployee.setMaritalStatus(maritalStatusType.getStpId());
+		if (maritalStatusType != null){
+			trsEmployee.setMaritalStatus(maritalStatusType.getStpId());
+		}
 		employeeService.update(trsEmployee);
 		formDetailCondition();
 	}
 	
+	@ImmutableFields
 	public TrsEmployee getTrsEmployee() {
 		return trsEmployee;
 	}

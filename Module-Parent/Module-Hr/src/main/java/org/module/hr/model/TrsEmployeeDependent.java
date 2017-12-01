@@ -36,7 +36,7 @@ public class TrsEmployeeDependent implements Serializable {
     private String name;
     
     @Column(name = "relationship")
-    private String relationship;
+    private Character relationship;
     
     @Column(name = "date_of_birth")
     @Temporal(TemporalType.DATE)
@@ -62,15 +62,15 @@ public class TrsEmployeeDependent implements Serializable {
         this.name = name;
     }
 
-    public String getRelationship() {
-        return relationship;
-    }
+    public Character getRelationship() {
+		return relationship;
+	}
 
-    public void setRelationship(String relationship) {
-        this.relationship = relationship;
-    }
+	public void setRelationship(Character relationship) {
+		this.relationship = relationship;
+	}
 
-    public Date getDateOfBirth() {
+	public Date getDateOfBirth() {
         return dateOfBirth;
     }
 

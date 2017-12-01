@@ -7,11 +7,11 @@
 			<!-- Function CRUD -->
 			<north>
 				<toolbar>
-					<button image="/images/icons/btn_save.gif"
+					<button id="buttonSave" image="/images/icons/btn_save.gif"
 						label="Save" onClick="@command('doSave')" />
-					<button image="/images/icons/btn_edit.gif"
+					<button id="buttonEdit" image="/images/icons/btn_edit.gif"
 						label="Edit" onClick="@command('doEdit')" />
-					<button image="/images/icons/btn_new.gif"
+					<button id="buttonNew" image="/images/icons/btn_new.gif"
 						label="New" onClick="@command('doNew')" />		
 				</toolbar>
 			</north>
@@ -25,32 +25,32 @@
 								<label
 									value="${labels.menu.employee.personal.details.form.first.name}"
 									style="text-align: justify; display: block;" />
-								<textbox value="@bind(vm.trsEmployee.firstName)"/>
+								<textbox id="textBoxFirstName" value="@bind(vm.trsEmployee.firstName)"/>
 							</div>
 							<div>
 								<label
 									value="${labels.menu.employee.personal.details.form.middle.name}"
 									style="text-align: justify; display: block;" />
-								<textbox value="@bind(vm.trsEmployee.middleName)"/>
+								<textbox id="textBoxMiddleName" value="@bind(vm.trsEmployee.middleName)"/>
 							</div>
 							<div>
 								<label
 									value="${labels.menu.employee.personal.details.form.last.name}"
 									style="text-align: justify; display: block;" />
-								<textbox value="@bind(vm.trsEmployee.lastName)"/>
+								<textbox id="textBoxLastName" value="@bind(vm.trsEmployee.lastName)"/>
 							</div>
 						</row>
 						<row>
 							<label
 								value="${labels.menu.employee.form.employee.id}" />
-							<textbox value="@bind(vm.trsEmployee.idEmployee)"/>
+							<textbox id="textBoxIdEmployee" value="@bind(vm.trsEmployee.idEmployee)"/>
 					    </row>
 					    <row>
 							<label
 								value="${labels.menu.employee.form.photograph}" />
 								<label
 									value="@load(vm.labelUploadFoto)" />
-								<button id="btnUpload" mold="trendy"
+								<button id="buttonUpload" mold="trendy"
 									upload="true" label="upload"
 									onUpload="@command('upload')" />
 					    </row>
