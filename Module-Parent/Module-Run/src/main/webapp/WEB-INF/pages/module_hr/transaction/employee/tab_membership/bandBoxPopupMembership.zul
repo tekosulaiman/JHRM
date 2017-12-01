@@ -1,6 +1,6 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
-<bandbox apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.employee.BandBoxPopup')" open="@bind(vm.isBandboxOpen)" value="@bind(vm.selectedMstMembership.nameMembership)">
+<bandbox apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.transaction.employee.BandBoxPopup')" open="@bind(vm.isBandboxOpen)" value="@bind(vm.selectedMstMembership.nameMembership)">
 	<bandpopup >
 		<vbox>
 			<hbox>

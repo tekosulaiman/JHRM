@@ -3,7 +3,7 @@
 		border="normal" width="60%" position="center,center" closable="true"
 		maximizable="true" action="show: slideDown; hide: slideUp"
 		mode="modal" apply="org.zkoss.bind.BindComposer"
-		viewModel="@id('employee') @init('org.app.portofolio.webui.hr.employee.EmployeeDetailDialogVM')">
+		viewModel="@id('employee') @init('org.app.portofolio.webui.hr.transaction.employee.EmployeeDetailDialogVM')">
 		<borderlayout height="500px">
 			<!-- Function CRUD -->
 			<north />

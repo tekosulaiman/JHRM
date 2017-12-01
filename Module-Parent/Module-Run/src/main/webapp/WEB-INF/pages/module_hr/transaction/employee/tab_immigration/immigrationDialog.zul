@@ -3,7 +3,7 @@
 		border="normal" width="60%" position="center,center" closable="true"
 		maximizable="true" action="show: slideDown; hide: slideUp"
 		mode="modal" apply="org.zkoss.bind.BindComposer"
-		viewModel="@id('vm') @init('org.app.portofolio.webui.hr.employee.ImmigrationDialog')">
+		viewModel="@id('vm') @init('org.app.portofolio.webui.hr.transaction.employee.ImmigrationDialog')">
 	<!-- <window id="windowImmigrationDialog" title="new page title" border="normal" apply="org.zkoss.bind.BindComposer" 
 		viewModel="@id('vm') @init('org.app.portofolio.webui.hr.employee.ImmigrationDialog')" mode="modal" 
 		width="550px" position="center,center" closable="true" maximizable="true"

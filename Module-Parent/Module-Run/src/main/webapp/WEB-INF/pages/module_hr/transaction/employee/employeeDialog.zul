@@ -2,7 +2,7 @@
 	<window id="windowEmployeeDialog" title="Form Employee"
 		border="normal" width="550px" position="center,center" closable="true"
 		action="show: slideDown; hide: slideUp" mode="modal" apply="org.zkoss.bind.BindComposer" 
-		viewModel="@id('vm') @init('org.app.portofolio.webui.hr.employee.EmployeeDialog')" maximizable="true">
+		viewModel="@id('vm') @init('org.app.portofolio.webui.hr.transaction.employee.EmployeeDialog')" maximizable="true">
 		<borderlayout height="500px">
 			<!-- Function CRUD -->
 			<north>

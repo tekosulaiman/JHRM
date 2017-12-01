@@ -1,5 +1,5 @@
 <zk>
-	<window id="windowMemberships" border="none" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.employee.Membership')" >
+	<window id="windowMemberships" border="none" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.transaction.employee.Membership')" >
 		<borderlayout height="500px">
 			<!-- Function CRUD -->
 			<!-- <north/> -->
