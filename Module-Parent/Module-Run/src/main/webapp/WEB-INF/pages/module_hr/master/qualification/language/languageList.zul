@@ -1,6 +1,6 @@
 <zk>
 	<window id="windowLanguageList" border="none" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.master.qualification.language.LanguageVM')" vflex="true">
-		<borderlayout height="500px" vflex="true">
+		<borderlayout vflex="true">
 			<!-- Function CRUD -->
 			<north>
 				<div sclass="z-toolbar" style="padding:0">

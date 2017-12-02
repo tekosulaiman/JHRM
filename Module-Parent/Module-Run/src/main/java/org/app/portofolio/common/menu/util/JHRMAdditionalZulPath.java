@@ -65,14 +65,14 @@ public interface JHRMAdditionalZulPath {
 		 */
 		public interface Vacancy {
 			
-			public static final String DIALOG_FORM = "/WEB-INF/pages/module_hr/recruitment/vacancy/vacancyDialog.zul";
+			public static final String DIALOG_FORM = "/WEB-INF/pages/module_hr/transaction/recruitment/vacancy/vacancyDialog.zul";
 		}
 		
 		/**
 		 * 
 		 */
 		public interface Candidate {
-			public static final String DIALOG_FORM = "/WEB-INF/pages/module_hr/recruitment/candidate/candidateDialog.zul";
+			public static final String DIALOG_FORM = "/WEB-INF/pages/module_hr/transaction/recruitment/candidate/candidateDialog.zul";
 		}
 	}
 }
