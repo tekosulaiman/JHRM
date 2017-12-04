@@ -1,57 +1,86 @@
-<?page title="Add Job Title" contentType="text/html;charset=UTF-8"?>
 <zk>
-<window title="Pay Grades" border="normal">
-<borderlayout height="400px">
+	<window id="windowWorkShift" title="Form Work Shift" border="normal" width="850px" position="center,center" closable="true" action="show: slideDown; hide: slideUp" mode="modal" 
+	apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.master.job.workshift.WorkShiftListVM')" onClose="@command('doClose')">
+		<borderlayout height="400px">
 			<north>
-			<toolbar>
-				<button image="/images/icons/btn_save.gif" label="Save" /> 
-				<button image="/images/icons/btn_cancel.gif" label="Cancel" /> 
-			</toolbar>
-			</north>	
-			<center >
-					<grid >
+				<toolbar>
+					<button image="/images/icons/btn_save.gif" label="Save" onClick="@command('doSave')"/>
+				</toolbar>
+			</north>
+			<center>
+				<vbox>
+					<grid>
 						<columns>
-							<column label="" width="20%"/>
-							<column label=""/>
+							<column align="right" width="75px"/>
+							<column/>
 						</columns>
 						<rows>
-								<row>	
-								<label value="Shift Name" />
-								<textbox width="300px" />
-								</row>
-								<row>
-								<label value="Work Hour" />
-								<hbox>
-								<label value="From" />
-								<combobox />
-								<label value="To" />
-								<combobox/>
-								<label value="Duration"/>
-								</hbox>
-								</row>
-								<row>
-								<label/>
-								<hbox> 
-								<vbox>
-								<label value="Available Employe" ></label>
-								<textbox rows="10"></textbox>
-								</vbox>
-								<vlayout>
-								<space></space>
-								<label value="Add "> </label>								
-								<label value="Remove "> </label>
-								</vlayout>								
-								<vbox>
-								<label value="Assigned Employe" ></label>
-								<textbox rows="10"></textbox>
-								</vbox>
-								</hbox>	
-								</row>																	
+							<row>	
+								<label value="Shift Name"/>
+								<textbox/>
+							</row>
+							<row>	
+								<label value="From"/>
+								<timebox width="150px"/>
+							</row>
+							<row>	
+								<label value="To"/>
+								<timebox width="150px"/>
+							</row>
+							<row>	
+								<label value="Hour"/>
+								<intbox/>
+							</row>
 						</rows>
 					</grid>
-					
+						
+					<grid>
+						<columns>
+							<column/>
+							<column align="center" width="75px"/>
+							<column/>
+						</columns>
+						<rows>
+							<row>	
+								<vbox>
+									<listbox id="listBoxRightAvaible" checkmark="false" multiple="true" rows="5" autopaging="true" mold="paging"
+										model="@bind(vm.listModelListAvaibleSecGrouprights)">
+										<listhead sizable="true">
+											<listheader label="Available Employees" sort="auto(rigName)" />
+										</listhead>
+										<template name="model" var="secRight">
+										<listitem>
+											<listcell label="@bind(secRight.rigName)" />
+										</listitem>
+										</template>
+									</listbox>
+								</vbox>
+								
+								<vbox>
+									<button image="/images/icons/btn_right_double_arrow.png" onClick="@command('doChooseAll')" />
+									<button image="/images/icons/btn_right_arrow.png" onClick="@command('doChoose')" />
+									<button image="/images/icons/btn_left_arrow.png" onClick="@command('doRemove')" />
+									<button image="/images/icons/btn_left_double_arrow.png" onClick="@command('doRemoveAll')" />
+								</vbox>
+								
+								<vbox>
+									<listbox id="listBoxRightSelected" checkmark="false" multiple="true" rows="5" autopaging="true" mold="paging"
+										model="@bind(vm.listModelListSelectedSecGrouprights)">
+										<listhead sizable="true">
+											<listheader label="Assigned Employees" sort="auto(rigName)" />
+										</listhead>
+										<template name="model" var="secRight">
+											<listitem>
+												<listcell label="@bind(secRight.rigName)" />
+											</listitem>
+										</template>
+									</listbox>
+								</vbox>
+							</row>
+						</rows>
+					</grid>
+				</vbox>
 			</center>
-			<south/>
 		</borderlayout>
-</window>
+	</window>
 </zk>
