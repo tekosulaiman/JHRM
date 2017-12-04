@@ -1,0 +1,44 @@
+<zk>
+	<window border="none" width="100%" vflex="true">
+		<borderlayout vflex="true">
+			<north>
+				<toolbar>
+					<button image="/images/icons/btn_edit.gif" label="Edit" onClick="@command('doSave')"/> 
+				</toolbar>
+			</north>
+			<center>
+				<grid>
+					<columns>
+						<column align="right" width="150px"/>
+						<column/>
+					</columns>
+					<rows>
+						<row>
+							<label value="Start Month"/>
+							<combobox>
+								<comboitem label=""/>
+								<comboitem label=""/>
+							</combobox>
+						</row>
+						<row>
+							<label value="Start Date"/>
+							<combobox>
+								<comboitem label=""/>
+								<comboitem label=""/>
+							</combobox>
+						</row>
+						<row>
+							<label value="End Date"/>
+							<label value="End Date"/>
+						</row>
+						<row>
+							<label value="Current Leave Period"/>
+							<label value="Current Leave Period"/>
+						</row>
+					</rows>
+				</grid>
+			</center>
+			<south/>
+		</borderlayout>
+	</window>
+</zk>

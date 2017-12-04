@@ -43,8 +43,7 @@
 						<rows>
 							<row>	
 								<vbox>
-									<listbox id="listBoxRightAvaible" checkmark="false" multiple="true" rows="5" autopaging="true" mold="paging"
-										model="@bind(vm.listModelListAvaibleSecGrouprights)">
+									<listbox>
 										<listhead sizable="true">
 											<listheader label="Available Employees" sort="auto(rigName)" />
 										</listhead>
@@ -64,8 +63,7 @@
 								</vbox>
 								
 								<vbox>
-									<listbox id="listBoxRightSelected" checkmark="false" multiple="true" rows="5" autopaging="true" mold="paging"
-										model="@bind(vm.listModelListSelectedSecGrouprights)">
+									<listbox>
 										<listhead sizable="true">
 											<listheader label="Assigned Employees" sort="auto(rigName)" />
 										</listhead>

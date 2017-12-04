@@ -1,0 +1,71 @@
+<zk>
+	<window border="none" width="100%" vflex="true">
+		<borderlayout vflex="true">
+			<north>
+				<toolbar>
+					<button image="/images/icons/btn_edit.gif" label="Edit" onClick="@command('doSave')"/> 
+				</toolbar>
+			</north>
+			<center>
+				<grid>
+					<columns>
+						<column align="right" width="150px"/>
+						<column/>
+					</columns>
+					<rows>
+						<row>
+							<label value="Monday"/>
+							<combobox>
+								<comboitem label=""/>
+								<comboitem label=""/>
+							</combobox>
+						</row>
+						<row>
+							<label value="Tuesday"/>
+							<combobox>
+								<comboitem label=""/>
+								<comboitem label=""/>
+							</combobox>
+						</row>
+						<row>
+							<label value="Wednesday"/>
+							<combobox>
+								<comboitem label=""/>
+								<comboitem label=""/>
+							</combobox>
+						</row>
+						<row>
+							<label value="Thursday"/>
+							<combobox>
+								<comboitem label=""/>
+								<comboitem label=""/>
+							</combobox>
+						</row>
+						<row>
+							<label value="Friday"/>
+							<combobox>
+								<comboitem label=""/>
+								<comboitem label=""/>
+							</combobox>
+						</row>
+						<row>
+						<label value="Saturday"/>
+							<combobox>
+								<comboitem label=""/>
+								<comboitem label=""/>
+							</combobox>
+						</row>
+						<row>
+							<label value="Sunday"/>
+							<combobox>
+								<comboitem label=""/>
+								<comboitem label=""/>
+							</combobox>
+						</row>
+					</rows>
+				</grid>
+			</center>
+			<south/>
+		</borderlayout>
+	</window>
+</zk>

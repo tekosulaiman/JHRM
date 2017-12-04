@@ -48,8 +48,15 @@
 			<menuItem id="menu.item.pim.employee" iconName="" zulNavigation="/WEB-INF/pages/module_hr/transaction/employee/employeeList.zul" rightName="menu_Item_Employee" />
 		</menu>
 		
-		<menu id="menu.parent.leave" rightName="menu_Leave" >
-			<menuItem id="menu.item.leave" iconName="" zulNavigation="" rightName="menu_Item_Leave_Period" />
+		<menu id="menu.parent.leave" rightName="menu_Parent_Leave">
+			<menu id="menu.parent.leave.parameter" rightName="menu_Parent_Leave_Parameter">
+				<menuItem id="menu.item.leave.period" iconName="" zulNavigation="/WEB-INF/pages/module_hr/transaction/leave/leave_parameter/period/period.zul" rightName="menu_Item_Leave_Period" />
+				<menuItem id="menu.item.leave.type" iconName="" zulNavigation="/WEB-INF/pages/module_hr/transaction/leave/leave_parameter/type/typeList.zul" rightName="menu_Item_Leave_Type" />
+				<menuItem id="menu.item.leave.workweek" iconName="" zulNavigation="/WEB-INF/pages/module_hr/transaction/leave/leave_parameter/workweek/workWeek.zul" rightName="menu_Item_Leave_WorkWeek" />
+				<menuItem id="menu.item.leave.holiday" iconName="" zulNavigation="/WEB-INF/pages/module_hr/transaction/leave/leave_parameter/holiday/holidayList.zul" rightName="menu_Item_Leave_Holiday" />
+			</menu>
+			<menuItem id="menu.item.entitlement" iconName="" zulNavigation="/WEB-INF/pages/module_hr/transaction/leave/leave_entitlement/leaveEntitlementList.zul" rightName="menu_Leave_Entitlement" />
+			<menuItem id="menu.item.leave" iconName="" zulNavigation="/WEB-INF/pages/module_hr/transaction/leave/leave/leaveList.zul" rightName="menu_Item_Leave" />
 		</menu>
 		
 		<menu id="menu.parent.time" rightName="menu_Time">
