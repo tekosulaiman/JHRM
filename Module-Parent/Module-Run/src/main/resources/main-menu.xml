@@ -59,13 +59,18 @@
 			<menuItem id="menu.item.leave" iconName="" zulNavigation="/WEB-INF/pages/module_hr/transaction/leave/leave/leaveList.zul" rightName="menu_Item_Leave" />
 		</menu>
 		
-		<menu id="menu.parent.time" rightName="menu_Time">
-			<menuItem id="menu.item.time" iconName="" zulNavigation="" rightName="menu_Item_Define_Timesheet_Period" />
+		<menu id="menu.parent.attendance" rightName="menu_Parent_Attendance">
+			<menuItem id="menu.item.attendance.timesheet" iconName="" zulNavigation="/WEB-INF/pages/module_hr/transaction/attendance/timesheet/timeSheetList.zul" rightName="menu_Item_Attedance_Timesheet" />
+			<menuItem id="menu.item.attendance.employee.record" iconName="" zulNavigation="/WEB-INF/pages/module_hr/transaction/attendance/employee_record/employeeRecordList.zul" rightName="menu_Item_Attedance_Employee_Record" />
+			<menu id="menu.parent.attendance.project.info" rightName="menu_Parent_Attendance_Project_Info">
+				<menuItem id="menu.item.attendance.project.info.customer" iconName="" zulNavigation="/WEB-INF/pages/module_hr/transaction/attendance/project_info/customer/customerList.zul" rightName="menu_Item_Attendance_Project_Info_Customer" />
+				<menuItem id="menu.item.attendance.project.info.project" iconName="" zulNavigation="/WEB-INF/pages/module_hr/transaction/attendance/project_info/project/projectList.zul" rightName="menu_Item_Attendance_Project_Info_Project" />
+			</menu>
 		</menu>
 		
-		<menu id="menu.parent.recruitment" rightName="menu_Recruitment">
+		<menu id="menu.parent.recruitment" rightName="menu_Parent_Recruitment">
 			<menuItem id="menu.item.recruitment.candidate" iconName="" zulNavigation="/WEB-INF/pages/module_hr/transaction/recruitment/candidate/candidateList.zul" rightName="menu_Item_Candidates" />
-			<menuItem id="menu.item.recruitment.vacancy" iconName="" zulNavigation="/WEB-INF/pages/module_hr//transaction/recruitment/vacancy/vacancyList.zul" rightName="menu_Item_Vacancies" />
+			<menuItem id="menu.item.recruitment.vacancy" iconName="" zulNavigation="/WEB-INF/pages/module_hr/transaction/recruitment/vacancy/vacancyList.zul" rightName="menu_Item_Vacancies" />
 		</menu>
 	</menu>
 </XMLRootMenu>
