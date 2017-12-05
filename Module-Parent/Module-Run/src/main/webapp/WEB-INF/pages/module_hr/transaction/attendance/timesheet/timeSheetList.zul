@@ -24,12 +24,10 @@
 						<listheader width="10%" align="center"/>
 						<listheader label="Date"/>
 						<listheader label="Employee Name"/>
-						<listheader label="Leave Type"/>
-						<listheader label="Leave Balance (Days)"/>
-						<listheader label="Number of Days"/>
+						<listheader label="Project"/>
+						<listheader label="Activity"/>
+						<listheader label="Duration"/>
 						<listheader label="Status"/>
-						<listheader label="Comments"/>
-						<listheader label="Actions"/>
 					</listhead>
 				</listbox>
 			</center>

@@ -22,14 +22,13 @@
 				<listbox id="listBoxJobTitle">
 					<listhead sizable="true">
 						<listheader width="10%" align="center"/>
-						<listheader label="Date"/>
 						<listheader label="Employee Name"/>
-						<listheader label="Leave Type"/>
-						<listheader label="Leave Balance (Days)"/>
-						<listheader label="Number of Days"/>
-						<listheader label="Status"/>
-						<listheader label="Comments"/>
-						<listheader label="Actions"/>
+						<listheader label="In"/>
+						<listheader label="In Note"/>
+						<listheader label="Out"/>
+						<listheader label="Out Note"/>
+						<listheader label="Duration"/>
+						<listheader label="Total Hour"/>
 					</listhead>
 				</listbox>
 			</center>
