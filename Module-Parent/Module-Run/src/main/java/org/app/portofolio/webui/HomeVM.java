@@ -1,5 +1,7 @@
 package org.app.portofolio.webui;
 
+import org.app.portofolio.common.menu.dropdown.ZkossDropDownMenuFactory;
+import org.app.portofolio.common.menu.tree.ZkossTreeMenuFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.zkoss.bind.annotation.AfterCompose;
@@ -7,7 +9,6 @@ import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
 import org.zkoss.bind.annotation.ContextType;
 import org.zkoss.bind.annotation.ExecutionArgParam;
-import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.ComponentNotFoundException;
 import org.zkoss.zk.ui.Executions;
@@ -23,9 +24,6 @@ import org.zkoss.zul.Tabs;
 import org.zkoss.zul.Tree;
 import org.zkoss.zul.Treechildren;
 import org.zkoss.zul.Window;
-
-import org.app.portofolio.common.menu.dropdown.ZkossDropDownMenuFactory;
-import org.app.portofolio.common.menu.tree.ZkossTreeMenuFactory;
 
 /**
 *
@@ -67,12 +65,13 @@ public class HomeVM{
 		
 		Selectors.wireComponents(component, this, false);
 		
-		//createMenuTree();
-		createMenuBar();
+		createMenuTree();
+		//createMenuBar();
 		
 		/*as standard, call the dashboard page*/
 		try {
-			showPage("/WEB-INF/pages/dashboard.zul", "menu_Item_Home", Labels.getLabel("menu_Item_Home"));
+			//showPage("/WEB-INF/pages/dashboard.zul", "menu.home.dashboard", Labels.getLabel("menu.home.dashboard"));
+			showPage("", "", "");	
 		}catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -81,8 +80,6 @@ public class HomeVM{
 		object =  tabs;
 		
 		doGetZkVersion();
-		
-		//System.out.println("Chart >>>"+chartTest);
 	}
 
 	@Command
@@ -94,16 +91,13 @@ public class HomeVM{
 		final Treechildren treechildren = new Treechildren();
 		treeMenu.appendChild(treechildren);
 
-		System.out.println("generate the menu from the menuXMLFile");
 		ZkossTreeMenuFactory.addMainMenu(treechildren);
 	}
 	
 	public void createMenuBar(){
-		System.out.println("generate the menu from the menuXMLFile");
 		ZkossDropDownMenuFactory.addDropDownMenu(menubarMenu);
 	}
 	
-	@SuppressWarnings("null")
 	private void showPage(String zulFilePathName, String tabID, String tabLabel) throws InterruptedException {
 
 		try {
@@ -128,9 +122,10 @@ public class HomeVM{
 
 					if (tabLabel != null) {
 						tab.setLabel(tabLabel.trim());
-					} else {
+					} /*else {
 						tab.setLabel(tabLabel.trim());
-					}
+					}*/
+					
 					tab.setClosable(true);
 					tab.setParent(tabs);
 

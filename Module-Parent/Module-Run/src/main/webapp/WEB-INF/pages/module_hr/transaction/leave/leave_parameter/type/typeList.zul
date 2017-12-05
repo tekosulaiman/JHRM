@@ -23,6 +23,7 @@
 					<listhead sizable="true">
 						<listheader width="10%" align="center"/>
 						<listheader label="Leave Type"/>
+					</listhead>	
 				</listbox>
 			</center>
 			<south>

@@ -1,5 +1,5 @@
 <zk>
-	<window id="windowUserList" border="none" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.master.organization.location.LocationVM')" vflex="true">
+	<window id="windowLocationList" border="none" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.master.organization.location.LocationVM')" vflex="true">
 		<borderlayout vflex="true">
 			<north>
 				<div sclass="z-toolbar" style="padding:0">
