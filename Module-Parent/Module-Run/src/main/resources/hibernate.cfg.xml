@@ -13,9 +13,12 @@
 		<mapping class="org.module.hr.model.MstEducation"/>
 		<mapping class="org.module.hr.model.MstEmployementStatus"/>
 		<mapping class="org.module.hr.model.MstGeneralInformation"/>
+		<mapping class="org.module.hr.model.MstHoliday"/>
 		<mapping class="org.module.hr.model.MstJobCategory"/>
 		<mapping class="org.module.hr.model.MstJobtitle"/>
 		<mapping class="org.module.hr.model.MstLanguage"/>
+		<mapping class="org.module.hr.model.MstLeavePeriod"/>
+		<mapping class="org.module.hr.model.MstLeaveType"/>
 		<mapping class="org.module.hr.model.MstLicense"/>
 		<mapping class="org.module.hr.model.MstLocation"/>
 		<mapping class="org.module.hr.model.MstMembership"/>
@@ -24,6 +27,7 @@
 		<mapping class="org.module.hr.model.MstPaygradeCurrency"/>
 		<mapping class="org.module.hr.model.MstSkill"/>
 		<mapping class="org.module.hr.model.MstSubUnit"/>
+		<mapping class="org.module.hr.model.MstWorkWeek"/>
 		<mapping class="org.module.hr.model.TrsEmployee"/>
 		<mapping class="org.module.hr.model.TrsEmployeeDependent"/>
 		<mapping class="org.module.hr.model.TrsEmployeeEducation"/>
@@ -36,8 +40,10 @@
 		<mapping class="org.module.hr.model.TrsEmployeeReportto"/>
 		<mapping class="org.module.hr.model.TrsEmployeeSalary"/>
 		<mapping class="org.module.hr.model.TrsEmployeeSkill"/>
+		<mapping class="org.module.hr.model.TrsEntitlement"/>
 		<mapping class="org.module.hr.model.TrsJobCandidate"/>
 		<mapping class="org.module.hr.model.TrsJobCandidateVacancy"/>
 		<mapping class="org.module.hr.model.TrsJobVacancy"/>
+		<mapping class="org.module.hr.model.TrsLeave"/>
   	</session-factory>
 </hibernate-configuration>

@@ -111,8 +111,31 @@ public class TrsEmployee implements Serializable {
     @OneToMany(mappedBy = "idEmployeeSub")
     private List<TrsEmployeeReportto> trsEmployeeReporttoSubList;
     
+    @OneToMany(mappedBy = "idEmployee")
+    private List<TrsEntitlement> trsEntitlementList;
+    @OneToMany(mappedBy = "idEmployee")
+    private List<TrsLeave> trsLeaveList;
     
-    /*---------- Property For Job ----------*/
+    
+    
+    
+    public List<TrsEntitlement> getTrsEntitlementList() {
+		return trsEntitlementList;
+	}
+
+	public void setTrsEntitlementList(List<TrsEntitlement> trsEntitlementList) {
+		this.trsEntitlementList = trsEntitlementList;
+	}
+
+	public List<TrsLeave> getTrsLeaveList() {
+		return trsLeaveList;
+	}
+
+	public void setTrsLeaveList(List<TrsLeave> trsLeaveList) {
+		this.trsLeaveList = trsLeaveList;
+	}
+
+	/*---------- Property For Job ----------*/
     @JoinColumn(name = "id_job_category", referencedColumnName = "id_job_category")
     @ManyToOne
     private MstJobCategory idJobCategory;
