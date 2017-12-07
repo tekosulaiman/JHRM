@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package org.module.hr.model;
 
 import java.io.Serializable;
@@ -16,126 +10,141 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
- *
- * @author Tom
- */
+*
+* @author tekosulaiman@yahoo.com
+*/
 @Entity
 @Table(name = "trs_employee", catalog = "dbhr", schema = "schema_hr")
 public class TrsEmployee implements Serializable {
-    @Column(name = "first_name")
-    private String firstName;
-    @Column(name = "middle_name")
-    private String middleName;
-    @Column(name = "last_name")
-    private String lastName;
-    @OneToMany(mappedBy = "idEmployee")
-    private List<TrsJobVacancy> trsJobVacancyList;
-    private static final long serialVersionUID = 1L;
-    @Id
+	private static final long serialVersionUID = 1L;
+	
+	@Id
     @Basic(optional = false)
     @Column(name = "id_employee")
     private String idEmployee;
-    @OneToMany(mappedBy = "idEmployee")
-    private List<TrsEmployeeMembership> trsEmployeeMembershipList;
-    @OneToMany(mappedBy = "idEmployee")
-    private List<TrsEmployeeDependent> trsEmployeeDependentList;
-    @OneToMany(mappedBy = "idEmployee")
-    private List<TrsEmployeeExprience> trsEmployeeExprienceList;
-    @OneToMany(mappedBy = "idEmployee")
-    private List<TrsEmployeeLanguage> trsEmployeeLanguageList;
-    @OneToMany(mappedBy = "idEmployee")
-    private List<TrsEmployeeEducation> trsEmployeeEducationList;
-    @OneToMany(mappedBy = "idEmployee")
-    private List<TrsEmployeeLicense> trsEmployeeLicenseList;
-    @OneToMany(mappedBy = "idEmployee")
-    private List<TrsEmployeeEmergencyContact> trsEmployeeEmergencyContactList;
-    @OneToMany(mappedBy = "idEmployee")
-    private List<TrsEmployeeSkill> trsEmployeeSkillList;
-    @OneToMany(mappedBy = "idEmployee")
-    private List<TrsEmployeeImmigration> trsEmployeeImmigrationList;
-    @OneToMany(mappedBy = "idEmployee")
-    private List<TrsEmployeeSalary> trsEmployeeSalaryList;
-    @Column(name = "driver_license")
+	
+	@Column(name = "first_name")
+    private String firstName;
+    
+	@Column(name = "middle_name")
+    private String middleName;
+    
+	@Column(name = "last_name")
+    private String lastName;
+	
+	@Column(name = "driver_license")
     private String driverLicense;
-    @Column(name = "other_license")
+    
+	@Column(name = "other_license")
     private String otherLicense;
-    @Column(name = "expired_license")
+    
+	@Column(name = "expired_license")
     @Temporal(TemporalType.DATE)
     private Date expiredLicense;
-    @Column(name = "gender")
+    
+	@Column(name = "gender")
     private Boolean gender;
-    @Column(name = "dob")
+    
+	@Column(name = "dob")
     @Temporal(TemporalType.DATE)
     private Date dob;
-    @Column(name = "address_street1")
+    
+	@Column(name = "address_street1")
     private String addressStreet1;
-    @Column(name = "address_street2")
+    
+	@Column(name = "address_street2")
     private String addressStreet2;
-    @Column(name = "city")
+    
+	@Column(name = "city")
     private String city;
-    @Column(name = "province")
+    
+	@Column(name = "province")
     private String province;
-    @Column(name = "zip")
+    
+	@Column(name = "zip")
     private String zip;
-    @Column(name = "home_telephone")
+    
+	@Column(name = "home_telephone")
     private String homeTelephone;
-    @Column(name = "mobile")
+    
+	@Column(name = "mobile")
     private String mobile;
-    @Column(name = "work_telephone")
+    
+	@Column(name = "work_telephone")
     private String workTelephone;
-    @Column(name = "work_email")
+    
+	@Column(name = "work_email")
     private String workEmail;
-    @Column(name = "other_email")
+    
+	@Column(name = "other_email")
     private String otherEmail;
-    @Column(name = "marital_status")
+    
+	@Column(name = "marital_status")
     private Character maritalStatus;
-    @Column(name = "country")
+    
+	@Column(name = "country")
     private String country;
-   
-    @JoinColumn(name = "id_nationality", referencedColumnName = "id_nationality")
-    @ManyToOne
-    private MstNationality idNationality;
+	
+	@Column(name = "join_date")
+	@Temporal(TemporalType.DATE)
+	private Date joinDate;
+    
+	@OneToMany(mappedBy = "idEmployee")
+    private List<TrsJobVacancy> trsJobVacancyList;
+    
+    @OneToMany(mappedBy = "idEmployee")
+    private List<TrsEmployeeMembership> trsEmployeeMembershipList;
+    
+    @OneToMany(mappedBy = "idEmployee")
+    private List<TrsEmployeeDependent> trsEmployeeDependentList;
+    
+    @OneToMany(mappedBy = "idEmployee")
+    private List<TrsEmployeeExprience> trsEmployeeExprienceList;
+    
+    @OneToMany(mappedBy = "idEmployee")
+    private List<TrsEmployeeLanguage> trsEmployeeLanguageList;
+    
+    @OneToMany(mappedBy = "idEmployee")
+    private List<TrsEmployeeEducation> trsEmployeeEducationList;
+    
+    @OneToMany(mappedBy = "idEmployee")
+    private List<TrsEmployeeLicense> trsEmployeeLicenseList;
+    
+    @OneToMany(mappedBy = "idEmployee")
+    private List<TrsEmployeeEmergencyContact> trsEmployeeEmergencyContactList;
+    
+    @OneToMany(mappedBy = "idEmployee")
+    private List<TrsEmployeeSkill> trsEmployeeSkillList;
+    
+    @OneToMany(mappedBy = "idEmployee")
+    private List<TrsEmployeeImmigration> trsEmployeeImmigrationList;
+    
+    @OneToMany(mappedBy = "idEmployee")
+    private List<TrsEmployeeSalary> trsEmployeeSalaryList;
     
     @OneToMany(mappedBy = "idEmployeeSupervisor")
     private List<TrsEmployeeReportto> trsEmployeeReporttoSupervisorList;
+    
     @OneToMany(mappedBy = "idEmployeeSub")
     private List<TrsEmployeeReportto> trsEmployeeReporttoSubList;
     
     @OneToMany(mappedBy = "idEmployee")
     private List<TrsEntitlement> trsEntitlementList;
+    
     @OneToMany(mappedBy = "idEmployee")
     private List<TrsLeave> trsLeaveList;
     
+    @JoinColumn(name = "id_nationality", referencedColumnName = "id_nationality")
+    @ManyToOne
+    private MstNationality idNationality;
     
-    
-    
-    public List<TrsEntitlement> getTrsEntitlementList() {
-		return trsEntitlementList;
-	}
-
-	public void setTrsEntitlementList(List<TrsEntitlement> trsEntitlementList) {
-		this.trsEntitlementList = trsEntitlementList;
-	}
-
-	public List<TrsLeave> getTrsLeaveList() {
-		return trsLeaveList;
-	}
-
-	public void setTrsLeaveList(List<TrsLeave> trsLeaveList) {
-		this.trsLeaveList = trsLeaveList;
-	}
-
-	/*---------- Property For Job ----------*/
     @JoinColumn(name = "id_job_category", referencedColumnName = "id_job_category")
     @ManyToOne
     private MstJobCategory idJobCategory;
@@ -156,11 +165,21 @@ public class TrsEmployee implements Serializable {
     @ManyToOne
     private MstJobtitle idJobTitle;
     
-    @Column(name = "join_date")
-    @Temporal(TemporalType.DATE)
-    private Date joinDate;
-    
-    
+    public List<TrsEntitlement> getTrsEntitlementList() {
+		return trsEntitlementList;
+	}
+
+	public void setTrsEntitlementList(List<TrsEntitlement> trsEntitlementList) {
+		this.trsEntitlementList = trsEntitlementList;
+	}
+
+	public List<TrsLeave> getTrsLeaveList() {
+		return trsLeaveList;
+	}
+
+	public void setTrsLeaveList(List<TrsLeave> trsLeaveList) {
+		this.trsLeaveList = trsLeaveList;
+	}
 
     public TrsEmployee() {
     }
@@ -340,31 +359,6 @@ public class TrsEmployee implements Serializable {
 	public void setTrsEmployeeReporttoSubList(List<TrsEmployeeReportto> trsEmployeeReporttoSubList) {
 		this.trsEmployeeReporttoSubList = trsEmployeeReporttoSubList;
 	}
-
-	@Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idEmployee != null ? idEmployee.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TrsEmployee)) {
-            return false;
-        }
-        TrsEmployee other = (TrsEmployee) object;
-        if ((this.idEmployee == null && other.idEmployee != null) || (this.idEmployee != null && !this.idEmployee.equals(other.idEmployee))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.module.hr.model.TrsEmployee[ idEmployee=" + idEmployee + " ]";
-    }
 
     @XmlTransient
     public List<TrsJobVacancy> getTrsJobVacancyList() {
