@@ -1,10 +1,10 @@
 <zk>
 	<window id="windowEmployeeDetailDialog" title="Form Employee"
-		border="normal" width="60%" position="center,center" closable="true"
+		border="normal" width="60%" height="80%" position="center,center" closable="true"
 		maximizable="true" action="show: slideDown; hide: slideUp"
-		mode="modal" apply="org.zkoss.bind.BindComposer"
+		mode="modal" apply="org.zkoss.bind.BindComposer" sizable="true"
 		viewModel="@id('employee') @init('org.app.portofolio.webui.hr.transaction.employee.EmployeeDetailDialogVM')">
-		<borderlayout height="500px">
+		<borderlayout vflex="true">
 			<!-- Function CRUD -->
 			<north />
 			<west splittable="true" border="none" size="30%" collapsible="true">
@@ -96,15 +96,17 @@
 					</tree>
 					</div>
 			</west>
-			<center border="none">
-				<grid>
+			<center border="none" >
+				<grid height="100%">
 					<columns>
 						<column />
 					</columns>
-					<rows>
-						<row
+					<rows height="100%">
+						<row 
+							height="100%"
 							visible="@load(employee.isVisiblesFormPerssonalDetails)">
 							<include type="@load(employee.trsEmployee)"
+								height="100%"
 								src="@load('/WEB-INF/pages/module_hr/transaction/employee/tab_personal_detail/personalDetails.zul')" />
 						</row>
 						<row
