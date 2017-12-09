@@ -1,5 +1,6 @@
 <?page title="Menu"?>
 <?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?link rel="stylesheet" type="text/css" href="/css/test.css" ?>
 <zk>
 	<window id="mainMenuWindow" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.HomeVM')" vflex="true" hflex="true"
 		style="">

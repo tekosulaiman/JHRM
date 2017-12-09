@@ -1,12 +1,12 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
-	<window id="windowPersonalDetail" border="none" width="100%"
+	<window id="windowPersonalDetail" border="none" width="100%" sclass="jhrm-window-dialog"
 		apply="org.zkoss.bind.BindComposer"
 		viewModel="@id('vm') @init('org.app.portofolio.webui.hr.transaction.employee.PersonalDetail')"
 		validationMessages="@id('vmsgs')">
-		<borderlayout form="@id('form') @load(vm.trsEmployee) @save(vm.trsEmployee, before={'doSave'}) @validator(vm.formValidator)" height="500px">
-			<north size="100%" collapsible="true" autoscroll="true">
-				<div>
+		<borderlayout form="@id('form') @load(vm.trsEmployee) @save(vm.trsEmployee, before={'doSave'}) @validator(vm.formValidator)" >
+			<north vflex="true" collapsible="true" autoscroll="true">
+				<div vflex="true">
 					<groupbox mold="3d">
 						<caption
 							label="${labels.menu.employee.personal.details.title}" />
