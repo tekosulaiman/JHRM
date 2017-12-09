@@ -20,7 +20,7 @@
 				</borderlayout>
 			</north>
 	   
-	        <west title="Tree Menu"  width="20%" border="none" splittable="true" collapsible="true" open="true" autoscroll="true">
+	        <west title="Tree Menu"  width="20%" border="none" splittable="true" collapsible="true" open="false" autoscroll="true">
 	        	<panel width="100%" border="none">
 	                <panelchildren>
 	                	<tree id="treeMenu"/>
