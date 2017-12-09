@@ -10,6 +10,7 @@
     	<mapping class="org.module.sysadmin.model.SecUser"/>
     	<mapping class="org.module.sysadmin.model.SecUserrole"/>
 	    <mapping class="org.module.hr.model.MstCurrency"/>
+	    <mapping class="org.module.hr.model.MstCustomer"/>
 		<mapping class="org.module.hr.model.MstEducation"/>
 		<mapping class="org.module.hr.model.MstEmployementStatus"/>
 		<mapping class="org.module.hr.model.MstGeneralInformation"/>
@@ -25,9 +26,11 @@
 		<mapping class="org.module.hr.model.MstNationality"/>
 		<mapping class="org.module.hr.model.MstPaygrade"/>
 		<mapping class="org.module.hr.model.MstPaygradeCurrency"/>
+		<mapping class="org.module.hr.model.MstProject"/>
 		<mapping class="org.module.hr.model.MstSkill"/>
 		<mapping class="org.module.hr.model.MstSubUnit"/>
 		<mapping class="org.module.hr.model.MstWorkWeek"/>
+		<mapping class="org.module.hr.model.TrsAttendance"/>
 		<mapping class="org.module.hr.model.TrsEmployee"/>
 		<mapping class="org.module.hr.model.TrsEmployeeDependent"/>
 		<mapping class="org.module.hr.model.TrsEmployeeEducation"/>
