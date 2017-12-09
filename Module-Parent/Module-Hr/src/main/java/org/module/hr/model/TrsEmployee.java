@@ -141,6 +141,9 @@ public class TrsEmployee implements Serializable {
     @OneToMany(mappedBy = "idEmployee")
     private List<TrsLeave> trsLeaveList;
     
+    @OneToMany(mappedBy = "idEmployee")
+    private List<TrsAttendance> trsAttendanceList;
+    
     @JoinColumn(name = "id_nationality", referencedColumnName = "id_nationality")
     @ManyToOne
     private MstNationality idNationality;
@@ -528,4 +531,13 @@ public class TrsEmployee implements Serializable {
 	public void setCountry(String country) {
 		this.country = country;
 	}
+	
+	@XmlTransient
+    public List<TrsAttendance> getTrsAttendanceList() {
+        return trsAttendanceList;
+    }
+
+    public void setTrsAttendanceList(List<TrsAttendance> trsAttendanceList) {
+        this.trsAttendanceList = trsAttendanceList;
+    }
 }
