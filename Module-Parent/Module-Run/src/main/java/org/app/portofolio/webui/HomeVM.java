@@ -65,8 +65,8 @@ public class HomeVM{
 		
 		Selectors.wireComponents(component, this, false);
 		
-		createMenuTree();
-		//createMenuBar();
+		//createMenuTree();
+		createMenuBar();
 		
 		/*as standard, call the dashboard page*/
 		try {

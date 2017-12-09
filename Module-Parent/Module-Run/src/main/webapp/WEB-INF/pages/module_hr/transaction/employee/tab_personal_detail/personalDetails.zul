@@ -4,6 +4,7 @@
 		apply="org.zkoss.bind.BindComposer"
 		viewModel="@id('vm') @init('org.app.portofolio.webui.hr.transaction.employee.PersonalDetail')"
 		validationMessages="@id('vmsgs')">
+<<<<<<< HEAD
 		<groupbox mold="3d">
 			<caption
 				label="${labels.menu.employee.personal.details.title}" />
@@ -27,6 +28,14 @@
 				</north>
 				<center border="none"
 					autoscroll="true">
+=======
+		<borderlayout form="@id('form') @load(vm.trsEmployee) @save(vm.trsEmployee, before={'doSave'}) @validator(vm.formValidator)" >
+			<north vflex="true" collapsible="true" autoscroll="true">
+				<div vflex="true">
+					<groupbox mold="3d">
+						<caption
+							label="${labels.menu.employee.personal.details.title}" />
+>>>>>>> branch 'master' of https://github.com/sugarpramana/JHRM.git
 						<grid>
 							<columns>
 								<column width="25%" />

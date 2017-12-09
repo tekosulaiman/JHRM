@@ -1,5 +1,6 @@
 <?page title="Menu"?>
 <?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?link rel="stylesheet" type="text/css" href="/css/test.css" ?>
 <zk>
 	<window id="mainMenuWindow" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.HomeVM')" vflex="true" hflex="true"
 		style="">
@@ -19,7 +20,7 @@
 				</borderlayout>
 			</north>
 	   
-	        <west title="Tree Menu"  width="20%" border="none" splittable="true" collapsible="true" open="true" autoscroll="true">
+	        <west title="Tree Menu"  width="20%" border="none" splittable="true" collapsible="true" open="false" autoscroll="true">
 	        	<panel width="100%" border="none">
 	                <panelchildren>
 	                	<tree id="treeMenu"/>
