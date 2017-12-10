@@ -88,7 +88,7 @@ public class EmergencyContact {
 								employeeService.delete(trsEmployeeEmergencyContact);
 							}
 						}
-						BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
+						BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmergencyContact", null);
 					} else {
 						return;
 					}

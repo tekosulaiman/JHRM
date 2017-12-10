@@ -10,6 +10,7 @@ import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
 import org.zkoss.bind.annotation.ContextType;
 import org.zkoss.bind.annotation.ExecutionArgParam;
+import org.zkoss.bind.annotation.ImmutableFields;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
@@ -48,9 +49,10 @@ public class ImmigrationDialog {
 		} else {
 			employeeService.update(trsEmployeeImmigration);
 		}
-		BindUtils.postGlobalCommand(null, null, "updateTrsEmployeeImmigration", null);
+		BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmployeeImmigration", null);
 	}
 
+	@ImmutableFields
 	public TrsEmployeeImmigration getTrsEmployeeImmigration() {
 		return trsEmployeeImmigration;
 	}

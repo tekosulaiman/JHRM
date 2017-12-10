@@ -28,8 +28,8 @@ import org.zkoss.zul.Textbox;
 public class EmployeeLicenseListItemRenderer implements ListitemRenderer<TrsEmployeeLicense>{
 
 	private EmployeeService employeeService = (EmployeeService) SpringUtil.getBean("employeeService");
-	private QualificationService masterQualificationService = (QualificationService) SpringUtil
-			.getBean("masterQualificationService");
+	private QualificationService qualificationService = (QualificationService) SpringUtil
+			.getBean("qualificationService");
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
@@ -88,7 +88,7 @@ public class EmployeeLicenseListItemRenderer implements ListitemRenderer<TrsEmpl
 		if (trsEmployeeLicense.getIdEmployeeLicense() == null){
 			buttonEdit.setVisible(false);
 			buttonDelete.setVisible(false);
-			comboboxLicenseType.setModel(new ListModelList<MstLicense>(masterQualificationService.getAllMstLicense()));
+			comboboxLicenseType.setModel(new ListModelList<MstLicense>(qualificationService.getAllMstLicense()));
 			comboboxLicenseType.setItemRenderer(new ComboitemRenderer<MstLicense>() {
 
 				@Override
@@ -127,7 +127,7 @@ public class EmployeeLicenseListItemRenderer implements ListitemRenderer<TrsEmpl
 				} else {
 					employeeService.update(trsEmployeeLicense);
 				}
-				 BindUtils.postGlobalCommand(null, null, "updateTrsEmployeeLicense", null);
+				 BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmployeeLicense", null);
 			}
 		});
 		
@@ -149,7 +149,7 @@ public class EmployeeLicenseListItemRenderer implements ListitemRenderer<TrsEmpl
 				labelLicenseNumber.setVisible(false);
 				labelLicensetype.setVisible(false);
 				
-				comboboxLicenseType.setModel(new ListModelList<MstLicense>(masterQualificationService.getAllMstLicense()));
+				comboboxLicenseType.setModel(new ListModelList<MstLicense>(qualificationService.getAllMstLicense()));
 				comboboxLicenseType.setItemRenderer(new ComboitemRenderer<MstLicense>() {
 
 					@Override
@@ -176,7 +176,7 @@ public class EmployeeLicenseListItemRenderer implements ListitemRenderer<TrsEmpl
 
 									employeeService.delete(trsEmployeeLicense);
 
-									BindUtils.postGlobalCommand(null, null, "updateTrsEmployeeLicense", null);
+									BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmployeeLicense", null);
 								} else {
 									return;
 								}
@@ -188,7 +188,7 @@ public class EmployeeLicenseListItemRenderer implements ListitemRenderer<TrsEmpl
 		buttonCancel.addEventListener(Events.ON_CLICK, new EventListener() {
 			@Override
 			public void onEvent(Event event) throws Exception {
-				BindUtils.postGlobalCommand(null, null, "updateTrsEmployeeLicense", null);
+				BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmployeeLicense", null);
 			}
 		});
 	}

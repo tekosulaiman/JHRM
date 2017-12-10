@@ -116,7 +116,7 @@ public class DependentListItemRenderer implements ListitemRenderer<TrsEmployeeDe
 
 				employeeService.save(trsEmployeeDependent);
 				
-				BindUtils.postGlobalCommand(null, null, "updateTrsEmployeeDependent", null);
+				BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmployeeDependent", null);
 			}else{
 				Comboitem model = comboboxRelationshipType.getSelectedItem();
 				RelationshipType RelationshipType = (RelationshipType) model.getAttribute("data");
@@ -127,7 +127,7 @@ public class DependentListItemRenderer implements ListitemRenderer<TrsEmployeeDe
 
 				employeeService.update(trsEmployeeDependent);
 				
-				BindUtils.postGlobalCommand(null, null, "updateTrsEmployeeDependent", null);
+				BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmployeeDependent", null);
 			}
 		}
 	});
@@ -166,7 +166,7 @@ public class DependentListItemRenderer implements ListitemRenderer<TrsEmployeeDe
 
 			 			employeeService.delete(trsEmployeeDependent);
 			 			
-			 			BindUtils.postGlobalCommand(null, null, "updateTrsEmployeeDependent", null);
+			 			BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmployeeDependent", null);
 			 		}else{
 			 			return;
 			 		}
@@ -178,7 +178,7 @@ public class DependentListItemRenderer implements ListitemRenderer<TrsEmployeeDe
 	buttonCancel.addEventListener(Events.ON_CLICK, new EventListener() {
 		@Override
 		public void onEvent(Event event) throws Exception {
-			BindUtils.postGlobalCommand(null, null, "updateTrsEmployeeDependent", null);
+			BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmployeeDependent", null);
 		}
 	});
 	}

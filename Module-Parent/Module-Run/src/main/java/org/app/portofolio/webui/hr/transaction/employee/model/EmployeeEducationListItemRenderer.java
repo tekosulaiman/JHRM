@@ -31,8 +31,8 @@ public class EmployeeEducationListItemRenderer implements ListitemRenderer<TrsEm
 
 	private EmployeeService employeeService = (EmployeeService) SpringUtil.getBean("employeeService");
 
-	private QualificationService masterQualificationService = (QualificationService) SpringUtil
-			.getBean("masterQualificationService");
+	private QualificationService qualificationService = (QualificationService) SpringUtil
+			.getBean("qualificationService");
 
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -114,7 +114,7 @@ public class EmployeeEducationListItemRenderer implements ListitemRenderer<TrsEm
 			buttonEdit.setVisible(false);
 			buttonDelete.setVisible(false);
 
-			comboboxLevel.setModel(new ListModelList<MstEducation>(masterQualificationService.getAllMstEducation()));
+			comboboxLevel.setModel(new ListModelList<MstEducation>(qualificationService.getAllMstEducation()));
 			comboboxLevel.setItemRenderer(new ComboitemRenderer<MstEducation>() {
 
 				@Override
@@ -169,7 +169,7 @@ public class EmployeeEducationListItemRenderer implements ListitemRenderer<TrsEm
 
 					employeeService.save(trsEmployeeEducation);
 
-					BindUtils.postGlobalCommand(null, null, "updateTrsEmployeeEducation", null);
+					BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmployeeEducation", null);
 				} else {
 					
 					trsEmployeeEducation.setIdEducation((MstEducation) comboboxLevel.getSelectedItem().getAttribute("data"));
@@ -182,7 +182,7 @@ public class EmployeeEducationListItemRenderer implements ListitemRenderer<TrsEm
 
 					employeeService.update(trsEmployeeEducation);
 
-					BindUtils.postGlobalCommand(null, null, "updateTrsEmployeeEducation", null);
+					BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmployeeEducation", null);
 				}
 			}
 		});
@@ -209,7 +209,7 @@ public class EmployeeEducationListItemRenderer implements ListitemRenderer<TrsEm
 				labelStartDate.setVisible(false);
 				labelEndDate.setVisible(false);
 				
-				comboboxLevel.setModel(new ListModelList<MstEducation>(masterQualificationService.getAllMstEducation()));
+				comboboxLevel.setModel(new ListModelList<MstEducation>(qualificationService.getAllMstEducation()));
 				comboboxLevel.setItemRenderer(new ComboitemRenderer<MstEducation>() {
 
 					@Override
@@ -241,7 +241,7 @@ public class EmployeeEducationListItemRenderer implements ListitemRenderer<TrsEm
 
 									employeeService.delete(trsEmployeeEducation);
 
-									BindUtils.postGlobalCommand(null, null, "updateTrsEmployeeEducation", null);
+									BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmployeeEducation", null);
 								} else {
 									return;
 								}
@@ -253,7 +253,7 @@ public class EmployeeEducationListItemRenderer implements ListitemRenderer<TrsEm
 		buttonCancel.addEventListener(Events.ON_CLICK, new EventListener() {
 			@Override
 			public void onEvent(Event event) throws Exception {
-				BindUtils.postGlobalCommand(null, null, "updateTrsEmployeeEducation", null);
+				BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmployeeEducation", null);
 			}
 		});
 	}

@@ -70,9 +70,6 @@ public class PersonalDetail {
 	@WireVariable
 	private EmployeeService employeeService;
 	
-//	@Wire("#comboBoxNationality")
-//	private Combobox comboBoxNationality;
-	
 	@Wire("#comboBoxMaritalStatus")
 	private Combobox comboBoxMaritalStatus;
 	
@@ -82,7 +79,6 @@ public class PersonalDetail {
 	private TrsEmployee trsEmployee;
 	private MaritalStatusType selectedMaritalStatus;
 	private List<MaritalStatusType> maritalStatusTypes;
-//	private List<MstNationality> mstNationalities;
 	private Boolean isEdit;
 	private ModalAction action;
 	
@@ -109,15 +105,6 @@ public class PersonalDetail {
 		
 		formDetailCondition();
 		
-		// Dummy nationality
-//		mstNationalities = new ArrayList<MstNationality>();
-//		MstNationality mstNationality = null;
-//		for (int i = 0; i < 5; i++) {
-//			mstNationality = new MstNationality();
-//			mstNationality.setIdNationality(0);
-//			mstNationality.setNameNationality("Nationality ke "+i);
-//			mstNationalities.add(mstNationality);
-//		}
 	}
 	
 	/**
@@ -216,14 +203,6 @@ public class PersonalDetail {
 	public void setFormValidator(TrsEmployeePersonalDetailFormValidator formValidator) {
 		this.formValidator = formValidator;
 	}
-
-//	public List<MstNationality> getMstNationalities() {
-//		return mstNationalities;
-//	}
-//
-//	public void setMstNationalities(List<MstNationality> mstNationalities) {
-//		this.mstNationalities = mstNationalities;
-//	}
 
 	public MaritalStatusType getMaritalStatusType() {
 		return maritalStatusType;

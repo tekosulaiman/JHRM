@@ -130,7 +130,7 @@ public class EmployeeExperienceListItemRenderer implements ListitemRenderer<TrsE
 					
 					employeeService.save(trsEmployeeExprience);
 
-					BindUtils.postGlobalCommand(null, null, "updateTrsEmployeeExprience", null);
+					BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmployeeExprience", null);
 				} else {
 					trsEmployeeExprience.setCompany(textboxCompany.getValue());
 					trsEmployeeExprience.setJobTitle(textboxJobTitle.getValue());
@@ -140,7 +140,7 @@ public class EmployeeExperienceListItemRenderer implements ListitemRenderer<TrsE
 					
 					employeeService.update(trsEmployeeExprience);
 
-					BindUtils.postGlobalCommand(null, null, "updatetrsEmployeeExprience", null);
+					BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmployeeExprience", null);
 				}
 			}
 		});
@@ -182,7 +182,7 @@ public class EmployeeExperienceListItemRenderer implements ListitemRenderer<TrsE
 
 									employeeService.delete(trsEmployeeExprience);
 
-									BindUtils.postGlobalCommand(null, null, "updateTrsEmployeeExprience", null);
+									BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmployeeExprience", null);
 								} else {
 									return;
 								}
@@ -194,7 +194,7 @@ public class EmployeeExperienceListItemRenderer implements ListitemRenderer<TrsE
 		buttonCancel.addEventListener(Events.ON_CLICK, new EventListener() {
 			@Override
 			public void onEvent(Event event) throws Exception {
-				BindUtils.postGlobalCommand(null, null, "updateTrsEmployeeExprience", null);
+				BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmployeeExprience", null);
 			}
 		});
 	}

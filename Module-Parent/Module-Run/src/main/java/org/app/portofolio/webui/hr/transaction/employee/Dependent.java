@@ -74,10 +74,35 @@ public class Dependent {
 		listModelList.add(0,  trsEmployeeDependent);		
 	}
 	
+	@Command
+	public void doDelete(){
+		final ListModelList<TrsEmployeeDependent> listModelListEmployeeDependent = (ListModelList) ListBoxDependent.getModel();
+		if (ListBoxDependent.getSelectedIndex() == -1){
+			Messagebox.show("There is no selected record?", "Confirm", Messagebox.OK, Messagebox.ERROR);
+		} else {
+			Messagebox.show("Do you really want to remove item?", "Confirm", Messagebox.OK | Messagebox.CANCEL, Messagebox.EXCLAMATION, new EventListener<Event>() {
+				
+				@Override
+				public void onEvent(Event event) throws Exception {
+					if (((Integer)event.getData()).intValue() == Messagebox.OK){
+						for (TrsEmployeeDependent trsEmployeeDependent : listModelListEmployeeDependent) {
+							if (listModelListEmployeeDependent.isSelected(trsEmployeeDependent)){
+								employeeService.delete(trsEmployeeDependent);
+							}
+						}
+						BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmployeeDependent", null);
+					} else {
+						return;
+					}
+				}
+			});
+		}
+	}
+	
 	
 	@GlobalCommand
 	@NotifyChange("trsEmployeeDependents")
-	public void updateTrsEmployeeDependent(){
+	public void refreshAfterSaveOrUpdateEmployeeDependent(){
 		HashMap< String, Object> requestMap = new HashMap<>();
 		requestMap.put("trsEmployee", trsEmployee);
 		trsEmployeeDependents = employeeService.getTrsEmployeeDependentByTrsEmployeeDependentRequestMap(requestMap);

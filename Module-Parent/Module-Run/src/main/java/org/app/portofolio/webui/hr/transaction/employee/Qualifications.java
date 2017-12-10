@@ -10,11 +10,13 @@ import org.app.portofolio.webui.hr.transaction.employee.model.EmployeeLicenseLis
 import org.app.portofolio.webui.hr.transaction.employee.model.EmployeeSkillListItemRenderer;
 import org.module.hr.model.TrsEmployee;
 import org.module.hr.model.TrsEmployeeEducation;
+import org.module.hr.model.TrsEmployeeEmergencyContact;
 import org.module.hr.model.TrsEmployeeExprience;
 import org.module.hr.model.TrsEmployeeLanguage;
 import org.module.hr.model.TrsEmployeeLicense;
 import org.module.hr.model.TrsEmployeeSkill;
 import org.module.hr.service.EmployeeService;
+import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
@@ -23,11 +25,14 @@ import org.zkoss.bind.annotation.ExecutionArgParam;
 import org.zkoss.bind.annotation.GlobalCommand;
 import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
+import org.zkoss.zul.Messagebox;
 
 public class Qualifications {
 	
@@ -140,6 +145,8 @@ public class Qualifications {
 		doPrepareList();
 	}
 	
+	/* ---------- Experience ---------- */
+	
 	@Command
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void doNewExperience(){
@@ -148,6 +155,42 @@ public class Qualifications {
 		trsEmployeeExprience.setIdEmployee(trsEmployee);
 		listModelList.add(0,  trsEmployeeExprience);
 	}
+	
+	@Command
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public void doDeleteExperience(){
+		final ListModelList<TrsEmployeeExprience> listModelListExpriences = (ListModelList) listEmployeeExperience.getModel();
+		if (listEmployeeExperience.getSelectedIndex() == -1){
+			Messagebox.show("There is no selected record?", "Confirm", Messagebox.OK, Messagebox.ERROR);
+		} else {
+			Messagebox.show("Do you really want to remove item?", "Confirm", Messagebox.OK | Messagebox.CANCEL, Messagebox.EXCLAMATION, new EventListener<Event>() {
+				
+				@Override
+				public void onEvent(Event event) throws Exception {
+					if (((Integer)event.getData()).intValue() == Messagebox.OK){
+						for (TrsEmployeeExprience trsEmployeeExprience : listModelListExpriences) {
+							if (listModelListExpriences.isSelected(trsEmployeeExprience)){
+								employeeService.delete(trsEmployeeExprience);
+							}
+						}
+						BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmployeeExprience", null);
+					} else {
+						return;
+					}
+				}
+			});
+		}
+	}
+	
+	@GlobalCommand
+	@NotifyChange("employeeExpriences")
+	public void refreshAfterSaveOrUpdateEmployeeExprience(){
+		HashMap<String, Object> requestMap = new HashMap<>();
+		requestMap.put("trsEmployee", trsEmployee);
+		employeeExpriences = employeeService.getTrsEmployeeExprienceByTrsEmployeeExprienceRequestMap(requestMap);
+	}
+	
+	/* ---------- Education ---------- */
 	
 	@Command
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -160,6 +203,41 @@ public class Qualifications {
 	
 	@Command
 	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public void doDeleteEducation(){
+		final ListModelList<TrsEmployeeEducation> listModelListEducations = (ListModelList) listEmployeeEducation.getModel();
+		if (listEmployeeEducation.getSelectedIndex() == -1){
+			Messagebox.show("There is no selected record?", "Confirm", Messagebox.OK, Messagebox.ERROR);
+		} else {
+			Messagebox.show("Do you really want to remove item?", "Confirm", Messagebox.OK | Messagebox.CANCEL, Messagebox.EXCLAMATION, new EventListener<Event>() {
+				
+				@Override
+				public void onEvent(Event event) throws Exception {
+					if (((Integer)event.getData()).intValue() == Messagebox.OK){
+						for (TrsEmployeeEducation trsEmployeeEducation : listModelListEducations) {
+							if (listModelListEducations.isSelected(trsEmployeeEducation)){
+								employeeService.delete(trsEmployeeEducation);
+							}
+						}
+						BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmployeeEducation", null);
+					} else {
+						return;
+					}
+				}
+			});
+		}
+	}
+	
+	@GlobalCommand
+	@NotifyChange("employeeEducations")
+	public void refreshAfterSaveOrUpdateEmployeeEducation(){
+		HashMap<String, Object> requestMap = new HashMap<>();
+		requestMap.put("trsEmployee", trsEmployee);
+		employeeEducations = employeeService.getTrsEmployeeEducationByTrsEmployeeEducationRequestMap(requestMap);
+	}
+	
+	/* ---------- Skill ---------- */
+	@Command
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void doNewSkill(){
 		ListModelList listModelList = (ListModelList) listEmployeeSkill.getModel();
 		TrsEmployeeSkill trsEmployeeSkill = new TrsEmployeeSkill();
@@ -167,6 +245,41 @@ public class Qualifications {
 		listModelList.add(0, trsEmployeeSkill);
 	}
 	
+	@Command
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public void doDeleteSkill(){
+		final ListModelList<TrsEmployeeSkill> listModelListSkills = (ListModelList) listEmployeeSkill.getModel();
+		if (listEmployeeSkill.getSelectedIndex() == -1){
+			Messagebox.show("There is no selected record?", "Confirm", Messagebox.OK, Messagebox.ERROR);
+		} else {
+			Messagebox.show("Do you really want to remove item?", "Confirm", Messagebox.OK | Messagebox.CANCEL, Messagebox.EXCLAMATION, new EventListener<Event>() {
+				
+				@Override
+				public void onEvent(Event event) throws Exception {
+					if (((Integer)event.getData()).intValue() == Messagebox.OK){
+						for (TrsEmployeeSkill trsEmployeeSkill : listModelListSkills) {
+							if (listModelListSkills.isSelected(trsEmployeeSkill)){
+								employeeService.delete(trsEmployeeSkill);
+							}
+						}
+						BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmployeeSkill", null);
+					} else {
+						return;
+					}
+				}
+			});
+		}
+	}
+	
+	@GlobalCommand
+	@NotifyChange("employeeSkills")
+	public void refreshAfterSaveOrUpdateEmployeeSkill(){
+		HashMap<String, Object> requestMap = new HashMap<>();
+		requestMap.put("trsEmployee", trsEmployee);
+		employeeSkills = employeeService.getTrsEmployeeSkillByTrsEmployeeSkillRequestMap(requestMap);
+	}
+	
+	/* ---------- Language ---------- */
 	@Command
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void doNewLanguage(){
@@ -178,6 +291,43 @@ public class Qualifications {
 	
 	@Command
 	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public void doDeleteLanguage(){
+		final ListModelList<TrsEmployeeLanguage> listModelListLanguages = (ListModelList) listEmployeeLanguage.getModel();
+		if (listEmployeeLanguage.getSelectedIndex() == -1){
+			Messagebox.show("There is no selected record?", "Confirm", Messagebox.OK, Messagebox.ERROR);
+		} else {
+			Messagebox.show("Do you really want to remove item?", "Confirm", Messagebox.OK | Messagebox.CANCEL, Messagebox.EXCLAMATION, new EventListener<Event>() {
+				
+				@Override
+				public void onEvent(Event event) throws Exception {
+					if (((Integer)event.getData()).intValue() == Messagebox.OK){
+						for (TrsEmployeeLanguage trsEmployeeLanguage : listModelListLanguages) {
+							if (listModelListLanguages.isSelected(trsEmployeeLanguage)){
+								employeeService.delete(trsEmployeeLanguage);
+							}
+						}
+						BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmployeeLanguage", null);
+					} else {
+						return;
+					}
+				}
+			});
+		}
+	}
+	
+	@GlobalCommand
+	@NotifyChange("employeeLanguages")
+	public void refreshAfterSaveOrUpdateEmployeeLanguage(){
+		HashMap<String, Object> requestMap = new HashMap<>();
+		requestMap.put("trsEmployee", trsEmployee);
+		employeeLanguages = employeeService.getTrsEmployeeLanguageByTrsEmployeeLanguageRequestMap(requestMap);
+	}
+	
+	
+	/* ---------- License ---------- */
+	
+	@Command
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void doNewLicense(){
 		ListModelList listModelList = (ListModelList) listEmployeeLicense.getModel();
 		TrsEmployeeLicense trsEmployeeLicense = new TrsEmployeeLicense();
@@ -185,45 +335,41 @@ public class Qualifications {
 		listModelList.add(0, trsEmployeeLicense);
 	}
 	
-	@GlobalCommand
-	@NotifyChange("employeeExpriences")
-	public void updateTrsEmployeeExprience(){
-		HashMap< String, Object> requestMap = new HashMap<>();
-		requestMap.put("trsEmployee", trsEmployee);
-		employeeExpriences = employeeService.getTrsEmployeeExprienceByTrsEmployeeExprienceRequestMap(requestMap);
-	}
-	
-	@GlobalCommand
-	@NotifyChange("employeeEducations")
-	public void updateTrsEmployeeEducation(){
-		HashMap< String, Object> requestMap = new HashMap<>();
-		requestMap.put("trsEmployee", trsEmployee);
-		employeeEducations = employeeService.getTrsEmployeeEducationByTrsEmployeeEducationRequestMap(requestMap);
-	}
-	
-	@GlobalCommand
-	@NotifyChange("employeeSkills")
-	public void updateTrsEmployeeSkill(){
-		HashMap< String, Object> requestMap = new HashMap<>();
-		requestMap.put("trsEmployee", trsEmployee);
-		employeeSkills = employeeService.getTrsEmployeeSkillByTrsEmployeeSkillRequestMap(requestMap);
-	}
-	
-	@GlobalCommand
-	@NotifyChange("employeeLanguages")
-	public void updateTrsEmployeeLanguage(){
-		HashMap< String, Object> requestMap = new HashMap<>();
-		requestMap.put("trsEmployee", trsEmployee);
-		employeeLanguages = employeeService.getTrsEmployeeLanguageByTrsEmployeeLanguageRequestMap(requestMap);
+	@Command
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public void doDeleteLicense(){
+		final ListModelList<TrsEmployeeLicense> listModelListLicenses = (ListModelList) listEmployeeLicense.getModel();
+		if (listEmployeeLicense.getSelectedIndex() == -1){
+			Messagebox.show("There is no selected record?", "Confirm", Messagebox.OK, Messagebox.ERROR);
+		} else {
+			Messagebox.show("Do you really want to remove item?", "Confirm", Messagebox.OK | Messagebox.CANCEL, Messagebox.EXCLAMATION, new EventListener<Event>() {
+				
+				@Override
+				public void onEvent(Event event) throws Exception {
+					if (((Integer)event.getData()).intValue() == Messagebox.OK){
+						for (TrsEmployeeLicense trsEmployeeLicense : listModelListLicenses) {
+							if (listModelListLicenses.isSelected(trsEmployeeLicense)){
+								employeeService.delete(trsEmployeeLicense);
+							}
+						}
+						BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmployeeLicense", null);
+					} else {
+						return;
+					}
+				}
+			});
+		}
 	}
 	
 	@GlobalCommand
 	@NotifyChange("employeeLicenses")
-	public void updateTrsEmployeeLicense(){
-		HashMap< String, Object> requestMap = new HashMap<>();
+	public void refreshAfterSaveOrUpdateEmployeeLicense(){
+		HashMap<String, Object> requestMap = new HashMap<>();
 		requestMap.put("trsEmployee", trsEmployee);
 		employeeLicenses= employeeService.getTrsEmployeeLicenseByTrsEmployeeLicenseRequestMap(requestMap);
 	}
+	
+	/* ---------- setter getter ---------- */
 
 	public Listbox getListEmployeeExperience() {
 		return listEmployeeExperience;

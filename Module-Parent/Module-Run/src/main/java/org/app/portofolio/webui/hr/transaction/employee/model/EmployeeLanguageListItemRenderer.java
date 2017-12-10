@@ -28,8 +28,8 @@ public class EmployeeLanguageListItemRenderer implements ListitemRenderer<TrsEmp
 
 	private EmployeeService employeeService = (EmployeeService) SpringUtil.getBean("employeeService");
 
-	private QualificationService masterQualificationService = (QualificationService) SpringUtil
-			.getBean("masterQualificationService");
+	private QualificationService qualificationService = (QualificationService) SpringUtil
+			.getBean("qualificationService");
 
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -91,7 +91,7 @@ public class EmployeeLanguageListItemRenderer implements ListitemRenderer<TrsEmp
 			buttonEdit.setVisible(false);
 			buttonDelete.setVisible(false);
 
-			comboboxLanguage.setModel(new ListModelList<MstLanguage>(masterQualificationService.getAllMstLanguage()));
+			comboboxLanguage.setModel(new ListModelList<MstLanguage>(qualificationService.getAllMstLanguage()));
 			comboboxLanguage.setItemRenderer(new ComboitemRenderer<MstLanguage>() {
 
 				@Override
@@ -160,11 +160,11 @@ public class EmployeeLanguageListItemRenderer implements ListitemRenderer<TrsEmp
 				if (trsEmployeeLanguage.getIdEmployeeLanguage() == null) {
 
 					 employeeService.save(trsEmployeeLanguage);
-					 BindUtils.postGlobalCommand(null, null, "updateTrsEmployeeLanguage", null);
+					 BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmployeeLanguage", null);
 				} else {
 
 					 employeeService.save(trsEmployeeLanguage);
-					 BindUtils.postGlobalCommand(null, null, "updateTrsEmployeeLanguage", null);
+					 BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmployeeLanguage", null);
 				}
 			}
 		});
@@ -184,7 +184,7 @@ public class EmployeeLanguageListItemRenderer implements ListitemRenderer<TrsEmp
 				labelFluency.setVisible(false);
 				labelLanguage.setVisible(false);
 				
-				comboboxLanguage.setModel(new ListModelList<MstLanguage>(masterQualificationService.getAllMstLanguage()));
+				comboboxLanguage.setModel(new ListModelList<MstLanguage>(qualificationService.getAllMstLanguage()));
 				comboboxLanguage.setItemRenderer(new ComboitemRenderer<MstLanguage>() {
 					@Override
 					public void render(Comboitem item, MstLanguage mstLanguage, int index) throws Exception {
@@ -235,7 +235,7 @@ public class EmployeeLanguageListItemRenderer implements ListitemRenderer<TrsEmp
 
 									employeeService.delete(trsEmployeeLanguage);
 
-									BindUtils.postGlobalCommand(null, null, "updateTrsEmployeeLanguage", null);
+									BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmployeeLanguage", null);
 								} else {
 									return;
 								}
@@ -247,7 +247,7 @@ public class EmployeeLanguageListItemRenderer implements ListitemRenderer<TrsEmp
 		buttonCancel.addEventListener(Events.ON_CLICK, new EventListener() {
 			@Override
 			public void onEvent(Event event) throws Exception {
-				BindUtils.postGlobalCommand(null, null, "updateTrsEmployeeLanguage", null);
+				BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmployeeLanguage", null);
 			}
 		});
 	}

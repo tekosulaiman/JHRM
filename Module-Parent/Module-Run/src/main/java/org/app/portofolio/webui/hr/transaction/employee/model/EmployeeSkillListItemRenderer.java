@@ -29,7 +29,7 @@ public class EmployeeSkillListItemRenderer implements ListitemRenderer<TrsEmploy
 	
 	private EmployeeService employeeService = (EmployeeService) SpringUtil.getBean("employeeService");
 
-	private QualificationService masterQualificationService = (QualificationService) SpringUtil.getBean("masterQualificationService");
+	private QualificationService qualificationService = (QualificationService) SpringUtil.getBean("qualificationService");
 		
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -84,7 +84,7 @@ public class EmployeeSkillListItemRenderer implements ListitemRenderer<TrsEmploy
 			buttonEdit.setVisible(false);
 			buttonDelete.setVisible(false);
 			
-			comboboxSkill.setModel(new ListModelList<MstSkill>(masterQualificationService.getAllMstSkill()));
+			comboboxSkill.setModel(new ListModelList<MstSkill>(qualificationService.getAllMstSkill()));
 			comboboxSkill.setItemRenderer(new ComboitemRenderer<MstSkill>() {
 
 				@Override
@@ -129,7 +129,7 @@ public class EmployeeSkillListItemRenderer implements ListitemRenderer<TrsEmploy
 					 
 					 employeeService.save(trsEmployeeSkill);
 					 
-					BindUtils.postGlobalCommand(null, null, "updateTrsEmployeeSkill", null);
+					BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmployeeSkill", null);
 				 } else {
 					 trsEmployeeSkill.setIdSkill((MstSkill) comboboxSkill.getSelectedItem().getAttribute("data"));
 					 trsEmployeeSkill.setYearOfExperience(textboxYearOfExperince.getValue());
@@ -137,7 +137,7 @@ public class EmployeeSkillListItemRenderer implements ListitemRenderer<TrsEmploy
 					 
 					 employeeService.update(trsEmployeeSkill);
 					 
-					BindUtils.postGlobalCommand(null, null, "updateTrsEmployeeSkill", null);
+					BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmployeeSkill", null);
 				 }
 					 
 			}
@@ -157,7 +157,7 @@ public class EmployeeSkillListItemRenderer implements ListitemRenderer<TrsEmploy
 				labelYearOfExperience.setVisible(false);
 				labelComment.setVisible(false);
 				
-				comboboxSkill.setModel(new ListModelList<MstSkill>(masterQualificationService.getAllMstSkill()));
+				comboboxSkill.setModel(new ListModelList<MstSkill>(qualificationService.getAllMstSkill()));
 				comboboxSkill.setItemRenderer(new ComboitemRenderer<MstSkill>() {
 
 					@Override
@@ -185,7 +185,7 @@ public class EmployeeSkillListItemRenderer implements ListitemRenderer<TrsEmploy
 
 									employeeService.delete(trsEmployeeSkill);
 
-									BindUtils.postGlobalCommand(null, null, "updateTrsEmployeeSkill", null);
+									BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmployeeSkill", null);
 								} else {
 									return;
 								}
@@ -197,7 +197,7 @@ public class EmployeeSkillListItemRenderer implements ListitemRenderer<TrsEmploy
 		buttonCancel.addEventListener(Events.ON_CLICK, new EventListener() {
 			@Override
 			public void onEvent(Event event) throws Exception {
-				BindUtils.postGlobalCommand(null, null, "updateTrsEmployeeSkill", null);
+				BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmployeeSkill", null);
 			}
 		});
 	}
