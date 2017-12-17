@@ -14,6 +14,7 @@
 			<menuItem id="menu.item.groupright" zulNavigation="/WEB-INF/pages/sec_group_right/secGroupRightList.zul" iconName="/images/icons/menu_user.gif" rightName="menuItem_Administration_GroupRights" />
 			<menuItem id="menu.item.right" zulNavigation="/WEB-INF/pages/sec_right/secRight.zul" iconName="/images/icons/menu_user.gif" rightName="menuItem_Administration_Rights" />
 		</menu>
+		<menuItem id="menu.item.setting" zulNavigation="/WEB-INF/pages/module_hr/master/setting/settingList.zul"/>
 	</menu>
 	
 	<menu id="menu.parent.master.hr" rightName="menu_Master_Data">

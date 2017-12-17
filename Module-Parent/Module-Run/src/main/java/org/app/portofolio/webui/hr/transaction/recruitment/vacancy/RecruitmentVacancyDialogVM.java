@@ -62,7 +62,7 @@ public class RecruitmentVacancyDialogVM {
 	
 	/*----------- Services -----------*/
 	@WireVariable
-	private JobService masterJobService;
+	private JobService jobService;
 	
 	@WireVariable
 	private RecruitmentService recruitmentService;
@@ -95,7 +95,7 @@ public class RecruitmentVacancyDialogVM {
 			break;
 		}
 		
-		listJobtitle = masterJobService.getAllMstJobtitles();
+		listJobtitle = jobService.getAllMstJobtitles();
 		hiringManagerList = employeeService.getAllTrsEmployee();		
 	}
 
