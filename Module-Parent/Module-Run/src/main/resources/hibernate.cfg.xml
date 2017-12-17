@@ -27,8 +27,10 @@
 		<mapping class="org.module.hr.model.MstPaygrade"/>
 		<mapping class="org.module.hr.model.MstPaygradeCurrency"/>
 		<mapping class="org.module.hr.model.MstProject"/>
+		<mapping class="org.module.hr.model.MstSetting"/>
 		<mapping class="org.module.hr.model.MstSkill"/>
 		<mapping class="org.module.hr.model.MstSubUnit"/>
+		<mapping class="org.module.hr.model.MstUploadFile"/>
 		<mapping class="org.module.hr.model.MstWorkWeek"/>
 		<mapping class="org.module.hr.model.TrsAttendance"/>
 		<mapping class="org.module.hr.model.TrsEmployee"/>
@@ -45,7 +47,6 @@
 		<mapping class="org.module.hr.model.TrsEmployeeSkill"/>
 		<mapping class="org.module.hr.model.TrsEntitlement"/>
 		<mapping class="org.module.hr.model.TrsJobCandidate"/>
-		<mapping class="org.module.hr.model.TrsJobCandidateVacancy"/>
 		<mapping class="org.module.hr.model.TrsJobVacancy"/>
 		<mapping class="org.module.hr.model.TrsLeave"/>
   	</session-factory>

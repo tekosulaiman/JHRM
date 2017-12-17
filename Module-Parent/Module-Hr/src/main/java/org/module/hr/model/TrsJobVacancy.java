@@ -1,3 +1,9 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package org.module.hr.model;
 
 import java.io.Serializable;
@@ -7,16 +13,14 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
 *
@@ -25,16 +29,13 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "trs_job_vacancy", catalog = "dbhr", schema = "schema_hr")
 public class TrsJobVacancy implements Serializable {
-	private static final long serialVersionUID = 1L;
-	
-	@Id
+    private static final long serialVersionUID = 1L;
+    
+    @Id
     @Basic(optional = false)
-    @SequenceGenerator(name="TrsJobVacancy_idTrsJobVacancy_GENERATOR", sequenceName="SCHEMA_HR.TrsJobVacancy_idTrsJobVacancy_SEQ")
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="TrsJobVacancy_idTrsJobVacancy_GENERATOR")
-	
     @Column(name = "id_trs_job_vacancy")
     private Integer idTrsJobVacancy;
-	
+    
     @Column(name = "name")
     private String name;
     
@@ -55,12 +56,11 @@ public class TrsJobVacancy implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date updatedTime;
     
-    @Column(name = "active")
     @Basic(optional = false)
-    private Boolean active;    
-    
+    @Column(name = "active")
+    private boolean active;
     @OneToMany(mappedBy = "idTrsJobVacancy")
-    private List<TrsJobCandidate> trsJobVacancyList;
+    private List<TrsJobCandidate> trsJobCandidateList;
     
     @JoinColumn(name = "id_job_title", referencedColumnName = "id_job_title")
     @ManyToOne
@@ -77,28 +77,17 @@ public class TrsJobVacancy implements Serializable {
         this.idTrsJobVacancy = idTrsJobVacancy;
     }
 
+    public TrsJobVacancy(Integer idTrsJobVacancy, boolean active) {
+        this.idTrsJobVacancy = idTrsJobVacancy;
+        this.active = active;
+    }
+
     public Integer getIdTrsJobVacancy() {
         return idTrsJobVacancy;
     }
 
     public void setIdTrsJobVacancy(Integer idTrsJobVacancy) {
         this.idTrsJobVacancy = idTrsJobVacancy;
-    }
-
-    public MstJobtitle getIdJobTitle() {
-        return idJobTitle;
-    }
-
-    public void setIdJobTitle(MstJobtitle idJobTitle) {
-        this.idJobTitle = idJobTitle;
-    }
-
-    public TrsEmployee getIdEmployee() {
-        return idEmployee;
-    }
-
-    public void setIdEmployee(TrsEmployee idEmployee) {
-        this.idEmployee = idEmployee;
     }
 
     public String getName() {
@@ -149,11 +138,36 @@ public class TrsJobVacancy implements Serializable {
         this.updatedTime = updatedTime;
     }
 
-	public Boolean getActive() {
-		return active;
-	}
+    public boolean getActive() {
+        return active;
+    }
 
-	public void setActive(Boolean active) {
-		this.active = active;
-	}
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    @XmlTransient
+    public List<TrsJobCandidate> getTrsJobCandidateList() {
+        return trsJobCandidateList;
+    }
+
+    public void setTrsJobCandidateList(List<TrsJobCandidate> trsJobCandidateList) {
+        this.trsJobCandidateList = trsJobCandidateList;
+    }
+
+    public MstJobtitle getIdJobTitle() {
+        return idJobTitle;
+    }
+
+    public void setIdJobTitle(MstJobtitle idJobTitle) {
+        this.idJobTitle = idJobTitle;
+    }
+
+    public TrsEmployee getIdEmployee() {
+        return idEmployee;
+    }
+
+    public void setIdEmployee(TrsEmployee idEmployee) {
+        this.idEmployee = idEmployee;
+    }
 }

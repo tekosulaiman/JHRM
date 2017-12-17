@@ -141,9 +141,6 @@
 	<bean id="trsEmployeeSkillDAO" class="org.module.hr.dao.impl.TrsEmployeeSkillDAOImpl" parent="baseDao"/>
 	<bean id="trsEmployeeSalaryDAO" class="org.module.hr.dao.impl.TrsEmployeeSalaryDAOImpl" parent="baseDao"/>
 	
-  	<!-- System Setting -->
-  	<bean id="systemSettingDAO" class="org.module.hr.dao.impl.SystemSettingDAOImpl" parent="baseDao"/>
-
 	<!-- Inject Service -->
 	<!-- Job -->
 	<bean id="jobService" class="org.module.hr.service.impl.JobServiceImpl">
@@ -191,10 +188,5 @@
     	<property name="trsEmployeeLanguageDAO" ref="trsEmployeeLanguageDAO"/>
     	<property name="trsEmployeeSkillDAO" ref="trsEmployeeSkillDAO"/>
     	<property name="trsEmployeeSalaryDAO" ref="trsEmployeeSalaryDAO"/>
-    </bean>
-    
-    <!-- System Setting  -->
-    <bean id="systemSettingService" class="org.module.hr.service.impl.SystemSettingServiceImpl">
-    	<property name="systemSettingDAO" ref="systemSettingDAO"/>
     </bean>
 </beans>
