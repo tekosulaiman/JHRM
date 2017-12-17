@@ -15,7 +15,7 @@ public class TrsJobCandidateFormValidator extends AbstractValidator{
 	private static final String KEY_CONTACT_NO		= "contactNo";
 	private static final String KEY_VACANCY			= "vacancy";
 	
-	private TrsJobVacancy vacancy;
+	private String vacancy;
 	private String firstName;
 	private String email;
 	private String contactNo;
@@ -36,7 +36,7 @@ public class TrsJobCandidateFormValidator extends AbstractValidator{
 		this.firstName= (String) properties.get(KEY_FIRSTNAME).getValue();
 		this.email= (String) properties.get(KEY_EMAIL).getValue();
 		this.contactNo= (String) properties.get(KEY_CONTACT_NO).getValue();
-		this.vacancy = (TrsJobVacancy) properties.get(KEY_VACANCY).getValue();
+//		this.vacancy = (String) properties.get(KEY_VACANCY).getValue();
 	}
 	
 	/**
@@ -44,7 +44,7 @@ public class TrsJobCandidateFormValidator extends AbstractValidator{
 	 * @param validationContext
 	 */
 	private void notEmptyValidation(ValidationContext validationContext) {
-		String message = CommonMessages.NOT_EMPTY_ERROR_MESSAGE;
+		/*String message = CommonMessages.NOT_EMPTY_ERROR_MESSAGE;
 		
 		if (firstName.isEmpty()) {
 			addInvalidMessage(validationContext, KEY_FIRSTNAME, message);
@@ -60,6 +60,6 @@ public class TrsJobCandidateFormValidator extends AbstractValidator{
 		
 		if (vacancy == null) {
 			addInvalidMessage(validationContext, KEY_VACANCY, message);
-		}
+		}*/
 	}
 }

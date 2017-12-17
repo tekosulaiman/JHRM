@@ -1,5 +1,6 @@
 package org.app.portofolio.webui.hr.transaction.recruitment.candidate;
 
+import java.io.File;
 import java.util.List;
 
 import org.app.portofolio.webui.hr.common.collections.ArgKey;
@@ -10,20 +11,29 @@ import org.module.hr.model.TrsJobCandidate;
 import org.module.hr.model.TrsJobVacancy;
 import org.module.hr.service.EmployeeService;
 import org.module.hr.service.RecruitmentService;
+import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
 import org.zkoss.bind.annotation.ContextType;
 import org.zkoss.bind.annotation.ExecutionArgParam;
+import org.zkoss.bind.annotation.NotifyChange;
+import org.zkoss.util.media.Media;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.event.UploadEvent;
 import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.Button;
+import org.zkoss.zul.Messagebox;
+import org.zkoss.zul.Window;
 
 public class RecruitmentCandidateDialogVM {
 
 	/*----------- zul ----------*/
+	@Wire("#windowCandidateDialog")
+	private Window windowCandidateDialog;
+	
 	@Wire("#buttonSaveCandidate")
 	private Button buttonSaveCandidate;
 	
@@ -44,6 +54,7 @@ public class RecruitmentCandidateDialogVM {
 	private List<TrsJobVacancy> trsJobVacancies;
 	private TrsJobCandidateFormValidator formValidator;
 	private TrsJobCandidate trsJobCandidate;
+	private ModalAction action;
 	
 	@AfterCompose
 	public void setupComponents(@ContextParam(ContextType.VIEW) Component component, 
@@ -51,6 +62,7 @@ public class RecruitmentCandidateDialogVM {
 			@ExecutionArgParam(ArgKey.MODAL_ACTION_KEY) ModalAction action) {
 		Selectors.wireComponents(component, this, false);
 		
+		this.action = action;
 		switch(action) {
 			case NEW : this.formAddCondition();
 			break;
@@ -65,7 +77,9 @@ public class RecruitmentCandidateDialogVM {
 	 * Initialisasi bean yang digunakan di dalam ViewModel
 	 */
 	private void initComponents() {
+		trsJobCandidate = new TrsJobCandidate();
 		trsJobVacancies = recruitmentService.getAllTrsJobVacancy();
+		formValidator = new TrsJobCandidateFormValidator();
 	}
 
 	/**
@@ -86,8 +100,17 @@ public class RecruitmentCandidateDialogVM {
 	
 	@Command
 	public void doSave(){
-		ComponentConditionUtil.visibleButton(buttonEditCandidate);
-		ComponentConditionUtil.invisibleButton(buttonSaveCandidate, buttonSaveAndNewCandidate);
+		switch(action) {
+			case NEW : 
+				recruitmentService.save(trsJobCandidate);
+			break;
+			case DETAIL : 
+				recruitmentService.update(trsJobCandidate);
+			break;
+		}
+		/*BindUtils.postGlobalCommand(null, null, "refreshTrsJobVacancyList", null);*/
+		Messagebox.show("Success !");
+		windowCandidateDialog.detach();
 	}
 	
 	@Command
@@ -101,6 +124,15 @@ public class RecruitmentCandidateDialogVM {
 		ComponentConditionUtil.visibleButton(buttonSaveCandidate);
 	}
 	
+	@Command
+	@NotifyChange("trsJobCandidate")
+	public void doUpload(@ContextParam(ContextType.TRIGGER_EVENT) UploadEvent uploadEvent) {
+		Media media = uploadEvent.getMedia(); 
+		File fileUpload = new File(media.getName());
+		if (media != null) {
+			trsJobCandidate.setResume(fileUpload.getAbsolutePath());
+		}
+	}
 	
 	/* ---------- GETTER-SETTER --------------*/
 	

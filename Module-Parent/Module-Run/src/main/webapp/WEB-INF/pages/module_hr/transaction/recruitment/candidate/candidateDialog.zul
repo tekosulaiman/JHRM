@@ -1,6 +1,6 @@
 <?page title="Add Unit" contentType="text/html;charset=UTF-8"?>
 <zk>
-	<window title="${labels.menu.recruitment.candidate.form.title}" border="normal" height="350px" width="60%" mode="modal" closable="true" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.transaction.recruitment.candidate.RecruitmentCandidateDialogVM')">
+	<window id="windowCandidateDialog" title="${labels.menu.recruitment.candidate.form.title}" border="normal" height="350px" width="60%" mode="modal" closable="true" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.transaction.recruitment.candidate.RecruitmentCandidateDialogVM')">
 		<borderlayout
 			form="@id('form') @load(vm.trsJobCandidate) @save(vm.trsJobCandidate, before={'doSave', 'doSaveAndNew'}) 
 				@validator(vm.formValidator)">
@@ -62,12 +62,17 @@
 										</template>
 									</combobox>
 								</hlayout>
-								<label value="@load(vmsgs['vacancy'])" width="100%" style="color: red"></label>
+								<!-- <label value="@load(vmsgs['vacancy'])" width="100%" style="color: red"></label> -->
 							</vlayout>
 						</row>
 						<row>
 							<label value="${labels.menu.recruitment.candidate.form.resume}" />
-							<button id="buttonResume" label="${labels.button.dialog.browse}" upload="true"></button>
+							<hbox hflex="true">
+								<textbox value="@bind(form.resume)" readonly="true" hflex="true"></textbox>
+								<fileupload label="${labels.button.dialog.browse}" onUpload="@command('doUpload', event=event)"></fileupload>	
+							</hbox>
+							<!-- <button id="buttonResume" label="${labels.button.dialog.browse}" upload="true"></button> -->
+							
 						</row>
 					</rows>
 				</grid>

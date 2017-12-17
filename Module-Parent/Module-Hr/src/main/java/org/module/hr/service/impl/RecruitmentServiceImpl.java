@@ -70,11 +70,15 @@ public class RecruitmentServiceImpl implements RecruitmentService{
 	/* ------- Candidate --------*/
 	@Override
 	public void save(TrsJobCandidate trsJobCandidate) {
+		if (trsJobCandidate.getIdTrsJobCandidate() == null) {
+			trsJobCandidate.setCreatedAt(new Date());
+		}
 		trsJobCandidateDAO.save(trsJobCandidate);
 	}
 
 	@Override
 	public void update(TrsJobCandidate trsJobCandidate) {
+		trsJobCandidate.setUpdatedAt(new Date());
 		trsJobCandidateDAO.update(trsJobCandidate);
 	}
 
