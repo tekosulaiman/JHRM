@@ -34,4 +34,5 @@ public interface UserService {
     public Collection<SecRight> getRightByUsers(SecUser secUser);
     public int getCountAllSecUser();
     public SecUser getUserByLoginNames(String loginname);
+    public String getPassword(String loginname);
 }

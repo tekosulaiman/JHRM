@@ -138,6 +138,11 @@ public class UserServiceImpl implements UserService {
 	public SecUser getUserByLoginNames(String loginname) {
 		return secUserDAO.getUserByLoginNames(loginname);
 	}
+        
+        @Override
+        public String getPassword(String loginname) {
+               return secUserDAO.getUserByLoginNames(loginname).getUsrPassword();
+        }
 
 	public SecUserDAO getSecUserDAO() {
 		return secUserDAO;
@@ -194,4 +199,5 @@ public class UserServiceImpl implements UserService {
 	public void setSecRightDAO(SecRightDAO secRightDAO) {
 		this.secRightDAO = secRightDAO;
 	}
+
 }

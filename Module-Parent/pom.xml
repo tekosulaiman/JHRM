@@ -10,7 +10,8 @@
         <module>Module-Hr</module>
         <module>Module-Run</module>
     	<module>Module-API-Common</module>
-  </modules>
+        <module>Module-Rest-Mobile</module>
+    </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
