@@ -3,7 +3,7 @@
 		<borderlayout vflex="true">
 			<north>
 				<toolbar>
-					<button image="/images/icons/btn_edit.gif" label="Edit" onClick="@command('doSave')"/> 
+					<button image="/images/icons/btn_edit.gif" label="${labels.button.dialog.edit}" onClick=""/> 
 				</toolbar>
 			</north>
 			<center>
@@ -14,25 +14,25 @@
 					</columns>
 					<rows>
 						<row>
-							<label value="Start Month"/>
+							<label value="${labels.menu.leave.leaveparameter.leaveperiod.startMonth}"/>
 							<combobox>
 								<comboitem label=""/>
 								<comboitem label=""/>
 							</combobox>
 						</row>
 						<row>
-							<label value="Start Date"/>
+							<label value="${labels.menu.leave.leaveparameter.leaveperiod.startDate}"/>
 							<combobox>
 								<comboitem label=""/>
 								<comboitem label=""/>
 							</combobox>
 						</row>
 						<row>
-							<label value="End Date"/>
+							<label value="${labels.menu.leave.leaveparameter.leaveperiod.endDate}"/>
 							<label value="End Date"/>
 						</row>
 						<row>
-							<label value="Current Leave Period"/>
+							<label value="${labels.menu.leave.leaveparameter.leaveperiod.currentLeavePeriod}"/>
 							<label value="Current Leave Period"/>
 						</row>
 					</rows>
