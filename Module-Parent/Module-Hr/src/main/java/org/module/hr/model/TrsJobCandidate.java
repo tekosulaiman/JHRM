@@ -13,6 +13,8 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,7 +22,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlTransient;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.module.api.common.Identifiable;
+import org.module.api.common.utilities.BusinessCaseUtilities;
 
 /**
 *
@@ -28,13 +35,20 @@ import javax.xml.bind.annotation.XmlTransient;
 */
 @Entity
 @Table(name = "trs_job_candidate", catalog = "dbhr", schema = "schema_hr")
-public class TrsJobCandidate implements Serializable {
-    private static final long serialVersionUID = 1L;
-    
+public class TrsJobCandidate implements Identifiable<Serializable> {
+	
     @Id
     @Basic(optional = false)
+    @GenericGenerator(name = "TrsJobCandidate_assigned_sequence",
+        strategy = "org.module.api.common.JHRMSequenceGenerator",
+        parameters = {
+        		@org.hibernate.annotations.Parameter(name = "sequence_name", value = "SCHEMA_HR.trsjobcandidate_idjobcandidate_seq"),
+        		@org.hibernate.annotations.Parameter(name = "sequence_prefix", value = "IDC"),
+        }
+    )
+    @GeneratedValue(generator = "TrsJobCandidate_assigned_sequence", strategy = GenerationType.SEQUENCE)
     @Column(name = "id_trs_job_candidate")
-    private String idTrsJobCandidate;
+    private String id;
     
     @Column(name = "contact_no")
     private String contactNo;
@@ -72,24 +86,24 @@ public class TrsJobCandidate implements Serializable {
     public TrsJobCandidate() {
     }
 
-    public TrsJobCandidate(String idTrsJobCandidate) {
-        this.idTrsJobCandidate = idTrsJobCandidate;
+    public TrsJobCandidate(String id) {
+        this.id = id;
     }
 
-    public TrsJobCandidate(String idTrsJobCandidate, Date createdAt, String firstName) {
-        this.idTrsJobCandidate = idTrsJobCandidate;
+    public TrsJobCandidate(String id, Date createdAt, String firstName) {
+        this.id = id;
         this.createdAt = createdAt;
         this.firstName = firstName;
     }
 
-    public String getIdTrsJobCandidate() {
-        return idTrsJobCandidate;
-    }
-
-    public void setIdTrsJobCandidate(String idTrsJobCandidate) {
-        this.idTrsJobCandidate = idTrsJobCandidate;
-    }
-
+    public String getId() {
+		return id;
+	}
+    
+    public void setId(String id) {
+		this.id = id;
+	}
+    
     public String getContactNo() {
         return contactNo;
     }
@@ -169,5 +183,10 @@ public class TrsJobCandidate implements Serializable {
 
     public void setIdTrsJobVacancy(TrsJobVacancy idTrsJobVacancy) {
         this.idTrsJobVacancy = idTrsJobVacancy;
+    }
+    
+    @Transient
+    public String getFullName() {
+    	return BusinessCaseUtilities.composeFullName(firstName, middleName, lastName);
     }
 }

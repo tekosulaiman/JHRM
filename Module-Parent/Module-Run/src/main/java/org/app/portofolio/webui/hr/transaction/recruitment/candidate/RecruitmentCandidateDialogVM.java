@@ -1,6 +1,7 @@
 package org.app.portofolio.webui.hr.transaction.recruitment.candidate;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 
 import org.app.portofolio.webui.hr.common.collections.ArgKey;
@@ -20,12 +21,14 @@ import org.zkoss.bind.annotation.ExecutionArgParam;
 import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.util.media.Media;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.UploadEvent;
 import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.Button;
 import org.zkoss.zul.Messagebox;
+import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
 public class RecruitmentCandidateDialogVM {
@@ -43,6 +46,9 @@ public class RecruitmentCandidateDialogVM {
 	@Wire("#buttonEditCandidate")
 	private Button buttonEditCandidate;
 	
+	@Wire("#textboxResume")
+	private Textbox textboxResume;
+	
 	/*----------- Services -----------*/
 	@WireVariable
 	private RecruitmentService recruitmentService;
@@ -55,6 +61,8 @@ public class RecruitmentCandidateDialogVM {
 	private TrsJobCandidateFormValidator formValidator;
 	private TrsJobCandidate trsJobCandidate;
 	private ModalAction action;
+	private File fileUploadResume;
+	private HashMap<String, Object> settings;
 	
 	@AfterCompose
 	public void setupComponents(@ContextParam(ContextType.VIEW) Component component, 
@@ -80,6 +88,7 @@ public class RecruitmentCandidateDialogVM {
 		trsJobCandidate = new TrsJobCandidate();
 		trsJobVacancies = recruitmentService.getAllTrsJobVacancy();
 		formValidator = new TrsJobCandidateFormValidator();
+		this.settings = (HashMap<String, Object>) Sessions.getCurrent().getAttribute("setting");
 	}
 
 	/**
@@ -108,7 +117,14 @@ public class RecruitmentCandidateDialogVM {
 				recruitmentService.update(trsJobCandidate);
 			break;
 		}
-		/*BindUtils.postGlobalCommand(null, null, "refreshTrsJobVacancyList", null);*/
+		
+		if (fileUploadResume.renameTo(new File(settings.get("rootPath").toString()+ "\\" +fileUploadResume.getName()))) {
+			System.out.println("Resume has been uploaded !");
+		} else {
+			System.out.println("Resume Failed uploaded !");
+		}
+		
+		BindUtils.postGlobalCommand(null, null, "refreshAfterSaveCandidate", null);
 		Messagebox.show("Success !");
 		windowCandidateDialog.detach();
 	}
@@ -125,17 +141,16 @@ public class RecruitmentCandidateDialogVM {
 	}
 	
 	@Command
-	@NotifyChange("trsJobCandidate")
 	public void doUpload(@ContextParam(ContextType.TRIGGER_EVENT) UploadEvent uploadEvent) {
 		Media media = uploadEvent.getMedia(); 
 		File fileUpload = new File(media.getName());
 		if (media != null) {
-			trsJobCandidate.setResume(fileUpload.getAbsolutePath());
+			this.fileUploadResume = fileUpload;
+			textboxResume.setValue(media.getName());
 		}
 	}
 	
 	/* ---------- GETTER-SETTER --------------*/
-	
 	public List<TrsJobVacancy> getTrsJobVacancies() {
 		return trsJobVacancies;
 	}
