@@ -36,7 +36,7 @@ public class TrsEmployeeImmigration implements Serializable {
     private String document;
     
     @Column(name = "number")
-    private String number;
+    private Integer number;
     
     @Column(name = "issued_date")
     @Temporal(TemporalType.DATE)
@@ -87,11 +87,11 @@ public class TrsEmployeeImmigration implements Serializable {
         this.document = document;
     }
 
-    public String getNumber() {
+    public Integer getNumber() {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(Integer number) {
         this.number = number;
     }
 

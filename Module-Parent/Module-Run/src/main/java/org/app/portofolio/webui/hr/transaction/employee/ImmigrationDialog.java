@@ -13,12 +13,17 @@ import org.zkoss.bind.annotation.ExecutionArgParam;
 import org.zkoss.bind.annotation.ImmutableFields;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.select.Selectors;
+import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
+import org.zkoss.zul.Window;
 
 public class ImmigrationDialog {
 	
 	@WireVariable
 	private EmployeeService employeeService;
+	
+	@Wire("#windowImmigrationDialog")
+	private Window windowImmigrationDialog;
 	
 	/* ---------- Bean ----------*/
 	private TrsEmployeeImmigrationFormValidator formValidator = new TrsEmployeeImmigrationFormValidator();
@@ -36,8 +41,8 @@ public class ImmigrationDialog {
 		}
 		
 		// use for set default value when new condition
-		if (trsEmployeeImmigration.getIdImmigration() == null){
-			trsEmployeeImmigration.setDocument("passport");
+		if (this.trsEmployeeImmigration.getIdImmigration() == null){
+			this.trsEmployeeImmigration.setDocument("passport");
 		}
 		
 	}
@@ -50,6 +55,7 @@ public class ImmigrationDialog {
 			employeeService.update(trsEmployeeImmigration);
 		}
 		BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdateEmployeeImmigration", null);
+		windowImmigrationDialog.onClose();
 	}
 
 	@ImmutableFields

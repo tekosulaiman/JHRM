@@ -1,15 +1,31 @@
-<?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
 	<window id="windowJob" border="none" width="100%" apply="org.zkoss.bind.BindComposer"
 		viewModel="@id('vm') @init('org.app.portofolio.webui.hr.transaction.employee.Job')"
 		validationMessages="@id('vmsgs')" >
+		<groupbox mold="3d">
+			<caption
+				label="${labels.menu.employee.job.title}" />
 		<borderlayout form="@id('form') @load(vm.trsEmployee) @save(vm.trsEmployee, before={'doSave'}) @validator(vm.formValidator)" height="500px">
-			<north size="100%" collapsible="true" autoscroll="true">
-				<div>
-					<groupbox mold="3d">
-						<caption
-							label="${labels.menu.employee.job.title}" />
-						<grid>
+		<north border="none">
+					<div sclass="z-toolbar" style="padding:0">
+						<hbox pack="stretch" width="100%">
+							<toolbar align="start"
+								style="border-style: none;">
+								<button id="buttonSave" mold="trendy"
+									image="/images/icons/btn_save.gif" label="Save"
+									onClick="@command('doSaveJob')" />
+								<button id="buttonEdit" mold="trendy"
+									image="/images/icons/btn_edit.gif" label="Edit"
+									onClick="@command('doEditJob')" />
+								<button id="buttonTerminateEmployment" mold="trendy"
+									image="" label="Terminate Employee"
+									onClick="@command('doTerminateJob')" />
+							</toolbar>
+						</hbox>
+					</div>
+				</north>
+			<center border="none" autoscroll="true">
+						 <grid>
 							<rows>
 								<row>
 									<label value="${labels.menu.employee.job.form.job.title}" />
@@ -29,17 +45,7 @@
 											</vbox>
 										</bandpopup>
 									</bandbox>
-								</row>
-								<!-- <row>
-									<label
-										value="${labels.menu.employee.job.form.job.title}" />
-									<textbox />
 								</row> 
-								<row>
-									<label
-										value="${labels.menu.employee.job.form.job.spesification}" />
-									<label value="Not Defined" />
-								</row> -->
 								<row>
 									<label
 										value="${labels.menu.employee.job.form.employment.status}" />
@@ -60,14 +66,6 @@
 										</bandpopup>
 									</bandbox>
 								</row>
-								<!-- <row>
-									<label
-										value="${labels.menu.employee.job.form.employment.status}" />
-									<listbox rows="1" mold="select">
-										<listitem selected="true"
-											label=" " />
-									</listbox>
-								</row> -->
 								<row>
 									<label
 										value="${labels.menu.employee.job.form.job.category}" />
@@ -88,14 +86,6 @@
 										</bandpopup>
 									</bandbox>
 								</row>
-								<!-- <row>
-									<label
-										value="${labels.menu.employee.job.form.job.category}" />
-									<listbox rows="1" mold="select">
-										<listitem selected="true"
-											label=" " />
-									</listbox>
-								</row> -->
 								<row>
 									<label
 										value="${labels.menu.employee.job.form.joined.date}" />
@@ -108,7 +98,7 @@
 										<bandpopup>
 											<vbox>
 												<hbox>
-													<textbox value="@bind(vm.SubUnitKeySearch)"/>
+													<textbox value="@bind(vm.subUnitKeySearch)"/>
 													<button label="Search" onClick="@command('searchSubUnit')"/>
 												</hbox>
 												<listbox id="listBoxSubUnit" >
@@ -121,14 +111,6 @@
 										</bandpopup>
 									</bandbox>
 								</row>
-								<!-- <row>
-									<label
-										value="${labels.menu.employee.job.form.sub.unit}" />
-									<listbox rows="1" mold="select">
-										<listitem selected="true"
-											label=" " />
-									</listbox>
-								</row> -->
 								<row>
 									<label
 										value="${labels.menu.employee.job.form.location}" />
@@ -149,68 +131,29 @@
 										</bandpopup>
 									</bandbox>
 								</row>
-								<!-- <row>
-									<label
-										value="${labels.menu.employee.job.form.location}" />
-									<listbox rows="1" mold="select">
-										<listitem selected="true"
-											label=" " />
-									</listbox>
-								</row> -->
 								
-								<!-- employment contract
+								<!-- employment contract -->
 								
 								 <row>
 									<label
 										value="${labels.menu.employee.job.form.employment.contract}"
-										style="font-weight:bold;" />
+										style="font-weight:bold;" />	
 								</row>
 								<row>
 									<label
 										value="${labels.menu.employee.job.form.start.date}" />
-									<listbox rows="1" mold="select">
-										<listitem selected="true"
-											label=" " />
-									</listbox>
+									<datebox/>
 								</row>
 								<row>
 									<label
 										value="${labels.menu.employee.job.form.end.date}" />
-									<listbox rows="1" mold="select">
-										<listitem selected="true"
-											label=" " />
-									</listbox>
-								</row>
-								<row>
-									<label
-										value="${labels.menu.employee.job.form.contract.details}" />
-									<label value="Not Defined" />
-								</row> -->
-								<row>
-									<button id="buttonEdit" label="Edit" />
-									<button id="buttonSave" label="Save" />
-									<button id="buttonTerminateEmployment"
-										label="Terminate Employment" />
-								</row> 
-							</rows>
-						</grid>
-					</groupbox>
-					<!-- <groupbox mold="3d">
-						<caption label="${labels.title.attachments}" />
-						<grid>
-							<columns>
-								<column label="" />
-							</columns>
-							<rows>
-								<row>
-									<button
-										label="${labels.button.add}" />
+									<datebox />
 								</row>
 							</rows>
 						</grid>
-					</groupbox> -->
-				</div>
-			</north>
+
+			</center>
 		</borderlayout>
+		</groupbox>
 	</window>
 </zk>
