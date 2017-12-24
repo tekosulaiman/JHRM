@@ -22,7 +22,7 @@ import org.zkoss.zk.ui.select.annotation.WireVariable;
 
 public class LeavePeriodVM {
 
-    List<MstLeavePeriod> mstLeavePeriodList;
+    List<MstLeavePeriod> mstLeavePeriodList, mstLeavePeriodAfterList = new ArrayList<>();
     MstLeavePeriod mstLeavePeriod, mstLeavePeriodTemp, mstLeavePeriodBefore, mstLeavePeriodAfter;
     String currentLeavePeriod;
     Map<String, Integer> monthList;
@@ -58,7 +58,7 @@ public class LeavePeriodVM {
                     mstLeavePeriod = obj;
                 } else if (Calendar.getInstance().getTime().before(fromDate.getTime())
                         && Calendar.getInstance().getTime().before(toDate.getTime())) {
-                    mstLeavePeriodAfter = obj;
+                    mstLeavePeriodAfterList.add(obj);
                 } else if (Calendar.getInstance().getTime().after(fromDate.getTime())
                         && Calendar.getInstance().getTime().after(toDate.getTime())) {
                     if (mstLeavePeriodBefore != null) {
@@ -67,6 +67,26 @@ public class LeavePeriodVM {
                         }
                     } else {
                         mstLeavePeriodBefore = obj;
+                    }
+                }
+            }
+            if(mstLeavePeriod != null){
+                if(mstLeavePeriodAfterList.size() == 1){
+                    mstLeavePeriodAfter = mstLeavePeriodAfterList.get(0);
+                }
+            } else {
+                for(MstLeavePeriod obj : mstLeavePeriodAfterList){
+                    if(mstLeavePeriod != null){
+                        if(obj.getFromDate().before(mstLeavePeriod.getFromDate())){
+                            mstLeavePeriod = obj;
+                        }
+                    } else {
+                        mstLeavePeriod = obj;
+                    }
+                }
+                for(MstLeavePeriod obj : mstLeavePeriodAfterList){
+                    if(obj.getFromDate().after(mstLeavePeriod.getFromDate())){
+                        mstLeavePeriodAfter = obj;
                     }
                 }
             }
