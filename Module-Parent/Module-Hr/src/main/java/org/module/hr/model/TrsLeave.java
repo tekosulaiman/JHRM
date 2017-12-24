@@ -48,6 +48,9 @@ public class TrsLeave implements Serializable {
     @JoinColumn(name = "id_employee", referencedColumnName = "id_employee")
     @ManyToOne
     private TrsEmployee idEmployee;
+    
+    @Column(name = "active")
+    private Integer status;
 
     public TrsLeave() {
     }
@@ -110,5 +113,13 @@ public class TrsLeave implements Serializable {
 
     public void setIdEmployee(TrsEmployee idEmployee) {
         this.idEmployee = idEmployee;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

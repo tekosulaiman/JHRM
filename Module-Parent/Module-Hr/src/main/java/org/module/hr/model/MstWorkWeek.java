@@ -22,32 +22,14 @@ public class MstWorkWeek implements Serializable {
     @Column(name = "id_work_week")
     private Integer idWorkWeek;
     
-    @Column(name = "monday")
-    private Integer monday;
+    @Column(name = "workday_name")
+    private String workdayName;
     
-    @Column(name = "tuesday")
-    private Integer tuesday;
+    //dayType ENUM
+    @Column(name = "day_type")
+    private Integer dayType;
     
-    @Column(name = "wednesday")
-    private Integer wednesday;
-   
-    @Column(name = "thursday")
-    private Integer thursday;
-    
-    @Column(name = "friday")
-    private Integer friday;
-    
-    @Column(name = "saturday")
-    private Integer saturday;
-    
-    @Column(name = "sunday")
-    private Integer sunday;
-
     public MstWorkWeek() {
-    }
-
-    public MstWorkWeek(Integer idWorkWeek) {
-        this.idWorkWeek = idWorkWeek;
     }
 
     public Integer getIdWorkWeek() {
@@ -58,59 +40,20 @@ public class MstWorkWeek implements Serializable {
         this.idWorkWeek = idWorkWeek;
     }
 
-    public Integer getMonday() {
-        return monday;
+    public String getWorkdayName() {
+        return workdayName;
     }
 
-    public void setMonday(Integer monday) {
-        this.monday = monday;
+    public void setWorkdayName(String workdayName) {
+        this.workdayName = workdayName;
     }
 
-    public Integer getTuesday() {
-        return tuesday;
+    public Integer getDayType() {
+        return dayType;
     }
 
-    public void setTuesday(Integer tuesday) {
-        this.tuesday = tuesday;
+    public void setDayType(Integer dayType) {
+        this.dayType = dayType;
     }
-
-    public Integer getWednesday() {
-        return wednesday;
-    }
-
-    public void setWednesday(Integer wednesday) {
-        this.wednesday = wednesday;
-    }
-
-    public Integer getThursday() {
-        return thursday;
-    }
-
-    public void setThursday(Integer thursday) {
-        this.thursday = thursday;
-    }
-
-    public Integer getFriday() {
-        return friday;
-    }
-
-    public void setFriday(Integer friday) {
-        this.friday = friday;
-    }
-
-    public Integer getSaturday() {
-        return saturday;
-    }
-
-    public void setSaturday(Integer saturday) {
-        this.saturday = saturday;
-    }
-
-    public Integer getSunday() {
-        return sunday;
-    }
-
-    public void setSunday(Integer sunday) {
-        this.sunday = sunday;
-    }
+    
 }

@@ -24,11 +24,12 @@ public class TrsEntitlement implements Serializable {
     @Column(name = "id_entitlement")
     private Integer idEntitlement;
     
-    @Column(name = "entitlement")
-    private Integer entitlement;
+    @Column(name = "entitlement_balance")
+    private Integer entitlementBalance;
     
-    @Column(name = "id_leave_type")
-    private Integer idLeaveType;
+    @JoinColumn(name = "id_leave_type", referencedColumnName = "id_leave_type")
+    @ManyToOne
+    private MstLeaveType idLeaveType;
     
     @JoinColumn(name = "id_leave_period", referencedColumnName = "id_leave_period")
     @ManyToOne
@@ -37,6 +38,9 @@ public class TrsEntitlement implements Serializable {
     @JoinColumn(name = "id_employee", referencedColumnName = "id_employee")
     @ManyToOne
     private TrsEmployee idEmployee;
+    
+    @Column(name = "active")
+    private Integer status;
 
     public TrsEntitlement() {
     }
@@ -53,19 +57,19 @@ public class TrsEntitlement implements Serializable {
         this.idEntitlement = idEntitlement;
     }
 
-    public Integer getEntitlement() {
-        return entitlement;
+    public Integer getEntitlementBalance() {
+        return entitlementBalance;
     }
 
-    public void setEntitlement(Integer entitlement) {
-        this.entitlement = entitlement;
+    public void setEntitlementBalance(Integer entitlementBalance) {
+        this.entitlementBalance = entitlementBalance;
     }
 
-    public Integer getIdLeaveType() {
+    public MstLeaveType getIdLeaveType() {
         return idLeaveType;
     }
 
-    public void setIdLeaveType(Integer idLeaveType) {
+    public void setIdLeaveType(MstLeaveType idLeaveType) {
         this.idLeaveType = idLeaveType;
     }
 
@@ -83,5 +87,13 @@ public class TrsEntitlement implements Serializable {
 
     public void setIdEmployee(TrsEmployee idEmployee) {
         this.idEmployee = idEmployee;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

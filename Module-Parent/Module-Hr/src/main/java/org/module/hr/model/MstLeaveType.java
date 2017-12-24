@@ -25,11 +25,17 @@ public class MstLeaveType implements Serializable {
     @Column(name = "id_leave_type")
     private Integer idLeaveType;
     
-    @Column(name = "type")
-    private String type;
+    @Column(name = "leave_type_name")
+    private String leaveTypeName;
+    
+    @Column(name = "isSituational")
+    private Boolean isSituational;
     
     @OneToMany(mappedBy = "idLeaveType")
     private List<TrsLeave> trsLeaveList;
+    
+    @OneToMany(mappedBy = "idLeaveType")
+    private List<TrsEntitlement> trsEntitlementList;
 
     public MstLeaveType() {
     }
@@ -46,14 +52,22 @@ public class MstLeaveType implements Serializable {
         this.idLeaveType = idLeaveType;
     }
 
-    public String getType() {
-        return type;
+    public String getLeaveTypeName() {
+        return leaveTypeName;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setLeaveTypeName(String leaveTypeName) {
+        this.leaveTypeName = leaveTypeName;
     }
 
+    public Boolean getIsSituational() {
+        return isSituational;
+    }
+
+    public void setIsSituational(Boolean isSituational) {
+        this.isSituational = isSituational;
+    }
+    
     @XmlTransient
     public List<TrsLeave> getTrsLeaveList() {
         return trsLeaveList;
@@ -62,4 +76,14 @@ public class MstLeaveType implements Serializable {
     public void setTrsLeaveList(List<TrsLeave> trsLeaveList) {
         this.trsLeaveList = trsLeaveList;
     }
+
+    @XmlTransient
+    public List<TrsEntitlement> getTrsEntitlementList() {
+        return trsEntitlementList;
+    }
+
+    public void setTrsEntitlementList(List<TrsEntitlement> trsEntitlementList) {
+        this.trsEntitlementList = trsEntitlementList;
+    }
+    
 }

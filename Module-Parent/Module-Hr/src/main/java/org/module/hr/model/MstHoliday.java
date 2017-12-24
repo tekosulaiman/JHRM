@@ -1,12 +1,14 @@
 package org.module.hr.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
 *
@@ -25,9 +27,17 @@ public class MstHoliday implements Serializable {
     @Column(name = "holiday_name")
     private String holidayName;
     
-    @Column(name = "duration")
-    private Integer duration;
+    @Column(name = "holiday_date")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date holidayDate;
 
+    @Column(name = "isAnnually")
+    private Boolean annually;
+    
+    //dayType ENUM
+    @Column(name = "day_type")
+    private Integer dayType;
+    
     public MstHoliday() {
     }
 
@@ -51,11 +61,28 @@ public class MstHoliday implements Serializable {
         this.holidayName = holidayName;
     }
 
-    public Integer getDuration() {
-        return duration;
+    public Date getHolidayDate() {
+        return holidayDate;
     }
 
-    public void setDuration(Integer duration) {
-        this.duration = duration;
+    public void setHolidayDate(Date holidayDate) {
+        this.holidayDate = holidayDate;
     }
+
+    public Boolean getAnnually() {
+        return annually;
+    }
+
+    public void setAnnually(Boolean annually) {
+        this.annually = annually;
+    }
+
+    public Integer getDayType() {
+        return dayType;
+    }
+
+    public void setDayType(Integer dayType) {
+        this.dayType = dayType;
+    }
+    
 }
