@@ -2,8 +2,6 @@ package org.app.portofolio.webui.hr.transaction.recruitment.candidate.validator;
 
 import java.util.Map;
 
-import org.app.portofolio.webui.hr.common.collections.CommonMessages;
-import org.module.hr.model.TrsJobVacancy;
 import org.zkoss.bind.Property;
 import org.zkoss.bind.ValidationContext;
 import org.zkoss.bind.validator.AbstractValidator;

@@ -2,6 +2,7 @@ package org.app.portofolio.webui;
 
 import org.app.portofolio.common.menu.dropdown.ZkossDropDownMenuFactory;
 import org.app.portofolio.common.menu.tree.ZkossTreeMenuFactory;
+import org.module.hr.service.AdministrationService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.zkoss.bind.annotation.AfterCompose;
@@ -12,9 +13,11 @@ import org.zkoss.bind.annotation.ExecutionArgParam;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.ComponentNotFoundException;
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.Wire;
+import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Menubar;
 import org.zkoss.zul.Tab;
@@ -58,6 +61,9 @@ public class HomeVM{
 	@Wire("#chartTest")
 	private org.zkoss.zul.Chart chartTest;
 	
+	@WireVariable
+	private AdministrationService administrationService;
+	
 	@AfterCompose
 	public void initComponents(@ContextParam(ContextType.VIEW) Component component,
 		@ExecutionArgParam("object") Object object,
@@ -80,6 +86,14 @@ public class HomeVM{
 		object =  tabs;
 		
 		doGetZkVersion();
+		addSessionAttribute();
+	}
+
+	/**
+	 * 
+	 */
+	private void addSessionAttribute() {
+		Sessions.getCurrent().setAttribute("setting", administrationService.getAllSettingsAsHash());
 	}
 
 	@Command
@@ -156,4 +170,6 @@ public class HomeVM{
 		
 		return "ZK " + version + " EE" + " / build : " + build;
 	}
+	
+	
 }

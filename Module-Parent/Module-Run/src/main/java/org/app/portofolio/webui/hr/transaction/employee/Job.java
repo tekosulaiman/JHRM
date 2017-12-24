@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.app.portofolio.webui.hr.common.utilities.ComponentConditionUtil;
-import org.app.portofolio.webui.hr.transaction.employee.model.DummyNationalityItemRender;
 import org.app.portofolio.webui.hr.transaction.employee.model.EmployeeStatusListItemRenderer;
 import org.app.portofolio.webui.hr.transaction.employee.model.JobCategoryListItemRenderer;
 import org.app.portofolio.webui.hr.transaction.employee.model.JobTitleListItemRenderer;
@@ -16,19 +15,17 @@ import org.module.hr.model.MstEmployementStatus;
 import org.module.hr.model.MstJobCategory;
 import org.module.hr.model.MstJobtitle;
 import org.module.hr.model.MstLocation;
-import org.module.hr.model.MstNationality;
 import org.module.hr.model.MstSubUnit;
 import org.module.hr.model.TrsEmployee;
 import org.module.hr.service.EmployeeService;
 import org.module.hr.service.JobService;
-import org.module.sysadmin.model.SecRight;
-import org.springframework.beans.factory.parsing.Location;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
 import org.zkoss.bind.annotation.ContextType;
 import org.zkoss.bind.annotation.ExecutionArgParam;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.Bandbox;
@@ -36,12 +33,9 @@ import org.zkoss.zul.Button;
 import org.zkoss.zul.Datebox;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
-import org.zkoss.zul.Listcell;
-import org.zkoss.zul.Listitem;
 import org.zkoss.zul.ListitemRenderer;
 import org.zkoss.zul.Window;
 
-@SuppressWarnings({ "rawtypes", "unchecked" })
 public class Job {
 	
 	@Wire("#windowJob")
@@ -94,7 +88,7 @@ public class Job {
 	private EmployeeService employeeService;
 	
 	@WireVariable
-	private JobService masterJobService;
+	private JobService jobService;
 	
 	/*---------- bean ---------*/
 	private TrsEmployee trsEmployee;
@@ -128,19 +122,20 @@ public class Job {
 	@AfterCompose
 	public void setupComponents(@ContextParam(ContextType.VIEW) Component component,
 			@ExecutionArgParam("object") Object object, @ExecutionArgParam("type") TrsEmployee trsEmployee) {
+		Selectors.wireComponents(component, this, false);
 		this.trsEmployee = trsEmployee;
 		formDetailCondition();
 	}
 	
 	@Command
-	private void searchJobTitle() {
+	public void searchJobTitle() {
 		mstJobtitles.clear();
-		List<MstJobtitle> cacheMstJobtitles = masterJobService.getAllMstJobtitles();
+		List<MstJobtitle> cacheMstJobtitles = jobService.getAllMstJobtitles();
 		if (jobTitleKeySearch == null || "".equals(jobTitleKeySearch)){
 			mstJobtitles.addAll(cacheMstJobtitles);
 		} else {
 			for (MstJobtitle mstJobtitle : cacheMstJobtitles) {
-				if (mstJobtitle.getJobName().contains(jobTitleKeySearch)) {
+				if (mstJobtitle.getJobName().toUpperCase().contains(jobTitleKeySearch.toUpperCase())) {
 					mstJobtitles.clear();
 					mstJobtitles.add(mstJobtitle);
 					break;
@@ -151,8 +146,8 @@ public class Job {
 	}
 	
 	@Command
-	private void openBandBoxJobTitle(){
-		mstJobtitles = masterJobService.getAllMstJobtitles();
+	public void openBandBoxJobTitle(){
+		mstJobtitles = jobService.getAllMstJobtitles();
 		
 		listitemRendererJobTitle = new JobTitleListItemRenderer();
 		
@@ -161,26 +156,22 @@ public class Job {
 	}
 	
 	@Command
-	private void searchEmploymentStatus() {
+	public void searchEmploymentStatus() {
 		listMstEmployementStatus.clear();
-		List<MstEmployementStatus> cacheListMstEmployementStatus = masterJobService.getAllMstEmployementStatus();
+//		List<MstEmployementStatus> cacheListMstEmployementStatus = jobService.getAllMstEmployementStatus();
 		if (employmentStatusKeySearch == null || "".equals(employmentStatusKeySearch)){
-			listMstEmployementStatus.addAll(cacheListMstEmployementStatus);
+			listMstEmployementStatus = jobService.getAllMstEmployementStatus();
 		} else {
-			for (MstEmployementStatus mstEmployementStatus : cacheListMstEmployementStatus) {
-				if (mstEmployementStatus.getEmployementStatusName().contains(employmentStatusKeySearch)) {
-					listMstEmployementStatus.clear();
-					listMstEmployementStatus.add(mstEmployementStatus);
-					break;
-				}
-			}
+			HashMap<String, Object> hashMap = new HashMap<String, Object>();
+			hashMap.put("employementStatusName", employmentStatusKeySearch);
+			listMstEmployementStatus = jobService.getByMstEmployementStatusRequestMap(hashMap);
 		}
 		listBoxEmploymentStatus.setModel(new ListModelList<MstEmployementStatus>(listMstEmployementStatus));
 	}
 	
 	@Command
-	private void openBandBoxEmploymentStatus(){
-		listMstEmployementStatus = masterJobService.getAllMstEmployementStatus();
+	public void openBandBoxEmploymentStatus(){
+		listMstEmployementStatus = jobService.getAllMstEmployementStatus();
 		
 		listitemRendererEmploymentStatus = new EmployeeStatusListItemRenderer();
 		
@@ -189,9 +180,9 @@ public class Job {
 	}
 	
 	@Command
-	private void searchJobCategory() {
+	public void searchJobCategory() {
 		mstJobCategories.clear();
-		List<MstJobCategory> cacheMstJobCategories = masterJobService.getAllMstJobCategories();
+		List<MstJobCategory> cacheMstJobCategories = jobService.getAllMstJobCategories();
 		if (jobCategoryKeySearch == null || "".equals(jobCategoryKeySearch)){
 			mstJobCategories.addAll(cacheMstJobCategories);
 		} else {
@@ -207,8 +198,8 @@ public class Job {
 	}
 	
 	@Command
-	private void openBandBoxJobCategory(){
-		mstJobCategories = masterJobService.getAllMstJobCategories();
+	public void openBandBoxJobCategory(){
+		mstJobCategories = jobService.getAllMstJobCategories();
 		
 		listitemRendererJobCategory = new JobCategoryListItemRenderer();
 		
@@ -217,7 +208,7 @@ public class Job {
 	}
 	
 	@Command
-	private void searchSubUnit() {
+	public void searchSubUnit() {
 		mstSubUnits.clear();
 		
 		// get all sub unit by service
@@ -238,18 +229,18 @@ public class Job {
 	}
 	
 	@Command
-	private void openBandBoxSubUnit(){
+	public void openBandBoxSubUnit(){
 		
 		// get all sub unit by service
 		
 		listitemRendererSubUnit= new SubUnitListItemRenderer();
-		
+		 
 		listBoxSubUnit.setModel(new ListModelList<MstSubUnit>(mstSubUnits));
 		listBoxSubUnit.setItemRenderer(listitemRendererSubUnit);
 	}
 	
 	@Command
-	private void searchLocation() {
+	public void searchLocation() {
 		mstLocations.clear();
 		
 		// get all location by service
@@ -270,7 +261,7 @@ public class Job {
 	}
 	
 	@Command
-	private void openBandBoxLocation(){
+	public void openBandBoxLocation(){
 		
 		// get all location by service
 		
@@ -278,6 +269,21 @@ public class Job {
 		
 		listBoxLocation.setModel(new ListModelList<MstLocation>(mstLocations));
 		listBoxLocation.setItemRenderer(listitemRendererLocation);
+	}
+	
+	@Command
+	public void doEditJob(){
+		formEditCondition();
+	}
+	
+	@Command
+	public void doSaveJob(){
+		
+	}
+	
+	@Command
+	public void doTerminateJob(){
+		System.out.println("kuda");
 	}
 	
 	/**
@@ -294,10 +300,100 @@ public class Job {
 	 * 
 	 */
 	private void formDetailCondition() {
-		ComponentConditionUtil.invisibleButton(buttonSave);
-		ComponentConditionUtil.visibleButton(buttonEdit, buttonTerminateEmployment);
+		ComponentConditionUtil.invisibleButton(buttonSave, buttonTerminateEmployment);
+		ComponentConditionUtil.visibleButton(buttonEdit);
 		ComponentConditionUtil.disableBandBox(bandBoxEmploymentStatus, bandBoxJobCategory, bandBoxJobTitle, bandBoxLocation, bandBoxSubUnit);
 		ComponentConditionUtil.disableDateBox(dateBoxJoinedDate);
+	}
+	
+	
+
+	public TrsEmployeeJobFormValidator getFormValidator() {
+		return formValidator;
+	}
+
+	public void setFormValidator(TrsEmployeeJobFormValidator formValidator) {
+		this.formValidator = formValidator;
+	}
+
+	public MstJobtitle getSelectedMstJobtitle() {
+		return selectedMstJobtitle;
+	}
+
+	public void setSelectedMstJobtitle(MstJobtitle selectedMstJobtitle) {
+		this.selectedMstJobtitle = selectedMstJobtitle;
+	}
+
+	public MstEmployementStatus getSelectedMstEmployementStatus() {
+		return selectedMstEmployementStatus;
+	}
+
+	public void setSelectedMstEmployementStatus(MstEmployementStatus selectedMstEmployementStatus) {
+		this.selectedMstEmployementStatus = selectedMstEmployementStatus;
+	}
+
+	public MstJobCategory getSelectedMstJobCategory() {
+		return selectedMstJobCategory;
+	}
+
+	public void setSelectedMstJobCategory(MstJobCategory selectedMstJobCategory) {
+		this.selectedMstJobCategory = selectedMstJobCategory;
+	}
+
+	public String getSubUnitKeySearch() {
+		return subUnitKeySearch;
+	}
+
+	public void setSubUnitKeySearch(String subUnitKeySearch) {
+		this.subUnitKeySearch = subUnitKeySearch;
+	}
+
+	public MstSubUnit getSelectedMstSubUnit() {
+		return selectedMstSubUnit;
+	}
+
+	public void setSelectedMstSubUnit(MstSubUnit selectedMstSubUnit) {
+		this.selectedMstSubUnit = selectedMstSubUnit;
+	}
+
+	public MstLocation getSelectedMstLocation() {
+		return selectedMstLocation;
+	}
+
+	public void setSelectedMstLocation(MstLocation selectedMstLocation) {
+		this.selectedMstLocation = selectedMstLocation;
+	}
+	
+	public String getJobTitleKeySearch() {
+		return jobTitleKeySearch;
+	}
+
+	public void setJobTitleKeySearch(String jobTitleKeySearch) {
+		this.jobTitleKeySearch = jobTitleKeySearch;
+	}
+
+	public String getEmploymentStatusKeySearch() {
+		return employmentStatusKeySearch;
+	}
+
+	public void setEmploymentStatusKeySearch(String employmentStatusKeySearch) {
+		this.employmentStatusKeySearch = employmentStatusKeySearch;
+	}
+
+	public String getJobCategoryKeySearch() {
+		return jobCategoryKeySearch;
+	}
+
+	public void setJobCategoryKeySearch(String jobCategoryKeySearch) {
+		this.jobCategoryKeySearch = jobCategoryKeySearch;
+	}
+
+	public String getLocationKeySearch() {
+		return locationKeySearch;
+	}
+
+	public void setLocationKeySearch(String locationKeySearch) {
+		this.locationKeySearch = locationKeySearch;
 	}
 
 	public TrsEmployee getTrsEmployee() {

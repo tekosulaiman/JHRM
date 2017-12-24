@@ -13,6 +13,8 @@ import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
 import org.zkoss.bind.annotation.ContextType;
 import org.zkoss.bind.annotation.ExecutionArgParam;
+import org.zkoss.bind.annotation.GlobalCommand;
+import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.Selectors;
@@ -61,6 +63,8 @@ public class RecruitmentCandidateListVM {
 	 * Fungsi yang digunakan untuk menerapkan data yang diambil dari JobCandidate dalam bentuk daftar.
 	 * 
 	 */
+	@GlobalCommand("refreshAfterSaveCandidate")
+	@NotifyChange("trsJobCandidates")
 	public void constructListJobCandidate() {
 		trsJobCandidates = recruitmentService.getAllTrsJobCandidate();
 	}

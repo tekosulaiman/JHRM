@@ -1,5 +1,6 @@
 package org.module.hr.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.module.hr.dao.MstSettingDAO;
@@ -13,6 +14,15 @@ public class AdministrationServiceImpl implements AdministrationService {
 	@Override
 	public List<MstSetting> getAllSettings() { 
 		return mstSettingDAO.getAllMstSetting();
+	}
+	
+	@Override
+	public HashMap<String, Object> getAllSettingsAsHash() {
+		HashMap<String, Object> settings = new HashMap<>();
+		for (MstSetting setting : getAllSettings()) {
+			settings.put(setting.getKeySet(), setting.getValueSet());
+		}
+		return settings;
 	}
 
 	@Override

@@ -18,7 +18,7 @@ public class MstSettingDAOImpl extends BasisDAO<MstSetting> implements MstSettin
 
 	@Override
 	public void saveOrUpdateAll(List<MstSetting> settings) throws DataAccessException {
-		saveOrUpdateAll(settings);
+		super.saveOrUpdateAll(settings);
 	}
 
 }
