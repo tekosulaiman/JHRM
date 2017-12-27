@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.Transient;
@@ -30,7 +31,8 @@ public class MstLeavePeriod implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "id_leave_period")
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    @SequenceGenerator(name="MstLeavePeriod_idLeavePeriod_GENERATOR", sequenceName="SCHEMA_HR.MstLeavePeriod_idLeavePeriod_SEQ")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "MstLeavePeriod_idLeavePeriod_GENERATOR")
     private Integer idLeavePeriod;
     
     @Column(name = "from_date")

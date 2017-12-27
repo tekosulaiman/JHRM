@@ -143,6 +143,7 @@
         
         <!-- Leave -->
   	<bean id="mstLeavePeriodDAO" class="org.module.hr.dao.impl.MstLeavePeriodDAOImpl" parent="baseDao"/>
+        <bean id="mstLeaveTypeDAO" class="org.module.hr.dao.impl.MstLeaveTypeDAOImpl" parent="baseDao"/>
         	
 	<!-- Inject Service -->
 	<!-- Job -->
@@ -196,6 +197,7 @@
      <!-- Leave -->
      <bean id="leaveService" class="org.module.hr.service.impl.LeaveServiceImpl">
     	<property name="mstLeavePeriodDAO" ref="mstLeavePeriodDAO"/>
+        <property name="mstLeaveTypeDAO" ref="mstLeaveTypeDAO"/>
     </bean>
        
 </beans>

@@ -5,10 +5,13 @@
  */
 package org.module.hr.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import org.module.hr.dao.MstLeavePeriodDAO;
 import org.module.hr.model.MstLeavePeriod;
+import org.module.hr.model.MstLeaveType;
 import org.module.hr.service.LeaveService;
+import org.module.hr.dao.MstLeaveTypeDAO;
 
 /**
  *
@@ -17,6 +20,7 @@ import org.module.hr.service.LeaveService;
 public class LeaveServiceImpl implements LeaveService{
     
     private MstLeavePeriodDAO mstLeavePeriodDAO;
+    private MstLeaveTypeDAO mstLeaveTypeDAO;
 
     @Override
     public List<MstLeavePeriod> getAllLeavePeriod() throws Exception {
@@ -33,6 +37,31 @@ public class LeaveServiceImpl implements LeaveService{
         mstLeavePeriodDAO.deleteLeavePeriodList(listLeavePeriod);
     }
 
+    @Override
+    public int getCountMstLeaveTypeWithFilter(HashMap<String, Object> hashMap) throws Exception {
+        return mstLeaveTypeDAO.getCountMstLeaveTypeWithFilter(hashMap);
+    }
+
+    @Override
+    public List<MstLeaveType> getMstLeaveTypePagingWithFilter(HashMap<String, Object> map) throws Exception {
+        return mstLeaveTypeDAO.getMstLeaveTypePagingWithFilter(map);
+    }
+
+    @Override
+    public void saveOrUpdateMstLeaveType(MstLeaveType mstLeaveType) throws Exception {
+        mstLeaveTypeDAO.saveOrUpdateLeaveType(mstLeaveType);
+    }
+
+    @Override
+    public void deleteMstLeaveType(MstLeaveType mstLeaveType) throws Exception {
+        mstLeaveTypeDAO.deleteLeaveType(mstLeaveType);
+    }
+
+    @Override
+    public void deleteListMstLeaveType(List<MstLeaveType> mstLeaveTypes) throws Exception {
+        mstLeaveTypeDAO.deleteLeaveTypeList(mstLeaveTypes);
+    }
+
     public MstLeavePeriodDAO getMstLeavePeriodDAO() {
         return mstLeavePeriodDAO;
     }
@@ -40,6 +69,15 @@ public class LeaveServiceImpl implements LeaveService{
     public void setMstLeavePeriodDAO(MstLeavePeriodDAO mstLeavePeriodDAO) {
         this.mstLeavePeriodDAO = mstLeavePeriodDAO;
     }
+
+    public MstLeaveTypeDAO getMstLeaveTypeDAO() {
+        return mstLeaveTypeDAO;
+    }
+
+    public void setMstLeaveTypeDAO(MstLeaveTypeDAO mstLeaveTypeDAO) {
+        this.mstLeaveTypeDAO = mstLeaveTypeDAO;
+    }
+
     
     
     

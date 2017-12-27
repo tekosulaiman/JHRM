@@ -7,8 +7,8 @@ package org.module.hr.dao.impl;
 
 import java.util.List;
 import org.module.api.common.dao.base.BasisDAO;
-import org.module.hr.dao.MstLeavePeriodDAO;
 import org.module.hr.model.MstLeavePeriod;
+import org.module.hr.dao.MstLeavePeriodDAO;
 
 /**
  *

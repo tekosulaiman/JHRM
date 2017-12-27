@@ -2,12 +2,16 @@ package org.module.hr.model;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -23,6 +27,8 @@ public class MstLeaveType implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "id_leave_type")
+    @SequenceGenerator(name="MstLeaveType_idLeaveType_GENERATOR", sequenceName="SCHEMA_HR.MstLeaveType_idLeaveType_SEQ")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "MstLeaveType_idLeaveType_GENERATOR")
     private Integer idLeaveType;
     
     @Column(name = "leave_type_name")
@@ -85,5 +91,31 @@ public class MstLeaveType implements Serializable {
     public void setTrsEntitlementList(List<TrsEntitlement> trsEntitlementList) {
         this.trsEntitlementList = trsEntitlementList;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MstLeaveType other = (MstLeaveType) obj;
+        if (!Objects.equals(this.idLeaveType, other.idLeaveType)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
     
 }

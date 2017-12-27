@@ -207,6 +207,11 @@ public class LeavePeriodVM {
         return tempMap;
     }
 
+    
+    
+    
+    ////// setter getter ///////
+    
     public MstLeavePeriod getMstLeavePeriod() {
         return mstLeavePeriod;
     }

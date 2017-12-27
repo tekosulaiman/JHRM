@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import org.hibernate.Query;
+import org.hibernate.Session;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,12 +98,111 @@ public abstract class BasisDAO<T> {
 				}
             }
         }
-		
+        
     	System.out.println("Query : "+queryString);
 		/*return (List<T>) hibernateTemplate.find(queryString.toString(), params);*/
 		return (List<T>) hibernateTemplate.find(queryString.toString());
     }
     
+        
+    @SuppressWarnings("unchecked")
+    public List<T> getByRequestMapWithSortingForPaging(HashMap<String, Object> hashMap, List<String> orderByList, String ASCorDESC, int offset, int limit) {
+
+        final StringBuffer queryString = new StringBuffer();
+
+        queryString.append(" FROM " + genericType.getSimpleName());
+
+        Object params[] = new Object[hashMap.size()];
+
+        int a = 0;
+
+        if ((hashMap != null) && !hashMap.isEmpty()) {
+            queryString.append(" WHERE ");
+
+            for (final Iterator<Map.Entry<String, Object>> it = hashMap.entrySet().iterator(); it.hasNext();) {
+
+                final Map.Entry<String, Object> entry = it.next();
+
+                if (entry.getValue() instanceof Class) {
+                    queryString.append(entry.getKey()).append(" = ").append("?");
+                    params[a] = entry.getValue();
+
+                } else if (entry.getValue() instanceof String) {
+                    queryString.append(entry.getKey()).append(" like ").append("'%" + entry.getValue() + "%'");
+                } else if (entry.getValue() instanceof Boolean) {
+                    queryString.append(entry.getKey()).append(" = ").append(entry.getValue());
+                }
+
+                if (it.hasNext()) {
+                    queryString.append(" AND ");
+                }
+            }
+        }
+
+        if ((orderByList != null) && !orderByList.isEmpty()) {
+            queryString.append(" ORDER BY ");
+
+            for (final Iterator<String> is = orderByList.iterator(); is.hasNext();) {
+                String coloumn = is.next();
+                queryString.append(coloumn + " ");
+
+                if (is.hasNext()) {
+                    queryString.append(" AND ");
+                }
+            }
+
+            queryString.append(ASCorDESC);
+        }
+        
+        Query query = sessionFactory.getCurrentSession().createQuery(queryString.toString());
+        query.setFirstResult(offset);
+        query.setMaxResults(limit);
+        
+        System.out.println("Query : " + queryString);
+        /*return (List<T>) hibernateTemplate.find(queryString.toString(), params);*/
+        return (List<T>) query.list();
+    }
+
+    //tambahan byrequestmap for count (filtering count)
+    @SuppressWarnings("unchecked")
+    public List<T> getByRequestMapCount(HashMap<String, Object> hashMap) {
+
+        final StringBuffer queryString = new StringBuffer();
+
+        queryString.append("SELECT COUNT(*) FROM " + genericType.getSimpleName());
+
+        Object params[] = new Object[hashMap.size()];
+
+        int a = 0;
+
+        if ((hashMap != null) && !hashMap.isEmpty()) {
+            queryString.append(" WHERE ");
+
+            for (final Iterator<Map.Entry<String, Object>> it = hashMap.entrySet().iterator(); it.hasNext();) {
+
+                final Map.Entry<String, Object> entry = it.next();
+
+                if (entry.getValue() instanceof Class) {
+                    queryString.append(entry.getKey()).append(" = ").append("?");
+                    params[a] = entry.getValue();
+
+                } else if (entry.getValue() instanceof String) {
+                    queryString.append(entry.getKey()).append(" like ").append("'%" + entry.getValue() + "%'");
+                } else if (entry.getValue() instanceof Boolean) {
+                    queryString.append(entry.getKey()).append(" = ").append(entry.getValue());
+                }
+
+                if (it.hasNext()) {
+                    queryString.append(" AND ");
+                }
+            }
+        }
+
+        System.out.println("Query : " + queryString);
+        /*return (List<T>) hibernateTemplate.find(queryString.toString(), params);*/
+        return (List<T>) hibernateTemplate.find(queryString.toString());
+    }
+
     /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Persistence
 	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
