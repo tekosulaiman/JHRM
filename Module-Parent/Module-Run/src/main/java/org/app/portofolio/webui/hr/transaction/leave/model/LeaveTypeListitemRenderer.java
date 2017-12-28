@@ -10,6 +10,7 @@ import org.module.hr.model.MstLeaveType;
 import org.module.hr.service.LeaveService;
 import org.module.hr.service.NationalityService;
 import org.zkoss.bind.BindUtils;
+import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
@@ -29,7 +30,7 @@ import org.zkoss.zul.Textbox;
  */
 public class LeaveTypeListitemRenderer implements ListitemRenderer<MstLeaveType> {
 
-    LeaveService leaveService = (LeaveService) SpringUtil.getBean("leaveService");	
+    LeaveService leaveService = (LeaveService) SpringUtil.getBean("leaveService");
 
     @Override
     @SuppressWarnings({"unchecked", "rawtypes"})
@@ -51,6 +52,13 @@ public class LeaveTypeListitemRenderer implements ListitemRenderer<MstLeaveType>
         final Label labelName = new Label();
         labelName.setStyle("text-decoration:underline;");
 
+        final Label labelMandatory = new Label();
+        labelMandatory.setValue(" *");
+        labelMandatory.setStyle("color:red;");
+
+        final Label labelError = new Label();
+        labelError.setStyle("color:red;");
+
         final Textbox textboxName = new Textbox();
 
         final Checkbox checkbox = new Checkbox();
@@ -64,6 +72,8 @@ public class LeaveTypeListitemRenderer implements ListitemRenderer<MstLeaveType>
 
         listcell = new Listcell();
         textboxName.setParent(listcell);
+        labelMandatory.setParent(listcell);
+        labelError.setParent(listcell);
         labelName.setParent(listcell);
         listcell.setParent(item);
 
@@ -85,17 +95,24 @@ public class LeaveTypeListitemRenderer implements ListitemRenderer<MstLeaveType>
             checkbox.setDisabled(true);
 
             textboxName.setVisible(false);
+            labelMandatory.setVisible(false);
+            labelError.setVisible(false);
         }
 
         buttonSave.addEventListener(Events.ON_CLICK, new EventListener<Event>() {
             @Override
             public void onEvent(Event event) throws Exception {
-                mstLeaveType.setLeaveTypeName(textboxName.getValue());
-                mstLeaveType.setIsSituational(checkbox.isChecked());
+                if (textboxName.getValue() != null
+                        && !textboxName.getValue().equals("")) {
+                    mstLeaveType.setLeaveTypeName(textboxName.getValue());
+                    mstLeaveType.setIsSituational(checkbox.isChecked());
 
-                leaveService.saveOrUpdateMstLeaveType(mstLeaveType);
+                    leaveService.saveOrUpdateMstLeaveType(mstLeaveType);
 
-                BindUtils.postGlobalCommand(null, null, "refreshMstLeaveTypeAfterSaveOrUpdate", null);
+                    BindUtils.postGlobalCommand(null, null, "refreshMstLeaveTypeAfterSaveOrUpdate", null);
+                } else {
+                    labelError.setValue(Labels.getLabel("menu.common.validator.isnotempty"));
+                }
             }
         });
 
@@ -107,12 +124,15 @@ public class LeaveTypeListitemRenderer implements ListitemRenderer<MstLeaveType>
 
                 textboxName.setVisible(true);
 
+                labelMandatory.setVisible(true);
+                labelError.setVisible(true);
+
                 labelName.setVisible(false);
-                
+
                 checkbox.setDisabled(false);
 
                 textboxName.setValue(mstLeaveType.getLeaveTypeName());
-                
+
                 checkbox.setChecked(mstLeaveType.getIsSituational());
             }
         });

@@ -1,9 +1,10 @@
 <zk>
-	<window border="none" width="100%" vflex="true">
-		<borderlayout vflex="true">
+	<window apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.transaction.leave.parameter.workweek.WorkWeekVM')" border="none" width="100%" vflex="true">
+		<borderlayout vflex="min">
 			<north>
 				<toolbar>
-					<button image="/images/icons/btn_edit.gif" label="Edit" onClick="@command('doSave')"/> 
+					<button image="/images/icons/btn_edit.gif" label="Edit" onClick="@command('doEdit')" visible="@load(!vm.isEdit)"/> 
+                                        <button image="/images/icons/btn_save.gif" label="Save" onClick="@command('doSave')" visible="@load(vm.isEdit)"/> 
 				</toolbar>
 			</north>
 			<center>
