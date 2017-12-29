@@ -17,17 +17,17 @@ import org.module.hr.dao.MstLeavePeriodDAO;
 public class MstLeavePeriodDAOImpl extends BasisDAO<MstLeavePeriod> implements MstLeavePeriodDAO {
 
     @Override
-    public List<MstLeavePeriod> getAllLeavePeriod() throws Exception {
+    public List<MstLeavePeriod> getAll() throws Exception {
         return (List<MstLeavePeriod>) getHibernateTemplate().find("FROM MstLeavePeriod mlp ORDER BY mlp.idLeavePeriod ASC");
     }
 
     @Override
-    public void saveOrUpdateAllLeavePeriod(List<MstLeavePeriod> listLeavePeriod) throws Exception {
+    public void saveOrUpdateList(List<MstLeavePeriod> listLeavePeriod) throws Exception {
         saveOrUpdateAll(listLeavePeriod);
     }
 
     @Override
-    public void deleteLeavePeriodList(List<MstLeavePeriod> listLeavePeriod) throws Exception {
+    public void deleteList(List<MstLeavePeriod> listLeavePeriod) throws Exception {
         deleteAll(listLeavePeriod);
     }
 

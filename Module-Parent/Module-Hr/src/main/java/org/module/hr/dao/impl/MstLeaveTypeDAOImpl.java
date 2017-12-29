@@ -19,29 +19,29 @@ import org.springframework.dao.support.DataAccessUtils;
 public class MstLeaveTypeDAOImpl extends BasisDAO<MstLeaveType> implements MstLeaveTypeDAO {
 
     @Override
-    public int getCountMstLeaveTypeWithFilter(HashMap<String, Object> hashMap) throws Exception {
+    public int getCountWithFilter(HashMap<String, Object> hashMap) throws Exception {
         return DataAccessUtils.intResult(getByRequestMapCount(hashMap));
     }
 
     @Override
-    public List<MstLeaveType> getMstLeaveTypePagingWithFilter(HashMap<String, Object> map) throws Exception {
+    public List<MstLeaveType> getPagingWithFilter(HashMap<String, Object> map) throws Exception {
         List<MstLeaveType> list = (List<MstLeaveType>) getByRequestMapWithSortingForPaging((HashMap<String, Object>) map.get("map")
                 ,(List<String>) map.get("sortBy"),(String) map.get("sortType"),(int) map.get("offset"), (int) map.get("limit"));
         return list;
     }
 
     @Override
-    public void saveOrUpdateLeaveType(MstLeaveType mstLeaveType) throws Exception {
-        saveOrUpdate(mstLeaveType);
+    public void saveOrUpdate(MstLeaveType mstLeaveType) {
+        super.saveOrUpdate(mstLeaveType);
     }
 
     @Override
-    public void deleteLeaveType(MstLeaveType mstLeaveType) throws Exception {
-        delete(mstLeaveType);
+    public void delete(MstLeaveType mstLeaveType) {
+        super.delete(mstLeaveType);
     }
 
     @Override
-    public void deleteLeaveTypeList(List<MstLeaveType> mstLeaveTypes) throws Exception {
+    public void deleteList(List<MstLeaveType> mstLeaveTypes) throws Exception {
         deleteAll(mstLeaveTypes);
     }
 

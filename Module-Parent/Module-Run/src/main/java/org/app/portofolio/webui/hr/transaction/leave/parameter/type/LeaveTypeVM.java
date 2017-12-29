@@ -27,15 +27,15 @@ import org.zkoss.zul.event.PagingEvent;
 
 public class LeaveTypeVM {
 
-    List<MstLeaveType> leaveTypeList, selectedTypeList;
-    Set<MstLeaveType> tempSelectedTypeList;
-    ListitemRenderer<MstLeaveType> leaveTypeItemRenderer;
-    MstLeaveType mstLeaveTypeForFilter;
-    Integer pagingCount, pageSize;
-    String itemNameFilter;
+    private List<MstLeaveType> leaveTypeList, selectedTypeList;
+    private Set<MstLeaveType> tempSelectedTypeList;
+    private ListitemRenderer<MstLeaveType> leaveTypeItemRenderer;
+    private MstLeaveType mstLeaveTypeForFilter;
+    private Integer pagingCount, pageSize;
+    private String itemNameFilter;
 
     @WireVariable
-    LeaveService leaveService;
+    private LeaveService leaveService;
 
     @AfterCompose
     public void setupComponents(@ContextParam(ContextType.VIEW) Component component) throws Exception {

@@ -14,7 +14,7 @@ import org.module.hr.model.MstLeavePeriod;
  */
 public interface MstLeavePeriodDAO {
 
-    public List<MstLeavePeriod> getAllLeavePeriod() throws Exception;
-    public void saveOrUpdateAllLeavePeriod(List<MstLeavePeriod> listLeavePeriod) throws Exception;
-    public void deleteLeavePeriodList(List<MstLeavePeriod> listLeavePeriod) throws Exception;
+    public List<MstLeavePeriod> getAll() throws Exception;
+    public void saveOrUpdateList(List<MstLeavePeriod> listLeavePeriod) throws Exception;
+    public void deleteList(List<MstLeavePeriod> listLeavePeriod) throws Exception;
 }

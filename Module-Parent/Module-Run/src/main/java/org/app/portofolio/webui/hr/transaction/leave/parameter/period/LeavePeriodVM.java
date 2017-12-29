@@ -22,17 +22,17 @@ import org.zkoss.zk.ui.select.annotation.WireVariable;
 
 public class LeavePeriodVM {
 
-    List<MstLeavePeriod> mstLeavePeriodList, mstLeavePeriodAfterList = new ArrayList<>();
-    MstLeavePeriod mstLeavePeriod, mstLeavePeriodTemp, mstLeavePeriodBefore, mstLeavePeriodAfter;
-    String currentLeavePeriod;
-    Map<String, Integer> monthList;
-    Map<String, Integer> dateList;
-    Boolean readOnly;
-    Calendar cal;
+    private List<MstLeavePeriod> mstLeavePeriodList, mstLeavePeriodAfterList = new ArrayList<>();
+    private MstLeavePeriod mstLeavePeriod, mstLeavePeriodTemp, mstLeavePeriodBefore, mstLeavePeriodAfter;
+    private String currentLeavePeriod;
+    private Map<String, Integer> monthList;
+    private Map<String, Integer> dateList;
+    private Boolean readOnly;
+    private Calendar cal;
 
     // service
     @WireVariable
-    LeaveService leaveService;
+    private LeaveService leaveService;
 
     @AfterCompose
     public void setupComponents(@ContextParam(ContextType.VIEW) Component component) throws Exception {

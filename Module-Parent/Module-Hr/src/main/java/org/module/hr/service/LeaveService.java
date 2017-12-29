@@ -7,8 +7,10 @@ package org.module.hr.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.module.hr.model.MstLeavePeriod;
 import org.module.hr.model.MstLeaveType;
+import org.module.hr.model.MstWorkWeek;
 
 /**
  *
@@ -27,4 +29,11 @@ public interface LeaveService {
     public void saveOrUpdateMstLeaveType(MstLeaveType mstLeaveType) throws Exception;
     public void deleteMstLeaveType(MstLeaveType mstLeaveType) throws Exception;
     public void deleteListMstLeaveType(List<MstLeaveType> mstLeaveTypes) throws Exception;
+    
+    //work week
+    public List<MstWorkWeek> getAllWorkWeek() throws Exception;
+    public MstWorkWeek getWorkWeekByDayName(String dayName) throws Exception;
+    public void updateWorkWeek(MstWorkWeek mstWorkWeek) throws Exception;
+    public void updateAllWorkWeek(Map<String, Integer> mstWorkWeek) throws Exception;
+    
 }

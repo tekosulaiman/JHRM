@@ -15,9 +15,9 @@ import org.module.hr.model.MstLeaveType;
  */
 public interface MstLeaveTypeDAO {
 
-    public int getCountMstLeaveTypeWithFilter(HashMap<String, Object> hashMap) throws Exception;
-    public List<MstLeaveType> getMstLeaveTypePagingWithFilter(HashMap<String,Object> map) throws Exception;
-    public void saveOrUpdateLeaveType(MstLeaveType mstLeaveType) throws Exception;
-    public void deleteLeaveType(MstLeaveType mstLeaveType) throws Exception;
-    public void deleteLeaveTypeList(List<MstLeaveType> mstLeaveTypes) throws Exception;
+    public int getCountWithFilter(HashMap<String, Object> hashMap) throws Exception;
+    public List<MstLeaveType> getPagingWithFilter(HashMap<String,Object> map) throws Exception;
+    public void saveOrUpdate(MstLeaveType mstLeaveType) throws Exception;
+    public void delete(MstLeaveType mstLeaveType) throws Exception;
+    public void deleteList(List<MstLeaveType> mstLeaveTypes) throws Exception;
 }
