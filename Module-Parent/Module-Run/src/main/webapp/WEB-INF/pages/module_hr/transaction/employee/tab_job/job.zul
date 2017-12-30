@@ -36,7 +36,7 @@
 													<textbox value="@bind(vm.jobTitleKeySearch)"/>
 													<button label="Search" onClick="@command('searchJobTitle')"/>
 												</hbox>
-												<listbox id="listBoxJobTitle" >
+												<listbox id="listBoxJobTitle" selectedItem="@bind(vm.selectedMstJobtitle)">
 													<listhead>
 														<listheader
 															label="Description" />
@@ -56,7 +56,7 @@
 													<textbox value="@bind(vm.employmentStatusKeySearch)"/>
 													<button label="Search" onClick="@command('searchEmploymentStatus')"/>
 												</hbox>
-												<listbox id="listBoxEmploymentStatus" >
+												<listbox id="listBoxEmploymentStatus" selectedItem="@bind(vm.selectedMstEmployementStatus)" >
 													<listhead>
 														<listheader
 															label="Description" />
@@ -76,7 +76,7 @@
 													<textbox value="@bind(vm.jobCategoryKeySearch)"/>
 													<button label="Search" onClick="@command('searchJobCategory')"/>
 												</hbox>
-												<listbox id="listBoxJobCategory" >
+												<listbox id="listBoxJobCategory" selectedItem="@bind(vm.selectedMstJobCategory)">
 													<listhead>
 														<listheader
 															label="Description" />
@@ -89,7 +89,7 @@
 								<row>
 									<label
 										value="${labels.menu.employee.job.form.joined.date}" />
-									<datebox id="dateBoxJoinedDate"/>
+									<datebox id="dateBoxJoinedDate" value="@bind(vm.trsEmployee.joinDate)"/>
 								</row>
 								<row>
 									<label
@@ -101,7 +101,7 @@
 													<textbox value="@bind(vm.subUnitKeySearch)"/>
 													<button label="Search" onClick="@command('searchSubUnit')"/>
 												</hbox>
-												<listbox id="listBoxSubUnit" >
+												<listbox id="listBoxSubUnit" selectedItem="@bind(vm.selectedMstSubUnit)">
 													<listhead>
 														<listheader
 															label="Description" />
@@ -121,7 +121,7 @@
 													<textbox value="@bind(vm.locationKeySearch)"/>
 													<button label="Search" onClick="@command('searchLocation')"/>
 												</hbox>
-												<listbox id="listBoxLocation" >
+												<listbox id="listBoxLocation" selectedItem="@bind(vm.selectedMstLocation)" >
 													<listhead>
 														<listheader
 															label="Description" />
@@ -134,7 +134,7 @@
 								
 								<!-- employment contract -->
 								
-								 <row>
+								<!--  <row>
 									<label
 										value="${labels.menu.employee.job.form.employment.contract}"
 										style="font-weight:bold;" />	
@@ -142,14 +142,14 @@
 								<row>
 									<label
 										value="${labels.menu.employee.job.form.start.date}" />
-									<datebox/>
+									<datebox id="dateBoxStartDate" />
 								</row>
 								<row>
 									<label
 										value="${labels.menu.employee.job.form.end.date}" />
-									<datebox />
-								</row>
-							</rows>
+									<datebox id="dateBoxEndDate" />
+								</row> -->
+							</rows> 
 						</grid>
 
 			</center>

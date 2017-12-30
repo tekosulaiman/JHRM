@@ -19,6 +19,7 @@ import org.module.hr.model.MstSubUnit;
 import org.module.hr.model.TrsEmployee;
 import org.module.hr.service.EmployeeService;
 import org.module.hr.service.JobService;
+import org.module.hr.service.OrganizationService;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
@@ -83,12 +84,21 @@ public class Job {
 	@Wire("#dateBoxJoinedDate")
 	private Datebox dateBoxJoinedDate;
 	
+	/*@Wire("#dateBoxStartDate")
+	private Datebox dateBoxStartDate;
+	
+	@Wire("#dateBoxEndDate")
+	private Datebox dateBoxEndDate;*/
+	
 	/*---------- service ----------*/
 	@WireVariable
 	private EmployeeService employeeService;
 	
 	@WireVariable
 	private JobService jobService;
+	
+	@WireVariable
+	private OrganizationService organizationService;
 	
 	/*---------- bean ---------*/
 	private TrsEmployee trsEmployee;
@@ -158,7 +168,6 @@ public class Job {
 	@Command
 	public void searchEmploymentStatus() {
 		listMstEmployementStatus.clear();
-//		List<MstEmployementStatus> cacheListMstEmployementStatus = jobService.getAllMstEmployementStatus();
 		if (employmentStatusKeySearch == null || "".equals(employmentStatusKeySearch)){
 			listMstEmployementStatus = jobService.getAllMstEmployementStatus();
 		} else {
@@ -264,6 +273,8 @@ public class Job {
 	public void openBandBoxLocation(){
 		
 		// get all location by service
+		mstLocations = organizationService.getAllMstLocation();
+		
 		
 		listitemRendererLocation= new LocationListItemRenderer(); 
 		
@@ -278,7 +289,13 @@ public class Job {
 	
 	@Command
 	public void doSaveJob(){
-		
+		trsEmployee.setIdJobTitle(selectedMstJobtitle);
+		trsEmployee.setIdEmployementStatus(selectedMstEmployementStatus);
+		trsEmployee.setIdJobCategory(selectedMstJobCategory);
+		trsEmployee.setIdSubUnit(selectedMstSubUnit);
+		trsEmployee.setIdLocation(selectedMstLocation);
+		employeeService.update(trsEmployee);
+		formDetailCondition();
 	}
 	
 	@Command
@@ -292,7 +309,7 @@ public class Job {
 	private void formEditCondition() {
 		ComponentConditionUtil.visibleButton(buttonSave, buttonTerminateEmployment);
 		ComponentConditionUtil.invisibleButton(buttonEdit);
-		ComponentConditionUtil.enableBandBox(bandBoxEmploymentStatus, bandBoxJobCategory, bandBoxJobTitle, bandBoxLocation, bandBoxSubUnit);
+		ComponentConditionUtil.enableBandBox(bandBoxEmploymentStatus, bandBoxJobCategory, bandBoxJobTitle, bandBoxLocation);
 		ComponentConditionUtil.enableDateBox(dateBoxJoinedDate);
 	}
 	
@@ -322,6 +339,8 @@ public class Job {
 
 	public void setSelectedMstJobtitle(MstJobtitle selectedMstJobtitle) {
 		this.selectedMstJobtitle = selectedMstJobtitle;
+		bandBoxJobTitle.setValue(selectedMstJobtitle.getJobName());
+		bandBoxJobTitle.close();
 	}
 
 	public MstEmployementStatus getSelectedMstEmployementStatus() {
@@ -330,6 +349,8 @@ public class Job {
 
 	public void setSelectedMstEmployementStatus(MstEmployementStatus selectedMstEmployementStatus) {
 		this.selectedMstEmployementStatus = selectedMstEmployementStatus;
+		bandBoxEmploymentStatus.setValue(selectedMstEmployementStatus.getEmployementStatusName());
+		bandBoxEmploymentStatus.close();
 	}
 
 	public MstJobCategory getSelectedMstJobCategory() {
@@ -338,6 +359,8 @@ public class Job {
 
 	public void setSelectedMstJobCategory(MstJobCategory selectedMstJobCategory) {
 		this.selectedMstJobCategory = selectedMstJobCategory;
+		bandBoxJobCategory.setValue(selectedMstJobCategory.getJobCategoryName());
+		bandBoxJobCategory.close();
 	}
 
 	public String getSubUnitKeySearch() {
@@ -354,6 +377,8 @@ public class Job {
 
 	public void setSelectedMstSubUnit(MstSubUnit selectedMstSubUnit) {
 		this.selectedMstSubUnit = selectedMstSubUnit;
+		bandBoxSubUnit.setValue(selectedMstSubUnit.getNameSubUnit());
+		bandBoxSubUnit.close();
 	}
 
 	public MstLocation getSelectedMstLocation() {
@@ -362,6 +387,8 @@ public class Job {
 
 	public void setSelectedMstLocation(MstLocation selectedMstLocation) {
 		this.selectedMstLocation = selectedMstLocation;
+		bandBoxLocation.setValue(selectedMstLocation.getName());
+		bandBoxLocation.close();
 	}
 	
 	public String getJobTitleKeySearch() {
@@ -403,5 +430,7 @@ public class Job {
 	public void setTrsEmployee(TrsEmployee trsEmployee) {
 		this.trsEmployee = trsEmployee;
 	}
+	
+	
 	
 }
