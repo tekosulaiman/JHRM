@@ -1,6 +1,9 @@
 package org.app.portofolio.webui.hr.transaction.recruitment.candidate;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -8,17 +11,19 @@ import org.app.portofolio.webui.hr.common.collections.ArgKey;
 import org.app.portofolio.webui.hr.common.collections.ModalAction;
 import org.app.portofolio.webui.hr.common.utilities.ComponentConditionUtil;
 import org.app.portofolio.webui.hr.transaction.recruitment.candidate.validator.TrsJobCandidateFormValidator;
+import org.module.api.common.ParameterKey;
 import org.module.hr.model.TrsJobCandidate;
 import org.module.hr.model.TrsJobVacancy;
 import org.module.hr.service.EmployeeService;
 import org.module.hr.service.RecruitmentService;
+import org.module.hr.service.UploadFileService;
 import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
 import org.zkoss.bind.annotation.ContextType;
 import org.zkoss.bind.annotation.ExecutionArgParam;
-import org.zkoss.bind.annotation.NotifyChange;
+import org.zkoss.io.Files;
 import org.zkoss.util.media.Media;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Sessions;
@@ -56,13 +61,16 @@ public class RecruitmentCandidateDialogVM {
 	@WireVariable
 	private EmployeeService employeeService;
 	
+	@WireVariable
+	private UploadFileService uploadFileService;
+	
 	/*----------- Bean -----------*/
 	private List<TrsJobVacancy> trsJobVacancies;
 	private TrsJobCandidateFormValidator formValidator;
 	private TrsJobCandidate trsJobCandidate;
 	private ModalAction action;
-	private File fileUploadResume;
 	private HashMap<String, Object> settings;
+	private File uploadFile;
 	
 	@AfterCompose
 	public void setupComponents(@ContextParam(ContextType.VIEW) Component component, 
@@ -108,7 +116,7 @@ public class RecruitmentCandidateDialogVM {
 	}
 	
 	@Command
-	public void doSave(){
+	public void doSave() throws Exception{
 		switch(action) {
 			case NEW : 
 				recruitmentService.save(trsJobCandidate);
@@ -118,11 +126,8 @@ public class RecruitmentCandidateDialogVM {
 			break;
 		}
 		
-		if (fileUploadResume.renameTo(new File(settings.get("rootPath").toString()+ "\\" +fileUploadResume.getName()))) {
-			System.out.println("Resume has been uploaded !");
-		} else {
-			System.out.println("Resume Failed uploaded !");
-		}
+		FileInputStream fileInputStream = new FileInputStream(uploadFile);
+		uploadFileService.uploadResume(fileInputStream, settings.get(ParameterKey.KEY_SETTING_ROOT_PATH).toString(), trsJobCandidate);
 		
 		BindUtils.postGlobalCommand(null, null, "refreshAfterSaveCandidate", null);
 		Messagebox.show("Success !");
@@ -141,14 +146,17 @@ public class RecruitmentCandidateDialogVM {
 	}
 	
 	@Command
-	public void doUpload(@ContextParam(ContextType.TRIGGER_EVENT) UploadEvent uploadEvent) {
+	public void doUpload(@ContextParam(ContextType.TRIGGER_EVENT) UploadEvent uploadEvent) throws FileNotFoundException, IOException {
 		Media media = uploadEvent.getMedia(); 
-		File fileUpload = new File(media.getName());
+		File file = new File(media.getName());
+		
 		if (media != null) {
-			this.fileUploadResume = fileUpload;
+			this.uploadFile = new File(file.getAbsolutePath());
+			Files.copy(uploadFile, media.getStreamData());
 			textboxResume.setValue(media.getName());
 		}
 	}
+	
 	
 	/* ---------- GETTER-SETTER --------------*/
 	public List<TrsJobVacancy> getTrsJobVacancies() {

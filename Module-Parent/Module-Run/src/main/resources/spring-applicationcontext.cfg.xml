@@ -144,6 +144,9 @@
 	<!-- Setting -->
 	<bean id="mstSettingDAO" class="org.module.hr.dao.impl.MstSettingDAOImpl" parent="baseDao"/>
 	
+	<!-- Upload File -->
+	<bean id="mstUploadFileDAO" class="org.module.hr.dao.impl.MstUploadFileDAOImpl" parent="baseDao"/>
+	
 	<!-- Inject Service -->
 	<!-- Job -->
 	<bean id="jobService" class="org.module.hr.service.impl.JobServiceImpl">
@@ -196,5 +199,10 @@
     <!-- System Setting -->
     <bean id="administrationService" class="org.module.hr.service.impl.AdministrationServiceImpl">
     	<property name="mstSettingDAO" ref="mstSettingDAO"/>
+    </bean>
+    
+    <!-- Upload Servie -->
+    <bean id="uploadFileService" class="org.module.hr.service.impl.UploadFileServiceImpl">
+    	<property name="mstUploadFileDAO" ref="mstUploadFileDAO"/>
     </bean>
 </beans>
