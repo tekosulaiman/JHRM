@@ -2,8 +2,10 @@ package org.module.api.common.dao.base;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import org.hibernate.Query;
@@ -106,7 +108,7 @@ public abstract class BasisDAO<T> {
     
         
     @SuppressWarnings("unchecked")
-    public List<T> getByRequestMapWithSortingForPaging(HashMap<String, Object> hashMap, List<String> orderByList, String ASCorDESC, int offset, int limit) {
+    public List<T> getByRequestMapWithSortingForPaging(HashMap<String, Object> hashMap, LinkedHashMap<String, Object> orderByList, int offset, int limit) {
 
         final StringBuffer queryString = new StringBuffer();
 
@@ -118,6 +120,9 @@ public abstract class BasisDAO<T> {
 
         if ((hashMap != null) && !hashMap.isEmpty()) {
             queryString.append(" WHERE ");
+            // temp untuk date
+            Date dateFrom = new Date();
+            Date dateTo = new Date();
 
             for (final Iterator<Map.Entry<String, Object>> it = hashMap.entrySet().iterator(); it.hasNext();) {
 
@@ -131,6 +136,17 @@ public abstract class BasisDAO<T> {
                     queryString.append(entry.getKey()).append(" like ").append("'%" + entry.getValue() + "%'");
                 } else if (entry.getValue() instanceof Boolean) {
                     queryString.append(entry.getKey()).append(" = ").append(entry.getValue());
+                //between dates
+                } else if (entry.getValue() instanceof Map 
+                        && entry.getKey().toLowerCase().contains("date")) {
+                    for(String obj : ((Map<String, Date>) entry.getValue()).keySet()){
+                        if(obj.toLowerCase().contains("from")){
+                            dateFrom = ((Map<String, Date>) entry.getValue()).get(obj);
+                        } else if(obj.toLowerCase().contains("to")){
+                            dateTo = ((Map<String, Date>) entry.getValue()).get(obj);
+                        }
+                    }
+                    queryString.append(entry.getKey()).append(" between ").append(dateFrom).append(" and ").append(dateTo);
                 }
 
                 if (it.hasNext()) {
@@ -142,16 +158,14 @@ public abstract class BasisDAO<T> {
         if ((orderByList != null) && !orderByList.isEmpty()) {
             queryString.append(" ORDER BY ");
 
-            for (final Iterator<String> is = orderByList.iterator(); is.hasNext();) {
-                String coloumn = is.next();
-                queryString.append(coloumn + " ");
-
+            for (final Iterator<String> is = orderByList.keySet().iterator(); is.hasNext();) {
+                String column = is.next();
+                queryString.append(column + " " +orderByList.get(is));
+                
                 if (is.hasNext()) {
-                    queryString.append(" AND ");
+                    queryString.append(", ");
                 }
             }
-
-            queryString.append(ASCorDESC);
         }
         
         Query query = sessionFactory.getCurrentSession().createQuery(queryString.toString());

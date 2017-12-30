@@ -6,6 +6,7 @@
 package org.module.hr.dao.impl;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import org.module.api.common.dao.base.BasisDAO;
 import org.module.hr.dao.MstLeaveTypeDAO;
@@ -26,7 +27,7 @@ public class MstLeaveTypeDAOImpl extends BasisDAO<MstLeaveType> implements MstLe
     @Override
     public List<MstLeaveType> getPagingWithFilter(HashMap<String, Object> map) throws Exception {
         List<MstLeaveType> list = (List<MstLeaveType>) getByRequestMapWithSortingForPaging((HashMap<String, Object>) map.get("map")
-                ,(List<String>) map.get("sortBy"),(String) map.get("sortType"),(int) map.get("offset"), (int) map.get("limit"));
+                ,(LinkedHashMap<String, Object>) map.get("sortBy"),(int) map.get("offset"), (int) map.get("limit"));
         return list;
     }
 

@@ -3,7 +3,9 @@ package org.app.portofolio.webui.hr.transaction.leave.parameter.type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import net.sf.jasperreports.engine.JRException;
 import org.app.portofolio.webui.hr.transaction.leave.model.LeaveTypeListitemRenderer;
@@ -63,13 +65,12 @@ public class LeaveTypeVM {
         //postgres offset start from 0
         //refreshActivePage += 1;
 
-        List<String> sortBy = new ArrayList<>();
-        sortBy.add("leaveTypeName");
+        Map<String, Object> sortBy = new LinkedHashMap<>();
+        sortBy.put("leaveTypeName","ASC");
         
         HashMap<String, Object> hashMapMstLeaveType = new HashMap<String, Object>();
         hashMapMstLeaveType.put("map", hashMap);
         hashMapMstLeaveType.put("sortBy", sortBy);
-        hashMapMstLeaveType.put("sortType", "ASC");
         hashMapMstLeaveType.put("offset", refreshActivePage);
         hashMapMstLeaveType.put("limit", pageSize);
 
