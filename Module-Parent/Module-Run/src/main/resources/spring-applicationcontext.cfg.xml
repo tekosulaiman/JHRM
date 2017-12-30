@@ -140,12 +140,10 @@
 	<bean id="trsEmployeeLanguageDAO" class="org.module.hr.dao.impl.TrsEmployeeLanguageDAOImpl" parent="baseDao"/>
 	<bean id="trsEmployeeSkillDAO" class="org.module.hr.dao.impl.TrsEmployeeSkillDAOImpl" parent="baseDao"/>
 	<bean id="trsEmployeeSalaryDAO" class="org.module.hr.dao.impl.TrsEmployeeSalaryDAOImpl" parent="baseDao"/>
-        
-        <!-- Leave -->
-  	<bean id="mstLeavePeriodDAO" class="org.module.hr.dao.impl.MstLeavePeriodDAOImpl" parent="baseDao"/>
-        <bean id="mstLeaveTypeDAO" class="org.module.hr.dao.impl.MstLeaveTypeDAOImpl" parent="baseDao"/>
-        <bean id="mstWorkWeekDAO" class="org.module.hr.dao.impl.MstWorkWeekDAOImpl" parent="baseDao"/>
-        	
+	
+	<!-- Setting -->
+	<bean id="mstSettingDAO" class="org.module.hr.dao.impl.MstSettingDAOImpl" parent="baseDao"/>
+	
 	<!-- Inject Service -->
 	<!-- Job -->
 	<bean id="jobService" class="org.module.hr.service.impl.JobServiceImpl">
@@ -195,11 +193,8 @@
     	<property name="trsEmployeeSalaryDAO" ref="trsEmployeeSalaryDAO"/>
     </bean>
     
-     <!-- Leave -->
-     <bean id="leaveService" class="org.module.hr.service.impl.LeaveServiceImpl">
-    	<property name="mstLeavePeriodDAO" ref="mstLeavePeriodDAO"/>
-        <property name="mstLeaveTypeDAO" ref="mstLeaveTypeDAO"/>
-        <property name="mstWorkWeekDAO" ref="mstWorkWeekDAO"/>
+    <!-- System Setting -->
+    <bean id="administrationService" class="org.module.hr.service.impl.AdministrationServiceImpl">
+    	<property name="mstSettingDAO" ref="mstSettingDAO"/>
     </bean>
-       
 </beans>
