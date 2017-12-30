@@ -28,23 +28,25 @@ public class TrsEmployeeSalary implements Serializable {
     @ManyToOne
     private TrsEmployee idEmployee;
     
-    @Column(name = "pay_grade")
-    private String payGrade;
-    
     @Column(name = "salary_component")
     private String salaryComponent;
     
     @Column(name = "pay_frequency")
     private String payFrequency;
     
-    @Column(name = "currency")
-    private String currency;
-    
     @Column(name = "amount")
     private String amount;
     
     @Column(name = "comment")
     private String comment;
+    
+    @JoinColumn(name = "id_currency", referencedColumnName = "id_currency")
+    @ManyToOne
+    private MstCurrency idCurrency;
+    
+    @JoinColumn(name = "id_paygrade", referencedColumnName = "id_paygrade")
+    @ManyToOne
+    private MstPaygrade idPaygrade;
 
     public Integer getIdSalary() {
         return idSalary;
@@ -61,14 +63,6 @@ public class TrsEmployeeSalary implements Serializable {
     public void setIdEmployee(TrsEmployee idEmployee) {
         this.idEmployee = idEmployee;
     }
-    
-    public String getPayGrade() {
-		return payGrade;
-	}
-
-	public void setPayGrade(String payGrade) {
-		this.payGrade = payGrade;
-	}
 
 	public String getSalaryComponent() {
 		return salaryComponent;
@@ -86,14 +80,6 @@ public class TrsEmployeeSalary implements Serializable {
 		this.payFrequency = payFrequency;
 	}
 
-	public String getCurrency() {
-		return currency;
-	}
-
-	public void setCurrency(String currency) {
-		this.currency = currency;
-	}
-
 	public String getAmount() {
 		return amount;
 	}
@@ -108,5 +94,21 @@ public class TrsEmployeeSalary implements Serializable {
 
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+
+	public MstCurrency getIdCurrency() {
+		return idCurrency;
+	}
+
+	public void setIdCurrency(MstCurrency idCurrency) {
+		this.idCurrency = idCurrency;
+	}
+
+	public MstPaygrade getIdPaygrade() {
+		return idPaygrade;
+	}
+
+	public void setIdPaygrade(MstPaygrade idPaygrade) {
+		this.idPaygrade = idPaygrade;
 	}
 }

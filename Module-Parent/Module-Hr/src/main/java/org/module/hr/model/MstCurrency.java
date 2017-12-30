@@ -30,6 +30,9 @@ public class MstCurrency implements Serializable {
     
     @OneToMany(mappedBy = "idCurrency")
     private List<MstPaygradeCurrency> mstPaygradeCurrencyList;
+    
+    @OneToMany(mappedBy = "idPaygrade")
+    private List<TrsEmployeeSalary> trsEmployeeSalaryList;
 
     public String getIdCurrency() {
         return idCurrency;
@@ -54,5 +57,14 @@ public class MstCurrency implements Serializable {
 
     public void setMstPaygradeCurrencyList(List<MstPaygradeCurrency> mstPaygradeCurrencyList) {
         this.mstPaygradeCurrencyList = mstPaygradeCurrencyList;
+    }
+    
+    @XmlTransient
+    public List<TrsEmployeeSalary> getTrsEmployeeSalaryList() {
+        return trsEmployeeSalaryList;
+    }
+
+    public void setTrsEmployeeSalaryList(List<TrsEmployeeSalary> trsEmployeeSalaryList) {
+        this.trsEmployeeSalaryList = trsEmployeeSalaryList;
     }
 }
