@@ -1,6 +1,6 @@
 <zk>
-    <window apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.transaction.leave.parameter.type.LeaveTypeVM')" border="none" width="100%" vflex="true">
-        <borderlayout vflex="min">
+    <window apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.transaction.leave.parameter.type.LeaveTypeVM')" border="none" width="100%"><!-- vflex="true" -->
+        <borderlayout><!-- vflex="min" -->
             <north border="none">
                 <div sclass="z-toolbar" style="padding:0">
                     <hbox pack="stretch" width="100%">

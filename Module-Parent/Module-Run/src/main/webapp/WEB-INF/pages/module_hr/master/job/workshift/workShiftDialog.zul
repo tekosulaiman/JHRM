@@ -1,6 +1,6 @@
 <zk>
-	<window id="windowWorkShift" title="Form Work Shift" border="normal" width="850px" position="center,center" closable="true" action="show: slideDown; hide: slideUp" mode="modal" 
-	apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.master.job.workshift.WorkShiftListVM')" onClose="@command('doClose')">
+	<window id="windowWorkShift" title="Form Work Shift" border="normal" width="850px" position="center,center" closable="true" action="show: slideDown; hide: slideUp" mode="modal">
+	<!--apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.app.portofolio.webui.hr.master.job.workshift.WorkShiftListVM')" onClose="@command('doClose')"-->
 		<borderlayout height="400px">
 			<north>
 				<toolbar>

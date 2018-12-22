@@ -2,12 +2,11 @@ package org.app.portofolio.webui.hr.transaction.leave.parameter.type;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import net.sf.jasperreports.engine.JRException;
+
 import org.app.portofolio.webui.hr.transaction.leave.model.LeaveTypeListitemRenderer;
 import org.module.hr.model.MstLeaveType;
 import org.module.hr.service.LeaveService;
@@ -27,6 +26,8 @@ import org.zkoss.zul.ListitemRenderer;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.event.PagingEvent;
 
+import net.sf.jasperreports.engine.JRException;
+
 public class LeaveTypeVM {
 
     private List<MstLeaveType> leaveTypeList, selectedTypeList;
@@ -41,16 +42,14 @@ public class LeaveTypeVM {
 
     @AfterCompose
     public void setupComponents(@ContextParam(ContextType.VIEW) Component component) throws Exception {
-
         Selectors.wireComponents(component, this, false);
 
-        mstLeaveTypeForFilter = new MstLeaveType();
+        /*mstLeaveTypeForFilter = new MstLeaveType();
         selectedTypeList = new ArrayList<>();
         tempSelectedTypeList = new HashSet<>();
         
         pageSize = 10;
-        refreshPageList(0);
-
+        refreshPageList(0);*/
     }
 
     @NotifyChange("*")

@@ -4,39 +4,51 @@
 		<borderlayout>
 			<north>
 				<toolbar>
-					<button id="buttonSaveVacancy" label="Save" onClick="@command('doSave')"/>
+					<button image="/images/icons/btn_save.gif" id="buttonSaveVacancy" label="Save" onClick="@command('doSave')"/>
 				</toolbar>
 			</north>
 			<center>
 				<grid>
 					<columns>
-						<column width="25%" />
-						<column width="50%"/>
+						<column/>
+						<column/>
 					</columns>
 					<rows>
 						<row>
 							<label value="Name"/>
+							<textbox/>
 						</row>
 						<row>
 							<label value="Country"/>
+							<textbox/>
 						</row>
 						<row>
 							<label value="State/Province"/>
+							<textbox/>
 						</row>
 						<row>
 							<label value="City"/>
+							<textbox/>
 						</row>
 						<row>
 							<label value="Addrees"/>
+							<textbox/>
 						</row>
 						<row>
-							<label value="Name"/>
+							<label value="Zip/Postal Code"/>
+							<textbox/>
 						</row>
 						<row>
-							<label value="Name"/>
+							<label value="Phone"/>
+							<textbox/>
 						</row>
 						<row>
-							<label value="Name"/>
+							<label value="Fax"/>
+							<textbox/>
+						</row>
+						<row>
+							<label value="Note"/>
+							<textbox/>
 						</row>
 					</rows>
 				</grid>

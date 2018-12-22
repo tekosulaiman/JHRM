@@ -3,11 +3,11 @@ package org.app.portofolio.webui.hr.transaction.leave.parameter.period;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
 import org.apache.commons.lang.SerializationUtils;
 import org.module.hr.model.MstLeavePeriod;
 import org.module.hr.service.LeaveService;
@@ -36,10 +36,8 @@ public class LeavePeriodVM {
 
     @AfterCompose
     public void setupComponents(@ContextParam(ContextType.VIEW) Component component) throws Exception {
-
         Selectors.wireComponents(component, this, false);
-
-        doInit();
+        //doInit();
     }
 
     @NotifyChange("*")
