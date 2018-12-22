@@ -15,6 +15,7 @@ import org.zkoss.bind.annotation.ExecutionArgParam;
 import org.zkoss.bind.annotation.GlobalCommand;
 import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
@@ -106,7 +107,7 @@ public class LocationVM {
 
 	@Command
 	public void doNew(){
-		
+		Executions.createComponents("/WEB-INF/pages/module_hr/master/organization/location/locationDialog.zul", null, null);
 	}
 
 	@GlobalCommand
