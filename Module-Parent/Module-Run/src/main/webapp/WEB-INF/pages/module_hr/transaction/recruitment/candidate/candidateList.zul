@@ -21,7 +21,7 @@
 			</north>
 			<!-- Table Database -->
 			<center>
-				<listbox id="listboxJobCandidate" model="@bind(vm.trsJobCandidates)" selectedItem="@bind(vm.selectedTrsJobCandidate)">
+				<listbox id="listboxJobCandidate" model="@bind(vm.trsJobCandidates)" selectedItem="@bind(vm.selectedTrsJobCandidate)" checkmark="true" multiple="true">
 					<listhead>
 						<listheader width="5%" align="center"/>
 						<listheader label="${labels.menu.recruitment.candidate.listheader.vacancy}" sort="auto" /> 	

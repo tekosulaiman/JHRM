@@ -24,10 +24,8 @@
 						<listheader width="10%" align="center"/>
 						<listheader label="Employee Name"/>
 						<listheader label="Leave Type"/>
-						<listheader label="Entitlement Type"/>
-						<listheader label="Valid From"/>
-						<listheader label="Valid To"/>
-						<listheader label="Days"/>
+						<listheader label="Leave Period"/>
+						<listheader label="Entitlement"/>
 					</listhead>
 				</listbox>
 			</center>

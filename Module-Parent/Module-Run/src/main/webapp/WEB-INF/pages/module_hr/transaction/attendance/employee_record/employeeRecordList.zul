@@ -23,12 +23,12 @@
 					<listhead sizable="true">
 						<listheader width="10%" align="center"/>
 						<listheader label="Employee Name"/>
-						<listheader label="In"/>
-						<listheader label="In Note"/>
-						<listheader label="Out"/>
-						<listheader label="Out Note"/>
-						<listheader label="Duration"/>
-						<listheader label="Total Hour"/>
+						<listheader label="Punch In"/>
+						<listheader label="Punch In Note"/>
+						<listheader label="Punch Out"/>
+						<listheader label="punch Out Note"/>
+						<listheader label="Duration (Hours)"/>
+						<listheader label="Total"/>
 					</listhead>
 				</listbox>
 			</center>

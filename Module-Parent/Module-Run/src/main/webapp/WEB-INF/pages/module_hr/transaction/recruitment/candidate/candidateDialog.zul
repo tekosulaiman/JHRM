@@ -6,7 +6,7 @@
 				@validator(vm.formValidator)">
 			<north>
 				<toolbar>
-					<button id="buttonSaveCandidate" label="${labels.button.dialog.save}" onClick="@command('doSave')"></button>
+					<button id="buttonSaveCandidate" image="/images/icons/btn_save.gif" label="${labels.button.dialog.save}" onClick="@command('doSave')"></button>
 					<button id="buttonSaveAndNewCandidate" label="New" onClick="@command('doSaveAndNew')"></button>
 					<button id="buttonEditCandidate" label="${labels.button.dialog.edit}" onClick="@command('doEdit')"></button>
 				</toolbar>

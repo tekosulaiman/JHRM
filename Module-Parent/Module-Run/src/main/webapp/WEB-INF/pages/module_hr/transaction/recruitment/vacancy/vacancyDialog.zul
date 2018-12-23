@@ -8,7 +8,7 @@
 				@validator(vm.formValidator)">
 			<north>
 				<toolbar>
-					<button id="buttonSaveVacancy" label="${labels.button.dialog.save}" onClick="@command('doSave')"></button>
+					<button id="buttonSaveVacancy" image="/images/icons/btn_save.gif" label="${labels.button.dialog.save}" onClick="@command('doSave')"></button>
 					<button id="buttonSaveAndNewVacancy" label="${labels.button.dialog.saveandnew}" onClick="@save(vm.trsJobVacancy)@command('doSaveAndNew')"></button>
 					<button id="buttonEditVacancy" label="${labels.button.dialog.edit}" onClick="@command('doEdit')"></button>
 				</toolbar>

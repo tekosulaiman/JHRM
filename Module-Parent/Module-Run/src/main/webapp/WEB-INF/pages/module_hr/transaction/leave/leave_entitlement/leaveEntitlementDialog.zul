@@ -1,5 +1,5 @@
 <zk>
-	<window title="Form Leave" border="normal" height="350px" width="40%" mode="modal" closable="true"><!-- vflex="true"  -->
+	<window title="Form Leave Entitlement" border="normal" height="350px" width="40%" mode="modal" closable="true"><!-- vflex="true"  -->
 		<borderlayout>
 			<north>
 				<toolbar>
@@ -14,39 +14,19 @@
 					</columns>
 					<rows>
 						<row>
-							<label value="Name"/>
+							<label value="Employee"/>
 							<textbox/>
 						</row>
 						<row>
-							<label value="Country"/>
+							<label value="Leave Type"/>
 							<textbox/>
 						</row>
 						<row>
-							<label value="State/Province"/>
+							<label value="Leave Period"/>
 							<textbox/>
 						</row>
 						<row>
-							<label value="City"/>
-							<textbox/>
-						</row>
-						<row>
-							<label value="Addrees"/>
-							<textbox/>
-						</row>
-						<row>
-							<label value="Zip/Postal Code"/>
-							<textbox/>
-						</row>
-						<row>
-							<label value="Phone"/>
-							<textbox/>
-						</row>
-						<row>
-							<label value="Fax"/>
-							<textbox/>
-						</row>
-						<row>
-							<label value="Note"/>
+							<label value="Entitlement"/>
 							<textbox/>
 						</row>
 					</rows>
