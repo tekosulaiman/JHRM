@@ -31,19 +31,28 @@ import org.zkoss.zul.Messagebox;
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class RecruitmentVacancyListVM {
 
-	/*---------------- Zul ----------------*/
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Wire component
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	@Wire("#listboxJobVacancy")
 	private Listbox listboxJobVacancy;
 	
-	/* ------------- Services -------------*/
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Service yang dibutuhkan sesuai bisnis proses
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	@WireVariable
 	private RecruitmentService recruitmentService;
-	
-	/* --------------- Beans --------------*/
 	private List<TrsJobVacancy> trsJobVacancies;
 	private TrsJobVacancy selectedTrsJobVacancy;
 	private Boolean listheaderActiveAllowed;
 	
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Function Custom sesuai kebutuhan
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	 
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Inisialize Methode MVVM yang pertama kali dijalankan
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	@AfterCompose
 	public void setupComponents(@ContextParam(ContextType.VIEW) Component component, @ExecutionArgParam("object") Object object) {
 		Selectors.wireComponents(component, this, false);
@@ -60,6 +69,9 @@ public class RecruitmentVacancyListVM {
 		}
 	}
 	
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Function CRUD Event
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	@Command
 	public void doNew(){
 		HashMap<String, Object> arg = new HashMap<>();
@@ -79,25 +91,25 @@ public class RecruitmentVacancyListVM {
 	public void doDelete(){
 		final ListModelList<TrsJobVacancy> listModelListtrsJobVacancy = (ListModelList) listboxJobVacancy.getModel();
 				
-				if(listboxJobVacancy.getSelectedIndex() == -1){
-					Messagebox.show("There is no selected record?", "Confirm", Messagebox.OK, Messagebox.ERROR);
-				}else{
-					Messagebox.show("Do you really want to remove item?", "Confirm", Messagebox.OK | Messagebox.CANCEL, Messagebox.EXCLAMATION, new EventListener() {
-					    public void onEvent(Event event) throws Exception {    	
-					 		if (((Integer) event.getData()).intValue() == Messagebox.OK) {
-					 			for(TrsJobVacancy trsJobVacancy : listModelListtrsJobVacancy){
-					 				if(listModelListtrsJobVacancy.isSelected(trsJobVacancy)){
-					 					recruitmentService.delete(trsJobVacancy);
-					 				}
-					 			}
-					 			
-					 			BindUtils.postGlobalCommand(null, null, "refreshTrsJobVacancyList", null);
-					 		}else{
-					 			return;
-					 		}
-					 	}
-					});
-				}
+		if(listboxJobVacancy.getSelectedIndex() == -1){
+			Messagebox.show("There is no selected record?", "Confirm", Messagebox.OK, Messagebox.ERROR);
+		}else{
+			Messagebox.show("Do you really want to remove item?", "Confirm", Messagebox.OK | Messagebox.CANCEL, Messagebox.EXCLAMATION, new EventListener() {
+			    public void onEvent(Event event) throws Exception {    	
+			 		if (((Integer) event.getData()).intValue() == Messagebox.OK) {
+			 			for(TrsJobVacancy trsJobVacancy : listModelListtrsJobVacancy){
+			 				if(listModelListtrsJobVacancy.isSelected(trsJobVacancy)){
+			 					recruitmentService.delete(trsJobVacancy);
+			 				}
+			 			}
+			 			
+			 			BindUtils.postGlobalCommand(null, null, "refreshTrsJobVacancyList", null);
+			 		}else{
+			 			return;
+			 		}
+			 	}
+			});
+		}
 	}
 	
 	@GlobalCommand("refreshTrsJobVacancyList")
@@ -106,9 +118,9 @@ public class RecruitmentVacancyListVM {
 		trsJobVacancies = recruitmentService.getAllTrsJobVacancy();
 	}
 	
-	
-	/* ---------- GETTER-SETTER --------------*/
-	
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Getter Setter
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	public List<TrsJobVacancy> getTrsJobVacancies() {
 		return trsJobVacancies;
 	}

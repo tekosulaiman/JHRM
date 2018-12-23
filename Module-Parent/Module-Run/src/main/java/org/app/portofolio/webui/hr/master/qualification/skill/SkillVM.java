@@ -100,7 +100,7 @@ public class SkillVM {
 	@Command
 	public void doNew(){
 		ListModelList listModelList = (ListModelList) listboxSkill.getModel();
-		listModelList.add(0,  new MstSkill());
+		listModelList.add(0, new MstSkill());
 	}
 
 	@Command

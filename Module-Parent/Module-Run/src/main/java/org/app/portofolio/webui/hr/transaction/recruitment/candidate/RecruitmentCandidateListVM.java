@@ -27,22 +27,31 @@ import org.zkoss.zul.Filedownload;
 import org.zkoss.zul.Listbox;
 
 public class RecruitmentCandidateListVM {
-
-	/*---------------- Zul ----------------*/
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Wire component
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	@Wire("#listboxJobCandidate")
 	private Listbox listboxJobCandidate;
 	
-	/* ------------- Services -------------*/
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Service yang dibutuhkan sesuai bisnis proses
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	@WireVariable
 	private RecruitmentService recruitmentService;
 	
 	@WireVariable
 	private UploadFileService uploadFileService;
-	/* --------------- Beans --------------*/
 	private List<TrsJobCandidate> trsJobCandidates;
 	private TrsJobCandidate selectedTrsJobCandidate;
 	private static final String SELECTED_JOB_CANDIDATE = "selectedCandidate";
 	
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Function Custom sesuai kebutuhan
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	 
+	 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Inisialize Methode MVVM yang pertama kali dijalankan
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	@AfterCompose
 	public void setupComponents(@ContextParam(ContextType.VIEW) Component component,
 		@ExecutionArgParam("object") Object object) {
@@ -52,6 +61,9 @@ public class RecruitmentCandidateListVM {
 		constructListJobCandidate();
 	}
 	
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Function CRUD Event
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	@Command
 	public void doNew(){
 		HashMap<String, Object> arg = new HashMap<>();
@@ -81,8 +93,9 @@ public class RecruitmentCandidateListVM {
 		Filedownload.save(uploadFileService.getResumeFile(selectedTrsJobCandidate), null);
 	}
 	
-	/* ---------- GETTER-SETTER --------------*/
-	
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Getter Setter
+	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	public List<TrsJobCandidate> getTrsJobCandidates() {
 		return trsJobCandidates;
 	}

@@ -1,7 +1,7 @@
 package org.app.portofolio.webui.hr.transaction.leave.parameter.workweek;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
+
 import org.app.portofolio.common.zul.util.Enum.DayType;
 import org.module.hr.model.MstWorkWeek;
 import org.module.hr.service.LeaveService;
@@ -25,14 +25,13 @@ public class WorkWeekVM {
     
     @AfterCompose
     public void setupComponents(@ContextParam(ContextType.VIEW) Component component) throws Exception {
-
         Selectors.wireComponents(component, this, false);
         
-        workWeekList = new LinkedHashMap<>();
+        /*workWeekList = new LinkedHashMap<>();
         isEdit = false;
         dayType = DayType.values();
         
-        initLoadWorkWeekData();
+        initLoadWorkWeekData();*/
     }
 
     public void initLoadWorkWeekData() throws Exception{

@@ -213,8 +213,7 @@ public class NationalityVM {
 		return listitemRenderer;
 	}
 
-	public void setListitemRenderer(
-			ListitemRenderer<MstNationality> listitemRenderer) {
+	public void setListitemRenderer(ListitemRenderer<MstNationality> listitemRenderer) {
 		this.listitemRenderer = listitemRenderer;
 	}
 }

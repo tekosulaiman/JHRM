@@ -165,8 +165,7 @@ public class JobCategoryVM {
 		return listitemRenderer;
 	}
 
-	public void setListitemRenderer(
-			ListitemRenderer<MstJobCategory> listitemRenderer) {
+	public void setListitemRenderer(ListitemRenderer<MstJobCategory> listitemRenderer) {
 		this.listitemRenderer = listitemRenderer;
 	}
 }
