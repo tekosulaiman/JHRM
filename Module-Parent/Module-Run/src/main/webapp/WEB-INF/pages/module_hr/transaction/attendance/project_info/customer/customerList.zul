@@ -19,7 +19,7 @@
 				</div>
 			</north>
 			<center border="none">
-				<listbox id="listBoxCustomer">
+				<listbox id="listboxCustomer" model="@bind(vm.mstCustomers)" itemRenderer="@bind(vm.listitemRenderer)">
 					<listhead sizable="true">
 						<listheader width="10%" align="center"/>
 						<listheader label="Customer"/>

@@ -7,9 +7,11 @@ import org.app.portofolio.webui.hr.transaction.attendance.projectinfo.customer.m
 import org.module.hr.model.MstCustomer;
 import org.module.hr.service.AttendanceService;
 import org.zkoss.bind.annotation.AfterCompose;
+import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
 import org.zkoss.bind.annotation.ContextType;
 import org.zkoss.bind.annotation.ExecutionArgParam;
+import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -18,6 +20,7 @@ import org.zkoss.zul.Listbox;
 import org.zkoss.zul.ListitemRenderer;
 import org.zkoss.zul.Paging;
 import org.zkoss.zul.Textbox;
+import org.zkoss.zul.event.PagingEvent;
 
 public class CustomerListVM {
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -26,8 +29,8 @@ public class CustomerListVM {
 	@Wire("#textboxFilter")
 	private Textbox textboxFilter;
 	
-	@Wire("#listBoxCustomer")
-	private Listbox listBoxCustomer;
+	@Wire("#listboxCustomer")
+	private Listbox listboxCustomer;
 	
 	@Wire("#pagingCustomer")
 	private Paging pagingCustomer; 
@@ -50,10 +53,10 @@ public class CustomerListVM {
 	 * Function Custom sesuai kebutuhan
 	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	public void doPrepareList(){
-		listBoxCustomer.setCheckmark(true);
-		listBoxCustomer.setMultiple(true);
-		listBoxCustomer.setStyle("border-style: none;");
-		listBoxCustomer.setMold("paging");
+		listboxCustomer.setCheckmark(true);
+		listboxCustomer.setMultiple(true);
+		listboxCustomer.setStyle("border-style: none;");
+		listboxCustomer.setMold("paging");
 		
 		int count = attendanceService.getCountMstCustomers();
 
@@ -88,13 +91,42 @@ public class CustomerListVM {
 		
 		doPrepareList();
 		refreshPageList(startPageNumber);
-	}	
+	}
 	
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Function CRUD Event
 	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-			
+	@Command
+	@NotifyChange("mstCustomers")
+	public void onPaging(@ContextParam(ContextType.TRIGGER_EVENT) PagingEvent pagingEvent){
+		startPageNumber = pagingEvent.getActivePage() * pageSize;
+		refreshPageList(startPageNumber);
+	}		
+	
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Getter Setter
 	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	public MstCustomer getMstCustomer() {
+		return mstCustomer;
+	}
+
+	public void setMstCustomer(MstCustomer mstCustomer) {
+		this.mstCustomer = mstCustomer;
+	}
+
+	public List<MstCustomer> getMstCustomers() {
+		return mstCustomers;
+	}
+
+	public void setMstCustomers(List<MstCustomer> mstCustomers) {
+		this.mstCustomers = mstCustomers;
+	}
+
+	public ListitemRenderer<MstCustomer> getListitemRenderer() {
+		return listitemRenderer;
+	}
+
+	public void setListitemRenderer(ListitemRenderer<MstCustomer> listitemRenderer) {
+		this.listitemRenderer = listitemRenderer;
+	}	
 }

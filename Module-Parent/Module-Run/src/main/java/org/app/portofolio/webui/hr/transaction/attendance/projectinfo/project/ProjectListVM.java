@@ -7,9 +7,11 @@ import org.app.portofolio.webui.hr.transaction.attendance.projectinfo.project.mo
 import org.module.hr.model.MstProject;
 import org.module.hr.service.AttendanceService;
 import org.zkoss.bind.annotation.AfterCompose;
+import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
 import org.zkoss.bind.annotation.ContextType;
 import org.zkoss.bind.annotation.ExecutionArgParam;
+import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -18,6 +20,7 @@ import org.zkoss.zul.Listbox;
 import org.zkoss.zul.ListitemRenderer;
 import org.zkoss.zul.Paging;
 import org.zkoss.zul.Textbox;
+import org.zkoss.zul.event.PagingEvent;
 
 public class ProjectListVM {
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -26,8 +29,8 @@ public class ProjectListVM {
 	@Wire("#textboxFilter")
 	private Textbox textboxFilter;
 	
-	@Wire("#listBoxProject")
-	private Listbox listBoxProject;
+	@Wire("#listboxProject")
+	private Listbox listboxProject;
 	
 	@Wire("#pagingProject")
 	private Paging pagingProject; 
@@ -50,10 +53,10 @@ public class ProjectListVM {
 	 * Function Custom sesuai kebutuhan
 	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	public void doPrepareList(){
-		listBoxProject.setCheckmark(true);
-		listBoxProject.setMultiple(true);
-		listBoxProject.setStyle("border-style: none;");
-		listBoxProject.setMold("paging");
+		listboxProject.setCheckmark(true);
+		listboxProject.setMultiple(true);
+		listboxProject.setStyle("border-style: none;");
+		listboxProject.setMold("paging");
 		
 		int count = attendanceService.getCountMstProjects();
 
@@ -88,13 +91,42 @@ public class ProjectListVM {
 		
 		doPrepareList();
 		refreshPageList(startPageNumber);
-	}		
+	}	
 	
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Function CRUD Event
 	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-			
+	@Command
+	@NotifyChange("mstProjects")
+	public void onPaging(@ContextParam(ContextType.TRIGGER_EVENT) PagingEvent pagingEvent){
+		startPageNumber = pagingEvent.getActivePage() * pageSize;
+		refreshPageList(startPageNumber);
+	}		
+	
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Getter Setter
 	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	public MstProject getMstProject() {
+		return mstProject;
+	}
+
+	public void setMstProject(MstProject mstProject) {
+		this.mstProject = mstProject;
+	}
+
+	public List<MstProject> getMstProjects() {
+		return mstProjects;
+	}
+
+	public void setMstProjects(List<MstProject> mstProjects) {
+		this.mstProjects = mstProjects;
+	}
+
+	public ListitemRenderer<MstProject> getListitemRenderer() {
+		return listitemRenderer;
+	}
+
+	public void setListitemRenderer(ListitemRenderer<MstProject> listitemRenderer) {
+		this.listitemRenderer = listitemRenderer;
+	}	
 }
