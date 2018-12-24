@@ -1,7 +1,8 @@
 package org.app.portofolio.webui.hr.transaction.attendance.projectinfo.project.model;
 
-import org.module.hr.model.MstJobtitle;
-import org.module.hr.service.JobService;
+import org.module.hr.model.MstCustomer;
+import org.module.hr.model.MstProject;
+import org.module.hr.service.AttendanceService;
 import org.zkoss.bind.BindUtils;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
@@ -16,12 +17,12 @@ import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
-public class ProjectListItemRenderer implements ListitemRenderer<MstJobtitle>{
+public class ProjectListItemRenderer implements ListitemRenderer<MstProject>{
 	
-	private JobService masterJobService = (JobService) SpringUtil.getBean("masterJobService");		
+	private AttendanceService attendanceService = (AttendanceService) SpringUtil.getBean("attendanceService");		
 	
 	@Override
-	public void render(Listitem item, final MstJobtitle mstJobtitle, int index) throws Exception {
+	public void render(Listitem item, final MstProject mstProject, int index) throws Exception {
 		Listcell listcell;
 		
 		final Button buttonSave = new Button();
@@ -66,7 +67,7 @@ public class ProjectListItemRenderer implements ListitemRenderer<MstJobtitle>{
 			labelNote.setParent(listcell);
 		listcell.setParent(item);
 		
-		if(mstJobtitle.getIdJobTitle() == null){
+		if(mstProject.getIdProject() == null){
 			buttonEdit.setVisible(false);
 			buttonDelete.setVisible(false);
 		}else{
@@ -74,9 +75,9 @@ public class ProjectListItemRenderer implements ListitemRenderer<MstJobtitle>{
         	buttonCancel.setVisible(false);
         	buttonDelete.setVisible(false);
         	
-        	labelName.setValue(mstJobtitle.getJobName());
-        	labelDescription.setValue(mstJobtitle.getJobDescription());
-        	labelNote.setValue(mstJobtitle.getJobNote());
+        	labelNote.setValue(mstProject.getIdCustomer().getCustomerName());
+        	labelName.setValue(mstProject.getProjectName());
+        	labelDescription.setValue(mstProject.getProjectDescription());
         	
         	textboxName.setVisible(false);
         	textboxDescription.setVisible(false);
@@ -86,20 +87,22 @@ public class ProjectListItemRenderer implements ListitemRenderer<MstJobtitle>{
 		buttonSave.addEventListener(Events.ON_CLICK, new EventListener() {
 			@Override
 			public void onEvent(Event event) throws Exception {
-				if(mstJobtitle.getIdJobTitle() == null){
-					mstJobtitle.setJobName(textboxName.getValue());
-					mstJobtitle.setJobDescription(textboxDescription.getValue());
-					mstJobtitle.setJobNote(textboxNote.getValue());
+				if(mstProject.getIdProject() == null){
+					MstCustomer mstCustomer = new MstCustomer();
+				
+					mstProject.setProjectName(textboxDescription.getValue());
+					mstProject.setProjectDescription(textboxNote.getValue());
 
-					masterJobService.save(mstJobtitle);
+					attendanceService.save(mstProject);
 					
 					BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
 				}else{
-					mstJobtitle.setJobName(textboxName.getValue());
-					mstJobtitle.setJobDescription(textboxDescription.getValue());
-					mstJobtitle.setJobNote(textboxNote.getValue());
+					MstCustomer mstCustomer = new MstCustomer();
 					
-					masterJobService.update(mstJobtitle);
+					mstProject.setProjectName(textboxDescription.getValue());
+					mstProject.setProjectDescription(textboxNote.getValue());
+					
+					attendanceService.update(mstProject);
 					
 					BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
 				}
@@ -120,9 +123,9 @@ public class ProjectListItemRenderer implements ListitemRenderer<MstJobtitle>{
 				labelDescription.setVisible(false);
 				labelNote.setVisible(false);
 				
-				textboxName.setValue(mstJobtitle.getJobName());
-				textboxDescription.setValue(mstJobtitle.getJobDescription());
-				textboxNote.setValue(mstJobtitle.getJobNote());
+				textboxName.setValue(mstProject.getIdCustomer().getCustomerName());
+				textboxDescription.setValue(mstProject.getProjectName());
+				textboxNote.setValue(mstProject.getProjectDescription());
 			}					
 		});
 		
@@ -133,7 +136,7 @@ public class ProjectListItemRenderer implements ListitemRenderer<MstJobtitle>{
 				    public void onEvent(Event event) throws Exception {    	
 				 		if (((Integer) event.getData()).intValue() == Messagebox.OK) {
 
-				 			masterJobService.delete(mstJobtitle);
+				 			attendanceService.delete(mstProject);
 				 			
 				 			BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
 				 		}else{

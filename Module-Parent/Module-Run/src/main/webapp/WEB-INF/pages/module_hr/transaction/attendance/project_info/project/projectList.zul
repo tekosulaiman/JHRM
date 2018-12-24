@@ -19,28 +19,19 @@
 				</div>
 			</north>
 			<center>
-				<borderlayout>
-					<north title="List Project" splittable="true" collapsible="true">
-						<listbox id="listboxPayGrade">
-							<listhead sizable="true">
-								<listheader width="50px" align="center"/>
-								<listheader label="Customer"/>
-								<listheader label="Project"/>	
-								<listheader label="PIC"/>	
-								<listheader label="Description"/>	
-							</listhead>
-						</listbox>	
-					</north>
-					<south title="List Activity" splittable="true" collapsible="true">
-						<listbox id="listboxCurrency">
-							<listhead sizable="true">
-								<listheader label="Activity"/>
-							</listhead>		
-						</listbox>
-					</south>
-				</borderlayout>	
+				<listbox id="listboxProject">
+					<listhead sizable="true">
+						<listheader width="50px" align="center"/>
+						<listheader label="Customer"/>
+						<listheader label="Project"/>	
+						<listheader label="PIC"/>	
+						<listheader label="Description"/>	
+					</listhead>
+				</listbox>	
 			</center>
-			<south/>
+			<south>
+				<paging id="pagingProject" onPaging="@command('onPaging')"/>
+			</south>
 		</borderlayout>
 	</window>
 </zk>

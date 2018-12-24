@@ -6,24 +6,25 @@ import java.util.List;
 import org.module.api.common.dao.base.BasisDAO;
 import org.module.hr.dao.MstCustomerDAO;
 import org.module.hr.model.MstCustomer;
+import org.springframework.dao.support.DataAccessUtils;
 
+@SuppressWarnings("unchecked")
 public class MstCustomerDAOImpl extends BasisDAO<MstCustomer> implements MstCustomerDAO{
 
 	@Override
 	public List<MstCustomer> getAllMstCustomers() {
-		// TODO Auto-generated method stub
-		return null;
+		List<MstCustomer>list = (List<MstCustomer>) getHibernateTemplate().find("FROM MstCustomer");
+		return list;
 	}
 
 	@Override
 	public List<MstCustomer> getMstCustomerPaging(HashMap<String, Object> hashMap) {
-		// TODO Auto-generated method stub
-		return null;
+		List<MstCustomer>list = (List<MstCustomer>) getHibernateTemplate().findByExample(new MstCustomer(), (Integer)hashMap.get("firstResult"), (Integer)hashMap.get("maxResults"));
+		return list;
 	}
 
 	@Override
 	public int getCountMstCustomers() {
-		// TODO Auto-generated method stub
-		return 0;
+		return DataAccessUtils.intResult(getHibernateTemplate().find("SELECT COUNT(*) FROM MstCustomer"));
 	}
 }

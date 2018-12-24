@@ -147,7 +147,11 @@
 	<!-- Upload File -->
 	<bean id="mstUploadFileDAO" class="org.module.hr.dao.impl.MstUploadFileDAOImpl" parent="baseDao"/>
 	
-	<!-- Inject Service -->
+	<!-- Attendance -->
+	<bean id="mstCustomerDAO" class="org.module.hr.dao.impl.MstCustomerDAOImpl" parent="baseDao"/>
+	<bean id="mstProjectDAO" class="org.module.hr.dao.impl.MstProjectDAOImpl" parent="baseDao"/>
+	
+	<!-- Inject Service --> 
 	<!-- Job -->
 	<bean id="jobService" class="org.module.hr.service.impl.JobServiceImpl">
         <property name="mstJobtitleDAO" ref="mstJobtitleDAO" />
@@ -204,5 +208,11 @@
     <!-- Upload Servie -->
     <bean id="uploadFileService" class="org.module.hr.service.impl.UploadFileServiceImpl">
     	<property name="mstUploadFileDAO" ref="mstUploadFileDAO"/>
+    </bean>
+    
+    <!-- Attendance Servie -->
+    <bean id="attendanceService" class="org.module.hr.service.impl.AttendanceServiceImpl">
+    	<property name="mstCustomerDAO" ref="mstCustomerDAO"/>
+    	<property name="mstProjectDAO" ref="mstProjectDAO"/>
     </bean>
 </beans>
