@@ -16,6 +16,7 @@ import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
+import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.ListitemRenderer;
 import org.zkoss.zul.Paging;
@@ -101,7 +102,13 @@ public class ProjectListVM {
 	public void onPaging(@ContextParam(ContextType.TRIGGER_EVENT) PagingEvent pagingEvent){
 		startPageNumber = pagingEvent.getActivePage() * pageSize;
 		refreshPageList(startPageNumber);
-	}		
+	}	
+	
+	@Command
+	public void doNew(){
+		final ListModelList<MstProject> listModelListProject = (ListModelList) listboxProject.getModel();
+		listModelListProject.add(0, new MstProject());
+	}
 	
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Getter Setter

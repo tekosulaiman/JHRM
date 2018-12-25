@@ -21,7 +21,7 @@
 			<center>
 				<listbox id="listboxProject" model="@bind(vm.mstProjects)" itemRenderer="@bind(vm.listitemRenderer)">
 					<listhead sizable="true">
-						<listheader width="50px" align="center"/>
+						<listheader width="10%" align="center"/>
 						<listheader label="Customer"/>
 						<listheader label="Project"/>	
 						<listheader label="PIC"/>	

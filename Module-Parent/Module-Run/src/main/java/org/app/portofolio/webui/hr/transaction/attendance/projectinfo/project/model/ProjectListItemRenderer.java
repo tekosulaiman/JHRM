@@ -37,13 +37,15 @@ public class ProjectListItemRenderer implements ListitemRenderer<MstProject>{
         final Button buttonCancel = new Button();
         	buttonCancel.setImage("/images/icons/btn_cancel.gif");
         	
-        final Label labelName = new Label();
-        final Label labelNote = new Label();		
+        final Label labelProjectName = new Label();
+        final Label labelCustomerName = new Label();
+        final Label labelPIC = new Label();
         final Label labelDescription = new Label();
         
-        final Textbox textboxName = new Textbox();
+        final Textbox textboxProjectName = new Textbox();
+        final Textbox textboxCustomerName = new Textbox();
+        final Textbox textboxPIC = new Textbox();
         final Textbox textboxDescription = new Textbox();
-        final Textbox textboxNote = new Textbox();
         	
         listcell = new Listcell();
         	buttonEdit.setParent(listcell); 
@@ -53,18 +55,23 @@ public class ProjectListItemRenderer implements ListitemRenderer<MstProject>{
 		listcell.setParent(item);
         
 		listcell = new Listcell();
-			textboxName.setParent(listcell); 
-			labelName.setParent(listcell); 
+			textboxProjectName.setParent(listcell); 
+			labelProjectName.setParent(listcell); 
+		listcell.setParent(item);
+		
+		listcell = new Listcell();
+			textboxCustomerName.setParent(listcell); 
+			labelCustomerName.setParent(listcell);
+		listcell.setParent(item);
+		
+		listcell = new Listcell();
+			textboxPIC.setParent(listcell); 
+			labelPIC.setParent(listcell);
 		listcell.setParent(item);
 
 		listcell = new Listcell();
 			textboxDescription.setParent(listcell); 
 			labelDescription.setParent(listcell);
-		listcell.setParent(item);
-
-		listcell = new Listcell();
-			textboxNote.setParent(listcell); 
-			labelNote.setParent(listcell);
 		listcell.setParent(item);
 		
 		if(mstProject.getIdProject() == null){
@@ -75,13 +82,15 @@ public class ProjectListItemRenderer implements ListitemRenderer<MstProject>{
         	buttonCancel.setVisible(false);
         	buttonDelete.setVisible(false);
         	
-        	labelNote.setValue(mstProject.getIdCustomer().getCustomerName());
-        	labelName.setValue(mstProject.getProjectName());
+        	labelCustomerName.setValue(mstProject.getIdCustomer().getCustomerName());
+        	labelProjectName.setValue(mstProject.getProjectName());
+        	labelPIC.setValue(null);
         	labelDescription.setValue(mstProject.getProjectDescription());
         	
-        	textboxName.setVisible(false);
+        	textboxProjectName.setVisible(false);
+        	textboxCustomerName.setVisible(false);
+        	textboxPIC.setVisible(false);
         	textboxDescription.setVisible(false);
-        	textboxNote.setVisible(false);
 		}
 		
 		buttonSave.addEventListener(Events.ON_CLICK, new EventListener() {
@@ -90,8 +99,9 @@ public class ProjectListItemRenderer implements ListitemRenderer<MstProject>{
 				if(mstProject.getIdProject() == null){
 					MstCustomer mstCustomer = new MstCustomer();
 				
-					mstProject.setProjectName(textboxDescription.getValue());
-					mstProject.setProjectDescription(textboxNote.getValue());
+					mstProject.setProjectName(textboxProjectName.getValue());
+					mstProject.setProjectDescription(textboxCustomerName.getValue());
+					mstProject.setProjectDescription(textboxDescription.getValue());
 
 					attendanceService.save(mstProject);
 					
@@ -100,7 +110,7 @@ public class ProjectListItemRenderer implements ListitemRenderer<MstProject>{
 					MstCustomer mstCustomer = new MstCustomer();
 					
 					mstProject.setProjectName(textboxDescription.getValue());
-					mstProject.setProjectDescription(textboxNote.getValue());
+					mstProject.setProjectDescription(textboxDescription.getValue());
 					
 					attendanceService.update(mstProject);
 					
@@ -115,17 +125,19 @@ public class ProjectListItemRenderer implements ListitemRenderer<MstProject>{
 				buttonSave.setVisible(true);
 				buttonDelete.setVisible(true);
 				
-				textboxName.setVisible(true);
+				textboxProjectName.setVisible(true);
+				textboxCustomerName.setVisible(true);
 				textboxDescription.setVisible(true);
-				textboxNote.setVisible(true);
+				textboxPIC.setVisible(true);
 				
-				labelName.setVisible(false);
-				labelDescription.setVisible(false);
-				labelNote.setVisible(false);
+				labelProjectName.setVisible(false);
+		        labelCustomerName.setVisible(false); 
+		        labelPIC.setVisible(false); 
+		        labelDescription.setVisible(false); 
 				
-				textboxName.setValue(mstProject.getIdCustomer().getCustomerName());
-				textboxDescription.setValue(mstProject.getProjectName());
-				textboxNote.setValue(mstProject.getProjectDescription());
+				textboxProjectName.setValue(mstProject.getProjectName());
+				textboxCustomerName.setValue(mstProject.getIdCustomer().getCustomerName());
+				textboxDescription.setValue(mstProject.getProjectDescription());
 			}					
 		});
 		

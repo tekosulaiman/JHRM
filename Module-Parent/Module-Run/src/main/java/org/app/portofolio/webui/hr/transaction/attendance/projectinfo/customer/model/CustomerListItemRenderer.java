@@ -36,13 +36,11 @@ public class CustomerListItemRenderer implements ListitemRenderer<MstCustomer>{
         final Button buttonCancel = new Button();
         	buttonCancel.setImage("/images/icons/btn_cancel.gif");
         	
-        final Label labelName = new Label();
-        final Label labelNote = new Label();		
-        final Label labelDescription = new Label();
+        final Label labelCustomerName = new Label();
+        final Label labelDescription = new Label();		
         
-        final Textbox textboxName = new Textbox();
+        final Textbox textboxCustomerName = new Textbox();
         final Textbox textboxDescription = new Textbox();
-        final Textbox textboxNote = new Textbox();
         	
         listcell = new Listcell();
         	buttonEdit.setParent(listcell); 
@@ -52,18 +50,13 @@ public class CustomerListItemRenderer implements ListitemRenderer<MstCustomer>{
 		listcell.setParent(item);
         
 		listcell = new Listcell();
-			textboxName.setParent(listcell); 
-			labelName.setParent(listcell); 
+			textboxCustomerName.setParent(listcell); 
+			labelCustomerName.setParent(listcell); 
 		listcell.setParent(item);
 
 		listcell = new Listcell();
 			textboxDescription.setParent(listcell); 
 			labelDescription.setParent(listcell);
-		listcell.setParent(item);
-
-		listcell = new Listcell();
-			textboxNote.setParent(listcell); 
-			labelNote.setParent(listcell);
 		listcell.setParent(item);
 		
 		if(mstCustomer.getIdCustomer() == null){
@@ -74,26 +67,25 @@ public class CustomerListItemRenderer implements ListitemRenderer<MstCustomer>{
         	buttonCancel.setVisible(false);
         	buttonDelete.setVisible(false);
         	
-        	labelName.setValue(mstCustomer.getCustomerName());
+        	labelCustomerName.setValue(mstCustomer.getCustomerName());
         	labelDescription.setValue(mstCustomer.getCustomerDescription());
         	
-        	textboxName.setVisible(false);
+        	textboxCustomerName.setVisible(false);
         	textboxDescription.setVisible(false);
-        	textboxNote.setVisible(false);
 		}
 		
 		buttonSave.addEventListener(Events.ON_CLICK, new EventListener() {
 			@Override
 			public void onEvent(Event event) throws Exception {
 				if(mstCustomer.getIdCustomer() == null){
-					mstCustomer.setCustomerName(textboxName.getValue());
+					mstCustomer.setCustomerName(textboxCustomerName.getValue());
 					mstCustomer.setCustomerDescription(textboxDescription.getValue());
 
 					attendanceService.save(mstCustomer);
 					
 					BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
 				}else{
-					mstCustomer.setCustomerName(textboxName.getValue());
+					mstCustomer.setCustomerName(textboxCustomerName.getValue());
 					mstCustomer.setCustomerDescription(textboxDescription.getValue());
 
 					attendanceService.update(mstCustomer);
@@ -109,15 +101,13 @@ public class CustomerListItemRenderer implements ListitemRenderer<MstCustomer>{
 				buttonSave.setVisible(true);
 				buttonDelete.setVisible(true);
 				
-				textboxName.setVisible(true);
+				textboxCustomerName.setVisible(true);
 				textboxDescription.setVisible(true);
-				textboxNote.setVisible(true);
 				
-				labelName.setVisible(false);
+				labelCustomerName.setVisible(false);
 				labelDescription.setVisible(false);
-				labelNote.setVisible(false);
 				
-				textboxName.setValue(mstCustomer.getCustomerName());
+				textboxCustomerName.setValue(mstCustomer.getCustomerName());
 				textboxDescription.setValue(mstCustomer.getCustomerDescription());
 			}					
 		});
