@@ -1,6 +1,5 @@
 package org.app.portofolio.webui.hr.transaction.attendance.projectinfo.project.model;
 
-import org.module.hr.model.MstCustomer;
 import org.module.hr.model.MstProject;
 import org.module.hr.service.AttendanceService;
 import org.zkoss.bind.BindUtils;
@@ -97,17 +96,16 @@ public class ProjectListItemRenderer implements ListitemRenderer<MstProject>{
 			@Override
 			public void onEvent(Event event) throws Exception {
 				if(mstProject.getIdProject() == null){
-					MstCustomer mstCustomer = new MstCustomer();
+					//MstCustomer mstCustomer = new MstCustomer();
 				
 					mstProject.setProjectName(textboxProjectName.getValue());
-					mstProject.setProjectDescription(textboxCustomerName.getValue());
 					mstProject.setProjectDescription(textboxDescription.getValue());
 
 					attendanceService.save(mstProject);
 					
 					BindUtils.postGlobalCommand(null, null, "refreshAfterSaveOrUpdate", null);
 				}else{
-					MstCustomer mstCustomer = new MstCustomer();
+					//MstCustomer mstCustomer = new MstCustomer();
 					
 					mstProject.setProjectName(textboxDescription.getValue());
 					mstProject.setProjectDescription(textboxDescription.getValue());

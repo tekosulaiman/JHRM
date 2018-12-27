@@ -23,6 +23,7 @@ import org.zkoss.zul.Paging;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.event.PagingEvent;
 
+@SuppressWarnings({ "rawtypes", "unchecked" })
 public class ProjectListVM {
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Wire component
@@ -97,6 +98,24 @@ public class ProjectListVM {
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Function CRUD Event
 	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	@Command
+	@NotifyChange("mstProjects")
+	public void doFilter(){
+		mstProjects.clear();
+        
+		String getName = textboxFilter.getValue();
+		
+		if(getName == null || "".equals(getName)) {
+			doPrepareList();
+			refreshPageList(startPageNumber);
+		} else {
+			HashMap<String, Object> hashMap = new HashMap<String, Object>();
+			hashMap.put("projectName", getName);
+			mstProjects = attendanceService.getByMstProjectRequestMap(hashMap);
+			listitemRenderer = new ProjectListItemRenderer();
+		}
+	}
+	
 	@Command
 	@NotifyChange("mstProjects")
 	public void onPaging(@ContextParam(ContextType.TRIGGER_EVENT) PagingEvent pagingEvent){

@@ -23,6 +23,7 @@ import org.zkoss.zul.Paging;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.event.PagingEvent;
 
+@SuppressWarnings({ "rawtypes", "unchecked" })
 public class CustomerListVM {
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Wire component
@@ -97,6 +98,24 @@ public class CustomerListVM {
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Function CRUD Event
 	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	@Command
+	@NotifyChange("mstCustomers")
+	public void doFilter(){
+		mstCustomers.clear();
+        
+		String getName = textboxFilter.getValue();
+		
+		if(getName == null || "".equals(getName)) {
+			doPrepareList();
+			refreshPageList(startPageNumber);
+		} else {
+			HashMap<String, Object> hashMap = new HashMap<String, Object>();
+			hashMap.put("customerName", getName);
+			mstCustomers = attendanceService.getByMstCustomerRequestMap(hashMap);
+			listitemRenderer =  new CustomerListItemRenderer();
+		}
+	}
+	
 	@Command
 	@NotifyChange("mstCustomers")
 	public void onPaging(@ContextParam(ContextType.TRIGGER_EVENT) PagingEvent pagingEvent){
