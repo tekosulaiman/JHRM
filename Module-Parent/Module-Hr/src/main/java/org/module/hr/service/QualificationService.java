@@ -10,7 +10,6 @@ import org.module.hr.model.MstMembership;
 import org.module.hr.model.MstSkill;
 
 public interface QualificationService {
-
 	/*- Skill +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	public void save(MstSkill mstSkill);
     public void update(MstSkill mstSkill);

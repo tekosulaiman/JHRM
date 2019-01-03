@@ -39,8 +39,8 @@ public class JobTitleVM {
 	@Wire("#textboxFilter")
 	private Textbox textboxFilter;
 	
-	@Wire("#listBoxJobTitle")
-	private Listbox listBoxJobTitle;
+	@Wire("#listboxJobTitle")
+	private Listbox listboxJobTitle;
 	
 	@Wire("#pagingJobTitle")
 	private Paging pagingJobTitle;
@@ -63,10 +63,10 @@ public class JobTitleVM {
 	 * Function Custom sesuai kebutuhan
 	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	public void doPrepareList(){
-		listBoxJobTitle.setCheckmark(true);
-		listBoxJobTitle.setMultiple(true);
-		listBoxJobTitle.setStyle("border-style: none;");
-		listBoxJobTitle.setMold("paging");
+		listboxJobTitle.setCheckmark(true);
+		listboxJobTitle.setMultiple(true);
+		listboxJobTitle.setStyle("border-style: none;");
+		listboxJobTitle.setMold("paging");
 		
 		int count = jobService.getCountMstJobtitles();
 
@@ -134,7 +134,7 @@ public class JobTitleVM {
 
 	@Command
 	public void doNew(){
-		final ListModelList<MstJobtitle> listModelListJobtitle = (ListModelList) listBoxJobTitle.getModel();
+		final ListModelList<MstJobtitle> listModelListJobtitle = (ListModelList) listboxJobTitle.getModel();
 		listModelListJobtitle.add(0, new MstJobtitle());
 	}
 
@@ -146,9 +146,9 @@ public class JobTitleVM {
 	
 	@Command
 	public void doDelete(){
-		final ListModelList<MstJobtitle> listModelListJobtitle = (ListModelList) listBoxJobTitle.getModel();
+		final ListModelList<MstJobtitle> listModelListJobtitle = (ListModelList) listboxJobTitle.getModel();
 		
-		if(listBoxJobTitle.getSelectedIndex() == -1){
+		if(listboxJobTitle.getSelectedIndex() == -1){
 			Messagebox.show("There is no selected record?", "Confirm", Messagebox.OK, Messagebox.ERROR);
 		}else{
 			Messagebox.show("Do you really want to remove item?", "Confirm", Messagebox.OK | Messagebox.CANCEL, Messagebox.EXCLAMATION, new EventListener() {

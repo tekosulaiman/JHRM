@@ -7,8 +7,7 @@ import org.module.hr.model.TrsJobCandidate;
 import org.module.hr.model.TrsJobVacancy;
 
 public interface RecruitmentService {
-	
-	/* ------- Vacancy ---------*/
+	/*- Vacancies +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	public void save(TrsJobVacancy trsJobVacancy);
     public void update(TrsJobVacancy trsJobVacancy);
     public void saveOrUpdate(TrsJobVacancy trsJobVacancy);
@@ -17,7 +16,7 @@ public interface RecruitmentService {
     public TrsJobVacancy getTrsJobVacancyById(Integer id);
     public List<TrsJobVacancy> getTrsJobVacancyByRequest(HashMap<String, Object> params);
     
-    /* ------- Candidate --------*/
+    /*- Candidates +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	public void save(TrsJobCandidate trsJobCandidate);
     public void update(TrsJobCandidate trsJobCandidate);
     public void saveOrUpdate(TrsJobCandidate trsJobCandidate);

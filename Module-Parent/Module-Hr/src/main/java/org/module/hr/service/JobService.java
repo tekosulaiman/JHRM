@@ -9,7 +9,6 @@ import org.module.hr.model.MstJobtitle;
 import org.module.hr.model.MstPaygrade;
 
 public interface JobService {
-
 	/*- Job Title +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	public void save(MstJobtitle mstJobtitle);
     public void update(MstJobtitle mstJobtitle);

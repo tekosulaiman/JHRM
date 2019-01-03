@@ -1,14 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.module.hr.service.impl;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.module.hr.dao.MstHolidayDAO;
 import org.module.hr.dao.MstLeavePeriodDAO;
+import org.module.hr.model.MstHoliday;
 import org.module.hr.model.MstLeavePeriod;
 import org.module.hr.model.MstLeaveType;
 import org.module.hr.service.LeaveService;
@@ -16,15 +14,11 @@ import org.module.hr.dao.MstLeaveTypeDAO;
 import org.module.hr.dao.MstWorkWeekDAO;
 import org.module.hr.model.MstWorkWeek;
 
-/**
- *
- * @author achmadsy
- */
 public class LeaveServiceImpl implements LeaveService {
-
     private MstLeavePeriodDAO mstLeavePeriodDAO;
     private MstLeaveTypeDAO mstLeaveTypeDAO;
     private MstWorkWeekDAO mstWorkWeekDAO;
+    private MstHolidayDAO mstHolidayDAO;
 
     @Override
     public List<MstLeavePeriod> getAllLeavePeriod() throws Exception {
@@ -89,25 +83,76 @@ public class LeaveServiceImpl implements LeaveService {
             mstWorkWeekDAO.update(obj);
         }
     }
+    
+    @Override
+	public void save(MstHoliday mstHoliday) {
+		mstHolidayDAO.save(mstHoliday);
+	}
 
-    public MstLeavePeriodDAO getMstLeavePeriodDAO() {
-        return mstLeavePeriodDAO;
-    }
+	@Override
+	public void update(MstHoliday mstHoliday) {
+		mstHolidayDAO.update(mstHoliday);
+	}
 
-    public void setMstLeavePeriodDAO(MstLeavePeriodDAO mstLeavePeriodDAO) {
-        this.mstLeavePeriodDAO = mstLeavePeriodDAO;
-    }
+	@Override
+	public void saveOrUpdate(MstHoliday mstHoliday) {
+		mstHolidayDAO.saveOrUpdate(mstHoliday);
+	}
 
-    public MstLeaveTypeDAO getMstLeaveTypeDAO() {
-        return mstLeaveTypeDAO;
-    }
+	@Override
+	public void delete(MstHoliday mstHoliday) {
+		mstHolidayDAO.delete(mstHoliday);
+	}
 
-    public void setMstLeaveTypeDAO(MstLeaveTypeDAO mstLeaveTypeDAO) {
-        this.mstLeaveTypeDAO = mstLeaveTypeDAO;
-    }
+	@Override
+	public List<MstHoliday> getAllMstHolidays() {
+		return mstHolidayDAO.getAllMstHolidays();
+	}
 
-    public void setMstWorkWeekDAO(MstWorkWeekDAO mstWorkWeekDAO) {
-        this.mstWorkWeekDAO = mstWorkWeekDAO;
-    }
+	@Override
+	public List<MstHoliday> getByRequestMap(HashMap<String, Object> hashMap) {
+		return mstHolidayDAO.getByRequestMap(hashMap);
+	}
 
+	@Override
+	public List<MstHoliday> getMstHolidayPaging(HashMap<String, Object> hashMap) {
+		return mstHolidayDAO.getMstHolidayPaging(hashMap);
+	}
+
+	@Override
+	public int getCountAllMstHolidays() {
+		return mstHolidayDAO.getCountAllMstHolidays();
+	}
+
+	public MstLeavePeriodDAO getMstLeavePeriodDAO() {
+		return mstLeavePeriodDAO;
+	}
+
+	public void setMstLeavePeriodDAO(MstLeavePeriodDAO mstLeavePeriodDAO) {
+		this.mstLeavePeriodDAO = mstLeavePeriodDAO;
+	}
+
+	public MstLeaveTypeDAO getMstLeaveTypeDAO() {
+		return mstLeaveTypeDAO;
+	}
+
+	public void setMstLeaveTypeDAO(MstLeaveTypeDAO mstLeaveTypeDAO) {
+		this.mstLeaveTypeDAO = mstLeaveTypeDAO;
+	}
+
+	public MstWorkWeekDAO getMstWorkWeekDAO() {
+		return mstWorkWeekDAO;
+	}
+
+	public void setMstWorkWeekDAO(MstWorkWeekDAO mstWorkWeekDAO) {
+		this.mstWorkWeekDAO = mstWorkWeekDAO;
+	}
+
+	public MstHolidayDAO getMstHolidayDAO() {
+		return mstHolidayDAO;
+	}
+
+	public void setMstHolidayDAO(MstHolidayDAO mstHolidayDAO) {
+		this.mstHolidayDAO = mstHolidayDAO;
+	}
 }

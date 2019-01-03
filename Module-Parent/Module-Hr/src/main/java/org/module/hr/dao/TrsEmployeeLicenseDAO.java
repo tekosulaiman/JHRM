@@ -3,9 +3,7 @@ package org.module.hr.dao;
 import java.util.List;
 import java.util.Map;
 
-import org.module.hr.model.TrsEmployeeLanguage;
 import org.module.hr.model.TrsEmployeeLicense;
-
 
 public interface TrsEmployeeLicenseDAO {
 	public void save(TrsEmployeeLicense trsEmployeeLicense);

@@ -141,6 +141,9 @@
 	<bean id="trsEmployeeSkillDAO" class="org.module.hr.dao.impl.TrsEmployeeSkillDAOImpl" parent="baseDao"/>
 	<bean id="trsEmployeeSalaryDAO" class="org.module.hr.dao.impl.TrsEmployeeSalaryDAOImpl" parent="baseDao"/>
 	
+	<!-- Leave -->
+	<bean id="mstHolidayDAO" class="org.module.hr.dao.impl.MstHolidayDAOImpl" parent="baseDao"/>
+	
 	<!-- Setting -->
 	<bean id="mstSettingDAO" class="org.module.hr.dao.impl.MstSettingDAOImpl" parent="baseDao"/>
 	
@@ -198,6 +201,11 @@
     	<property name="trsEmployeeLanguageDAO" ref="trsEmployeeLanguageDAO"/>
     	<property name="trsEmployeeSkillDAO" ref="trsEmployeeSkillDAO"/>
     	<property name="trsEmployeeSalaryDAO" ref="trsEmployeeSalaryDAO"/>
+    </bean>
+    
+    <!-- System Setting -->
+    <bean id="leaveService" class="org.module.hr.service.impl.LeaveServiceImpl">
+    	<property name="mstHolidayDAO" ref="mstHolidayDAO"/>
     </bean>
     
     <!-- System Setting -->
